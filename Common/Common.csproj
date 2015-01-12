@@ -45,6 +45,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapInfo.cs" />
+    <Compile Include="BitmapInfoHeader.cs" />
+    <Compile Include="ColumnInfo.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="FileInfo.cs" />
+    <Compile Include="IReimuPluginRev1.cs" />
+    <Compile Include="IReimuPluginRev2.cs" />
+    <Compile Include="RgbQuad.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
