@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 
-namespace Common
+namespace ReimuPlugins.Common
 {
     public static class StringExtensions
     {
