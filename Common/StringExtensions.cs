@@ -14,5 +14,10 @@ namespace ReimuPlugins.Common
         {
             return dst.GetString(Encoding.Convert(src, dst, src.GetBytes(str)));
         }
+
+        public static string ToSJIS(this string str)
+        {
+            return str.Convert(Enc.UTF8, Enc.SJIS);
+        }
     }
 }
