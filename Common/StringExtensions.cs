@@ -1,4 +1,10 @@
-﻿using System.Linq;
+﻿//-----------------------------------------------------------------------
+// <copyright file="StringExtensions.cs" company="None">
+//     (c) 2015 IIHOSHI Yoshinori
+// </copyright>
+//-----------------------------------------------------------------------
+
+using System.Linq;
 using System.Text;
 
 namespace ReimuPlugins.Common

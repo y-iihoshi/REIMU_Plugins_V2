@@ -1,4 +1,10 @@
-﻿using System.Runtime.InteropServices;
+﻿//-----------------------------------------------------------------------
+// <copyright file="FileInfo.cs" company="None">
+//     (c) 2015 IIHOSHI Yoshinori
+// </copyright>
+//-----------------------------------------------------------------------
+
+using System.Runtime.InteropServices;
 
 namespace ReimuPlugins.Common
 {

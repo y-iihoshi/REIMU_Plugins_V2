@@ -1,4 +1,10 @@
-﻿using System.Text;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Constants.cs" company="None">
+//     (c) 2015 IIHOSHI Yoshinori
+// </copyright>
+//-----------------------------------------------------------------------
+
+using System.Text;
 
 namespace ReimuPlugins.Common
 {

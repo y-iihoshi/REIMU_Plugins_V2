@@ -1,4 +1,10 @@
-﻿using System.IO;
+﻿//-----------------------------------------------------------------------
+// <copyright file="ThReplay.cs" company="None">
+//     (c) 2015 IIHOSHI Yoshinori
+// </copyright>
+//-----------------------------------------------------------------------
+
+using System.IO;
 using System.Text;
 
 namespace ReimuPlugins.Common
