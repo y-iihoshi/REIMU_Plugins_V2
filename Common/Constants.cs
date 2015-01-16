@@ -1,4 +1,6 @@
-﻿namespace ReimuPlugins.Common
+﻿using System.Text;
+
+namespace ReimuPlugins.Common
 {
     public enum Revision
     {
@@ -44,5 +46,12 @@
         LastAccessTime,
         LastWriteTime,
         FileSize
+    }
+
+    public static class Enc
+    {
+        public static readonly Encoding SJIS = Encoding.GetEncoding("shift_jis");
+
+        public static readonly Encoding UTF8 = Encoding.UTF8;
     }
 }
