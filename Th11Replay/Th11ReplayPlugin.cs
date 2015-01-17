@@ -17,39 +17,39 @@ namespace ReimuPlugins.Th11Replay
 {
     public sealed class Th11ReplayPlugin
     {
-        private static readonly Impl impl = new Impl();
+        private static readonly PluginImpl Impl = new PluginImpl();
 
         [DllExport]
         public static Revision GetPluginRevision()
         {
-            return impl.GetPluginRevision();
+            return Impl.GetPluginRevision();
         }
 
         [DllExport]
         public static int GetPluginInfo(int index, IntPtr info, uint size)
         {
-            return impl.GetPluginInfo(index, info, size);
+            return Impl.GetPluginInfo(index, info, size);
         }
 
         [DllExport]
         public static ErrorCode GetColumnInfo(out IntPtr info)
         {
-            return impl.GetColumnInfo(out info);
+            return Impl.GetColumnInfo(out info);
         }
 
         [DllExport]
         public static uint IsSupported(IntPtr src, uint size)
         {
-            return impl.IsSupported(src, size);
+            return Impl.IsSupported(src, size);
         }
 
         [DllExport]
         public static ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
         {
-            return impl.GetFileInfoList(src, size, out info);
+            return Impl.GetFileInfoList(src, size, out info);
         }
 
-        private sealed class Impl : IReimuPluginRev1
+        private sealed class PluginImpl : IReimuPluginRev1
         {
             private static readonly string ValidSignature = "t11r".ToSJIS();
 
