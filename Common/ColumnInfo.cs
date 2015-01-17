@@ -11,14 +11,14 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// Contains information about a column in the REIMU's list view.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct ColumnInfo
     {
         /// <summary>
         /// The text displaying as a column header.
         /// </summary>
         /// <remarks>The encoding must be Shift_JIS.</remarks>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=116)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 116)]
         public string Title;
 
         /// <summary>

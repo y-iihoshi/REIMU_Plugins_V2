@@ -26,7 +26,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// An array of <c>RGBQUAD</c> or <c>DWORD</c> data types that define the colors in the bitmap. 
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=1)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
         public RgbQuad[] Colors;
     }
 }
