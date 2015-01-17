@@ -4,10 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Runtime.InteropServices;
-
 namespace ReimuPlugins.Common
 {
+    using System.Runtime.InteropServices;
+
     /// <summary>
     /// <c>BITMAPINFOHEADER</c> structure of Win32 API.
     /// <para>Contains information about the dimensions and color format of a DIB.</para>

@@ -4,10 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Runtime.InteropServices;
-
 namespace ReimuPlugins.Common
 {
+    using System.Runtime.InteropServices;
+
     /// <summary>
     /// <c>RGBQUAD</c> structure of Win32 API.
     /// <para>Describes a color consisting of relative intensities of red, green, and blue.</para>

@@ -4,10 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System;
-
 namespace ReimuPlugins.Common
 {
+    using System;
+
     /// <summary>
     /// The interface of REIMU plugin (Revision 1).
     /// </summary>

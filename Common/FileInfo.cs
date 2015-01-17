@@ -4,10 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Runtime.InteropServices;
-
 namespace ReimuPlugins.Common
 {
+    using System.Runtime.InteropServices;
+
     /// <summary>
     /// Contains the file information displaying in the REIMU's list view.
     /// </summary>

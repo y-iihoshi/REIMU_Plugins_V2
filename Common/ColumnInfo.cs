@@ -4,10 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Runtime.InteropServices;
-
 namespace ReimuPlugins.Common
 {
+    using System.Runtime.InteropServices;
+
     /// <summary>
     /// Contains information about a column in the REIMU's list view.
     /// </summary>

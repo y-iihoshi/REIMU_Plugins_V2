@@ -4,10 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Runtime.InteropServices;
-
 namespace ReimuPlugins.Common
 {
+    using System.Runtime.InteropServices;
+
     /// <summary>
     /// <c>BITMAPINFO</c> structure of Win32 API.
     /// <para>

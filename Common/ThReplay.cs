@@ -4,11 +4,11 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.IO;
-using System.Text;
-
 namespace ReimuPlugins.Common
 {
+    using System.IO;
+    using System.Text;
+
     /// <summary>
     /// Indicates the Touhou replay file format.
     /// </summary>

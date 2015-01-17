@@ -4,11 +4,11 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System.Linq;
-using System.Text;
-
 namespace ReimuPlugins.Common
 {
+    using System.Linq;
+    using System.Text;
+
     /// <summary>
     /// Defines the extension methods for <c>String</c> class.
     /// </summary>
