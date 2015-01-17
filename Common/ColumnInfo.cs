@@ -6,11 +6,13 @@
 
 namespace ReimuPlugins.Common
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
 
     /// <summary>
     /// Contains information about a column in the REIMU's list view.
     /// </summary>
+    [SuppressMessage("Microsoft.Performance", "CA1815:OverrideEqualsAndOperatorEqualsOnValueTypes", Justification = "Reviewed.")]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct ColumnInfo
     {

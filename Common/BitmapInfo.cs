@@ -6,6 +6,7 @@
 
 namespace ReimuPlugins.Common
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
 
     /// <summary>
@@ -14,6 +15,7 @@ namespace ReimuPlugins.Common
     /// Defines the dimensions and color information for a Windows device-independent bitmap (DIB). 
     /// </para>
     /// </summary>
+    [SuppressMessage("Microsoft.Performance", "CA1815:OverrideEqualsAndOperatorEqualsOnValueTypes", Justification = "Reviewed.")]
     [StructLayout(LayoutKind.Sequential)]
     public struct BitmapInfo
     {
