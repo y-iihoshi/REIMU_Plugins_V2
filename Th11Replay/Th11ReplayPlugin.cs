@@ -181,7 +181,9 @@ namespace ReimuPlugins.Th11Replay
                 {
                     var byteCount = Enc.SJIS.GetByteCount(PluginInfo[index]);
                     if (info == IntPtr.Zero)
+                    {
                         return byteCount - 1;       // except null terminator
+                    }
                     else
                     {
                         if (size >= byteCount)
@@ -223,7 +225,9 @@ namespace ReimuPlugins.Th11Replay
             public uint IsSupported(IntPtr src, uint size)
             {
                 if (src == IntPtr.Zero)
+                {
                     return (uint)ValidSignature.Length;
+                }
 
                 var signature = string.Empty;
 
