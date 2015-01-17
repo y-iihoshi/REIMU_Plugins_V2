@@ -17,9 +17,14 @@ namespace ReimuPlugins.Common
     public enum Revision
     {
         /// <summary>
+        /// An invalid revision.
+        /// </summary>
+        Invalid = 0,
+
+        /// <summary>
         /// Revision 1.
         /// </summary>
-        Rev1 = 1,
+        Rev1,
 
         /// <summary>
         /// Revision 2.
