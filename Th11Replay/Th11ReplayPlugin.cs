@@ -5,14 +5,13 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using System.Reflection;
 using ReimuPlugins.Common;
 using RGiesecke.DllExport;
 using IO = System.IO;
+
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
 
 namespace ReimuPlugins.Th11Replay
 {
