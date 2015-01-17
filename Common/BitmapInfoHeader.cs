@@ -18,56 +18,56 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// The number of bytes required by the structure.
         /// </summary>
-        public uint size;
+        public uint Size;
 
         /// <summary>
         /// The width of the bitmap, in pixels.
         /// </summary>
-        public int width;
+        public int Width;
 
         /// <summary>
         /// The height of the bitmap, in pixels.
         /// </summary>
-        public int height;
+        public int Height;
 
         /// <summary>
         /// The number of planes for the target device.
         /// </summary>
-        public ushort planes;
+        public ushort Planes;
 
         /// <summary>
         /// The number of bits-per-pixel.
         /// </summary>
-        public ushort bitCount;
+        public ushort BitCount;
 
         /// <summary>
         /// The type of compression for a compressed bottom-up bitmap (top-down DIBs cannot be compressed).
         /// </summary>
-        public uint compression;
+        public uint Compression;
 
         /// <summary>
         /// The size, in bytes, of the image.
         /// </summary>
-        public uint sizeImage;
+        public uint SizeImage;
 
         /// <summary>
         /// The horizontal resolution, in pixels-per-meter, of the target device for the bitmap.
         /// </summary>
-        public int xPelsPerMeter;
+        public int XPelsPerMeter;
 
         /// <summary>
         /// The vertical resolution, in pixels-per-meter, of the target device for the bitmap.
         /// </summary>
-        public int yPelsPerMeter;
+        public int YPelsPerMeter;
 
         /// <summary>
         /// The number of color indexes in the color table that are actually used by the bitmap.
         /// </summary>
-        public uint clrUsed;
+        public uint ClrUsed;
 
         /// <summary>
         /// The number of color indexes that are required for displaying the bitmap.
         /// </summary>
-        public uint clrImportant;
+        public uint ClrImportant;
     }
 }

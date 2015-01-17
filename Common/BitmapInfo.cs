@@ -21,12 +21,12 @@ namespace ReimuPlugins.Common
         /// A <c>BITMAPINFOHEADER</c> structure that contains information about the dimensions and color
         /// format of a device-independent bitmap.
         /// </summary>
-        public BitmapInfoHeader header;
+        public BitmapInfoHeader Header;
 
         /// <summary>
         /// An array of <c>RGBQUAD</c> or <c>DWORD</c> data types that define the colors in the bitmap. 
         /// </summary>
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1)]
-        public RgbQuad[] colors;
+        public RgbQuad[] Colors;
     }
 }

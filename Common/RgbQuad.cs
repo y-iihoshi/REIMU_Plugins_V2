@@ -18,21 +18,21 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// The intensity of blue in the color.
         /// </summary>
-        public byte blue;
+        public byte Blue;
 
         /// <summary>
         /// The intensity of green in the color.
         /// </summary>
-        public byte green;
+        public byte Green;
 
         /// <summary>
         /// The intensity of red in the color.
         /// </summary>
-        public byte red;
+        public byte Red;
 
         /// <summary>
         /// This member is reserved and must be zero.
         /// </summary>
-        public byte reserved;
+        public byte Reserved;
     }
 }
