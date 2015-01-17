@@ -37,14 +37,14 @@ namespace ReimuPlugins.Common
         }
 
         /// <summary>
-        /// Converts the character encoding to Shift_JIS.
+        /// Converts the character encoding to the code page 932.
         /// <remarks>It is supposed to be used for C# string literals.</remarks>
         /// </summary>
         /// <param name="str">An UTF-8 string to convert.</param>
         /// <returns>The converted string.</returns>
-        public static string ToSJIS(this string str)
+        public static string ToCP932(this string str)
         {
-            return str.Convert(Enc.UTF8, Enc.SJIS);
+            return str.Convert(Enc.UTF8, Enc.CP932);
         }
     }
 }

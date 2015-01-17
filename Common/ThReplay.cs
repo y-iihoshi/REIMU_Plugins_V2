@@ -193,18 +193,18 @@ namespace ReimuPlugins.Common
             public byte[] Data { get; private set; }
 
             /// <summary>
-            /// Gets or sets the actual data represented as a Shift_JIS string.
+            /// Gets or sets the actual data represented as a code page 932 string.
             /// </summary>
             public string DataString
             {
                 get
                 {
-                    return Enc.SJIS.GetString(this.Data);
+                    return Enc.CP932.GetString(this.Data);
                 }
 
                 set
                 {
-                    this.Data = Enc.SJIS.GetBytes(value);
+                    this.Data = Enc.CP932.GetBytes(value);
                 }
             }
 

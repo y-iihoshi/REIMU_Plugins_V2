@@ -184,14 +184,14 @@ namespace ReimuPlugins.Common
         /// </summary>
         static Enc()
         {
-            SJIS = Encoding.GetEncoding("shift_jis");
+            CP932 = Encoding.GetEncoding(932);
             UTF8 = Encoding.UTF8;
         }
 
         /// <summary>
-        /// Gets the Shift_JIS encoding.
+        /// Gets the code page 932 encoding.
         /// </summary>
-        public static Encoding SJIS { get; private set; }
+        public static Encoding CP932 { get; private set; }
 
         /// <summary>
         /// Gets the UTF-8 encoding.

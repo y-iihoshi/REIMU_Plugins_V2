@@ -17,7 +17,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// The displaying text.
         /// </summary>
-        /// <remarks>The encoding must be Shift_JIS.</remarks>
+        /// <remarks>The encoding must be the code page 932.</remarks>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
         public string Text;
     }

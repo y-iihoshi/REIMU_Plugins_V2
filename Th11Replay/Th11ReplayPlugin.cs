@@ -51,112 +51,112 @@ namespace ReimuPlugins.Th11Replay
 
         private sealed class PluginImpl : IReimuPluginRev1
         {
-            private static readonly string ValidSignature = "t11r".ToSJIS();
+            private static readonly string ValidSignature = "t11r".ToCP932();
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For 東方地霊殿 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToSJIS(),
-                "東方地霊殿\0".ToSJIS(),
-                "th11_*.rpy\0".ToSJIS(),
-                "東方地霊殿 リプレイファイル (th11_*.rpy)\0".ToSJIS(),
+                "REIMU Plug-in For 東方地霊殿 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToCP932(),
+                "東方地霊殿\0".ToCP932(),
+                "th11_*.rpy\0".ToCP932(),
+                "東方地霊殿 リプレイファイル (th11_*.rpy)\0".ToCP932(),
             };
 
             private static readonly ColumnInfo[] Columns =
             {
                 new ColumnInfo
                 {
-                    Title = "ファイル名\0".ToSJIS(),
+                    Title = "ファイル名\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.Title
                 },
                 new ColumnInfo
                 {
-                    Title = "更新日時\0".ToSJIS(),
+                    Title = "更新日時\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.LastWriteTime
                 },
                 new ColumnInfo
                 {
-                    Title = "No.\0".ToSJIS(),
+                    Title = "No.\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "プレイヤー名\0".ToSJIS(),
+                    Title = "プレイヤー名\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "プレイ時刻\0".ToSJIS(),
+                    Title = "プレイ時刻\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "使用キャラ\0".ToSJIS(),
+                    Title = "使用キャラ\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "難易度\0".ToSJIS(),
+                    Title = "難易度\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "ステージ\0".ToSJIS(),
+                    Title = "ステージ\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "スコア\0".ToSJIS(),
+                    Title = "スコア\0".ToCP932(),
                     Align = TextAlign.Right,
                     Sort = SortType.Number,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "処理落ち率\0".ToSJIS(),
+                    Title = "処理落ち率\0".ToCP932(),
                     Align = TextAlign.Right,
                     Sort = SortType.Float,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "バージョン\0".ToSJIS(),
+                    Title = "バージョン\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "コメント\0".ToSJIS(),
+                    Title = "コメント\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.String
                 },
                 new ColumnInfo
                 {
-                    Title = "ファイルサイズ\0".ToSJIS(),
+                    Title = "ファイルサイズ\0".ToCP932(),
                     Align = TextAlign.Right,
                     Sort = SortType.Number,
                     System = SystemInfoType.FileSize
                 },
                 new ColumnInfo
                 {
-                    Title = "ディレクトリ\0".ToSJIS(),
+                    Title = "ディレクトリ\0".ToCP932(),
                     Align = TextAlign.Left,
                     Sort = SortType.String,
                     System = SystemInfoType.Directory
@@ -179,7 +179,7 @@ namespace ReimuPlugins.Th11Replay
             {
                 if ((0 <= index) && (index < PluginInfo.Length))
                 {
-                    var byteCount = Enc.SJIS.GetByteCount(PluginInfo[index]);
+                    var byteCount = Enc.CP932.GetByteCount(PluginInfo[index]);
                     if (info == IntPtr.Zero)
                     {
                         return byteCount - 1;       // except null terminator
@@ -188,7 +188,7 @@ namespace ReimuPlugins.Th11Replay
                     {
                         if (size >= byteCount)
                         {
-                            Marshal.Copy(Enc.SJIS.GetBytes(PluginInfo[index]), 0, info, byteCount);
+                            Marshal.Copy(Enc.CP932.GetBytes(PluginInfo[index]), 0, info, byteCount);
                             return byteCount - 1;   // except null terminator
                         }
                     }
@@ -237,7 +237,7 @@ namespace ReimuPlugins.Th11Replay
                     {
                         var content = new byte[Math.Min(size, ValidSignature.Length)];
                         Marshal.Copy(src, content, 0, content.Length);
-                        signature = Enc.SJIS.GetString(content);
+                        signature = Enc.CP932.GetString(content);
                     }
                     else
                     {
@@ -246,7 +246,7 @@ namespace ReimuPlugins.Th11Replay
                         {
                             var reader = new IO.BinaryReader(stream);
                             var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                            signature = Enc.SJIS.GetString(reader.ReadBytes(readSize));
+                            signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                         }
                     }
                 }

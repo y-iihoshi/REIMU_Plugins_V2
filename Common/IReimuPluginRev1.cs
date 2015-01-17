@@ -60,7 +60,7 @@ namespace ReimuPlugins.Common
         /// </param>
         /// <param name="info">
         /// The address to store the null-terminated string indicating the information above.
-        /// <remarks>The encoding shall be Shift_JIS.</remarks>
+        /// <remarks>The encoding shall be the code page 932.</remarks>
         /// </param>
         /// <param name="size">The size (in bytes) of <paramref name="info"/>.</param>
         /// <returns>
@@ -221,7 +221,7 @@ namespace ReimuPlugins.Common
         /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the
         /// Win32 API <c>LocalFree()</c>.
         /// </remarks>
-        /// <remarks>The encoding shall be Shift_JIS.</remarks>
+        /// <remarks>The encoding shall be the code page 932.</remarks>
         /// </param>
         /// <returns>An error code.</returns>
         ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst);
@@ -261,7 +261,7 @@ namespace ReimuPlugins.Common
         /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the
         /// Win32 API <c>LocalFree()</c>.
         /// </remarks>
-        /// <remarks>The encoding shall be Shift_JIS.</remarks>
+        /// <remarks>The encoding shall be the code page 932.</remarks>
         /// </param>
         /// <returns>An error code.</returns>
         ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst);
