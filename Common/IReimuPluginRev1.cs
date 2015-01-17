@@ -7,6 +7,7 @@
 namespace ReimuPlugins.Common
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// The interface of REIMU plugin (Revision 1).
@@ -89,6 +90,7 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <returns>An error code.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "0#", Justification = "Reviewed.")]
         ErrorCode GetColumnInfo(out IntPtr info);
 
         /// <summary>
@@ -180,6 +182,7 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <returns>An error code.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "Reviewed.")]
         ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info);
 
         #endregion
@@ -224,6 +227,7 @@ namespace ReimuPlugins.Common
         /// <remarks>The encoding shall be the code page 932.</remarks>
         /// </param>
         /// <returns>An error code.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "Reviewed.")]
         ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst);
 
         /// <summary>
@@ -264,6 +268,7 @@ namespace ReimuPlugins.Common
         /// <remarks>The encoding shall be the code page 932.</remarks>
         /// </param>
         /// <returns>An error code.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "Reviewed.")]
         ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst);
 
         /// <summary>
