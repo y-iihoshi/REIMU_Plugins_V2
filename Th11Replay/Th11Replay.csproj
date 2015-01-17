@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ReimuPlugins.Th11Replay</RootNamespace>
-    <AssemblyName>rpi_th11replay</AssemblyName>
+    <AssemblyName>ReimuPlugins.Th11Replay</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
