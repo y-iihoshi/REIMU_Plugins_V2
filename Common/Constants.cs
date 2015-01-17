@@ -180,13 +180,22 @@ namespace ReimuPlugins.Common
     public static class Enc
     {
         /// <summary>
-        /// The Shift_JIS encoding.
+        /// Initializes static members of the <see cref="Enc"/> class.
         /// </summary>
-        public static readonly Encoding SJIS = Encoding.GetEncoding("shift_jis");
+        static Enc()
+        {
+            SJIS = Encoding.GetEncoding("shift_jis");
+            UTF8 = Encoding.UTF8;
+        }
 
         /// <summary>
-        /// The UTF-8 encoding.
+        /// Gets the Shift_JIS encoding.
         /// </summary>
-        public static readonly Encoding UTF8 = Encoding.UTF8;
+        public static Encoding SJIS { get; private set; }
+
+        /// <summary>
+        /// Gets the UTF-8 encoding.
+        /// </summary>
+        public static Encoding UTF8 { get; private set; }
     }
 }
