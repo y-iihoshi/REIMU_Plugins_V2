@@ -269,7 +269,6 @@ namespace ReimuPlugins.Th11Replay
                 return ErrorCode.AllRight;
             }
 
-
             public ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
             {
                 throw new NotImplementedException();
