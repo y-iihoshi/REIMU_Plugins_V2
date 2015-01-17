@@ -22,31 +22,6 @@ namespace ReimuPlugins.Common
         }
 
         /// <summary>
-        /// Reads from the specified stream.
-        /// </summary>
-        /// <param name="input">An input stream.</param>
-        public void Read(Stream input)
-        {
-            var reader = new BinaryReader(input);
-            this.ReplayData.ReadFrom(reader);
-            this.UserInfo0.ReadFrom(reader);
-            this.UserInfo1.ReadFrom(reader);
-        }
-
-        /// <summary>
-        /// Writes to the specified stream.
-        /// </summary>
-        /// <param name="output">An output stream.</param>
-        public void Write(Stream output)
-        {
-            var writer = new BinaryWriter(output);
-            this.ReplayData.WriteTo(writer);
-            this.UserInfo0.WriteTo(writer);
-            this.UserInfo1.WriteTo(writer);
-            writer.Flush();
-        }
-
-        /// <summary>
         /// Gets the information.
         /// </summary>
         public string Info
@@ -89,6 +64,31 @@ namespace ReimuPlugins.Common
         protected UserInfo UserInfo1 { get; private set; }
 
         /// <summary>
+        /// Reads from the specified stream.
+        /// </summary>
+        /// <param name="input">An input stream.</param>
+        public void Read(Stream input)
+        {
+            var reader = new BinaryReader(input);
+            this.ReplayData.ReadFrom(reader);
+            this.UserInfo0.ReadFrom(reader);
+            this.UserInfo1.ReadFrom(reader);
+        }
+
+        /// <summary>
+        /// Writes to the specified stream.
+        /// </summary>
+        /// <param name="output">An output stream.</param>
+        public void Write(Stream output)
+        {
+            var writer = new BinaryWriter(output);
+            this.ReplayData.WriteTo(writer);
+            this.UserInfo0.WriteTo(writer);
+            this.UserInfo1.WriteTo(writer);
+            writer.Flush();
+        }
+
+        /// <summary>
         /// Indicates a replay data.
         /// </summary>
         protected class Replay
@@ -98,36 +98,6 @@ namespace ReimuPlugins.Common
             /// </summary>
             public Replay()
             {
-            }
-
-            /// <summary>
-            /// Reads data by using the specified <see cref="BinaryReader"/> instance.
-            /// </summary>
-            /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
-            public void ReadFrom(BinaryReader reader)
-            {
-                this.Signature = reader.ReadBytes(4);
-                this.Unknown1 = reader.ReadBytes(8);
-                this.HeaderSize = reader.ReadInt32();
-                this.Unknown2 = reader.ReadBytes(12);
-                var dataSize = reader.ReadInt32();
-                this.Unknown3 = reader.ReadBytes(4);
-                this.Data = reader.ReadBytes(dataSize);
-            }
-
-            /// <summary>
-            /// Writes data by using the specified <see cref="BinaryWriter"/> instance.
-            /// </summary>
-            /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
-            public void WriteTo(BinaryWriter writer)
-            {
-                writer.Write(this.Signature);
-                writer.Write(this.Unknown1);
-                writer.Write(this.HeaderSize);
-                writer.Write(this.Unknown2);
-                writer.Write(this.Data.Length);
-                writer.Write(this.Unknown3);
-                writer.Write(this.Data);
             }
 
             /// <summary>
@@ -163,6 +133,36 @@ namespace ReimuPlugins.Common
             /// Gets the actual replay data.
             /// </summary>
             public byte[] Data { get; private set; }
+
+            /// <summary>
+            /// Reads data by using the specified <see cref="BinaryReader"/> instance.
+            /// </summary>
+            /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
+            public void ReadFrom(BinaryReader reader)
+            {
+                this.Signature = reader.ReadBytes(4);
+                this.Unknown1 = reader.ReadBytes(8);
+                this.HeaderSize = reader.ReadInt32();
+                this.Unknown2 = reader.ReadBytes(12);
+                var dataSize = reader.ReadInt32();
+                this.Unknown3 = reader.ReadBytes(4);
+                this.Data = reader.ReadBytes(dataSize);
+            }
+
+            /// <summary>
+            /// Writes data by using the specified <see cref="BinaryWriter"/> instance.
+            /// </summary>
+            /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
+            public void WriteTo(BinaryWriter writer)
+            {
+                writer.Write(this.Signature);
+                writer.Write(this.Unknown1);
+                writer.Write(this.HeaderSize);
+                writer.Write(this.Unknown2);
+                writer.Write(this.Data.Length);
+                writer.Write(this.Unknown3);
+                writer.Write(this.Data);
+            }
         }
 
         /// <summary>
@@ -175,30 +175,6 @@ namespace ReimuPlugins.Common
             /// </summary>
             public UserInfo()
             {
-            }
-
-            /// <summary>
-            /// Reads data by using the specified <see cref="BinaryReader"/> instance.
-            /// </summary>
-            /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
-            public void ReadFrom(BinaryReader reader)
-            {
-                this.Signature = reader.ReadBytes(4);
-                var size = reader.ReadInt32();
-                this.Type = reader.ReadInt32();
-                this.Data = reader.ReadBytes(size);
-            }
-
-            /// <summary>
-            /// Writes data by using the specified <see cref="BinaryWriter"/> instance.
-            /// </summary>
-            /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
-            public void WriteTo(BinaryWriter writer)
-            {
-                writer.Write(this.Signature);
-                writer.Write(this.Data.Length);
-                writer.Write(this.Type);
-                writer.Write(this.Data);
             }
 
             /// <summary>
@@ -230,6 +206,30 @@ namespace ReimuPlugins.Common
                 {
                     this.Data = Enc.SJIS.GetBytes(value);
                 }
+            }
+
+            /// <summary>
+            /// Reads data by using the specified <see cref="BinaryReader"/> instance.
+            /// </summary>
+            /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
+            public void ReadFrom(BinaryReader reader)
+            {
+                this.Signature = reader.ReadBytes(4);
+                var size = reader.ReadInt32();
+                this.Type = reader.ReadInt32();
+                this.Data = reader.ReadBytes(size);
+            }
+
+            /// <summary>
+            /// Writes data by using the specified <see cref="BinaryWriter"/> instance.
+            /// </summary>
+            /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
+            public void WriteTo(BinaryWriter writer)
+            {
+                writer.Write(this.Signature);
+                writer.Write(this.Data.Length);
+                writer.Write(this.Type);
+                writer.Write(this.Data);
             }
         }
     }
