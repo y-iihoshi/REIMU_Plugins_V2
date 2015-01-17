@@ -185,7 +185,7 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the type of the user information. (0: replay file information, 1: comment)
             /// </summary>
-            public int Type { get; private set; }
+            public int InfoType { get; private set; }
 
             /// <summary>
             /// Gets the actual data.
@@ -216,7 +216,7 @@ namespace ReimuPlugins.Common
             {
                 this.Signature = reader.ReadBytes(4);
                 var size = reader.ReadInt32();
-                this.Type = reader.ReadInt32();
+                this.InfoType = reader.ReadInt32();
                 this.Data = reader.ReadBytes(size);
             }
 
@@ -228,7 +228,7 @@ namespace ReimuPlugins.Common
             {
                 writer.Write(this.Signature);
                 writer.Write(this.Data.Length);
-                writer.Write(this.Type);
+                writer.Write(this.InfoType);
                 writer.Write(this.Data);
             }
         }
