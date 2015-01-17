@@ -12,7 +12,7 @@ namespace ReimuPlugins.Common
     /// Contains the file information displaying in the REIMU's list view.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)]
-    public class FileInfo
+    public struct FileInfo
     {
         /// <summary>
         /// The displaying text.

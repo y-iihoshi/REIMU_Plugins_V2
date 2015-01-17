@@ -15,21 +15,6 @@ namespace ReimuPlugins.Common
     public class ThReplay
     {
         /// <summary>
-        /// The replay data.
-        /// </summary>
-        protected Replay replay;
-
-        /// <summary>
-        /// The user information indicating the replay file information.
-        /// </summary>
-        protected UserInfo userInfo0;
-
-        /// <summary>
-        /// The user information indicating the comment.
-        /// </summary>
-        protected UserInfo userInfo1;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ThReplay"/> class.
         /// </summary>
         public ThReplay()
@@ -43,9 +28,9 @@ namespace ReimuPlugins.Common
         public void Read(Stream input)
         {
             var reader = new BinaryReader(input);
-            replay.ReadFrom(reader);
-            userInfo0.ReadFrom(reader);
-            userInfo1.ReadFrom(reader);
+            this.ReplayData.ReadFrom(reader);
+            this.UserInfo0.ReadFrom(reader);
+            this.UserInfo1.ReadFrom(reader);
         }
 
         /// <summary>
@@ -55,9 +40,9 @@ namespace ReimuPlugins.Common
         public void Write(Stream output)
         {
             var writer = new BinaryWriter(output);
-            replay.WriteTo(writer);
-            userInfo0.WriteTo(writer);
-            userInfo1.WriteTo(writer);
+            this.ReplayData.WriteTo(writer);
+            this.UserInfo0.WriteTo(writer);
+            this.UserInfo1.WriteTo(writer);
             writer.Flush();
         }
 
@@ -68,7 +53,7 @@ namespace ReimuPlugins.Common
         {
             get
             {
-                return this.userInfo0.DataString;
+                return this.UserInfo0.DataString;
             }
         }
 
@@ -79,14 +64,29 @@ namespace ReimuPlugins.Common
         {
             get
             {
-                return this.userInfo1.DataString;
+                return this.UserInfo1.DataString;
             }
 
             set
             {
-                this.userInfo1.DataString = value;
+                this.UserInfo1.DataString = value;
             }
         }
+
+        /// <summary>
+        /// Gets the replay data.
+        /// </summary>
+        protected Replay ReplayData { get; private set; }
+
+        /// <summary>
+        /// Gets the user information indicating the replay file information.
+        /// </summary>
+        protected UserInfo UserInfo0 { get; private set; }
+
+        /// <summary>
+        /// Gets the user information indicating the comment.
+        /// </summary>
+        protected UserInfo UserInfo1 { get; private set; }
 
         /// <summary>
         /// Indicates a replay data.
