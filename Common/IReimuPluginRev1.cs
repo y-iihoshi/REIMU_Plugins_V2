@@ -42,7 +42,7 @@ namespace ReimuPlugins.Common
         /// <item>
         /// <description><c>2n + 2</c> (where <c>n</c> >= 0)</description>
         /// <description>
-        /// The filename extension(s) supported by the plugin. (e.g. "*.rpy", "*.jpg;*.png")
+        /// The filename extension(s) supported by the plugin. (e.g. <c>"*.rpy"</c>, <c>"*.jpg;*.png"</c>)
         /// </description>
         /// </item>
         /// <item>
