@@ -1,9 +1,5 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
-    <CollectionProperty Name="RecognizedWords">
-      <Value>th</Value>
-      <Value>Touhou</Value>
-    </CollectionProperty>
     <StringProperty Name="MergeSettingsFiles">NoMerge</StringProperty>
   </GlobalSettings>
 </StyleCopSettings>

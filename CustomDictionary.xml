@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>th</Word>
+      <Word>touhou</Word>
+    </Recognized>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>Th</Acronym>
+      <Acronym>UTF</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>
