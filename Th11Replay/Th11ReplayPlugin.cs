@@ -243,8 +243,8 @@ namespace ReimuPlugins.Th11Replay
                     {
                         var path = Marshal.PtrToStringAnsi(src);
                         using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
-                        using (var reader = new IO.BinaryReader(stream))
                         {
+                            var reader = new IO.BinaryReader(stream);
                             var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
                             signature = Enc.SJIS.GetString(reader.ReadBytes(readSize));
                         }
