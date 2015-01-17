@@ -283,12 +283,12 @@ namespace ReimuPlugins.Th11Replay
                 throw new NotImplementedException();
             }
 
-            public ErrorCode EditDialog(IntPtr hWnd, string file)
+            public ErrorCode EditDialog(IntPtr parent, string file)
             {
                 throw new NotImplementedException();
             }
 
-            public ErrorCode ConfigDialog(IntPtr hWnd)
+            public ErrorCode ConfigDialog(IntPtr parent)
             {
                 throw new NotImplementedException();
             }

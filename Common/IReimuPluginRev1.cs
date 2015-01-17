@@ -269,21 +269,21 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Opens the dialog for editing the file selected in the REIMU's list view.
         /// </summary>
-        /// <param name="hWnd">
+        /// <param name="parent">
         /// The handle (the value of <c>HWND</c> type of Win32 API) of the parent window of the dialog.
         /// </param>
         /// <param name="file">The null-terminated path string of the selected file.</param>
         /// <returns><see cref="AllRight"/> if "OK" button is clicked; others when cancelled.</returns>
-        ErrorCode EditDialog(IntPtr hWnd, string file);
+        ErrorCode EditDialog(IntPtr parent, string file);
 
         /// <summary>
         /// Opens the config dialog of the implemented plugin.
         /// </summary>
-        /// <param name="hWnd">
+        /// <param name="parent">
         /// The handle (the value of <c>HWND</c> type of Win32 API) of the parent window of the dialog.
         /// </param>
         /// <returns><see cref="AllRight"/> if "OK" button is clicked; others when cancelled.</returns>
-        ErrorCode ConfigDialog(IntPtr hWnd);
+        ErrorCode ConfigDialog(IntPtr parent);
 
         #endregion
     }
