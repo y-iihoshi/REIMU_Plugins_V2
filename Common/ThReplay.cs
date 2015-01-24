@@ -8,9 +8,8 @@ namespace ReimuPlugins.Common
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Indicates the Touhou replay file format.
@@ -82,10 +81,54 @@ namespace ReimuPlugins.Common
         protected UserInfo UserInfo1 { get; private set; }
 
         /// <summary>
+        /// Gets a number string from the specified file path.
+        /// </summary>
+        /// <param name="path">A file path to get a number string.</param>
+        /// <param name="patternBasic">The regular expression pattern to judge the file is numbered.</param>
+        /// <param name="patternUser">
+        /// The regular expression pattern to judge the file is user-defined.
+        /// </param>
+        /// <returns>
+        /// <list type="bullet">
+        /// <item>
+        /// <term><c>"No.XX"</c></term>
+        /// <description>
+        /// When the filename is matched by <paramref name="patternBasic"/>.
+        /// <c>"XX"</c> is the two-digit number string included in the filename.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <term><c>"User"</c></term>
+        /// <description>When the filename is matched by <paramref name="patternUser"/>.</description>
+        /// </item>
+        /// </list>
+        /// </returns>
+        public static string GetNumberFromPath(string path, string patternBasic, string patternUser)
+        {
+            var number = string.Empty;
+            var filename = Path.GetFileName(path);
+
+            var match = Regex.Match(filename, patternBasic, RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                number = "No." + match.Groups[1];
+            }
+            else
+            {
+                if (Regex.IsMatch(filename, patternUser, RegexOptions.IgnoreCase))
+                {
+                    number = "User";
+                }
+            }
+
+            return number;
+        }
+
+        /// <summary>
         /// Reads from the specified stream.
         /// </summary>
         /// <param name="input">An input stream.</param>
-        public void Read(Stream input)
+        public virtual void Read(Stream input)
         {
             var reader = new BinaryReader(input);
             this.ReplayData.ReadFrom(reader);

@@ -9,7 +9,9 @@
 namespace ReimuPlugins.Th11Replay
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Runtime.InteropServices;
     using System.Security;
     using System.Text;
@@ -66,114 +68,194 @@ namespace ReimuPlugins.Th11Replay
                 "東方地霊殿 リプレイファイル (th11_*.rpy)\0".ToCP932(),
             };
 
-            private static readonly ColumnInfo[] Columns =
+            private static readonly Dictionary<ColumnIndex, ColumnInfo> Columns =
+                new Dictionary<ColumnIndex, ColumnInfo>
+                {
+                    {
+                        ColumnIndex.Filename,
+                        new ColumnInfo
+                        {
+                            Title = "ファイル名\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.Title
+                        }
+                    },
+                    {
+                        ColumnIndex.LastWriteDate,
+                        new ColumnInfo
+                        {
+                            Title = "更新日時\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.LastWriteTime
+                        }
+                    },
+                    {
+                        ColumnIndex.Number,
+                        new ColumnInfo
+                        {
+                            Title = "No.\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.Player,
+                        new ColumnInfo
+                        {
+                            Title = "プレイヤー名\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.PlayTime,
+                        new ColumnInfo
+                        {
+                            Title = "プレイ時刻\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.Character,
+                        new ColumnInfo
+                        {
+                            Title = "使用キャラ\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.Level,
+                        new ColumnInfo
+                        {
+                            Title = "難易度\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.Stage,
+                        new ColumnInfo
+                        {
+                            Title = "ステージ\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.Score,
+                        new ColumnInfo
+                        {
+                            Title = "スコア\0".ToCP932(),
+                            Align = TextAlign.Right,
+                            Sort = SortType.Number,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.SlowRate,
+                        new ColumnInfo
+                        {
+                            Title = "処理落ち率\0".ToCP932(),
+                            Align = TextAlign.Right,
+                            Sort = SortType.Float,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.Version,
+                        new ColumnInfo
+                        {
+                            Title = "バージョン\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.Comment,
+                        new ColumnInfo
+                        {
+                            Title = "コメント\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnIndex.FileSize,
+                        new ColumnInfo
+                        {
+                            Title = "ファイルサイズ\0".ToCP932(),
+                            Align = TextAlign.Right,
+                            Sort = SortType.Number,
+                            System = SystemInfoType.FileSize
+                        }
+                    },
+                    {
+                        ColumnIndex.Directory,
+                        new ColumnInfo
+                        {
+                            Title = "ディレクトリ\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.Directory
+                        }
+                    },
+                    {
+                        ColumnIndex.Sentinel,
+                        new ColumnInfo
+                        {
+                            Title = "\0",
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    }
+                };
+
+            [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
+            private static readonly Dictionary<ColumnIndex, Func<Th11ReplayData, string>> FileInfoGetters =
+                new Dictionary<ColumnIndex, Func<Th11ReplayData, string>>
+                {
+                    { ColumnIndex.Player,    (data) => data.Name     },
+                    { ColumnIndex.PlayTime,  (data) => data.Date     },
+                    { ColumnIndex.Character, (data) => data.Chara    },
+                    { ColumnIndex.Level,     (data) => data.Rank     },
+                    { ColumnIndex.Stage,     (data) => data.Stage    },
+                    { ColumnIndex.Score,     (data) => data.Score    },
+                    { ColumnIndex.SlowRate,  (data) => data.SlowRate },
+                    { ColumnIndex.Version,   (data) => data.Version  },
+                    { ColumnIndex.Comment,   (data) => data.Comment  },
+                };
+
+            private enum ColumnIndex
             {
-                new ColumnInfo
-                {
-                    Title = "ファイル名\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.Title
-                },
-                new ColumnInfo
-                {
-                    Title = "更新日時\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.LastWriteTime
-                },
-                new ColumnInfo
-                {
-                    Title = "No.\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "プレイヤー名\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "プレイ時刻\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "使用キャラ\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "難易度\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "ステージ\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "スコア\0".ToCP932(),
-                    Align = TextAlign.Right,
-                    Sort = SortType.Number,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "処理落ち率\0".ToCP932(),
-                    Align = TextAlign.Right,
-                    Sort = SortType.Float,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "バージョン\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "コメント\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                },
-                new ColumnInfo
-                {
-                    Title = "ファイルサイズ\0".ToCP932(),
-                    Align = TextAlign.Right,
-                    Sort = SortType.Number,
-                    System = SystemInfoType.FileSize
-                },
-                new ColumnInfo
-                {
-                    Title = "ディレクトリ\0".ToCP932(),
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.Directory
-                },
-                new ColumnInfo  // sentinel
-                {
-                    Title = "\0",
-                    Align = TextAlign.Left,
-                    Sort = SortType.String,
-                    System = SystemInfoType.String
-                }
-            };
+                Filename = 0,
+                LastWriteDate,
+                Number,
+                Player,
+                PlayTime,
+                Character,
+                Level,
+                Stage,
+                Score,
+                SlowRate,
+                Version,
+                Comment,
+                FileSize,
+                Directory,
+                Sentinel
+            }
 
             public Revision GetPluginRevision()
             {
@@ -224,13 +306,13 @@ namespace ReimuPlugins.Th11Replay
                 {
                     var size = Marshal.SizeOf(typeof(ColumnInfo));
 
-                    info = Marshal.AllocHGlobal(size * Columns.Length);
+                    info = Marshal.AllocHGlobal(size * Columns.Count);
 
                     var address = info.ToInt64();
-                    foreach (var column in Columns)
+                    foreach (var index in Utils.GetEnumerator<ColumnIndex>())
                     {
                         var pointer = new IntPtr(address);
-                        Marshal.StructureToPtr(column, pointer, false);
+                        Marshal.StructureToPtr(Columns[index], pointer, false);
                         address += size;
                     }
 
@@ -318,15 +400,94 @@ namespace ReimuPlugins.Th11Replay
 
                 try
                 {
-                    info = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(FileInfo)) * (Columns.Length - 1));
+                    var replay = new Th11ReplayData();
+                    var number = string.Empty;
 
-                    //// FIXME
+                    if (size > 0u)
+                    {
+                        var content = new byte[size];
+                        Marshal.Copy(src, content, 0, content.Length);
+                        using (var stream = new IO.MemoryStream(content, false))
+                        {
+                            replay.Read(stream);
+                        }
+                    }
+                    else
+                    {
+                        var path = Marshal.PtrToStringAnsi(src);
+                        number = ThReplay.GetNumberFromPath(
+                            path, @"^th11_(\d{2})\.rpy$", @"^th11_ud(.{0,4})\.rpy$");
 
-                    errorCode = ErrorCode.AllRight;
+                        try
+                        {
+                            using (var stream = new IO.FileStream(
+                                path, IO.FileMode.Open, IO.FileAccess.Read))
+                            {
+                                replay.Read(stream);
+                            }
+                        }
+                        catch (ArgumentException)
+                        {
+                            errorCode = ErrorCode.FileReadError;
+                        }
+                        catch (IO.IOException)
+                        {
+                            errorCode = ErrorCode.FileReadError;
+                        }
+                        catch (NotSupportedException)
+                        {
+                            errorCode = ErrorCode.FileReadError;
+                        }
+                        catch (SecurityException)
+                        {
+                            errorCode = ErrorCode.FileReadError;
+                        }
+                        catch (UnauthorizedAccessException)
+                        {
+                            errorCode = ErrorCode.FileReadError;
+                        }
+                    }
+
+                    if (errorCode != ErrorCode.FileReadError)
+                    {
+                        var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
+                        info = Marshal.AllocHGlobal(
+                            fileInfoSize * Columns.Keys.Count(key => key != ColumnIndex.Sentinel));
+
+                        var address = info.ToInt64();
+                        foreach (var index in Utils.GetEnumerator<ColumnIndex>())
+                        {
+                            var fileInfo = new FileInfo { Text = string.Empty };
+                            if (index == ColumnIndex.Number)
+                            {
+                                fileInfo.Text = number;
+                            }
+                            else
+                            {
+                                Func<Th11ReplayData, string> getter;
+                                if (FileInfoGetters.TryGetValue(index, out getter))
+                                {
+                                    fileInfo.Text = getter(replay);
+                                }
+                            }
+
+                            var pointer = new IntPtr(address);
+                            Marshal.StructureToPtr(fileInfo, pointer, false);
+                            address += fileInfoSize;
+                        }
+
+                        errorCode = ErrorCode.AllRight;
+                    }
                 }
                 catch (OutOfMemoryException)
                 {
                     errorCode = ErrorCode.NoMemory;
+                }
+                catch (ArgumentException)
+                {
+                }
+                catch (OverflowException)
+                {
                 }
 
                 if (errorCode != ErrorCode.AllRight)
