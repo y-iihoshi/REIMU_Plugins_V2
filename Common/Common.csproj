@@ -61,6 +61,7 @@
     <Compile Include="BitmapInfoHeader.cs" />
     <Compile Include="ColumnInfo.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Enc.cs" />
     <Compile Include="FileInfo.cs" />
     <Compile Include="IReimuPluginRev1.cs" />
     <Compile Include="IReimuPluginRev2.cs" />
