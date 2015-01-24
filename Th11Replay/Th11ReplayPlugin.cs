@@ -7,6 +7,8 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
+using System.Security;
+using System.Text;
 using ReimuPlugins.Common;
 using RGiesecke.DllExport;
 using IO = System.IO;
@@ -180,21 +182,33 @@ namespace ReimuPlugins.Th11Replay
 
             public int GetPluginInfo(int index, IntPtr info, uint size)
             {
-                if ((0 <= index) && (index < PluginInfo.Length))
+                try
                 {
                     var byteCount = Enc.CP932.GetByteCount(PluginInfo[index]);
                     if (info == IntPtr.Zero)
                     {
-                        return byteCount - 1;       // except null terminator
+                        return byteCount - 1;   // except a null terminator
                     }
                     else
                     {
                         if (size >= byteCount)
                         {
                             Marshal.Copy(Enc.CP932.GetBytes(PluginInfo[index]), 0, info, byteCount);
-                            return byteCount - 1;   // except null terminator
+                            return byteCount - 1;   // except a null terminator
                         }
                     }
+                }
+                catch (IndexOutOfRangeException)
+                {
+                }
+                catch (ArgumentNullException)
+                {
+                }
+                catch (EncoderFallbackException)
+                {
+                }
+                catch (ArgumentOutOfRangeException)
+                {
                 }
 
                 return 0;
@@ -202,6 +216,10 @@ namespace ReimuPlugins.Th11Replay
 
             public ErrorCode GetColumnInfo(out IntPtr info)
             {
+                var errorCode = ErrorCode.UnknownError;
+
+                info = IntPtr.Zero;
+
                 try
                 {
                     var size = Marshal.SizeOf(typeof(ColumnInfo));
@@ -215,14 +233,26 @@ namespace ReimuPlugins.Th11Replay
                         Marshal.StructureToPtr(column, pointer, false);
                         address += size;
                     }
+
+                    errorCode = ErrorCode.AllRight;
                 }
                 catch (OutOfMemoryException)
                 {
-                    info = IntPtr.Zero;
-                    return ErrorCode.NoMemory;
+                    errorCode = ErrorCode.NoMemory;
+                }
+                catch (ArgumentException)
+                {
+                }
+                catch (OverflowException)
+                {
                 }
 
-                return ErrorCode.AllRight;
+                if (errorCode != ErrorCode.AllRight)
+                {
+                    Marshal.FreeHGlobal(info);
+                }
+
+                return errorCode;
             }
 
             public uint IsSupported(IntPtr src, uint size)
@@ -232,10 +262,10 @@ namespace ReimuPlugins.Th11Replay
                     return (uint)ValidSignature.Length;
                 }
 
-                var signature = string.Empty;
-
                 try
                 {
+                    var signature = string.Empty;
+
                     if (size > 0u)
                     {
                         var content = new byte[Math.Min(size, ValidSignature.Length)];
@@ -252,28 +282,59 @@ namespace ReimuPlugins.Th11Replay
                             signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                         }
                     }
+
+                    return (signature == ValidSignature) ? 1u : 0u;
                 }
-                catch (Exception)
+                catch (OutOfMemoryException)
                 {
-                    return 0u;
+                }
+                catch (ArgumentException)
+                {
+                }
+                catch (IO.IOException)
+                {
+                }
+                catch (NotSupportedException)
+                {
+                }
+                catch (SecurityException)
+                {
+                }
+                catch (UnauthorizedAccessException)
+                {
+                }
+                catch (ObjectDisposedException)
+                {
                 }
 
-                return (signature == ValidSignature) ? 1u : 0u;
+                return 0u;
             }
 
             public ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
             {
+                var errorCode = ErrorCode.UnknownError;
+
+                info = IntPtr.Zero;
+
                 try
                 {
                     info = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(FileInfo)) * (Columns.Length - 1));
+
+                    //// FIXME
+
+                    errorCode = ErrorCode.AllRight;
                 }
                 catch (OutOfMemoryException)
                 {
-                    info = IntPtr.Zero;
-                    return ErrorCode.NoMemory;
+                    errorCode = ErrorCode.NoMemory;
                 }
 
-                return ErrorCode.AllRight;
+                if (errorCode != ErrorCode.AllRight)
+                {
+                    Marshal.FreeHGlobal(info);
+                }
+
+                return errorCode;
             }
 
             public ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
