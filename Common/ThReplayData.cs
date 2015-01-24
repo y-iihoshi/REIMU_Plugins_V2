@@ -191,7 +191,7 @@ namespace ReimuPlugins.Common
             /// </summary>
             public ReadOnlyCollection<byte> Signature
             {
-                get { return new ReadOnlyCollection<byte>(this.signature); }
+                get { return Array.AsReadOnly(this.signature); }
             }
 
             /// <summary>
@@ -199,7 +199,7 @@ namespace ReimuPlugins.Common
             /// </summary>
             public ReadOnlyCollection<byte> Unknown1
             {
-                get { return new ReadOnlyCollection<byte>(this.unknown1); }
+                get { return Array.AsReadOnly(this.unknown1); }
             }
 
             /// <summary>
@@ -216,7 +216,7 @@ namespace ReimuPlugins.Common
             /// </summary>
             public ReadOnlyCollection<byte> Unknown2
             {
-                get { return new ReadOnlyCollection<byte>(this.unknown2); }
+                get { return Array.AsReadOnly(this.unknown2); }
             }
 
             /// <summary>
@@ -224,7 +224,7 @@ namespace ReimuPlugins.Common
             /// </summary>
             public ReadOnlyCollection<byte> Unknown3
             {
-                get { return new ReadOnlyCollection<byte>(this.unknown3); }
+                get { return Array.AsReadOnly(this.unknown3); }
             }
 
             /// <summary>
@@ -232,7 +232,7 @@ namespace ReimuPlugins.Common
             /// </summary>
             public ReadOnlyCollection<byte> Data
             {
-                get { return new ReadOnlyCollection<byte>(this.data); }
+                get { return Array.AsReadOnly(this.data); }
             }
 
             /// <summary>
@@ -299,7 +299,7 @@ namespace ReimuPlugins.Common
             /// </summary>
             public ReadOnlyCollection<byte> Signature
             {
-                get { return new ReadOnlyCollection<byte>(this.signature); }
+                get { return Array.AsReadOnly(this.signature); }
             }
 
             /// <summary>
@@ -312,7 +312,7 @@ namespace ReimuPlugins.Common
             /// </summary>
             public ReadOnlyCollection<byte> Data
             {
-                get { return new ReadOnlyCollection<byte>(this.data); }
+                get { return Array.AsReadOnly(this.data); }
             }
 
             /// <summary>
