@@ -20,6 +20,7 @@ namespace ReimuPlugins.Th11Replay
         private static readonly PluginImpl Impl = new PluginImpl();
 
         [DllExport]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "To comply with the REIMU plugin spec.")]
         public static Revision GetPluginRevision()
         {
             return Impl.GetPluginRevision();
