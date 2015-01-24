@@ -13,7 +13,7 @@ namespace ReimuPlugins.Common
     /// <c>BITMAPINFOHEADER</c> structure of Win32 API.
     /// <para>Contains information about the dimensions and color format of a DIB.</para>
     /// </summary>
-    [SuppressMessage("Microsoft.Performance", "CA1815:OverrideEqualsAndOperatorEqualsOnValueTypes", Justification = "Reviewed.")]
+    [SuppressMessage("Microsoft.Performance", "CA1815:OverrideEqualsAndOperatorEqualsOnValueTypes", Justification = "Used to communicate an external unmanaged app.")]
     [StructLayout(LayoutKind.Sequential)]
     public struct BitmapInfoHeader
     {

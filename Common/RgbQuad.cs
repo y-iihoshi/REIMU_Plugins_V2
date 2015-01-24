@@ -13,7 +13,7 @@ namespace ReimuPlugins.Common
     /// <c>RGBQUAD</c> structure of Win32 API.
     /// <para>Describes a color consisting of relative intensities of red, green, and blue.</para>
     /// </summary>
-    [SuppressMessage("Microsoft.Performance", "CA1815:OverrideEqualsAndOperatorEqualsOnValueTypes", Justification = "Reviewed.")]
+    [SuppressMessage("Microsoft.Performance", "CA1815:OverrideEqualsAndOperatorEqualsOnValueTypes", Justification = "Used to communicate an external unmanaged app.")]
     [StructLayout(LayoutKind.Sequential)]
     public struct RgbQuad
     {

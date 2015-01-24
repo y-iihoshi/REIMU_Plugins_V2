@@ -91,7 +91,7 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <returns>An error code.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "0#", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "0#", Justification = "To comply with the REIMU plugin spec.")]
         ErrorCode GetColumnInfo(out IntPtr info);
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <returns>An error code.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
         ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info);
 
         #endregion
@@ -228,7 +228,7 @@ namespace ReimuPlugins.Common
         /// <remarks>The encoding shall be the code page 932.</remarks>
         /// </param>
         /// <returns>An error code.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
         ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst);
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace ReimuPlugins.Common
         /// <remarks>The encoding shall be the code page 932.</remarks>
         /// </param>
         /// <returns>An error code.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
         ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst);
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace ReimuPlugins.Th11Replay
         }
 
         [DllExport]
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "0#", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "0#", Justification = "To comply with the REIMU plugin spec.")]
         public static ErrorCode GetColumnInfo(out IntPtr info)
         {
             return Impl.GetColumnInfo(out info);
@@ -48,7 +48,7 @@ namespace ReimuPlugins.Th11Replay
         }
 
         [DllExport]
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "Reviewed.")]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
         public static ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
         {
             return Impl.GetFileInfoList(src, size, out info);
