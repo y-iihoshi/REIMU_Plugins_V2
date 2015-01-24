@@ -20,6 +20,7 @@ namespace ReimuPlugins.Common
         /// The displaying text.
         /// </summary>
         /// <remarks>The encoding must be the code page 932.</remarks>
+        [SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Used to communicate an external unmanaged app.")]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
         public string Text;
     }
