@@ -6,6 +6,7 @@
 
 namespace ReimuPlugins.Common
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Text;
 
@@ -51,16 +52,19 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Gets the replay data.
         /// </summary>
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
         protected Replay ReplayData { get; private set; }
 
         /// <summary>
         /// Gets the user information indicating the replay file information.
         /// </summary>
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
         protected UserInfo UserInfo0 { get; private set; }
 
         /// <summary>
         /// Gets the user information indicating the comment.
         /// </summary>
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
         protected UserInfo UserInfo1 { get; private set; }
 
         /// <summary>
