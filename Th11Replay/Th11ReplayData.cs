@@ -13,7 +13,7 @@ namespace ReimuPlugins.Th11Replay
     using System.IO;
     using ReimuPlugins.Common;
 
-    public sealed class Th11ReplayData : ThReplay
+    public sealed class Th11ReplayData : ThReplayData
     {
         private Dictionary<string, string> info;
 

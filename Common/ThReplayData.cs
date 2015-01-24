@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ThReplay.cs" company="None">
+// <copyright file="ThReplayData.cs" company="None">
 //     (c) 2015 IIHOSHI Yoshinori
 // </copyright>
 //-----------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// Indicates the Touhou replay file format.
     /// </summary>
-    public class ThReplay
+    public class ThReplayData
     {
         /// <summary>
         /// The information as a read-only string array.
@@ -22,9 +22,9 @@ namespace ReimuPlugins.Common
         private ReadOnlyCollection<string> info = null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThReplay"/> class.
+        /// Initializes a new instance of the <see cref="ThReplayData"/> class.
         /// </summary>
-        public ThReplay()
+        public ThReplayData()
         {
             this.ReplayData = new Replay();
             this.UserInfo0 = new UserInfo();

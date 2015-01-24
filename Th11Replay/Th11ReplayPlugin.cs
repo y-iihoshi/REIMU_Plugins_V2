@@ -415,7 +415,7 @@ namespace ReimuPlugins.Th11Replay
                     else
                     {
                         var path = Marshal.PtrToStringAnsi(src);
-                        number = ThReplay.GetNumberFromPath(
+                        number = ThReplayData.GetNumberFromPath(
                             path, @"^th11_(\d{2})\.rpy$", @"^th11_ud(.{0,4})\.rpy$");
 
                         try
