@@ -175,13 +175,16 @@ namespace ReimuPlugins.Common
             /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
             public void ReadFrom(BinaryReader reader)
             {
-                this.signature = reader.ReadBytes(4);
-                this.unknown1 = reader.ReadBytes(8);
-                this.HeaderSize = reader.ReadInt32();
-                this.unknown2 = reader.ReadBytes(12);
-                var dataSize = reader.ReadInt32();
-                this.unknown3 = reader.ReadBytes(4);
-                this.data = reader.ReadBytes(dataSize);
+                if (reader != null)
+                {
+                    this.signature = reader.ReadBytes(4);
+                    this.unknown1 = reader.ReadBytes(8);
+                    this.HeaderSize = reader.ReadInt32();
+                    this.unknown2 = reader.ReadBytes(12);
+                    var dataSize = reader.ReadInt32();
+                    this.unknown3 = reader.ReadBytes(4);
+                    this.data = reader.ReadBytes(dataSize);
+                }
             }
 
             /// <summary>
@@ -190,13 +193,16 @@ namespace ReimuPlugins.Common
             /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
             public void WriteTo(BinaryWriter writer)
             {
-                writer.Write(this.signature);
-                writer.Write(this.unknown1);
-                writer.Write(this.HeaderSize);
-                writer.Write(this.unknown2);
-                writer.Write(this.data.Length);
-                writer.Write(this.unknown3);
-                writer.Write(this.data);
+                if (writer != null)
+                {
+                    writer.Write(this.signature);
+                    writer.Write(this.unknown1);
+                    writer.Write(this.HeaderSize);
+                    writer.Write(this.unknown2);
+                    writer.Write(this.data.Length);
+                    writer.Write(this.unknown3);
+                    writer.Write(this.data);
+                }
             }
         }
 
@@ -258,10 +264,13 @@ namespace ReimuPlugins.Common
             /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
             public void ReadFrom(BinaryReader reader)
             {
-                this.signature = reader.ReadBytes(4);
-                var size = reader.ReadInt32();
-                this.InfoType = reader.ReadInt32();
-                this.data = reader.ReadBytes(size);
+                if (reader != null)
+                {
+                    this.signature = reader.ReadBytes(4);
+                    var size = reader.ReadInt32();
+                    this.InfoType = reader.ReadInt32();
+                    this.data = reader.ReadBytes(size);
+                }
             }
 
             /// <summary>
@@ -270,10 +279,13 @@ namespace ReimuPlugins.Common
             /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
             public void WriteTo(BinaryWriter writer)
             {
-                writer.Write(this.signature);
-                writer.Write(this.data.Length);
-                writer.Write(this.InfoType);
-                writer.Write(this.data);
+                if (writer != null)
+                {
+                    writer.Write(this.signature);
+                    writer.Write(this.data.Length);
+                    writer.Write(this.InfoType);
+                    writer.Write(this.data);
+                }
             }
         }
     }
