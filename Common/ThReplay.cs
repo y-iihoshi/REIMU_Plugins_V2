@@ -28,10 +28,7 @@ namespace ReimuPlugins.Common
         /// </summary>
         public string Info
         {
-            get
-            {
-                return this.UserInfo0.DataString;
-            }
+            get { return this.UserInfo0.DataString; }
         }
 
         /// <summary>
@@ -39,15 +36,8 @@ namespace ReimuPlugins.Common
         /// </summary>
         public string Comment
         {
-            get
-            {
-                return this.UserInfo1.DataString;
-            }
-
-            set
-            {
-                this.UserInfo1.DataString = value;
-            }
+            get { return this.UserInfo1.DataString; }
+            set { this.UserInfo1.DataString = value; }
         }
 
         /// <summary>
@@ -258,15 +248,8 @@ namespace ReimuPlugins.Common
             /// </summary>
             public string DataString
             {
-                get
-                {
-                    return Enc.CP932.GetString(this.data);
-                }
-
-                set
-                {
-                    this.data = Enc.CP932.GetBytes(value);
-                }
+                get { return Enc.CP932.GetString(this.data); }
+                set { this.data = Enc.CP932.GetBytes(value); }
             }
 
             /// <summary>
