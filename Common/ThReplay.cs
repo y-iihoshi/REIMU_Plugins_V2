@@ -6,6 +6,7 @@
 
 namespace ReimuPlugins.Common
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -17,6 +18,11 @@ namespace ReimuPlugins.Common
     public class ThReplay
     {
         /// <summary>
+        /// The information as a read-only string array.
+        /// </summary>
+        private ReadOnlyCollection<string> info = null;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ThReplay"/> class.
         /// </summary>
         public ThReplay()
@@ -27,7 +33,7 @@ namespace ReimuPlugins.Common
         }
 
         /// <summary>
-        /// Gets the information.
+        /// Gets the information as a string.
         /// </summary>
         public string Info
         {
@@ -41,6 +47,23 @@ namespace ReimuPlugins.Common
         {
             get { return this.UserInfo1.DataString; }
             set { this.UserInfo1.DataString = value; }
+        }
+
+        /// <summary>
+        /// Gets the information as an array.
+        /// </summary>
+        protected ReadOnlyCollection<string> InfoArray
+        {
+            get
+            {
+                if (this.info == null)
+                {
+                    this.info = Array.AsReadOnly(
+                        this.Info.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries));
+                }
+
+                return this.info;
+            }
         }
 
         /// <summary>
