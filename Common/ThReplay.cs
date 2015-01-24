@@ -6,6 +6,7 @@
 
 namespace ReimuPlugins.Common
 {
+    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Text;
@@ -98,6 +99,31 @@ namespace ReimuPlugins.Common
         protected class Replay
         {
             /// <summary>
+            /// The signature string.
+            /// </summary>
+            private byte[] signature;
+
+            /// <summary>
+            /// An unknown data placed after the signature string.
+            /// </summary>
+            private byte[] unknown1;
+
+            /// <summary>
+            /// An unknown data.
+            /// </summary>
+            private byte[] unknown2;
+
+            /// <summary>
+            /// An unknown data.
+            /// </summary>
+            private byte[] unknown3;
+
+            /// <summary>
+            /// The actual replay data.
+            /// </summary>
+            private byte[] data;
+
+            /// <summary>
             /// Initializes a new instance of the <see cref="Replay"/> class.
             /// </summary>
             public Replay()
@@ -107,12 +133,18 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the signature string.
             /// </summary>
-            public byte[] Signature { get; private set; }
+            public ReadOnlyCollection<byte> Signature
+            {
+                get { return new ReadOnlyCollection<byte>(this.signature); }
+            }
 
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public byte[] Unknown1 { get; private set; }
+            public ReadOnlyCollection<byte> Unknown1
+            {
+                get { return new ReadOnlyCollection<byte>(this.unknown1); }
+            }
 
             /// <summary>
             /// Gets the size of the replay header.
@@ -126,17 +158,26 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public byte[] Unknown2 { get; private set; }
+            public ReadOnlyCollection<byte> Unknown2
+            {
+                get { return new ReadOnlyCollection<byte>(this.unknown2); }
+            }
 
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public byte[] Unknown3 { get; private set; }
+            public ReadOnlyCollection<byte> Unknown3
+            {
+                get { return new ReadOnlyCollection<byte>(this.unknown3); }
+            }
 
             /// <summary>
             /// Gets the actual replay data.
             /// </summary>
-            public byte[] Data { get; private set; }
+            public ReadOnlyCollection<byte> Data
+            {
+                get { return new ReadOnlyCollection<byte>(this.data); }
+            }
 
             /// <summary>
             /// Reads data by using the specified <see cref="BinaryReader"/> instance.
@@ -144,13 +185,13 @@ namespace ReimuPlugins.Common
             /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
             public void ReadFrom(BinaryReader reader)
             {
-                this.Signature = reader.ReadBytes(4);
-                this.Unknown1 = reader.ReadBytes(8);
+                this.signature = reader.ReadBytes(4);
+                this.unknown1 = reader.ReadBytes(8);
                 this.HeaderSize = reader.ReadInt32();
-                this.Unknown2 = reader.ReadBytes(12);
+                this.unknown2 = reader.ReadBytes(12);
                 var dataSize = reader.ReadInt32();
-                this.Unknown3 = reader.ReadBytes(4);
-                this.Data = reader.ReadBytes(dataSize);
+                this.unknown3 = reader.ReadBytes(4);
+                this.data = reader.ReadBytes(dataSize);
             }
 
             /// <summary>
@@ -159,13 +200,13 @@ namespace ReimuPlugins.Common
             /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
             public void WriteTo(BinaryWriter writer)
             {
-                writer.Write(this.Signature);
-                writer.Write(this.Unknown1);
+                writer.Write(this.signature);
+                writer.Write(this.unknown1);
                 writer.Write(this.HeaderSize);
-                writer.Write(this.Unknown2);
-                writer.Write(this.Data.Length);
-                writer.Write(this.Unknown3);
-                writer.Write(this.Data);
+                writer.Write(this.unknown2);
+                writer.Write(this.data.Length);
+                writer.Write(this.unknown3);
+                writer.Write(this.data);
             }
         }
 
@@ -174,6 +215,16 @@ namespace ReimuPlugins.Common
         /// </summary>
         protected class UserInfo
         {
+            /// <summary>
+            /// The signature string.
+            /// </summary>
+            private byte[] signature;
+
+            /// <summary>
+            /// The actual data.
+            /// </summary>
+            private byte[] data;
+
             /// <summary>
             /// Initializes a new instance of the <see cref="UserInfo"/> class.
             /// </summary>
@@ -184,7 +235,10 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the signature string.
             /// </summary>
-            public byte[] Signature { get; private set; }
+            public ReadOnlyCollection<byte> Signature
+            {
+                get { return new ReadOnlyCollection<byte>(this.signature); }
+            }
 
             /// <summary>
             /// Gets the type of the user information. (0: replay file information, 1: comment)
@@ -194,7 +248,10 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the actual data.
             /// </summary>
-            public byte[] Data { get; private set; }
+            public ReadOnlyCollection<byte> Data
+            {
+                get { return new ReadOnlyCollection<byte>(this.data); }
+            }
 
             /// <summary>
             /// Gets or sets the actual data represented as a code page 932 string.
@@ -203,12 +260,12 @@ namespace ReimuPlugins.Common
             {
                 get
                 {
-                    return Enc.CP932.GetString(this.Data);
+                    return Enc.CP932.GetString(this.data);
                 }
 
                 set
                 {
-                    this.Data = Enc.CP932.GetBytes(value);
+                    this.data = Enc.CP932.GetBytes(value);
                 }
             }
 
@@ -218,10 +275,10 @@ namespace ReimuPlugins.Common
             /// <param name="reader">A <see cref="BinaryReader"/> instance.</param>
             public void ReadFrom(BinaryReader reader)
             {
-                this.Signature = reader.ReadBytes(4);
+                this.signature = reader.ReadBytes(4);
                 var size = reader.ReadInt32();
                 this.InfoType = reader.ReadInt32();
-                this.Data = reader.ReadBytes(size);
+                this.data = reader.ReadBytes(size);
             }
 
             /// <summary>
@@ -230,10 +287,10 @@ namespace ReimuPlugins.Common
             /// <param name="writer">A <see cref="BinaryWriter"/> instance.</param>
             public void WriteTo(BinaryWriter writer)
             {
-                writer.Write(this.Signature);
-                writer.Write(this.Data.Length);
+                writer.Write(this.signature);
+                writer.Write(this.data.Length);
                 writer.Write(this.InfoType);
-                writer.Write(this.Data);
+                writer.Write(this.data);
             }
         }
     }
