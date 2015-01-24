@@ -269,7 +269,7 @@ namespace ReimuPlugins.Common
                     this.signature = reader.ReadBytes(4);
                     var size = reader.ReadInt32();
                     this.InfoType = reader.ReadInt32();
-                    this.data = reader.ReadBytes(size);
+                    this.data = reader.ReadBytes(size - this.signature.Length - (sizeof(int) * 2));
                 }
             }
 
