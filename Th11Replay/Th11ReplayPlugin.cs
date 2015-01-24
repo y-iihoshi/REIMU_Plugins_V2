@@ -56,6 +56,20 @@ namespace ReimuPlugins.Th11Replay
             return Impl.GetFileInfoList(src, size, out info);
         }
 
+        [DllExport]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
+        public static ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
+        {
+            return Impl.GetFileInfoText1(src, size, out dst);
+        }
+
+        [DllExport]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
+        public static ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
+        {
+            return Impl.GetFileInfoText2(src, size, out dst);
+        }
+
         private sealed class PluginImpl : IReimuPluginRev1
         {
             private static readonly string ValidSignature = "t11r".ToCP932();
@@ -332,6 +346,7 @@ namespace ReimuPlugins.Th11Replay
                 if (errorCode != ErrorCode.AllRight)
                 {
                     Marshal.FreeHGlobal(info);
+                    info = IntPtr.Zero;
                 }
 
                 return errorCode;
@@ -400,54 +415,15 @@ namespace ReimuPlugins.Th11Replay
 
                 try
                 {
-                    var replay = new Th11ReplayData();
                     var number = string.Empty;
-
-                    if (size > 0u)
-                    {
-                        var content = new byte[size];
-                        Marshal.Copy(src, content, 0, content.Length);
-                        using (var stream = new IO.MemoryStream(content, false))
-                        {
-                            replay.Read(stream);
-                        }
-                    }
-                    else
+                    if (size == 0u)
                     {
                         var path = Marshal.PtrToStringAnsi(src);
                         number = ThReplayData.GetNumberFromPath(
                             path, @"^th11_(\d{2})\.rpy$", @"^th11_ud(.{0,4})\.rpy$");
-
-                        try
-                        {
-                            using (var stream = new IO.FileStream(
-                                path, IO.FileMode.Open, IO.FileAccess.Read))
-                            {
-                                replay.Read(stream);
-                            }
-                        }
-                        catch (ArgumentException)
-                        {
-                            errorCode = ErrorCode.FileReadError;
-                        }
-                        catch (IO.IOException)
-                        {
-                            errorCode = ErrorCode.FileReadError;
-                        }
-                        catch (NotSupportedException)
-                        {
-                            errorCode = ErrorCode.FileReadError;
-                        }
-                        catch (SecurityException)
-                        {
-                            errorCode = ErrorCode.FileReadError;
-                        }
-                        catch (UnauthorizedAccessException)
-                        {
-                            errorCode = ErrorCode.FileReadError;
-                        }
                     }
 
+                    var replay = CreateTh11ReplayData(src, size, ref errorCode);
                     if (errorCode != ErrorCode.FileReadError)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
@@ -472,7 +448,7 @@ namespace ReimuPlugins.Th11Replay
                                         fileInfo.Text = getter(replay);
                                     }
                                 }
-
+    
                                 var pointer = new IntPtr(address);
                                 Marshal.StructureToPtr(fileInfo, pointer, false);
                                 address += fileInfoSize;
@@ -496,6 +472,7 @@ namespace ReimuPlugins.Th11Replay
                 if (errorCode != ErrorCode.AllRight)
                 {
                     Marshal.FreeHGlobal(info);
+                    info = IntPtr.Zero;
                 }
 
                 return errorCode;
@@ -503,12 +480,72 @@ namespace ReimuPlugins.Th11Replay
 
             public ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
             {
-                throw new NotImplementedException();
+                var errorCode = ErrorCode.UnknownError;
+
+                dst = IntPtr.Zero;
+
+                try
+                {
+                    var replay = CreateTh11ReplayData(src, size, ref errorCode);
+                    if (errorCode != ErrorCode.FileReadError)
+                    {
+                        var bytes = Enc.CP932.GetBytes(replay.Info);
+                        dst = Marshal.AllocHGlobal(bytes.Length);
+                        Marshal.Copy(bytes, 0, dst, bytes.Length);
+
+                        errorCode = ErrorCode.AllRight;
+                    }
+                }
+                catch (OutOfMemoryException)
+                {
+                    errorCode = ErrorCode.NoMemory;
+                }
+                catch (ArgumentException)
+                {
+                }
+
+                if (errorCode != ErrorCode.AllRight)
+                {
+                    Marshal.FreeHGlobal(dst);
+                    dst = IntPtr.Zero;
+                }
+
+                return errorCode;
             }
 
             public ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
             {
-                throw new NotImplementedException();
+                var errorCode = ErrorCode.UnknownError;
+
+                dst = IntPtr.Zero;
+
+                try
+                {
+                    var replay = CreateTh11ReplayData(src, size, ref errorCode);
+                    if (errorCode != ErrorCode.FileReadError)
+                    {
+                        var bytes = Enc.CP932.GetBytes(replay.Comment);
+                        dst = Marshal.AllocHGlobal(bytes.Length);
+                        Marshal.Copy(bytes, 0, dst, bytes.Length);
+
+                        errorCode = ErrorCode.AllRight;
+                    }
+                }
+                catch (OutOfMemoryException)
+                {
+                    errorCode = ErrorCode.NoMemory;
+                }
+                catch (ArgumentException)
+                {
+                }
+
+                if (errorCode != ErrorCode.AllRight)
+                {
+                    Marshal.FreeHGlobal(dst);
+                    dst = IntPtr.Zero;
+                }
+
+                return errorCode;
             }
 
             public ErrorCode EditDialog(IntPtr parent, string file)
@@ -519,6 +556,54 @@ namespace ReimuPlugins.Th11Replay
             public ErrorCode ConfigDialog(IntPtr parent)
             {
                 throw new NotImplementedException();
+            }
+
+            private static Th11ReplayData CreateTh11ReplayData(IntPtr src, uint size, ref ErrorCode errorCode)
+            {
+                var replay = new Th11ReplayData();
+
+                if (size > 0u)
+                {
+                    var content = new byte[size];
+                    Marshal.Copy(src, content, 0, content.Length);
+                    using (var stream = new IO.MemoryStream(content, false))
+                    {
+                        replay.Read(stream);
+                    }
+                }
+                else
+                {
+                    var path = Marshal.PtrToStringAnsi(src);
+                    try
+                    {
+                        using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
+                        {
+                            replay.Read(stream);
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        errorCode = ErrorCode.FileReadError;
+                    }
+                    catch (IO.IOException)
+                    {
+                        errorCode = ErrorCode.FileReadError;
+                    }
+                    catch (NotSupportedException)
+                    {
+                        errorCode = ErrorCode.FileReadError;
+                    }
+                    catch (SecurityException)
+                    {
+                        errorCode = ErrorCode.FileReadError;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        errorCode = ErrorCode.FileReadError;
+                    }
+                }
+
+                return replay;
             }
         }
     }
