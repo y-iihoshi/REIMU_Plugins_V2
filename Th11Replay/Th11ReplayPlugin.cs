@@ -4,19 +4,19 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Text;
-using ReimuPlugins.Common;
-using RGiesecke.DllExport;
-using IO = System.IO;
-
-[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
 
 namespace ReimuPlugins.Th11Replay
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.InteropServices;
+    using System.Security;
+    using System.Text;
+    using ReimuPlugins.Common;
+    using RGiesecke.DllExport;
+    using IO = System.IO;
+
     public sealed class Th11ReplayPlugin
     {
         private static readonly PluginImpl Impl = new PluginImpl();
