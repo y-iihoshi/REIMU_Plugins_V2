@@ -457,23 +457,26 @@ namespace ReimuPlugins.Th11Replay
                         var address = info.ToInt64();
                         foreach (var index in Utils.GetEnumerator<ColumnIndex>())
                         {
-                            var fileInfo = new FileInfo { Text = string.Empty };
-                            if (index == ColumnIndex.Number)
+                            if (index != ColumnIndex.Sentinel)
                             {
-                                fileInfo.Text = number;
-                            }
-                            else
-                            {
-                                Func<Th11ReplayData, string> getter;
-                                if (FileInfoGetters.TryGetValue(index, out getter))
+                                var fileInfo = new FileInfo { Text = string.Empty };
+                                if (index == ColumnIndex.Number)
                                 {
-                                    fileInfo.Text = getter(replay);
+                                    fileInfo.Text = number;
                                 }
-                            }
+                                else
+                                {
+                                    Func<Th11ReplayData, string> getter;
+                                    if (FileInfoGetters.TryGetValue(index, out getter))
+                                    {
+                                        fileInfo.Text = getter(replay);
+                                    }
+                                }
 
-                            var pointer = new IntPtr(address);
-                            Marshal.StructureToPtr(fileInfo, pointer, false);
-                            address += fileInfoSize;
+                                var pointer = new IntPtr(address);
+                                Marshal.StructureToPtr(fileInfo, pointer, false);
+                                address += fileInfoSize;
+                            }
                         }
 
                         errorCode = ErrorCode.AllRight;
