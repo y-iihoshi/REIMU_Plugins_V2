@@ -372,7 +372,7 @@ namespace ReimuPlugins.Common
                 if (writer != null)
                 {
                     writer.Write(this.signature);
-                    writer.Write(this.data.Length);
+                    writer.Write(this.signature.Length + (sizeof(int) * 2) + this.data.Length);
                     writer.Write(this.InfoType);
                     writer.Write(this.data);
                 }
