@@ -15,6 +15,7 @@ namespace ReimuPlugins.Th11Replay
     using System.Runtime.InteropServices;
     using System.Security;
     using System.Text;
+    using System.Windows.Forms;
     using ReimuPlugins.Common;
     using RGiesecke.DllExport;
     using IO = System.IO;
@@ -68,6 +69,12 @@ namespace ReimuPlugins.Th11Replay
         public static ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
         {
             return Impl.GetFileInfoText2(src, size, out dst);
+        }
+
+        [DllExport]
+        public static ErrorCode EditDialog(IntPtr parent, string file)
+        {
+            return Impl.EditDialog(parent, file);
         }
 
         private sealed class PluginImpl : IReimuPluginRev1
@@ -550,7 +557,25 @@ namespace ReimuPlugins.Th11Replay
 
             public ErrorCode EditDialog(IntPtr parent, string file)
             {
-                throw new NotImplementedException();
+                var result = DialogResult.None;
+
+                var errorCode = ErrorCode.UnknownError;
+                var replay = CreateTh11ReplayData(file, ref errorCode);
+                if (errorCode != ErrorCode.FileReadError)
+                {
+                    using (var dialog = new EditDialog())
+                    {
+                        dialog.Content = replay.Comment;
+                        result = dialog.ShowDialog(new Win32Window(parent));
+                        if (result == DialogResult.OK)
+                        {
+                            replay.Comment = dialog.Content + "\0\0";
+                            replay.Write(file);
+                        }
+                    }
+                }
+
+                return (result == DialogResult.OK) ? ErrorCode.AllRight : ErrorCode.DialogCanceled;
             }
 
             public ErrorCode ConfigDialog(IntPtr parent)
@@ -560,47 +585,56 @@ namespace ReimuPlugins.Th11Replay
 
             private static Th11ReplayData CreateTh11ReplayData(IntPtr src, uint size, ref ErrorCode errorCode)
             {
-                var replay = new Th11ReplayData();
-
                 if (size > 0u)
                 {
+                    var replay = new Th11ReplayData();
                     var content = new byte[size];
+
                     Marshal.Copy(src, content, 0, content.Length);
                     using (var stream = new IO.MemoryStream(content, false))
                     {
                         replay.Read(stream);
                     }
+
+                    return replay;
                 }
                 else
                 {
                     var path = Marshal.PtrToStringAnsi(src);
-                    try
+                    return CreateTh11ReplayData(path, ref errorCode);
+                }
+            }
+
+            private static Th11ReplayData CreateTh11ReplayData(string path, ref ErrorCode errorCode)
+            {
+                var replay = new Th11ReplayData();
+
+                try
+                {
+                    using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
                     {
-                        using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
-                        {
-                            replay.Read(stream);
-                        }
+                        replay.Read(stream);
                     }
-                    catch (ArgumentException)
-                    {
-                        errorCode = ErrorCode.FileReadError;
-                    }
-                    catch (IO.IOException)
-                    {
-                        errorCode = ErrorCode.FileReadError;
-                    }
-                    catch (NotSupportedException)
-                    {
-                        errorCode = ErrorCode.FileReadError;
-                    }
-                    catch (SecurityException)
-                    {
-                        errorCode = ErrorCode.FileReadError;
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                        errorCode = ErrorCode.FileReadError;
-                    }
+                }
+                catch (ArgumentException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (IO.IOException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (NotSupportedException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (SecurityException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    errorCode = ErrorCode.FileReadError;
                 }
 
                 return replay;
