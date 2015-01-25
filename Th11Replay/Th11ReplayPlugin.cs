@@ -20,7 +20,7 @@ namespace ReimuPlugins.Th11Replay
     using RGiesecke.DllExport;
     using IO = System.IO;
 
-    public sealed class Th11ReplayPlugin
+    public static class Th11ReplayPlugin
     {
         private static readonly PluginImpl Impl = new PluginImpl();
 
