@@ -80,6 +80,7 @@
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ThReplayData.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="Win32Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
