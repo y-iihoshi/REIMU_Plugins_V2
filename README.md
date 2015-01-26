@@ -7,17 +7,17 @@ REIMU plugins for Touhou replays (Redesigning)
 This is the plugin set for [REIMU][REIMU], the file viewer extendable by various
 plugins, to list Touhou game's replay files and/or bestshot files.
 
-This project, written by C#, is a redesigning version of
-[the previous project][V1], written by C++.
+This project, written in C#, is a redesigning version of
+[the previous project][V1], written in C++.
 
 ## Supported Titles
 
 ### Supported
 (In progress...)
 
-### Will support
+### Will be supported
 * TH09.5 東方文花帖　～ Shoot the Bullet. (Bestshots only)
-* TH10.5 東方緋想天　～ Scarlet Weather Rapsody.
+* TH10.5 東方緋想天　～ Scarlet Weather Rhapsody.
 * TH12 東方星蓮船　～ Undefined Fantastic Object.
 * TH12.3 東方非想天則　～ 超弩級ギニョルの謎を追え (a.k.a. Touhou Hisoutensoku)
 * TH12.5 ダブルスポイラー　～ 東方文花帖 (a.k.a. Double Spoiler; Replays and
@@ -29,9 +29,9 @@ This project, written by C#, is a redesigning version of
 * TH14.3 弾幕アマノジャク　～ Impossible Spell Card. (Replays and Screenshots)
 * TH14.5 東方深秘録　～ Urban Legend in Limbo.
 
-### Not support
-The followings are not supported because these plugins have already been released
-by [sue445][sue445], the REIMU developer:
+### Not supported
+The followings are not supported because these plugins have already been
+released by [sue445][sue445], the REIMU developer:
 * TH07.5 東方萃夢想　～ Immaterial and Missing Power.
 * TH08 東方永夜抄　～ Imperishable Night.
 * TH09 東方花映塚　～ Phantasmagoria of Flower View.
@@ -78,6 +78,5 @@ See the REIMU manual (reimu.chm; Japanese only).
 [ZUN]: http://www16.big.or.jp/~zun/ "上海アリス幻樂団"
 [tasofro]: http://www.tasofro.net/ "Twilight-Frontier"
 [sue445]: http://www.sue445.net/ "sue445.NET"
-[REIMU]: http://www.sue445.net/downloads/reimu.html
-  "REIMU (REplayviewer plug-in IMport Utility)"
+[REIMU]: http://www.sue445.net/downloads/reimu.html "REIMU (REplayviewer plug-in IMport Utility)"
 [V1]: https://github.com/y-iihoshi/REIMU_Plugins "REIMU_Plugins"
