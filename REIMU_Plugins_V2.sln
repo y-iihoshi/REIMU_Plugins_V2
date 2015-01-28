@@ -22,6 +22,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th12Replay", "Th12Replay\Th
 		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th095Bestshot", "Th095Bestshot\Th095Bestshot.csproj", "{D353E422-6AE3-4611-A6C2-27D81C47320C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +45,10 @@ Global
 		{5983891B-2A59-4F61-A339-D4E06B7F095A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5983891B-2A59-4F61-A339-D4E06B7F095A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5983891B-2A59-4F61-A339-D4E06B7F095A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D353E422-6AE3-4611-A6C2-27D81C47320C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D353E422-6AE3-4611-A6C2-27D81C47320C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D353E422-6AE3-4611-A6C2-27D81C47320C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D353E422-6AE3-4611-A6C2-27D81C47320C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
