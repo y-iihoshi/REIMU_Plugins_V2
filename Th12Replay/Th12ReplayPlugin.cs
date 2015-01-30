@@ -10,6 +10,7 @@ namespace ReimuPlugins.Th12Replay
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Runtime.InteropServices;
@@ -77,11 +78,11 @@ namespace ReimuPlugins.Th12Replay
             return Impl.EditDialog(parent, file);
         }
 
-        private sealed class PluginImpl : IReimuPluginRev1
+        private sealed class PluginImpl : ReimuPluginRev1<PluginImpl.ColumnIndex>
         {
             private static readonly string ValidSignature = "t12r".ToCP932();
 
-            private static readonly string[] PluginInfo =
+            private static readonly string[] PluginInfoImpl =
             {
                 "REIMU Plug-in For 東方星蓮船 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToCP932(),
                 "東方星蓮船\0".ToCP932(),
@@ -259,7 +260,7 @@ namespace ReimuPlugins.Th12Replay
                     { ColumnIndex.Comment,   (data) => data.Comment  },
                 };
 
-            private enum ColumnIndex
+            internal enum ColumnIndex
             {
                 Filename = 0,
                 LastWriteDate,
@@ -278,88 +279,17 @@ namespace ReimuPlugins.Th12Replay
                 Sentinel
             }
 
-            public Revision GetPluginRevision()
+            protected override ReadOnlyCollection<string> ManagedPluginInfo
             {
-                return Revision.Rev1;
+                get { return Array.AsReadOnly(PluginInfoImpl); }
             }
 
-            public int GetPluginInfo(int index, IntPtr info, uint size)
+            protected override IDictionary<PluginImpl.ColumnIndex, ColumnInfo> ManagedColumnInfo
             {
-                try
-                {
-                    var byteCount = Enc.CP932.GetByteCount(PluginInfo[index]);
-                    if (info == IntPtr.Zero)
-                    {
-                        return byteCount - 1;   // except a null terminator
-                    }
-                    else
-                    {
-                        if (size >= byteCount)
-                        {
-                            Marshal.Copy(Enc.CP932.GetBytes(PluginInfo[index]), 0, info, byteCount);
-                            return byteCount - 1;   // except a null terminator
-                        }
-                    }
-                }
-                catch (IndexOutOfRangeException)
-                {
-                }
-                catch (ArgumentNullException)
-                {
-                }
-                catch (EncoderFallbackException)
-                {
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                }
-
-                return 0;
+                get { return Columns; }
             }
 
-            public ErrorCode GetColumnInfo(out IntPtr info)
-            {
-                var errorCode = ErrorCode.UnknownError;
-
-                info = IntPtr.Zero;
-
-                try
-                {
-                    var size = Marshal.SizeOf(typeof(ColumnInfo));
-
-                    info = Marshal.AllocHGlobal(size * Columns.Count);
-
-                    var address = info.ToInt64();
-                    foreach (var index in Utils.GetEnumerator<ColumnIndex>())
-                    {
-                        var pointer = new IntPtr(address);
-                        Marshal.StructureToPtr(Columns[index], pointer, false);
-                        address += size;
-                    }
-
-                    errorCode = ErrorCode.AllRight;
-                }
-                catch (OutOfMemoryException)
-                {
-                    errorCode = ErrorCode.NoMemory;
-                }
-                catch (ArgumentException)
-                {
-                }
-                catch (OverflowException)
-                {
-                }
-
-                if (errorCode != ErrorCode.AllRight)
-                {
-                    Marshal.FreeHGlobal(info);
-                    info = IntPtr.Zero;
-                }
-
-                return errorCode;
-            }
-
-            public uint IsSupported(IntPtr src, uint size)
+            public override uint IsSupported(IntPtr src, uint size)
             {
                 if (src == IntPtr.Zero)
                 {
@@ -414,7 +344,7 @@ namespace ReimuPlugins.Th12Replay
                 return 0u;
             }
 
-            public ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
+            public override ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
             {
                 var errorCode = ErrorCode.UnknownError;
 
@@ -485,7 +415,7 @@ namespace ReimuPlugins.Th12Replay
                 return errorCode;
             }
 
-            public ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
+            public override ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
             {
                 var errorCode = ErrorCode.UnknownError;
 
@@ -520,7 +450,7 @@ namespace ReimuPlugins.Th12Replay
                 return errorCode;
             }
 
-            public ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
+            public override ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
             {
                 var errorCode = ErrorCode.UnknownError;
 
@@ -555,7 +485,7 @@ namespace ReimuPlugins.Th12Replay
                 return errorCode;
             }
 
-            public ErrorCode EditDialog(IntPtr parent, string file)
+            public override ErrorCode EditDialog(IntPtr parent, string file)
             {
                 var result = DialogResult.None;
 
@@ -578,7 +508,7 @@ namespace ReimuPlugins.Th12Replay
                 return (result == DialogResult.OK) ? ErrorCode.AllRight : ErrorCode.DialogCanceled;
             }
 
-            public ErrorCode ConfigDialog(IntPtr parent)
+            public override ErrorCode ConfigDialog(IntPtr parent)
             {
                 throw new NotImplementedException();
             }
