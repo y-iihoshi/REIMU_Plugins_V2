@@ -16,7 +16,7 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// The base class for the classes implementing the REIMU plugin interface (Revision 1).
     /// </summary>
-    /// <typeparam name="TColumnIndex">The key type of <see cref="ColumnInfo"/>.</typeparam>
+    /// <typeparam name="TColumnIndex">The key type of <see cref="ManagedColumnInfo"/>.</typeparam>
     public abstract class ReimuPluginRev1<TColumnIndex> : IReimuPluginRev1
         where TColumnIndex : struct, IComparable, IFormattable, IConvertible
     {
@@ -24,7 +24,7 @@ namespace ReimuPlugins.Common
         /// Gets the information about the plugin implemented by the derived class.
         /// See <see cref="IReimuPluginRev1.GetPluginInfo"/> for details.
         /// </summary>
-        protected abstract ReadOnlyCollection<string> PluginInfo { get; }
+        protected abstract ReadOnlyCollection<string> ManagedPluginInfo { get; }
 
         /// <summary>
         /// Gets the information about the columns of the REIMU's list view provided by the derived class.
@@ -33,7 +33,7 @@ namespace ReimuPlugins.Common
         /// <remarks>
         /// Actually, I want to use <c>ReadOnlyDictionary</c>, but it is not available for .NET 4.0...
         /// </remarks>
-        protected abstract IDictionary<TColumnIndex, ColumnInfo> ColumnInfo { get; }
+        protected abstract IDictionary<TColumnIndex, ColumnInfo> ManagedColumnInfo { get; }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
         public Revision GetPluginRevision()
@@ -46,7 +46,7 @@ namespace ReimuPlugins.Common
         {
             try
             {
-                var byteCount = Enc.CP932.GetByteCount(this.PluginInfo[index]);
+                var byteCount = Enc.CP932.GetByteCount(this.ManagedPluginInfo[index]);
                 if (info == IntPtr.Zero)
                 {
                     return byteCount - 1;   // except a null terminator
@@ -55,7 +55,7 @@ namespace ReimuPlugins.Common
                 {
                     if (size >= byteCount)
                     {
-                        Marshal.Copy(Enc.CP932.GetBytes(this.PluginInfo[index]), 0, info, byteCount);
+                        Marshal.Copy(Enc.CP932.GetBytes(this.ManagedPluginInfo[index]), 0, info, byteCount);
                         return byteCount - 1;   // except a null terminator
                     }
                 }
@@ -84,13 +84,13 @@ namespace ReimuPlugins.Common
             {
                 var size = Marshal.SizeOf(typeof(ColumnInfo));
 
-                info = Marshal.AllocHGlobal(size * this.ColumnInfo.Count);
+                info = Marshal.AllocHGlobal(size * this.ManagedColumnInfo.Count);
 
                 var address = info.ToInt64();
                 foreach (var index in Utils.GetEnumerator<TColumnIndex>())
                 {
                     var pointer = new IntPtr(address);
-                    Marshal.StructureToPtr(this.ColumnInfo[index], pointer, false);
+                    Marshal.StructureToPtr(this.ManagedColumnInfo[index], pointer, false);
                     address += size;
                 }
 
