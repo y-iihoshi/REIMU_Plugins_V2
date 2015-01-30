@@ -10,6 +10,7 @@ namespace ReimuPlugins.Th095Bestshot
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
@@ -65,7 +66,7 @@ namespace ReimuPlugins.Th095Bestshot
             return Impl.GetFileInfoImage1(src, size, out dst, out info);
         }
 
-        private sealed class PluginImpl : IReimuPluginRev2
+        private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnIndex>
         {
             private static readonly string ValidSignature = "BSTS".ToCP932();
 
@@ -223,7 +224,7 @@ namespace ReimuPlugins.Th095Bestshot
                     },
                 };
 
-            private enum ColumnIndex
+            internal enum ColumnIndex
             {
                 Filename = 0,
                 LastWriteDate,
@@ -238,88 +239,17 @@ namespace ReimuPlugins.Th095Bestshot
                 Sentinel
             }
 
-            public Revision GetPluginRevision()
+            protected override ReadOnlyCollection<string> ManagedPluginInfo
             {
-                return Revision.Rev2;
+                get { return Array.AsReadOnly(PluginInfo); }
             }
 
-            public int GetPluginInfo(int index, IntPtr info, uint size)
+            protected override IDictionary<PluginImpl.ColumnIndex, ColumnInfo> ManagedColumnInfo
             {
-                try
-                {
-                    var byteCount = Enc.CP932.GetByteCount(PluginInfo[index]);
-                    if (info == IntPtr.Zero)
-                    {
-                        return byteCount - 1;   // except a null terminator
-                    }
-                    else
-                    {
-                        if (size >= byteCount)
-                        {
-                            Marshal.Copy(Enc.CP932.GetBytes(PluginInfo[index]), 0, info, byteCount);
-                            return byteCount - 1;   // except a null terminator
-                        }
-                    }
-                }
-                catch (IndexOutOfRangeException)
-                {
-                }
-                catch (ArgumentNullException)
-                {
-                }
-                catch (EncoderFallbackException)
-                {
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                }
-
-                return 0;
+                get { return Columns; }
             }
 
-            public ErrorCode GetColumnInfo(out IntPtr info)
-            {
-                var errorCode = ErrorCode.UnknownError;
-
-                info = IntPtr.Zero;
-
-                try
-                {
-                    var size = Marshal.SizeOf(typeof(ColumnInfo));
-
-                    info = Marshal.AllocHGlobal(size * Columns.Count);
-
-                    var address = info.ToInt64();
-                    foreach (var index in Utils.GetEnumerator<ColumnIndex>())
-                    {
-                        var pointer = new IntPtr(address);
-                        Marshal.StructureToPtr(Columns[index], pointer, false);
-                        address += size;
-                    }
-
-                    errorCode = ErrorCode.AllRight;
-                }
-                catch (OutOfMemoryException)
-                {
-                    errorCode = ErrorCode.NoMemory;
-                }
-                catch (ArgumentException)
-                {
-                }
-                catch (OverflowException)
-                {
-                }
-
-                if (errorCode != ErrorCode.AllRight)
-                {
-                    Marshal.FreeHGlobal(info);
-                    info = IntPtr.Zero;
-                }
-
-                return errorCode;
-            }
-
-            public uint IsSupported(IntPtr src, uint size)
+            public override uint IsSupported(IntPtr src, uint size)
             {
                 if (src == IntPtr.Zero)
                 {
@@ -374,7 +304,7 @@ namespace ReimuPlugins.Th095Bestshot
                 return 0u;
             }
 
-            public ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
+            public override ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
             {
                 var errorCode = ErrorCode.UnknownError;
 
@@ -430,17 +360,17 @@ namespace ReimuPlugins.Th095Bestshot
                 return errorCode;
             }
 
-            public ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
+            public override ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
             {
                 throw new NotImplementedException();
             }
 
-            public ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
+            public override ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
             {
                 throw new NotImplementedException();
             }
 
-            public ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
+            public override ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
             {
                 dst = IntPtr.Zero;
                 info = IntPtr.Zero;
@@ -448,17 +378,17 @@ namespace ReimuPlugins.Th095Bestshot
                 return ErrorCode.AllRight;
             }
 
-            public ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
+            public override ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
             {
                 throw new NotImplementedException();
             }
 
-            public ErrorCode EditDialog(IntPtr parent, string file)
+            public override ErrorCode EditDialog(IntPtr parent, string file)
             {
                 throw new NotImplementedException();
             }
 
-            public ErrorCode ConfigDialog(IntPtr parent)
+            public override ErrorCode ConfigDialog(IntPtr parent)
             {
                 throw new NotImplementedException();
             }
