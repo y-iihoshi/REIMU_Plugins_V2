@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+#pragma warning disable 1591
+
 namespace ReimuPlugins.Common
 {
     using System;
@@ -12,7 +14,9 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// The base class for the classes implementing the REIMU plugin interface (Revision 2).
     /// </summary>
-    /// <typeparam name="TColumnKey">The key type of <see cref="ManagedColumnInfo"/>.</typeparam>
+    /// <typeparam name="TColumnKey">
+    /// The key type of <see cref="ReimuPluginRev1{TColumnKey}.ManagedColumnInfo"/>.
+    /// </typeparam>
     public abstract class ReimuPluginRev2<TColumnKey> : ReimuPluginRev1<TColumnKey>, IReimuPluginRev2
         where TColumnKey : struct, IComparable, IFormattable, IConvertible
     {

@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+#pragma warning disable 1591
+
 namespace ReimuPlugins.Common
 {
     using System;

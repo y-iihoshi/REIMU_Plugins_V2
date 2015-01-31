@@ -18,7 +18,9 @@ namespace ReimuPlugins.Common
 
         /// <summary>
         /// Gets the image displaying in the left-down area of the REIMU's main window.
-        /// <remarks>This method or <see cref="GetFileInfoText1"/> shall exist exclusively.</remarks>
+        /// <remarks>
+        /// This method or <see cref="IReimuPluginRev1.GetFileInfoText1"/> shall exist exclusively.
+        /// </remarks>
         /// </summary>
         /// <param name="src">
         /// <list type="bullet">
@@ -53,7 +55,8 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <param name="info">
-        /// The address to store the head address of the allocated <see cref="BITMAPINFO"/> instance.
+        /// The address to store the head address of the allocated
+        /// <see cref="CommonWin32.Bitmaps.BITMAPINFO"/> instance.
         /// <remarks>
         /// The plugin shall allocate the memory for <paramref name="info"/> by calling the Win32 API
         /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the
@@ -67,7 +70,9 @@ namespace ReimuPlugins.Common
 
         /// <summary>
         /// Gets the image displaying in the right-down area of the REIMU's main window.
-        /// <remarks>This method or <see cref="GetFileInfoText2"/> shall exist exclusively.</remarks>
+        /// <remarks>
+        /// This method or <see cref="IReimuPluginRev1.GetFileInfoText2"/> shall exist exclusively.
+        /// </remarks>
         /// </summary>
         /// <param name="src">
         /// <list type="bullet">
@@ -102,7 +107,8 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <param name="info">
-        /// The address to store the head address of the allocated <see cref="BITMAPINFO"/> instance.
+        /// The address to store the head address of the allocated
+        /// <see cref="CommonWin32.Bitmaps.BITMAPINFO"/> instance.
         /// <remarks>
         /// The plugin shall allocate the memory for <paramref name="info"/> by calling the Win32 API
         /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the

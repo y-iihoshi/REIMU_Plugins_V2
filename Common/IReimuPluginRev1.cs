@@ -279,7 +279,9 @@ namespace ReimuPlugins.Common
         /// The handle (the value of <c>HWND</c> type of Win32 API) of the parent window of the dialog.
         /// </param>
         /// <param name="file">The null-terminated path string of the selected file.</param>
-        /// <returns><see cref="AllRight"/> if "OK" button is clicked; others when cancelled.</returns>
+        /// <returns>
+        /// <see cref="ErrorCode.AllRight"/> if "OK" button is clicked; others when cancelled.
+        /// </returns>
         ErrorCode EditDialog(IntPtr parent, string file);
 
         /// <summary>
@@ -288,7 +290,9 @@ namespace ReimuPlugins.Common
         /// <param name="parent">
         /// The handle (the value of <c>HWND</c> type of Win32 API) of the parent window of the dialog.
         /// </param>
-        /// <returns><see cref="AllRight"/> if "OK" button is clicked; others when cancelled.</returns>
+        /// <returns>
+        /// <see cref="ErrorCode.AllRight"/> if "OK" button is clicked; others when cancelled.
+        /// </returns>
         ErrorCode ConfigDialog(IntPtr parent);
 
         #endregion

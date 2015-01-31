@@ -10,7 +10,7 @@ namespace ReimuPlugins.Common
     using System.Windows.Forms;
 
     /// <summary>
-    /// Converter from a <c>HWND</c> value to a <see cref="System.Windows.IWin32Window"/> instance.
+    /// Converter from a <c>HWND</c> value to a <see cref="System.Windows.Forms.IWin32Window"/> instance.
     /// </summary>
     public class Win32Window : IWin32Window
     {
