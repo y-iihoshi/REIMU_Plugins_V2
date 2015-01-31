@@ -177,7 +177,7 @@ namespace ReimuPlugins.Common
             {
                 try
                 {
-                    var path = Marshal.PtrToStringAuto(src);
+                    var path = Marshal.PtrToStringAnsi(src);
                     stream = new FileStream(path, FileMode.Open, FileAccess.Read);
                 }
                 catch (ArgumentException)
