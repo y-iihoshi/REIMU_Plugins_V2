@@ -316,25 +316,23 @@ namespace ReimuPlugins.Th095Bestshot
                     if (errorCode != ErrorCode.FileReadError)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
-                        info = Marshal.AllocHGlobal(
-                            fileInfoSize * Columns.Keys.Count(key => key != ColumnKey.Sentinel));
+                        var keys = Utils.GetEnumerator<ColumnKey>().Where(key => key != ColumnKey.Sentinel);
+
+                        info = Marshal.AllocHGlobal(fileInfoSize * keys.Count());
 
                         var address = info.ToInt64();
-                        foreach (var key in Utils.GetEnumerator<ColumnKey>())
+                        foreach (var key in keys)
                         {
-                            if (key != ColumnKey.Sentinel)
+                            var fileInfo = new FileInfo { Text = string.Empty };
+                            Func<Th095BestshotData, string> getter;
+                            if (FileInfoGetters.TryGetValue(key, out getter))
                             {
-                                var fileInfo = new FileInfo { Text = string.Empty };
-                                Func<Th095BestshotData, string> getter;
-                                if (FileInfoGetters.TryGetValue(key, out getter))
-                                {
-                                    fileInfo.Text = getter(replay);
-                                }
-    
-                                var pointer = new IntPtr(address);
-                                Marshal.StructureToPtr(fileInfo, pointer, false);
-                                address += fileInfoSize;
+                                fileInfo.Text = getter(replay);
                             }
+
+                            var pointer = new IntPtr(address);
+                            Marshal.StructureToPtr(fileInfo, pointer, false);
+                            address += fileInfoSize;
                         }
 
                         errorCode = ErrorCode.AllRight;

@@ -364,32 +364,30 @@ namespace ReimuPlugins.Th12Replay
                     if (errorCode != ErrorCode.FileReadError)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
-                        info = Marshal.AllocHGlobal(
-                            fileInfoSize * Columns.Keys.Count(key => key != ColumnKey.Sentinel));
+                        var keys = Utils.GetEnumerator<ColumnKey>().Where(key => key != ColumnKey.Sentinel);
+
+                        info = Marshal.AllocHGlobal(fileInfoSize * keys.Count());
 
                         var address = info.ToInt64();
-                        foreach (var key in Utils.GetEnumerator<ColumnKey>())
+                        foreach (var key in keys)
                         {
-                            if (key != ColumnKey.Sentinel)
+                            var fileInfo = new FileInfo { Text = string.Empty };
+                            if (key == ColumnKey.Number)
                             {
-                                var fileInfo = new FileInfo { Text = string.Empty };
-                                if (key == ColumnKey.Number)
-                                {
-                                    fileInfo.Text = number;
-                                }
-                                else
-                                {
-                                    Func<Th12ReplayData, string> getter;
-                                    if (FileInfoGetters.TryGetValue(key, out getter))
-                                    {
-                                        fileInfo.Text = getter(replay);
-                                    }
-                                }
-    
-                                var pointer = new IntPtr(address);
-                                Marshal.StructureToPtr(fileInfo, pointer, false);
-                                address += fileInfoSize;
+                                fileInfo.Text = number;
                             }
+                            else
+                            {
+                                Func<Th12ReplayData, string> getter;
+                                if (FileInfoGetters.TryGetValue(key, out getter))
+                                {
+                                    fileInfo.Text = getter(replay);
+                                }
+                            }
+
+                            var pointer = new IntPtr(address);
+                            Marshal.StructureToPtr(fileInfo, pointer, false);
+                            address += fileInfoSize;
                         }
 
                         errorCode = ErrorCode.AllRight;
