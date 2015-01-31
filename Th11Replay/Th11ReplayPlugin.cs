@@ -403,11 +403,13 @@ namespace ReimuPlugins.Th11Replay
                 catch (OverflowException)
                 {
                 }
-
-                if (errorCode != ErrorCode.AllRight)
+                finally
                 {
-                    Marshal.FreeHGlobal(info);
-                    info = IntPtr.Zero;
+                    if (errorCode != ErrorCode.AllRight)
+                    {
+                        Marshal.FreeHGlobal(info);
+                        info = IntPtr.Zero;
+                    }
                 }
 
                 return errorCode;
@@ -438,11 +440,13 @@ namespace ReimuPlugins.Th11Replay
                 catch (ArgumentException)
                 {
                 }
-
-                if (errorCode != ErrorCode.AllRight)
+                finally
                 {
-                    Marshal.FreeHGlobal(dst);
-                    dst = IntPtr.Zero;
+                    if (errorCode != ErrorCode.AllRight)
+                    {
+                        Marshal.FreeHGlobal(dst);
+                        dst = IntPtr.Zero;
+                    }
                 }
 
                 return errorCode;
@@ -473,11 +477,13 @@ namespace ReimuPlugins.Th11Replay
                 catch (ArgumentException)
                 {
                 }
-
-                if (errorCode != ErrorCode.AllRight)
+                finally
                 {
-                    Marshal.FreeHGlobal(dst);
-                    dst = IntPtr.Zero;
+                    if (errorCode != ErrorCode.AllRight)
+                    {
+                        Marshal.FreeHGlobal(dst);
+                        dst = IntPtr.Zero;
+                    }
                 }
 
                 return errorCode;
