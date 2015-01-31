@@ -66,7 +66,7 @@ namespace ReimuPlugins.Th095Bestshot
             return Impl.GetFileInfoImage1(src, size, out dst, out info);
         }
 
-        private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnIndex>
+        private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
         {
             private static readonly string ValidSignature = "BSTS".ToCP932();
 
@@ -78,11 +78,11 @@ namespace ReimuPlugins.Th095Bestshot
                 "東方文花帖 ベストショットファイル (bs_*.dat)\0".ToCP932(),
             };
 
-            private static readonly Dictionary<ColumnIndex, ColumnInfo> Columns =
-                new Dictionary<ColumnIndex, ColumnInfo>
+            private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
+                new Dictionary<ColumnKey, ColumnInfo>
                 {
                     {
-                        ColumnIndex.Filename,
+                        ColumnKey.Filename,
                         new ColumnInfo
                         {
                             Title = "ファイル名\0".ToCP932(),
@@ -92,7 +92,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.LastWriteDate,
+                        ColumnKey.LastWriteDate,
                         new ColumnInfo
                         {
                             Title = "更新日時\0".ToCP932(),
@@ -102,7 +102,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.Scene,
+                        ColumnKey.Scene,
                         new ColumnInfo
                         {
                             Title = "シーン\0".ToCP932(),
@@ -112,7 +112,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.CardName,
+                        ColumnKey.CardName,
                         new ColumnInfo
                         {
                             Title = "スペルカード名\0".ToCP932(),
@@ -122,7 +122,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.Width,
+                        ColumnKey.Width,
                         new ColumnInfo
                         {
                             Title = "幅\0".ToCP932(),
@@ -132,7 +132,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.Height,
+                        ColumnKey.Height,
                         new ColumnInfo
                         {
                             Title = "高さ\0".ToCP932(),
@@ -142,7 +142,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.Score,
+                        ColumnKey.Score,
                         new ColumnInfo
                         {
                             Title = "評価点\0".ToCP932(),
@@ -152,7 +152,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.SlowRate,
+                        ColumnKey.SlowRate,
                         new ColumnInfo
                         {
                             Title = "処理落ち率\0".ToCP932(),
@@ -162,7 +162,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.FileSize,
+                        ColumnKey.FileSize,
                         new ColumnInfo
                         {
                             Title = "ファイルサイズ\0".ToCP932(),
@@ -172,7 +172,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.Directory,
+                        ColumnKey.Directory,
                         new ColumnInfo
                         {
                             Title = "ディレクトリ\0".ToCP932(),
@@ -182,7 +182,7 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnIndex.Sentinel,
+                        ColumnKey.Sentinel,
                         new ColumnInfo
                         {
                             Title = "\0",
@@ -194,37 +194,37 @@ namespace ReimuPlugins.Th095Bestshot
                 };
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
-            private static readonly Dictionary<ColumnIndex, Func<Th095BestshotData, string>> FileInfoGetters =
-                new Dictionary<ColumnIndex, Func<Th095BestshotData, string>>
+            private static readonly Dictionary<ColumnKey, Func<Th095BestshotData, string>> FileInfoGetters =
+                new Dictionary<ColumnKey, Func<Th095BestshotData, string>>
                 {
                     {
-                        ColumnIndex.Scene,
+                        ColumnKey.Scene,
                         (data) => string.Format(
                             CultureInfo.CurrentCulture, "{0}-{1}", data.Level, data.Scene)
                     },
                     {
-                        ColumnIndex.CardName,
+                        ColumnKey.CardName,
                         (data) => data.CardName
                     },
                     {
-                        ColumnIndex.Width,
+                        ColumnKey.Width,
                         (data) => data.Width.ToString(CultureInfo.CurrentCulture)
                     },
                     {
-                        ColumnIndex.Height,
+                        ColumnKey.Height,
                         (data) => data.Height.ToString(CultureInfo.CurrentCulture)
                     },
                     {
-                        ColumnIndex.Score,
+                        ColumnKey.Score,
                         (data) => data.Score.ToString(CultureInfo.CurrentCulture)
                     },
                     {
-                        ColumnIndex.SlowRate,
+                        ColumnKey.SlowRate,
                         (data) => data.SlowRate.ToString("F6", CultureInfo.CurrentCulture)
                     },
                 };
 
-            internal enum ColumnIndex
+            internal enum ColumnKey
             {
                 Filename = 0,
                 LastWriteDate,
@@ -244,7 +244,7 @@ namespace ReimuPlugins.Th095Bestshot
                 get { return Array.AsReadOnly(PluginInfo); }
             }
 
-            protected override IDictionary<PluginImpl.ColumnIndex, ColumnInfo> ManagedColumnInfo
+            protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo
             {
                 get { return Columns; }
             }
@@ -317,16 +317,16 @@ namespace ReimuPlugins.Th095Bestshot
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
                         info = Marshal.AllocHGlobal(
-                            fileInfoSize * Columns.Keys.Count(key => key != ColumnIndex.Sentinel));
+                            fileInfoSize * Columns.Keys.Count(key => key != ColumnKey.Sentinel));
 
                         var address = info.ToInt64();
-                        foreach (var index in Utils.GetEnumerator<ColumnIndex>())
+                        foreach (var key in Utils.GetEnumerator<ColumnKey>())
                         {
-                            if (index != ColumnIndex.Sentinel)
+                            if (key != ColumnKey.Sentinel)
                             {
                                 var fileInfo = new FileInfo { Text = string.Empty };
                                 Func<Th095BestshotData, string> getter;
-                                if (FileInfoGetters.TryGetValue(index, out getter))
+                                if (FileInfoGetters.TryGetValue(key, out getter))
                                 {
                                     fileInfo.Text = getter(replay);
                                 }

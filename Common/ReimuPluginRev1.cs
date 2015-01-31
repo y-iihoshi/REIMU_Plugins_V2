@@ -16,9 +16,9 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// The base class for the classes implementing the REIMU plugin interface (Revision 1).
     /// </summary>
-    /// <typeparam name="TColumnIndex">The key type of <see cref="ManagedColumnInfo"/>.</typeparam>
-    public abstract class ReimuPluginRev1<TColumnIndex> : IReimuPluginRev1
-        where TColumnIndex : struct, IComparable, IFormattable, IConvertible
+    /// <typeparam name="TColumnKey">The key type of <see cref="ManagedColumnInfo"/>.</typeparam>
+    public abstract class ReimuPluginRev1<TColumnKey> : IReimuPluginRev1
+        where TColumnKey : struct, IComparable, IFormattable, IConvertible
     {
         /// <summary>
         /// Gets the information about the plugin implemented by the derived class.
@@ -33,7 +33,7 @@ namespace ReimuPlugins.Common
         /// <remarks>
         /// Actually, I want to use <c>ReadOnlyDictionary</c>, but it is not available for .NET 4.0...
         /// </remarks>
-        protected abstract IDictionary<TColumnIndex, ColumnInfo> ManagedColumnInfo { get; }
+        protected abstract IDictionary<TColumnKey, ColumnInfo> ManagedColumnInfo { get; }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
         public Revision GetPluginRevision()
@@ -87,10 +87,10 @@ namespace ReimuPlugins.Common
                 info = Marshal.AllocHGlobal(size * this.ManagedColumnInfo.Count);
 
                 var address = info.ToInt64();
-                foreach (var index in Utils.GetEnumerator<TColumnIndex>())
+                foreach (var key in Utils.GetEnumerator<TColumnKey>())
                 {
                     var pointer = new IntPtr(address);
-                    Marshal.StructureToPtr(this.ManagedColumnInfo[index], pointer, false);
+                    Marshal.StructureToPtr(this.ManagedColumnInfo[key], pointer, false);
                     address += size;
                 }
 

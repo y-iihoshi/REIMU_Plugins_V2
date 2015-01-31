@@ -12,9 +12,9 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// The base class for the classes implementing the REIMU plugin interface (Revision 2).
     /// </summary>
-    /// <typeparam name="TColumnIndex">The key type of <see cref="ManagedColumnInfo"/>.</typeparam>
-    public abstract class ReimuPluginRev2<TColumnIndex> : ReimuPluginRev1<TColumnIndex>, IReimuPluginRev2
-        where TColumnIndex : struct, IComparable, IFormattable, IConvertible
+    /// <typeparam name="TColumnKey">The key type of <see cref="ManagedColumnInfo"/>.</typeparam>
+    public abstract class ReimuPluginRev2<TColumnKey> : ReimuPluginRev1<TColumnKey>, IReimuPluginRev2
+        where TColumnKey : struct, IComparable, IFormattable, IConvertible
     {
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev2.")]
         public new Revision GetPluginRevision()

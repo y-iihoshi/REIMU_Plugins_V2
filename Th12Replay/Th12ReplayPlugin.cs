@@ -78,7 +78,7 @@ namespace ReimuPlugins.Th12Replay
             return Impl.EditDialog(parent, file);
         }
 
-        private sealed class PluginImpl : ReimuPluginRev1<PluginImpl.ColumnIndex>
+        private sealed class PluginImpl : ReimuPluginRev1<PluginImpl.ColumnKey>
         {
             private static readonly string ValidSignature = "t12r".ToCP932();
 
@@ -90,11 +90,11 @@ namespace ReimuPlugins.Th12Replay
                 "東方星蓮船 リプレイファイル (th12_*.rpy)\0".ToCP932(),
             };
 
-            private static readonly Dictionary<ColumnIndex, ColumnInfo> Columns =
-                new Dictionary<ColumnIndex, ColumnInfo>
+            private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
+                new Dictionary<ColumnKey, ColumnInfo>
                 {
                     {
-                        ColumnIndex.Filename,
+                        ColumnKey.Filename,
                         new ColumnInfo
                         {
                             Title = "ファイル名\0".ToCP932(),
@@ -104,7 +104,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.LastWriteDate,
+                        ColumnKey.LastWriteDate,
                         new ColumnInfo
                         {
                             Title = "更新日時\0".ToCP932(),
@@ -114,7 +114,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Number,
+                        ColumnKey.Number,
                         new ColumnInfo
                         {
                             Title = "No.\0".ToCP932(),
@@ -124,7 +124,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Player,
+                        ColumnKey.Player,
                         new ColumnInfo
                         {
                             Title = "プレイヤー名\0".ToCP932(),
@@ -134,7 +134,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.PlayTime,
+                        ColumnKey.PlayTime,
                         new ColumnInfo
                         {
                             Title = "プレイ時刻\0".ToCP932(),
@@ -144,7 +144,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Character,
+                        ColumnKey.Character,
                         new ColumnInfo
                         {
                             Title = "使用キャラ\0".ToCP932(),
@@ -154,7 +154,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Level,
+                        ColumnKey.Level,
                         new ColumnInfo
                         {
                             Title = "難易度\0".ToCP932(),
@@ -164,7 +164,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Stage,
+                        ColumnKey.Stage,
                         new ColumnInfo
                         {
                             Title = "ステージ\0".ToCP932(),
@@ -174,7 +174,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Score,
+                        ColumnKey.Score,
                         new ColumnInfo
                         {
                             Title = "スコア\0".ToCP932(),
@@ -184,7 +184,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.SlowRate,
+                        ColumnKey.SlowRate,
                         new ColumnInfo
                         {
                             Title = "処理落ち率\0".ToCP932(),
@@ -194,7 +194,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Version,
+                        ColumnKey.Version,
                         new ColumnInfo
                         {
                             Title = "バージョン\0".ToCP932(),
@@ -204,7 +204,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Comment,
+                        ColumnKey.Comment,
                         new ColumnInfo
                         {
                             Title = "コメント\0".ToCP932(),
@@ -214,7 +214,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.FileSize,
+                        ColumnKey.FileSize,
                         new ColumnInfo
                         {
                             Title = "ファイルサイズ\0".ToCP932(),
@@ -224,7 +224,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Directory,
+                        ColumnKey.Directory,
                         new ColumnInfo
                         {
                             Title = "ディレクトリ\0".ToCP932(),
@@ -234,7 +234,7 @@ namespace ReimuPlugins.Th12Replay
                         }
                     },
                     {
-                        ColumnIndex.Sentinel,
+                        ColumnKey.Sentinel,
                         new ColumnInfo
                         {
                             Title = "\0",
@@ -246,21 +246,21 @@ namespace ReimuPlugins.Th12Replay
                 };
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
-            private static readonly Dictionary<ColumnIndex, Func<Th12ReplayData, string>> FileInfoGetters =
-                new Dictionary<ColumnIndex, Func<Th12ReplayData, string>>
+            private static readonly Dictionary<ColumnKey, Func<Th12ReplayData, string>> FileInfoGetters =
+                new Dictionary<ColumnKey, Func<Th12ReplayData, string>>
                 {
-                    { ColumnIndex.Player,    (data) => data.Name     },
-                    { ColumnIndex.PlayTime,  (data) => data.Date     },
-                    { ColumnIndex.Character, (data) => data.Chara    },
-                    { ColumnIndex.Level,     (data) => data.Rank     },
-                    { ColumnIndex.Stage,     (data) => data.Stage    },
-                    { ColumnIndex.Score,     (data) => data.Score    },
-                    { ColumnIndex.SlowRate,  (data) => data.SlowRate },
-                    { ColumnIndex.Version,   (data) => data.Version  },
-                    { ColumnIndex.Comment,   (data) => data.Comment  },
+                    { ColumnKey.Player,    (data) => data.Name     },
+                    { ColumnKey.PlayTime,  (data) => data.Date     },
+                    { ColumnKey.Character, (data) => data.Chara    },
+                    { ColumnKey.Level,     (data) => data.Rank     },
+                    { ColumnKey.Stage,     (data) => data.Stage    },
+                    { ColumnKey.Score,     (data) => data.Score    },
+                    { ColumnKey.SlowRate,  (data) => data.SlowRate },
+                    { ColumnKey.Version,   (data) => data.Version  },
+                    { ColumnKey.Comment,   (data) => data.Comment  },
                 };
 
-            internal enum ColumnIndex
+            internal enum ColumnKey
             {
                 Filename = 0,
                 LastWriteDate,
@@ -284,7 +284,7 @@ namespace ReimuPlugins.Th12Replay
                 get { return Array.AsReadOnly(PluginInfoImpl); }
             }
 
-            protected override IDictionary<PluginImpl.ColumnIndex, ColumnInfo> ManagedColumnInfo
+            protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo
             {
                 get { return Columns; }
             }
@@ -365,22 +365,22 @@ namespace ReimuPlugins.Th12Replay
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
                         info = Marshal.AllocHGlobal(
-                            fileInfoSize * Columns.Keys.Count(key => key != ColumnIndex.Sentinel));
+                            fileInfoSize * Columns.Keys.Count(key => key != ColumnKey.Sentinel));
 
                         var address = info.ToInt64();
-                        foreach (var index in Utils.GetEnumerator<ColumnIndex>())
+                        foreach (var key in Utils.GetEnumerator<ColumnKey>())
                         {
-                            if (index != ColumnIndex.Sentinel)
+                            if (key != ColumnKey.Sentinel)
                             {
                                 var fileInfo = new FileInfo { Text = string.Empty };
-                                if (index == ColumnIndex.Number)
+                                if (key == ColumnKey.Number)
                                 {
                                     fileInfo.Text = number;
                                 }
                                 else
                                 {
                                     Func<Th12ReplayData, string> getter;
-                                    if (FileInfoGetters.TryGetValue(index, out getter))
+                                    if (FileInfoGetters.TryGetValue(key, out getter))
                                     {
                                         fileInfo.Text = getter(replay);
                                     }
