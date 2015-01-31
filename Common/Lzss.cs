@@ -13,7 +13,7 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// Provides static methods for compressing and decompressing LZSS formatted data.
     /// </summary>
-    internal static class Lzss
+    public static class Lzss
     {
         /// <summary>
         /// The size of the dictionary.
