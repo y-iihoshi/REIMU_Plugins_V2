@@ -39,6 +39,16 @@ namespace ReimuPlugins.Common
         /// <param name="output">The stream that is output the decompressed data.</param>
         public static void Extract(Stream input, Stream output)
         {
+            if (input == null)
+            {
+                throw new ArgumentNullException("input");
+            }
+
+            if (output == null)
+            {
+                throw new ArgumentNullException("output");
+            }
+
             var reader = new BitReader(input);
             var dictionary = new byte[DicSize];
             var dicIndex = 1;
