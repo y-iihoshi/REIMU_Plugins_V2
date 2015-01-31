@@ -110,11 +110,13 @@ namespace ReimuPlugins.Common
             catch (OverflowException)
             {
             }
-
-            if (errorCode != ErrorCode.AllRight)
+            finally
             {
-                Marshal.FreeHGlobal(info);
-                info = IntPtr.Zero;
+                if (errorCode != ErrorCode.AllRight)
+                {
+                    Marshal.FreeHGlobal(info);
+                    info = IntPtr.Zero;
+                }
             }
 
             return errorCode;
