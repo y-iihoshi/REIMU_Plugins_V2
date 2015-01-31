@@ -53,7 +53,7 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <param name="info">
-        /// The address to store the head address of the allocated <see cref="BitmapInfo"/> instance.
+        /// The address to store the head address of the allocated <see cref="BITMAPINFO"/> instance.
         /// <remarks>
         /// The plugin shall allocate the memory for <paramref name="info"/> by calling the Win32 API
         /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the
@@ -102,7 +102,7 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <param name="info">
-        /// The address to store the head address of the allocated <see cref="BitmapInfo"/> instance.
+        /// The address to store the head address of the allocated <see cref="BITMAPINFO"/> instance.
         /// <remarks>
         /// The plugin shall allocate the memory for <paramref name="info"/> by calling the Win32 API
         /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the
