@@ -87,6 +87,7 @@
     <Compile Include="ReimuPluginRev2.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ThReplayData.cs" />
+    <Compile Include="DisposableTuple.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Win32Window.cs" />
   </ItemGroup>

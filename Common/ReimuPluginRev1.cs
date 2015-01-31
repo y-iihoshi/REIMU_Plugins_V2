@@ -12,7 +12,9 @@ namespace ReimuPlugins.Common
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Runtime.InteropServices;
+    using System.Security;
     using System.Text;
 
     /// <summary>
@@ -135,5 +137,87 @@ namespace ReimuPlugins.Common
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
         public abstract ErrorCode ConfigDialog(IntPtr parent);
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="MemoryStream"/> or <see cref="FileStream"/> class.
+        /// </summary>
+        /// <param name="src">
+        /// Same as the parameter <c>src</c> of <see cref="IReimuPluginRev1.IsSupported"/> etc.
+        /// </param>
+        /// <param name="size">
+        /// Same as the parameter <c>size</c> of <see cref="IReimuPluginRev1.IsSupported"/> etc.
+        /// </param>
+        /// <returns>A pair of the error code and the created instance.</returns>
+        /// <exception cref="OutOfMemoryException">Failed to create a new instance.</exception>
+        [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "These objects are wrapped in the IDisposable return value.")]
+        protected static DisposableTuple<ErrorCode, Stream> CreateStream(IntPtr src, uint size)
+        {
+            var errorCode = ErrorCode.UnknownError;
+            Stream stream = null;
+
+            if (size > 0)
+            {
+                try
+                {
+                    var content = new byte[size];
+                    Marshal.Copy(src, content, 0, content.Length);
+                    stream = new MemoryStream(content, false);
+                }
+                catch (OutOfMemoryException)
+                {
+                    errorCode = ErrorCode.NoMemory;
+                }
+                catch (ArgumentNullException)
+                {
+                }
+            }
+            else
+            {
+                try
+                {
+                    var path = Marshal.PtrToStringAuto(src);
+                    stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                }
+                catch (ArgumentException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (IOException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (NotSupportedException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (SecurityException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    errorCode = ErrorCode.FileReadError;
+                }
+            }
+
+            if (stream != null)
+            {
+                errorCode = ErrorCode.AllRight;
+            }
+
+            try
+            {
+                return DisposableTuple.Create(errorCode, stream);
+            }
+            catch (OutOfMemoryException)
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+
+                throw;
+            }
+        }
     }
 }
