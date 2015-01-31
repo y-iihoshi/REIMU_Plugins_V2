@@ -296,28 +296,19 @@ namespace ReimuPlugins.Th11Replay
                     return (uint)ValidSignature.Length;
                 }
 
+                var signature = string.Empty;
+
                 try
                 {
-                    var signature = string.Empty;
-
-                    if (size > 0u)
+                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
                     {
-                        var content = new byte[Math.Min(size, ValidSignature.Length)];
-                        Marshal.Copy(src, content, 0, content.Length);
-                        signature = Enc.CP932.GetString(content);
-                    }
-                    else
-                    {
-                        var path = Marshal.PtrToStringAnsi(src);
-                        using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
+                        if (pair.Item1 == ErrorCode.AllRight)
                         {
-                            var reader = new IO.BinaryReader(stream);
+                            var reader = new IO.BinaryReader(pair.Item2);
                             var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
                             signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                         }
                     }
-
-                    return (signature == ValidSignature) ? 1u : 0u;
                 }
                 catch (OutOfMemoryException)
                 {
@@ -331,17 +322,11 @@ namespace ReimuPlugins.Th11Replay
                 catch (NotSupportedException)
                 {
                 }
-                catch (SecurityException)
-                {
-                }
-                catch (UnauthorizedAccessException)
-                {
-                }
                 catch (ObjectDisposedException)
                 {
                 }
 
-                return 0u;
+                return (signature == ValidSignature) ? 1u : 0u;
             }
 
             public override ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
@@ -360,8 +345,8 @@ namespace ReimuPlugins.Th11Replay
                             path, @"^th11_(\d{2})\.rpy$", @"^th11_ud(.{0,4})\.rpy$");
                     }
 
-                    var replay = CreateTh11ReplayData(src, size, ref errorCode);
-                    if (errorCode != ErrorCode.FileReadError)
+                    var pair = CreateReplayData<Th11ReplayData>(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
                         var keys = Utils.GetEnumerator<ColumnKey>().Where(key => key != ColumnKey.Sentinel);
@@ -381,7 +366,7 @@ namespace ReimuPlugins.Th11Replay
                                 Func<Th11ReplayData, string> getter;
                                 if (FileInfoGetters.TryGetValue(key, out getter))
                                 {
-                                    fileInfo.Text = getter(replay);
+                                    fileInfo.Text = getter(pair.Item2);
                                 }
                             }
 
@@ -389,9 +374,9 @@ namespace ReimuPlugins.Th11Replay
                             Marshal.StructureToPtr(fileInfo, pointer, false);
                             address += fileInfoSize;
                         }
-
-                        errorCode = ErrorCode.AllRight;
                     }
+
+                    errorCode = pair.Item1;
                 }
                 catch (OutOfMemoryException)
                 {
@@ -423,15 +408,15 @@ namespace ReimuPlugins.Th11Replay
 
                 try
                 {
-                    var replay = CreateTh11ReplayData(src, size, ref errorCode);
-                    if (errorCode != ErrorCode.FileReadError)
+                    var pair = CreateReplayData<Th11ReplayData>(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var bytes = Enc.CP932.GetBytes(replay.Info);
+                        var bytes = Enc.CP932.GetBytes(pair.Item2.Info);
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
-
-                        errorCode = ErrorCode.AllRight;
                     }
+
+                    errorCode = pair.Item1;
                 }
                 catch (OutOfMemoryException)
                 {
@@ -460,15 +445,15 @@ namespace ReimuPlugins.Th11Replay
 
                 try
                 {
-                    var replay = CreateTh11ReplayData(src, size, ref errorCode);
-                    if (errorCode != ErrorCode.FileReadError)
+                    var pair = CreateReplayData<Th11ReplayData>(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var bytes = Enc.CP932.GetBytes(replay.Comment);
+                        var bytes = Enc.CP932.GetBytes(pair.Item2.Comment);
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
-
-                        errorCode = ErrorCode.AllRight;
                     }
+
+                    errorCode = pair.Item1;
                 }
                 catch (OutOfMemoryException)
                 {
@@ -493,18 +478,17 @@ namespace ReimuPlugins.Th11Replay
             {
                 var result = DialogResult.None;
 
-                var errorCode = ErrorCode.UnknownError;
-                var replay = CreateTh11ReplayData(file, ref errorCode);
-                if (errorCode != ErrorCode.FileReadError)
+                var pair = CreateReplayData<Th11ReplayData>(file);
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
                     using (var dialog = new EditDialog())
                     {
-                        dialog.Content = replay.Comment;
+                        dialog.Content = pair.Item2.Comment;
                         result = dialog.ShowDialog(new Win32Window(parent));
                         if (result == DialogResult.OK)
                         {
-                            replay.Comment = dialog.Content + "\0\0";
-                            replay.Write(file);
+                            pair.Item2.Comment = dialog.Content + "\0\0";
+                            pair.Item2.Write(file);
                         }
                     }
                 }
@@ -517,58 +501,32 @@ namespace ReimuPlugins.Th11Replay
                 throw new NotImplementedException();
             }
 
-            private static Th11ReplayData CreateTh11ReplayData(IntPtr src, uint size, ref ErrorCode errorCode)
+            private static Tuple<ErrorCode, T> CreateReplayData<T>(IntPtr src, uint size)
+                where T : ThReplayData, new()
             {
-                if (size > 0u)
+                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
                 {
-                    var replay = new Th11ReplayData();
-                    var content = new byte[size];
+                    T replay = null;
 
-                    Marshal.Copy(src, content, 0, content.Length);
-                    using (var stream = new IO.MemoryStream(content, false))
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        replay.Read(stream);
+                        replay = new T();
+                        replay.Read(pair.Item2);
                     }
 
-                    return replay;
-                }
-                else
-                {
-                    var path = Marshal.PtrToStringAnsi(src);
-                    return CreateTh11ReplayData(path, ref errorCode);
+                    return Tuple.Create(pair.Item1, replay);
                 }
             }
 
-            private static Th11ReplayData CreateTh11ReplayData(string path, ref ErrorCode errorCode)
+            private static Tuple<ErrorCode, T> CreateReplayData<T>(string path)
+                where T : ThReplayData, new()
             {
-                var replay = new Th11ReplayData();
-
-                try
+                using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
                 {
-                    replay.Read(path);
+                    var replay = new T();
+                    replay.Read(stream);
+                    return Tuple.Create(ErrorCode.AllRight, replay);
                 }
-                catch (ArgumentException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (IO.IOException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (NotSupportedException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (SecurityException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-
-                return replay;
             }
         }
     }
