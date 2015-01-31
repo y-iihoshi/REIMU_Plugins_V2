@@ -539,10 +539,7 @@ namespace ReimuPlugins.Th11Replay
 
                 try
                 {
-                    using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
-                    {
-                        replay.Read(stream);
-                    }
+                    replay.Read(path);
                 }
                 catch (ArgumentException)
                 {

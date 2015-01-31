@@ -59,5 +59,13 @@ namespace ReimuPlugins.Th095Bestshot
                 this.CardName = Enc.CP932.GetString(reader.ReadBytes(0x50));
             }
         }
+
+        public void Read(string path)
+        {
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                this.Read(stream);
+            }
+        }
     }
 }
