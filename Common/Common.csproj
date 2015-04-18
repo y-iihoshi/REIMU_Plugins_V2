@@ -68,6 +68,7 @@
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapLock.cs" />
     <Compile Include="BitReader.cs" />
     <Compile Include="ColumnInfo.cs" />
     <Compile Include="Constants.cs" />
