@@ -12,9 +12,11 @@ namespace ReimuPlugins.Th095Bestshot
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing.Imaging;
     using System.Globalization;
     using System.Linq;
     using System.Runtime.InteropServices;
+    using CommonWin32.Bitmaps;
     using ReimuPlugins.Common;
     using RGiesecke.DllExport;
     using IO = System.IO;
@@ -355,10 +357,83 @@ namespace ReimuPlugins.Th095Bestshot
 
             public override ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
             {
+                var errorCode = ErrorCode.UnknownError;
+
                 dst = IntPtr.Zero;
                 info = IntPtr.Zero;
 
-                return ErrorCode.AllRight;
+                try
+                {
+                    var pair = CreateBestshotData(src, size, true);
+                    if (pair.Item1 == ErrorCode.AllRight)
+                    {
+                        var dstStride = 3 * pair.Item2.Width;
+                        var remain = dstStride % 4;
+                        if (remain != 0)
+                        {
+                            dstStride += 4 - remain;
+                        }
+
+                        dst = Marshal.AllocHGlobal(dstStride * pair.Item2.Height);
+
+                        using (var locked = new BitmapLock(pair.Item2.Bitmap, ImageLockMode.ReadOnly))
+                        {
+                            var srcScanline = new byte[3 * pair.Item2.Width];
+                            var s = locked.Scan0;
+                            var d = dst;
+                            for (var h = 0; h < pair.Item2.Height; h++)
+                            {
+                                Marshal.Copy(s, srcScanline, 0, srcScanline.Length);
+                                Marshal.Copy(srcScanline, 0, d, srcScanline.Length);
+                                s = new IntPtr(s.ToInt32() + locked.Stride);
+                                d = new IntPtr(d.ToInt32() + dstStride);
+                            }
+                        }
+
+                        var bitmapInfo = new BITMAPINFO
+                        {
+                            bmiHeader = new BITMAPINFOHEADER
+                            {
+                                biSize = (uint)Marshal.SizeOf(typeof(BITMAPINFOHEADER)),
+                                biWidth = pair.Item2.Bitmap.Width,
+                                biHeight = -pair.Item2.Bitmap.Height,
+                                biPlanes = 1,
+                                biBitCount = 24,
+                                biCompression = BITMAPINFOHEADER.CompressionType.BI_RGB,
+                                biSizeImage = 0,
+                                biXPelsPerMeter = 0,
+                                biYPelsPerMeter = 0,
+                                biClrUsed = 0,
+                                biClrImportant = 0,
+                            },
+                            bmiColors = IntPtr.Zero,
+                        };
+
+                        info = Marshal.AllocHGlobal(Marshal.SizeOf(bitmapInfo));
+                        Marshal.StructureToPtr(bitmapInfo, info, true);
+                    }
+
+                    errorCode = pair.Item1;
+                }
+                catch (OutOfMemoryException)
+                {
+                    errorCode = ErrorCode.NoMemory;
+                }
+                catch (ArgumentException)
+                {
+                }
+                finally
+                {
+                    if (errorCode != ErrorCode.AllRight)
+                    {
+                        Marshal.FreeHGlobal(dst);
+                        dst = IntPtr.Zero;
+                        Marshal.FreeHGlobal(info);
+                        info = IntPtr.Zero;
+                    }
+                }
+
+                return errorCode;
             }
 
             public override ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
