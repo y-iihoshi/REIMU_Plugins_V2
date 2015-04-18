@@ -15,8 +15,6 @@ namespace ReimuPlugins.Th095Bestshot
     using System.Globalization;
     using System.Linq;
     using System.Runtime.InteropServices;
-    using System.Security;
-    using System.Text;
     using ReimuPlugins.Common;
     using RGiesecke.DllExport;
     using IO = System.IO;
@@ -256,28 +254,19 @@ namespace ReimuPlugins.Th095Bestshot
                     return (uint)ValidSignature.Length;
                 }
 
+                var signature = string.Empty;
+
                 try
                 {
-                    var signature = string.Empty;
-
-                    if (size > 0u)
+                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
                     {
-                        var content = new byte[Math.Min(size, ValidSignature.Length)];
-                        Marshal.Copy(src, content, 0, content.Length);
-                        signature = Enc.CP932.GetString(content);
-                    }
-                    else
-                    {
-                        var path = Marshal.PtrToStringAnsi(src);
-                        using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
+                        if (pair.Item1 == ErrorCode.AllRight)
                         {
-                            var reader = new IO.BinaryReader(stream);
+                            var reader = new IO.BinaryReader(pair.Item2);
                             var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
                             signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                         }
                     }
-
-                    return (signature == ValidSignature) ? 1u : 0u;
                 }
                 catch (OutOfMemoryException)
                 {
@@ -291,17 +280,11 @@ namespace ReimuPlugins.Th095Bestshot
                 catch (NotSupportedException)
                 {
                 }
-                catch (SecurityException)
-                {
-                }
-                catch (UnauthorizedAccessException)
-                {
-                }
                 catch (ObjectDisposedException)
                 {
                 }
 
-                return 0u;
+                return (signature == ValidSignature) ? 1u : 0u;
             }
 
             public override ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
@@ -312,8 +295,8 @@ namespace ReimuPlugins.Th095Bestshot
 
                 try
                 {
-                    var replay = CreateTh095BestshotData(src, size, ref errorCode);
-                    if (errorCode != ErrorCode.FileReadError)
+                    var pair = CreateBestshotData(src, size, false);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
                         var keys = Utils.GetEnumerator<ColumnKey>().Where(key => key != ColumnKey.Sentinel);
@@ -327,16 +310,16 @@ namespace ReimuPlugins.Th095Bestshot
                             Func<Th095BestshotData, string> getter;
                             if (FileInfoGetters.TryGetValue(key, out getter))
                             {
-                                fileInfo.Text = getter(replay);
+                                fileInfo.Text = getter(pair.Item2);
                             }
 
                             var pointer = new IntPtr(address);
                             Marshal.StructureToPtr(fileInfo, pointer, false);
                             address += fileInfoSize;
                         }
-
-                        errorCode = ErrorCode.AllRight;
                     }
+
+                    errorCode = pair.Item1;
                 }
                 catch (OutOfMemoryException)
                 {
@@ -393,58 +376,21 @@ namespace ReimuPlugins.Th095Bestshot
                 throw new NotImplementedException();
             }
 
-            private static Th095BestshotData CreateTh095BestshotData(IntPtr src, uint size, ref ErrorCode errorCode)
+            private static Tuple<ErrorCode, Th095BestshotData> CreateBestshotData(
+                IntPtr src, uint size, bool withBitmap)
             {
-                if (size > 0u)
+                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
                 {
-                    var replay = new Th095BestshotData();
-                    var content = new byte[size];
+                    Th095BestshotData bestshot = null;
 
-                    Marshal.Copy(src, content, 0, content.Length);
-                    using (var stream = new IO.MemoryStream(content, false))
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        replay.Read(stream);
+                        bestshot = new Th095BestshotData();
+                        bestshot.Read(pair.Item2, withBitmap);
                     }
 
-                    return replay;
+                    return Tuple.Create(pair.Item1, bestshot);
                 }
-                else
-                {
-                    var path = Marshal.PtrToStringAnsi(src);
-                    return CreateTh095BestshotData(path, ref errorCode);
-                }
-            }
-
-            private static Th095BestshotData CreateTh095BestshotData(string path, ref ErrorCode errorCode)
-            {
-                var replay = new Th095BestshotData();
-
-                try
-                {
-                    replay.Read(path);
-                }
-                catch (ArgumentException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (IO.IOException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (NotSupportedException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (SecurityException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    errorCode = ErrorCode.FileReadError;
-                }
-
-                return replay;
             }
         }
     }
