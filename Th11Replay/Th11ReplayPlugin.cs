@@ -14,8 +14,6 @@ namespace ReimuPlugins.Th11Replay
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Runtime.InteropServices;
-    using System.Security;
-    using System.Text;
     using System.Windows.Forms;
     using ReimuPlugins.Common;
     using RGiesecke.DllExport;
