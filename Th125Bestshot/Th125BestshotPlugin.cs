@@ -448,138 +448,7 @@ namespace ReimuPlugins.Th125Bestshot
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
             private static readonly Dictionary<ColumnKey, Func<Th125BestshotData, string>> FileInfoGetters =
-                new Dictionary<ColumnKey, Func<Th125BestshotData, string>>
-                {
-                    {
-                        ColumnKey.Scene,
-                        (data) => string.Format(
-                            CultureInfo.CurrentCulture, "{0}-{1}", LevelStrings[data.Level - 1], data.Scene)
-                    },
-                    {
-                        ColumnKey.CardName,
-                        (data) => data.CardName
-                    },
-                    {
-                        ColumnKey.Width,
-                        (data) => data.Width.ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.Height,
-                        (data) => data.Height.ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.DateTime,
-                        (data) => new DateTime(1970, 1, 1).AddSeconds(data.DateTime).ToLocalTime()
-                            .ToString("yyyy/MM/dd HH:mm:ss", CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.SlowRate,
-                        (data) => data.SlowRate.ToString("F6", CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.Score,
-                        (data) => data.ResultScore.ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.BasePoint,
-                        (data) => data.BasePoint.ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.ClearShot,
-                        (data) => (data.ClearShotBit ? data.ClearShot : 0)
-                            .ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.SoloShot,
-                        (data) => (data.SoloShotBit ? 100 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.RedShot,
-                        (data) => (data.RedShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.PurpleShot,
-                        (data) => (data.PurpleShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.BlueShot,
-                        (data) => (data.BlueShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.CyanShot,
-                        (data) => (data.CyanShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.GreenShot,
-                        (data) => (data.GreenShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.YellowShot,
-                        (data) => (data.YellowShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.OrangeShot,
-                        (data) => (data.OrangeShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.ColorfulShot,
-                        (data) => (data.ColorfulShotBit ? 900 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.RainbowShot,
-                        (data) => (data.RainbowShotBit ? 2100 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.RiskBonus,
-                        (data) => (data.RiskBonusBit ? data.RiskBonus : 0)
-                            .ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.MacroBonus,
-                        (data) => (data.MacroBonusBit ? data.MacroBonus : 0)
-                            .ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.FrontShot,
-                        (data) => (data.FrontShotBit ? data.FrontSideBackShot : 0)
-                            .ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.SideShot,
-                        (data) => (data.SideShotBit ? data.FrontSideBackShot : 0)
-                            .ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.BackShot,
-                        (data) => (data.BackShotBit ? data.FrontSideBackShot : 0)
-                            .ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.CatBonus,
-                        (data) => (data.CatBonusBit ? 666 : 0).ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.BossShot,
-                        (data) => data.BossShot.ToString("F2", CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.TwoShot,
-                        (data) => (data.TwoShotBit ? 1.5f : 1f).ToString("F2", CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.NiceShot,
-                        (data) => (data.NiceShotBit ? data.NiceShot : 1f)
-                            .ToString("F2", CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.AngleBonus,
-                        (data) => data.AngleBonus.ToString("F2", CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.Angle,
-                        (data) => data.Angle.ToString("F6", CultureInfo.CurrentCulture)
-                    },
-                };
+                InitializeFileInfoGetters();
 
             internal enum ColumnKey
             {
@@ -885,6 +754,143 @@ namespace ReimuPlugins.Th125Bestshot
             public override ErrorCode ConfigDialog(IntPtr parent)
             {
                 throw new NotImplementedException();
+            }
+
+            [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
+            private static Dictionary<ColumnKey, Func<Th125BestshotData, string>> InitializeFileInfoGetters()
+            {
+                return new Dictionary<ColumnKey, Func<Th125BestshotData, string>>
+                {
+                    {
+                        ColumnKey.Scene,
+                        (data) => string.Format(
+                            CultureInfo.CurrentCulture, "{0}-{1}", LevelStrings[data.Level - 1], data.Scene)
+                    },
+                    {
+                        ColumnKey.CardName,
+                        (data) => data.CardName
+                    },
+                    {
+                        ColumnKey.Width,
+                        (data) => data.Width.ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.Height,
+                        (data) => data.Height.ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.DateTime,
+                        (data) => new DateTime(1970, 1, 1).AddSeconds(data.DateTime).ToLocalTime()
+                            .ToString("yyyy/MM/dd HH:mm:ss", CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.SlowRate,
+                        (data) => data.SlowRate.ToString("F6", CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.Score,
+                        (data) => data.ResultScore.ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.BasePoint,
+                        (data) => data.BasePoint.ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.ClearShot,
+                        (data) => (data.ClearShotBit ? data.ClearShot : 0)
+                            .ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.SoloShot,
+                        (data) => (data.SoloShotBit ? 100 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.RedShot,
+                        (data) => (data.RedShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.PurpleShot,
+                        (data) => (data.PurpleShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.BlueShot,
+                        (data) => (data.BlueShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.CyanShot,
+                        (data) => (data.CyanShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.GreenShot,
+                        (data) => (data.GreenShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.YellowShot,
+                        (data) => (data.YellowShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.OrangeShot,
+                        (data) => (data.OrangeShotBit ? 300 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.ColorfulShot,
+                        (data) => (data.ColorfulShotBit ? 900 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.RainbowShot,
+                        (data) => (data.RainbowShotBit ? 2100 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.RiskBonus,
+                        (data) => (data.RiskBonusBit ? data.RiskBonus : 0)
+                            .ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.MacroBonus,
+                        (data) => (data.MacroBonusBit ? data.MacroBonus : 0)
+                            .ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.FrontShot,
+                        (data) => (data.FrontShotBit ? data.FrontSideBackShot : 0)
+                            .ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.SideShot,
+                        (data) => (data.SideShotBit ? data.FrontSideBackShot : 0)
+                            .ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.BackShot,
+                        (data) => (data.BackShotBit ? data.FrontSideBackShot : 0)
+                            .ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.CatBonus,
+                        (data) => (data.CatBonusBit ? 666 : 0).ToString(CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.BossShot,
+                        (data) => data.BossShot.ToString("F2", CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.TwoShot,
+                        (data) => (data.TwoShotBit ? 1.5f : 1f).ToString("F2", CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.NiceShot,
+                        (data) => (data.NiceShotBit ? data.NiceShot : 1f)
+                            .ToString("F2", CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.AngleBonus,
+                        (data) => data.AngleBonus.ToString("F2", CultureInfo.CurrentCulture)
+                    },
+                    {
+                        ColumnKey.Angle,
+                        (data) => data.Angle.ToString("F6", CultureInfo.CurrentCulture)
+                    },
+                };
             }
 
             private static Tuple<ErrorCode, Th125BestshotData> CreateBestshotData(
