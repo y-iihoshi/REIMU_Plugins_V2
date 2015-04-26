@@ -79,6 +79,8 @@
       <DependentUpon>EditDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Enc.cs" />
+    <Compile Include="EnumAltNameAttribute.cs" />
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="FileInfo.cs" />
     <Compile Include="IReimuPluginRev1.cs" />
     <Compile Include="IReimuPluginRev2.cs" />
