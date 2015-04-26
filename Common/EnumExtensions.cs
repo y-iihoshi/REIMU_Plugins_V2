@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="EnumExtensions.cs" company="None">
-//     (c) 2014 IIHOSHI Yoshinori
+//     (c) 2014-2015 IIHOSHI Yoshinori
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ThScoreFileConverter
+namespace ReimuPlugins.Common
 {
     using System;
     using System.Collections.Generic;
