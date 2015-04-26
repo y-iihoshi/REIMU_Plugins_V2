@@ -27,10 +27,8 @@ namespace ReimuPlugins.Common
             where T : struct, IComparable, IFormattable, IConvertible
         {
             EnumAltNameAttribute attr;
-            if (AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out attr))
-                return attr.ShortName;
-            else
-                return string.Empty;
+            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out attr)
+                ? attr.ShortName : string.Empty;
         }
 
         /// <summary>
@@ -44,10 +42,8 @@ namespace ReimuPlugins.Common
             where T : struct, IComparable, IFormattable, IConvertible
         {
             EnumAltNameAttribute attr;
-            if (AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out attr))
-                return attr.LongName;
-            else
-                return string.Empty;
+            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out attr)
+                ? attr.LongName : string.Empty;
         }
 
         /// <summary>
