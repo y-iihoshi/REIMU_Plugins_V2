@@ -19,7 +19,7 @@ namespace ReimuPlugins.Th11Replay
     using RGiesecke.DllExport;
     using IO = System.IO;
 
-    public static class Th11ReplayPlugin
+    public static class Plugin
     {
         private static readonly PluginImpl Impl = new PluginImpl();
 
@@ -244,8 +244,8 @@ namespace ReimuPlugins.Th11Replay
                 };
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
-            private static readonly Dictionary<ColumnKey, Func<Th11ReplayData, string>> FileInfoGetters =
-                new Dictionary<ColumnKey, Func<Th11ReplayData, string>>
+            private static readonly Dictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
+                new Dictionary<ColumnKey, Func<ReplayData, string>>
                 {
                     { ColumnKey.Player,    (data) => data.Name     },
                     { ColumnKey.PlayTime,  (data) => data.Date     },
@@ -343,7 +343,7 @@ namespace ReimuPlugins.Th11Replay
                             path, @"^th11_(\d{2})\.rpy$", @"^th11_ud(.{0,4})\.rpy$");
                     }
 
-                    var pair = CreateReplayData<Th11ReplayData>(src, size);
+                    var pair = CreateReplayData<ReplayData>(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
@@ -361,7 +361,7 @@ namespace ReimuPlugins.Th11Replay
                             }
                             else
                             {
-                                Func<Th11ReplayData, string> getter;
+                                Func<ReplayData, string> getter;
                                 if (FileInfoGetters.TryGetValue(key, out getter))
                                 {
                                     fileInfo.Text = getter(pair.Item2);
@@ -406,7 +406,7 @@ namespace ReimuPlugins.Th11Replay
 
                 try
                 {
-                    var pair = CreateReplayData<Th11ReplayData>(src, size);
+                    var pair = CreateReplayData<ReplayData>(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var bytes = Enc.CP932.GetBytes(pair.Item2.Info);
@@ -443,7 +443,7 @@ namespace ReimuPlugins.Th11Replay
 
                 try
                 {
-                    var pair = CreateReplayData<Th11ReplayData>(src, size);
+                    var pair = CreateReplayData<ReplayData>(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var bytes = Enc.CP932.GetBytes(pair.Item2.Comment);
@@ -476,7 +476,7 @@ namespace ReimuPlugins.Th11Replay
             {
                 var result = DialogResult.None;
 
-                var pair = CreateReplayData<Th11ReplayData>(file);
+                var pair = CreateReplayData<ReplayData>(file);
                 if (pair.Item1 == ErrorCode.AllRight)
                 {
                     using (var dialog = new EditDialog())

@@ -1,27 +1,25 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="Th095BestshotPlugin.cs" company="None">
+// <copyright file="Th12ReplayPlugin.cs" company="None">
 //     (c) 2015 IIHOSHI Yoshinori
 // </copyright>
 //-----------------------------------------------------------------------
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
 
-namespace ReimuPlugins.Th095Bestshot
+namespace ReimuPlugins.Th12Replay
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Drawing.Imaging;
-    using System.Globalization;
     using System.Linq;
     using System.Runtime.InteropServices;
-    using CommonWin32.Bitmaps;
+    using System.Windows.Forms;
     using ReimuPlugins.Common;
     using RGiesecke.DllExport;
     using IO = System.IO;
 
-    public static class Th095BestshotPlugin
+    public static class Plugin
     {
         private static readonly PluginImpl Impl = new PluginImpl();
 
@@ -60,22 +58,34 @@ namespace ReimuPlugins.Th095Bestshot
 
         [DllExport]
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "3#", Justification = "To comply with the REIMU plugin spec.")]
-        public static ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
+        public static ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
         {
-            return Impl.GetFileInfoImage1(src, size, out dst, out info);
+            return Impl.GetFileInfoText1(src, size, out dst);
         }
 
-        private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
+        [DllExport]
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
+        public static ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
         {
-            private static readonly string ValidSignature = "BSTS".ToCP932();
+            return Impl.GetFileInfoText2(src, size, out dst);
+        }
 
-            private static readonly string[] PluginInfo =
+        [DllExport]
+        public static ErrorCode EditDialog(IntPtr parent, string file)
+        {
+            return Impl.EditDialog(parent, file);
+        }
+
+        private sealed class PluginImpl : ReimuPluginRev1<PluginImpl.ColumnKey>
+        {
+            private static readonly string ValidSignature = "t12r".ToCP932();
+
+            private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 東方文花帖 ベストショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToCP932(),
-                "東方文花帖 ベストショット\0".ToCP932(),
-                "bs_*.dat\0".ToCP932(),
-                "東方文花帖 ベストショットファイル (bs_*.dat)\0".ToCP932(),
+                "REIMU Plug-in For 東方星蓮船 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToCP932(),
+                "東方星蓮船\0".ToCP932(),
+                "th12_*.rpy\0".ToCP932(),
+                "東方星蓮船 リプレイファイル (th12_*.rpy)\0".ToCP932(),
             };
 
             private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
@@ -102,42 +112,62 @@ namespace ReimuPlugins.Th095Bestshot
                         }
                     },
                     {
-                        ColumnKey.Scene,
+                        ColumnKey.Number,
                         new ColumnInfo
                         {
-                            Title = "シーン\0".ToCP932(),
+                            Title = "No.\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
                     {
-                        ColumnKey.CardName,
+                        ColumnKey.Player,
                         new ColumnInfo
                         {
-                            Title = "スペルカード名\0".ToCP932(),
+                            Title = "プレイヤー名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
                     {
-                        ColumnKey.Width,
+                        ColumnKey.PlayTime,
                         new ColumnInfo
                         {
-                            Title = "幅\0".ToCP932(),
-                            Align = TextAlign.Right,
-                            Sort = SortType.Number,
+                            Title = "プレイ時刻\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
                     {
-                        ColumnKey.Height,
+                        ColumnKey.Character,
                         new ColumnInfo
                         {
-                            Title = "高さ\0".ToCP932(),
-                            Align = TextAlign.Right,
-                            Sort = SortType.Number,
+                            Title = "使用キャラ\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnKey.Level,
+                        new ColumnInfo
+                        {
+                            Title = "難易度\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnKey.Stage,
+                        new ColumnInfo
+                        {
+                            Title = "ステージ\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -145,7 +175,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.Score,
                         new ColumnInfo
                         {
-                            Title = "評価点\0".ToCP932(),
+                            Title = "スコア\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String
@@ -158,6 +188,26 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "処理落ち率\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnKey.Version,
+                        new ColumnInfo
+                        {
+                            Title = "バージョン\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
+                        ColumnKey.Comment,
+                        new ColumnInfo
+                        {
+                            Title = "コメント\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -194,46 +244,34 @@ namespace ReimuPlugins.Th095Bestshot
                 };
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
-            private static readonly Dictionary<ColumnKey, Func<Th095BestshotData, string>> FileInfoGetters =
-                new Dictionary<ColumnKey, Func<Th095BestshotData, string>>
+            private static readonly Dictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
+                new Dictionary<ColumnKey, Func<ReplayData, string>>
                 {
-                    {
-                        ColumnKey.Scene,
-                        (data) => string.Format(
-                            CultureInfo.CurrentCulture, "{0}-{1}", data.Level, data.Scene)
-                    },
-                    {
-                        ColumnKey.CardName,
-                        (data) => data.CardName
-                    },
-                    {
-                        ColumnKey.Width,
-                        (data) => data.Width.ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.Height,
-                        (data) => data.Height.ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.Score,
-                        (data) => data.Score.ToString(CultureInfo.CurrentCulture)
-                    },
-                    {
-                        ColumnKey.SlowRate,
-                        (data) => data.SlowRate.ToString("F6", CultureInfo.CurrentCulture)
-                    },
+                    { ColumnKey.Player,    (data) => data.Name     },
+                    { ColumnKey.PlayTime,  (data) => data.Date     },
+                    { ColumnKey.Character, (data) => data.Chara    },
+                    { ColumnKey.Level,     (data) => data.Rank     },
+                    { ColumnKey.Stage,     (data) => data.Stage    },
+                    { ColumnKey.Score,     (data) => data.Score    },
+                    { ColumnKey.SlowRate,  (data) => data.SlowRate },
+                    { ColumnKey.Version,   (data) => data.Version  },
+                    { ColumnKey.Comment,   (data) => data.Comment  },
                 };
 
             internal enum ColumnKey
             {
                 Filename = 0,
                 LastWriteDate,
-                Scene,
-                CardName,
-                Width,
-                Height,
+                Number,
+                Player,
+                PlayTime,
+                Character,
+                Level,
+                Stage,
                 Score,
                 SlowRate,
+                Version,
+                Comment,
                 FileSize,
                 Directory,
                 Sentinel
@@ -241,7 +279,7 @@ namespace ReimuPlugins.Th095Bestshot
 
             protected override ReadOnlyCollection<string> ManagedPluginInfo
             {
-                get { return Array.AsReadOnly(PluginInfo); }
+                get { return Array.AsReadOnly(PluginInfoImpl); }
             }
 
             protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo
@@ -297,7 +335,15 @@ namespace ReimuPlugins.Th095Bestshot
 
                 try
                 {
-                    var pair = CreateBestshotData(src, size, false);
+                    var number = string.Empty;
+                    if (size == 0u)
+                    {
+                        var path = Marshal.PtrToStringAnsi(src);
+                        number = ThReplayData.GetNumberFromPath(
+                            path, @"^th12_(\d{2})\.rpy$", @"^th12_ud(.{0,4})\.rpy$");
+                    }
+
+                    var pair = CreateReplayData<ReplayData>(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
@@ -309,10 +355,17 @@ namespace ReimuPlugins.Th095Bestshot
                         foreach (var key in keys)
                         {
                             var fileInfo = new FileInfo { Text = string.Empty };
-                            Func<Th095BestshotData, string> getter;
-                            if (FileInfoGetters.TryGetValue(key, out getter))
+                            if (key == ColumnKey.Number)
                             {
-                                fileInfo.Text = getter(pair.Item2);
+                                fileInfo.Text = number;
+                            }
+                            else
+                            {
+                                Func<ReplayData, string> getter;
+                                if (FileInfoGetters.TryGetValue(key, out getter))
+                                {
+                                    fileInfo.Text = getter(pair.Item2);
+                                }
                             }
 
                             var pointer = new IntPtr(address);
@@ -347,70 +400,18 @@ namespace ReimuPlugins.Th095Bestshot
 
             public override ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
             {
-                throw new NotImplementedException();
-            }
-
-            public override ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
-            {
                 var errorCode = ErrorCode.UnknownError;
 
                 dst = IntPtr.Zero;
-                info = IntPtr.Zero;
 
                 try
                 {
-                    var pair = CreateBestshotData(src, size, true);
+                    var pair = CreateReplayData<ReplayData>(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var dstStride = 3 * pair.Item2.Width;
-                        var remain = dstStride % 4;
-                        if (remain != 0)
-                        {
-                            dstStride += 4 - remain;
-                        }
-
-                        dst = Marshal.AllocHGlobal(dstStride * pair.Item2.Height);
-
-                        using (var locked = new BitmapLock(pair.Item2.Bitmap, ImageLockMode.ReadOnly))
-                        {
-                            var srcScanline = new byte[3 * pair.Item2.Width];
-                            var s = locked.Scan0;
-                            var d = dst;
-                            for (var h = 0; h < pair.Item2.Height; h++)
-                            {
-                                Marshal.Copy(s, srcScanline, 0, srcScanline.Length);
-                                Marshal.Copy(srcScanline, 0, d, srcScanline.Length);
-                                s = new IntPtr(s.ToInt32() + locked.Stride);
-                                d = new IntPtr(d.ToInt32() + dstStride);
-                            }
-                        }
-
-                        var bitmapInfo = new BITMAPINFO
-                        {
-                            bmiHeader = new BITMAPINFOHEADER
-                            {
-                                biSize = (uint)Marshal.SizeOf(typeof(BITMAPINFOHEADER)),
-                                biWidth = pair.Item2.Bitmap.Width,
-                                biHeight = -pair.Item2.Bitmap.Height,
-                                biPlanes = 1,
-                                biBitCount = 24,
-                                biCompression = BITMAPINFOHEADER.CompressionType.BI_RGB,
-                                biSizeImage = 0,
-                                biXPelsPerMeter = 0,
-                                biYPelsPerMeter = 0,
-                                biClrUsed = 0,
-                                biClrImportant = 0,
-                            },
-                            bmiColors = IntPtr.Zero,
-                        };
-
-                        info = Marshal.AllocHGlobal(Marshal.SizeOf(bitmapInfo));
-                        Marshal.StructureToPtr(bitmapInfo, info, true);
+                        var bytes = Enc.CP932.GetBytes(pair.Item2.Info);
+                        dst = Marshal.AllocHGlobal(bytes.Length);
+                        Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }
 
                     errorCode = pair.Item1;
@@ -428,22 +429,69 @@ namespace ReimuPlugins.Th095Bestshot
                     {
                         Marshal.FreeHGlobal(dst);
                         dst = IntPtr.Zero;
-                        Marshal.FreeHGlobal(info);
-                        info = IntPtr.Zero;
                     }
                 }
 
                 return errorCode;
             }
 
-            public override ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
+            public override ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
             {
-                throw new NotImplementedException();
+                var errorCode = ErrorCode.UnknownError;
+
+                dst = IntPtr.Zero;
+
+                try
+                {
+                    var pair = CreateReplayData<ReplayData>(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
+                    {
+                        var bytes = Enc.CP932.GetBytes(pair.Item2.Comment);
+                        dst = Marshal.AllocHGlobal(bytes.Length);
+                        Marshal.Copy(bytes, 0, dst, bytes.Length);
+                    }
+
+                    errorCode = pair.Item1;
+                }
+                catch (OutOfMemoryException)
+                {
+                    errorCode = ErrorCode.NoMemory;
+                }
+                catch (ArgumentException)
+                {
+                }
+                finally
+                {
+                    if (errorCode != ErrorCode.AllRight)
+                    {
+                        Marshal.FreeHGlobal(dst);
+                        dst = IntPtr.Zero;
+                    }
+                }
+
+                return errorCode;
             }
 
             public override ErrorCode EditDialog(IntPtr parent, string file)
             {
-                throw new NotImplementedException();
+                var result = DialogResult.None;
+
+                var pair = CreateReplayData<ReplayData>(file);
+                if (pair.Item1 == ErrorCode.AllRight)
+                {
+                    using (var dialog = new EditDialog())
+                    {
+                        dialog.Content = pair.Item2.Comment;
+                        result = dialog.ShowDialog(new Win32Window(parent));
+                        if (result == DialogResult.OK)
+                        {
+                            pair.Item2.Comment = dialog.Content + "\0\0";
+                            pair.Item2.Write(file);
+                        }
+                    }
+                }
+
+                return (result == DialogResult.OK) ? ErrorCode.AllRight : ErrorCode.DialogCanceled;
             }
 
             public override ErrorCode ConfigDialog(IntPtr parent)
@@ -451,20 +499,31 @@ namespace ReimuPlugins.Th095Bestshot
                 throw new NotImplementedException();
             }
 
-            private static Tuple<ErrorCode, Th095BestshotData> CreateBestshotData(
-                IntPtr src, uint size, bool withBitmap)
+            private static Tuple<ErrorCode, T> CreateReplayData<T>(IntPtr src, uint size)
+                where T : ThReplayData, new()
             {
                 using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
                 {
-                    Th095BestshotData bestshot = null;
+                    T replay = null;
 
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        bestshot = new Th095BestshotData();
-                        bestshot.Read(pair.Item2, withBitmap);
+                        replay = new T();
+                        replay.Read(pair.Item2);
                     }
 
-                    return Tuple.Create(pair.Item1, bestshot);
+                    return Tuple.Create(pair.Item1, replay);
+                }
+            }
+
+            private static Tuple<ErrorCode, T> CreateReplayData<T>(string path)
+                where T : ThReplayData, new()
+            {
+                using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
+                {
+                    var replay = new T();
+                    replay.Read(stream);
+                    return Tuple.Create(ErrorCode.AllRight, replay);
                 }
             }
         }

@@ -1,23 +1,23 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="Th11Replay.cs" company="None">
+// <copyright file="Th12Replay.cs" company="None">
 //     (c) 2015 IIHOSHI Yoshinori
 // </copyright>
 //-----------------------------------------------------------------------
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
 
-namespace ReimuPlugins.Th11Replay
+namespace ReimuPlugins.Th12Replay
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using ReimuPlugins.Common;
 
-    public sealed class Th11ReplayData : ThReplayData
+    public sealed class ReplayData : ThReplayData
     {
         private Dictionary<string, string> info;
 
-        public Th11ReplayData()
+        public ReplayData()
         {
             this.info = new Dictionary<string, string>
             {

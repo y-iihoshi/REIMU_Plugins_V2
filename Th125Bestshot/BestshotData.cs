@@ -17,14 +17,14 @@ namespace ReimuPlugins.Th125Bestshot
     using System.Runtime.InteropServices;
     using ReimuPlugins.Common;
 
-    public sealed class Th125BestshotData
+    public sealed class BestshotData
     {
         private static readonly int[] Masks;
 
         private BitVector32 bonusFields;
 
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Reviewed.")]
-        static Th125BestshotData()
+        static BestshotData()
         {
             Masks = new int[32];
             Masks[0] = BitVector32.CreateMask();
@@ -34,7 +34,7 @@ namespace ReimuPlugins.Th125Bestshot
             }
         }
 
-        public Th125BestshotData()
+        public BestshotData()
         {
             this.Signature = string.Empty;
             this.Level = 0;

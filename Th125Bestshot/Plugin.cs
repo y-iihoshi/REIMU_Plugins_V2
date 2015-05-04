@@ -21,7 +21,7 @@ namespace ReimuPlugins.Th125Bestshot
     using RGiesecke.DllExport;
     using IO = System.IO;
 
-    public static class Th125BestshotPlugin
+    public static class Plugin
     {
         private static readonly PluginImpl Impl = new PluginImpl();
 
@@ -447,7 +447,7 @@ namespace ReimuPlugins.Th125Bestshot
             };
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
-            private static readonly Dictionary<ColumnKey, Func<Th125BestshotData, string>> FileInfoGetters =
+            private static readonly Dictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
                 InitializeFileInfoGetters();
 
             internal enum ColumnKey
@@ -559,7 +559,7 @@ namespace ReimuPlugins.Th125Bestshot
                         foreach (var key in keys)
                         {
                             var fileInfo = new FileInfo { Text = string.Empty };
-                            Func<Th125BestshotData, string> getter;
+                            Func<BestshotData, string> getter;
                             if (FileInfoGetters.TryGetValue(key, out getter))
                             {
                                 fileInfo.Text = getter(pair.Item2);
@@ -757,9 +757,9 @@ namespace ReimuPlugins.Th125Bestshot
             }
 
             [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
-            private static Dictionary<ColumnKey, Func<Th125BestshotData, string>> InitializeFileInfoGetters()
+            private static Dictionary<ColumnKey, Func<BestshotData, string>> InitializeFileInfoGetters()
             {
-                return new Dictionary<ColumnKey, Func<Th125BestshotData, string>>
+                return new Dictionary<ColumnKey, Func<BestshotData, string>>
                 {
                     {
                         ColumnKey.Scene,
@@ -893,16 +893,16 @@ namespace ReimuPlugins.Th125Bestshot
                 };
             }
 
-            private static Tuple<ErrorCode, Th125BestshotData> CreateBestshotData(
+            private static Tuple<ErrorCode, BestshotData> CreateBestshotData(
                 IntPtr src, uint size, bool withBitmap)
             {
                 using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
                 {
-                    Th125BestshotData bestshot = null;
+                    BestshotData bestshot = null;
 
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        bestshot = new Th125BestshotData();
+                        bestshot = new BestshotData();
                         bestshot.Read(pair.Item2, withBitmap);
                     }
 

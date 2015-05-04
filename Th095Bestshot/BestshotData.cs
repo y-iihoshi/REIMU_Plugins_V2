@@ -15,9 +15,9 @@ namespace ReimuPlugins.Th095Bestshot
     using System.Runtime.InteropServices;
     using ReimuPlugins.Common;
 
-    public sealed class Th095BestshotData
+    public sealed class BestshotData
     {
-        public Th095BestshotData()
+        public BestshotData()
         {
             this.Signature = string.Empty;
             this.Level = 0;
