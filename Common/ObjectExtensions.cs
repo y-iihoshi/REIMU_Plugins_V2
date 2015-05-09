@@ -1,0 +1,38 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="ObjectExtensions.cs" company="None">
+//     (c) 2015 IIHOSHI Yoshinori
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace ReimuPlugins.Common
+{
+    using System;
+
+    /// <summary>
+    /// Provides some extension methods for the <see cref="object"/> type.
+    /// </summary>
+    public static class ObjectExtensions
+    {
+        /// <summary>
+        /// Converts the specified object with an integer value to an enumeration member.
+        /// </summary>
+        /// <typeparam name="TEnum">The enumeration type.</typeparam>
+        /// <param name="value">The value convert to an enumeration member.</param>
+        /// <returns>The enumeration member which value is <paramref name="value"/>.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// No member of <typeparamref name="TEnum"/> equals to <paramref name="value"/>.
+        /// </exception>
+        public static TEnum ToValidEnum<TEnum>(this object value)
+            where TEnum : struct, IComparable, IFormattable, IConvertible
+        {
+            var type = typeof(TEnum);
+
+            if (!Enum.IsDefined(type, value))
+            {
+                throw new ArgumentOutOfRangeException("value");
+            }
+
+            return (TEnum)Enum.ToObject(type, value);
+        }
+    }
+}
