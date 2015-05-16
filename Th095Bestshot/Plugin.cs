@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="Th095BestshotPlugin.cs" company="None">
+// <copyright file="Plugin.cs" company="None">
 //     (c) 2015 IIHOSHI Yoshinori
 // </copyright>
 //-----------------------------------------------------------------------

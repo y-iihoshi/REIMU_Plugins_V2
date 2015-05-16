@@ -81,28 +81,47 @@ namespace ReimuPlugins.Common
         protected UserInfo UserInfo1 { get; private set; }
 
         /// <summary>
-        /// Gets a number string from the specified file path.
+        ///   Gets a number string from the specified file path.
         /// </summary>
         /// <param name="path">A file path to get a number string.</param>
         /// <param name="patternBasic">The regular expression pattern to judge the file is numbered.</param>
         /// <param name="patternUser">
-        /// The regular expression pattern to judge the file is user-defined.
+        ///   The regular expression pattern to judge the file is user-defined.
         /// </param>
         /// <returns>
-        /// <list type="bullet">
-        /// <item>
-        /// <term><c>"No.XX"</c></term>
-        /// <description>
-        /// When the filename is matched by <paramref name="patternBasic"/>.
-        /// <c>"XX"</c> is the two-digit number string included in the filename.
-        /// </description>
-        /// </item>
-        /// <item>
-        /// <term><c>"User"</c></term>
-        /// <description>When the filename is matched by <paramref name="patternUser"/>.</description>
-        /// </item>
-        /// </list>
+        ///   <list type="bullet">
+        ///     <item>
+        ///       <term><c>"No.XX"</c></term>
+        ///       <description>
+        ///         When the filename is matched by <paramref name="patternBasic"/>.
+        ///         <c>"XX"</c> is the two-digit number string included in the filename.
+        ///       </description>
+        ///     </item>
+        ///     <item>
+        ///       <term><c>"User"</c></term>
+        ///       <description>When the filename is matched by <paramref name="patternUser"/>.</description>
+        ///     </item>
+        ///     <item>
+        ///       <term><see cref="string.Empty"/></term>
+        ///       <description>
+        ///         When the filename is not matched neither <paramref name="patternBasic"/> nor
+        ///         <paramref name="patternUser"/>.
+        ///       </description>
+        ///     </item>
+        ///   </list>
         /// </returns>
+        /// <exception cref="ArgumentException">
+        ///   <list type="bullet">
+        ///     <item>
+        ///       <paramref name="path"/> contains one or more of the invalid characters defined in
+        ///       <see cref="Path.GetInvalidPathChars"/>.
+        ///     </item>
+        ///     <item>A regular expression parsing error occurred.</item>
+        ///   </list>
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///   <paramref name="path"/> or <paramref name="patternBasic"/> is <c>null</c>.
+        /// </exception>
         public static string GetNumberFromPath(string path, string patternBasic, string patternUser)
         {
             var number = string.Empty;
