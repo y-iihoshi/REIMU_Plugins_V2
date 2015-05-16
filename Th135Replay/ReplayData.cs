@@ -60,75 +60,6 @@ namespace ReimuPlugins.Th135Replay
 
     public sealed class ReplayData
     {
-        private static readonly Func<BinaryReader, object> StringReader =
-            reader =>
-            {
-                var size = reader.ReadInt32();
-                return (size > 0) ? Enc.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
-            };
-
-        private static readonly Func<BinaryReader, object> ArrayReader =
-            reader =>
-            {
-                var num = reader.ReadInt32();
-                if (num > 0)
-                {
-                    var array = new object[num];
-                    for (var count = 0; count < num; count++)
-                    {
-                        object index;
-                        if (ReadObject(reader, out index))
-                        {
-                            object value;
-                            if (ReadObject(reader, out value))
-                            {
-                                if ((index is int) && ((int)index < num))
-                                {
-                                    array[(int)index] = value;
-                                }
-                            }
-                        }
-                    }
-
-                    object endmark;
-                    if (ReadObject(reader, out endmark) && (endmark is EndMark))
-                    {
-                        return array;
-                    }
-                }
-
-                return new object[] { };
-            };
-
-        private static readonly Func<BinaryReader, object> DictionaryReader =
-            reader =>
-            {
-                var dictionary = new Dictionary<object, object>();
-                while (true)
-                {
-                    object key;
-                    if (ReadObject(reader, out key))
-                    {
-                        if (key is EndMark)
-                        {
-                            break;
-                        }
-
-                        object value;
-                        if (ReadObject(reader, out value))
-                        {
-                            dictionary.Add(key, value);
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                return dictionary;
-            };
-
         private static readonly Dictionary<uint, Func<BinaryReader, object>> ObjectReaders =
             new Dictionary<uint, Func<BinaryReader, object>>
             {
@@ -136,9 +67,9 @@ namespace ReimuPlugins.Th135Replay
                 { 0x01000008, reader => reader.ReadByte() == 0x01 },
                 { 0x05000002, reader => reader.ReadInt32() },
                 { 0x05000004, reader => reader.ReadSingle() },
-                { 0x08000010, StringReader },
-                { 0x08000040, ArrayReader },
-                { 0x0A000020, DictionaryReader }
+                { 0x08000010, reader => ReadString(reader) },
+                { 0x08000040, reader => ReadArray(reader) },
+                { 0x0A000020, reader => ReadDictionary(reader) }
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -413,6 +344,72 @@ namespace ReimuPlugins.Th135Replay
             return obj != null;
         }
 
+        private static object ReadString(BinaryReader reader)
+        {
+            var size = reader.ReadInt32();
+            return (size > 0) ? Enc.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
+        }
+
+        private static object ReadArray(BinaryReader reader)
+        {
+            var num = reader.ReadInt32();
+            if (num > 0)
+            {
+                var array = new object[num];
+                for (var count = 0; count < num; count++)
+                {
+                    object index;
+                    if (ReadObject(reader, out index))
+                    {
+                        object value;
+                        if (ReadObject(reader, out value))
+                        {
+                            if ((index is int) && ((int)index < num))
+                            {
+                                array[(int)index] = value;
+                            }
+                        }
+                    }
+                }
+
+                object endmark;
+                if (ReadObject(reader, out endmark) && (endmark is EndMark))
+                {
+                    return array;
+                }
+            }
+
+            return new object[] { };
+        }
+
+        private static object ReadDictionary(BinaryReader reader)
+        {
+            var dictionary = new Dictionary<object, object>();
+            while (true)
+            {
+                object key;
+                if (ReadObject(reader, out key))
+                {
+                    if (key is EndMark)
+                    {
+                        break;
+                    }
+
+                    object value;
+                    if (ReadObject(reader, out value))
+                    {
+                        dictionary.Add(key, value);
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return dictionary;
+        }
+
         private static bool Extract(byte[] input, out byte[] output, int expectedSize)
         {
             // See section 2.2 of RFC 1950
@@ -588,7 +585,7 @@ namespace ReimuPlugins.Th135Replay
                             using (var stream = new MemoryStream(extractedData, false))
                             {
                                 var reader2 = new BinaryReader(stream);
-                                var dict = DictionaryReader(reader2) as Dictionary<object, object>;
+                                var dict = ReadDictionary(reader2) as Dictionary<object, object>;
                                 if (dict != null)
                                 {
                                     this.dictionary = dict

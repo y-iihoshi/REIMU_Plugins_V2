@@ -249,56 +249,7 @@ namespace ReimuPlugins.Th135Replay
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
             private static readonly Dictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
-                new Dictionary<ColumnKey, Func<ReplayData, string>>
-                {
-                    {
-                        ColumnKey.Version,
-                        (data) => data.Version.ToCP932()
-                    },
-                    {
-                        ColumnKey.GameMode,
-                        (data) => data.GameMode.ToShortName().ToCP932()
-                    },
-                    {
-                        ColumnKey.Player0,
-                        (data) => data.Character0.ToLongName().ToCP932()
-                    },
-                    {
-                        ColumnKey.Color0,
-                        (data) => data.Color0.ToString(CultureInfo.CurrentCulture).ToCP932()
-                    },
-                    {
-                        ColumnKey.Profile0,
-                        (data) => data.Profile0Name
-                    },
-                    {
-                        ColumnKey.Player1,
-                        (data) => ((data.GameMode == GameMode.Story)
-                            ? "-" : data.Character1.ToLongName()).ToCP932()
-                    },
-                    {
-                        ColumnKey.Color1,
-                        (data) => ((data.GameMode == GameMode.Story)
-                            ? "-" : data.Color1.ToString(CultureInfo.CurrentCulture)).ToCP932()
-                    },
-                    {
-                        ColumnKey.Profile1,
-                        (data) => ((data.GameMode == GameMode.Story)
-                            ? "-".ToCP932() : data.Profile1Name)
-                    },
-                    {
-                        ColumnKey.Background,
-                        (data) => ((data.GameMode == GameMode.Story) ? "-" : data.BackgroundName).ToCP932()
-                    },
-                    {
-                        ColumnKey.Bgm,
-                        (data) => ((data.GameMode == GameMode.Story) ? "-" : data.BgmName).ToCP932()
-                    },
-                    {
-                        ColumnKey.DateTime,
-                        (data) => data.DateTime.ToString(CultureInfo.CurrentCulture).ToCP932()
-                    },
-                };
+                InitializeFileInfoGetters();
 
             internal enum ColumnKey
             {
@@ -510,6 +461,61 @@ namespace ReimuPlugins.Th135Replay
             public override ErrorCode ConfigDialog(IntPtr parent)
             {
                 throw new NotImplementedException();
+            }
+
+            [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
+            private static Dictionary<ColumnKey, Func<ReplayData, string>> InitializeFileInfoGetters()
+            {
+                return new Dictionary<ColumnKey, Func<ReplayData, string>>
+                {
+                    {
+                        ColumnKey.Version,
+                        (data) => data.Version.ToCP932()
+                    },
+                    {
+                        ColumnKey.GameMode,
+                        (data) => data.GameMode.ToShortName().ToCP932()
+                    },
+                    {
+                        ColumnKey.Player0,
+                        (data) => data.Character0.ToLongName().ToCP932()
+                    },
+                    {
+                        ColumnKey.Color0,
+                        (data) => data.Color0.ToString(CultureInfo.CurrentCulture).ToCP932()
+                    },
+                    {
+                        ColumnKey.Profile0,
+                        (data) => data.Profile0Name
+                    },
+                    {
+                        ColumnKey.Player1,
+                        (data) => ((data.GameMode == GameMode.Story)
+                            ? "-" : data.Character1.ToLongName()).ToCP932()
+                    },
+                    {
+                        ColumnKey.Color1,
+                        (data) => ((data.GameMode == GameMode.Story)
+                            ? "-" : data.Color1.ToString(CultureInfo.CurrentCulture)).ToCP932()
+                    },
+                    {
+                        ColumnKey.Profile1,
+                        (data) => ((data.GameMode == GameMode.Story)
+                            ? "-".ToCP932() : data.Profile1Name)
+                    },
+                    {
+                        ColumnKey.Background,
+                        (data) => ((data.GameMode == GameMode.Story) ? "-" : data.BackgroundName).ToCP932()
+                    },
+                    {
+                        ColumnKey.Bgm,
+                        (data) => ((data.GameMode == GameMode.Story) ? "-" : data.BgmName).ToCP932()
+                    },
+                    {
+                        ColumnKey.DateTime,
+                        (data) => data.DateTime.ToString(CultureInfo.CurrentCulture).ToCP932()
+                    },
+                };
             }
 
             private static Tuple<ErrorCode, ReplayData> CreateReplayData(IntPtr src, uint size)
