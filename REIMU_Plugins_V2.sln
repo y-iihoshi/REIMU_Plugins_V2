@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th143Screenshot", "Th143Scr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th125Replay", "Th125Replay\Th125Replay.csproj", "{E0587B92-A55E-4238-8686-C251615DFABD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th143Replay", "Th143Replay\Th143Replay.csproj", "{EDACD8AC-F76C-4FF5-ACE4-C91C5DD85EE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{E0587B92-A55E-4238-8686-C251615DFABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0587B92-A55E-4238-8686-C251615DFABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0587B92-A55E-4238-8686-C251615DFABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDACD8AC-F76C-4FF5-ACE4-C91C5DD85EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDACD8AC-F76C-4FF5-ACE4-C91C5DD85EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDACD8AC-F76C-4FF5-ACE4-C91C5DD85EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDACD8AC-F76C-4FF5-ACE4-C91C5DD85EE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
