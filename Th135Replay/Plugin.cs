@@ -111,7 +111,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "バージョン\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -121,7 +121,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "モード\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -131,7 +131,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "プレイヤー 1\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -141,7 +141,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "色 1\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -151,7 +151,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "プレイヤー 2\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -161,7 +161,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "色 2\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -171,7 +171,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "ステージ\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -181,7 +181,7 @@ namespace ReimuPlugins.Th135Replay
                         {
                             Title = "BGM\0".ToCP932(),
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
+                            Sort = SortType.String,
                             System = SystemInfoType.String
                         }
                     },
@@ -189,7 +189,7 @@ namespace ReimuPlugins.Th135Replay
                         ColumnKey.Profile1,
                         new ColumnInfo
                         {
-                            Title = "Profile 1\0".ToCP932(),
+                            Title = "プロファイル 1\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String
@@ -199,7 +199,7 @@ namespace ReimuPlugins.Th135Replay
                         ColumnKey.Profile2,
                         new ColumnInfo
                         {
-                            Title = "Profile 2\0".ToCP932(),
+                            Title = "プロファイル 2\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String
@@ -209,7 +209,7 @@ namespace ReimuPlugins.Th135Replay
                         ColumnKey.DateTime,
                         new ColumnInfo
                         {
-                            Title = "リプレイ保存日時\0".ToCP932(),
+                            Title = "日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String
