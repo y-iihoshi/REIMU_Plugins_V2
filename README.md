@@ -13,21 +13,23 @@ This project, written in C#, is a redesigning version of
 ## Supported Titles
 
 ### Supported
-(In progress...)
+* TH09.5 東方文花帖　～ Shoot the Bullet. (Bestshots only)
+* TH12 東方星蓮船　～ Undefined Fantastic Object.
+* TH12.5 ダブルスポイラー　～ 東方文花帖 (a.k.a. Double Spoiler; Now bestshots
+  only)
+* TH13.5 東方心綺楼　～ Hopeless Masquerade.
 
 ### Will be supported
-* TH09.5 東方文花帖　～ Shoot the Bullet. (Bestshots only)
 * TH10.5 東方緋想天　～ Scarlet Weather Rhapsody.
-* TH12 東方星蓮船　～ Undefined Fantastic Object.
 * TH12.3 東方非想天則　～ 超弩級ギニョルの謎を追え (a.k.a. Touhou Hisoutensoku)
-* TH12.5 ダブルスポイラー　～ 東方文花帖 (a.k.a. Double Spoiler; Replays and
-  Bestshots)
+* TH12.5 ダブルスポイラー　～ 東方文花帖 (a.k.a. Double Spoiler; Remains
+  Replays)
 * TH12.8 妖精大戦争　～ 東方三月精 (a.k.a. Fairy Wars)
 * TH13 東方神霊廟　～ Ten Desires.
-* TH13.5 東方心綺楼　～ Hopeless Masquerade.
 * TH14 東方輝針城　～ Double Dealing Character.
 * TH14.3 弾幕アマノジャク　～ Impossible Spell Card. (Replays and Screenshots)
 * TH14.5 東方深秘録　～ Urban Legend in Limbo.
+* TH15 東方紺珠伝　～ Legacy of Lunatic Kingdom.
 
 ### Not supported
 The followings are not supported because these plugins have already been
@@ -37,7 +39,7 @@ released by [sue445][sue445], the REIMU developer:
 * TH09 東方花映塚　～ Phantasmagoria of Flower View.
 * TH09.5 東方文花帖　～ Shoot the Bullet. (Replays only)
 * TH10 東方風神録　～ Mountain of Faith.
-* TH11 東方地霊殿　～ Subterranean Animism.
+* TH11 東方地霊殿　～ Subterranean Animism. (But implemented for my practice)
 
 The followings are not supported by the same reason that why sue445 doesn't
 release these plugins:
@@ -73,7 +75,7 @@ See the REIMU manual (reimu.chm; Japanese only).
 
 ## Notes
 
-* Sorry, all plugins have Japanese resource only and don't support localization.
+Sorry, all plugins have Japanese resource only and don't support localization.
 
 [ZUN]: http://www16.big.or.jp/~zun/ "上海アリス幻樂団"
 [tasofro]: http://www.tasofro.net/ "Twilight-Frontier"
