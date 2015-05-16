@@ -264,42 +264,42 @@ namespace ReimuPlugins.Th135Replay
             get { return this.info["game_mode"].ToValidEnum<GameMode>(); }
         }
 
-        public Character Character0
+        public Character Character1
         {
             get { return this.info["player0"].ToValidEnum<Character>(); }
         }
 
-        public int Color0
+        public int Color1
         {
             get { return (int)this.info["color0"] + 1; }
         }
 
-        public string Profile0Name
+        public string Profile1Name
         {
             get { return this.info["profile", 0, "name"] as string; }
         }
 
-        public string Player0Info
+        public string Player1Info
         {
             get { return this.GetPlayerInfo(0); }
         }
 
-        public Character Character1
+        public Character Character2
         {
             get { return this.info["player1"].ToValidEnum<Character>(); }
         }
 
-        public int Color1
+        public int Color2
         {
             get { return (int)this.info["color1"] + 1; }
         }
 
-        public string Profile1Name
+        public string Profile2Name
         {
             get { return this.info["profile", 1, "name"] as string; }
         }
 
-        public string Player1Info
+        public string Player2Info
         {
             get { return this.GetPlayerInfo(1); }
         }

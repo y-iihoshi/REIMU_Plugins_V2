@@ -126,7 +126,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
-                        ColumnKey.Player0,
+                        ColumnKey.Player1,
                         new ColumnInfo
                         {
                             Title = "プレイヤー 1\0".ToCP932(),
@@ -136,7 +136,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
-                        ColumnKey.Color0,
+                        ColumnKey.Color1,
                         new ColumnInfo
                         {
                             Title = "色 1\0".ToCP932(),
@@ -146,7 +146,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
-                        ColumnKey.Player1,
+                        ColumnKey.Player2,
                         new ColumnInfo
                         {
                             Title = "プレイヤー 2\0".ToCP932(),
@@ -156,7 +156,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
-                        ColumnKey.Color1,
+                        ColumnKey.Color2,
                         new ColumnInfo
                         {
                             Title = "色 2\0".ToCP932(),
@@ -186,7 +186,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
-                        ColumnKey.Profile0,
+                        ColumnKey.Profile1,
                         new ColumnInfo
                         {
                             Title = "Profile 1\0".ToCP932(),
@@ -196,7 +196,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
-                        ColumnKey.Profile1,
+                        ColumnKey.Profile2,
                         new ColumnInfo
                         {
                             Title = "Profile 2\0".ToCP932(),
@@ -256,12 +256,12 @@ namespace ReimuPlugins.Th135Replay
                 LastWriteDate,
                 Version,
                 GameMode,
-                Player0,
-                Color0,
-                Profile0,
                 Player1,
                 Color1,
                 Profile1,
+                Player2,
+                Color2,
+                Profile2,
                 Background,
                 Bgm,
                 DateTime,
@@ -387,7 +387,7 @@ namespace ReimuPlugins.Th135Replay
                     var pair = CreateReplayData(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var bytes = Enc.CP932.GetBytes(pair.Item2.Player0Info.ToCStr().ToCP932());
+                        var bytes = Enc.CP932.GetBytes(pair.Item2.Player1Info.ToCStr().ToCP932());
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }
@@ -425,7 +425,7 @@ namespace ReimuPlugins.Th135Replay
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var text = (pair.Item2.GameMode == GameMode.Story)
-                            ? string.Empty : pair.Item2.Player1Info;
+                            ? string.Empty : pair.Item2.Player2Info;
                         var bytes = Enc.CP932.GetBytes(text.ToCStr().ToCP932());
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
@@ -476,31 +476,31 @@ namespace ReimuPlugins.Th135Replay
                         (data) => data.GameMode.ToShortName().ToCP932()
                     },
                     {
-                        ColumnKey.Player0,
-                        (data) => data.Character0.ToLongName().ToCP932()
-                    },
-                    {
-                        ColumnKey.Color0,
-                        (data) => data.Color0.ToString(CultureInfo.CurrentCulture).ToCP932()
-                    },
-                    {
-                        ColumnKey.Profile0,
-                        (data) => data.Profile0Name
-                    },
-                    {
                         ColumnKey.Player1,
-                        (data) => ((data.GameMode == GameMode.Story)
-                            ? "-" : data.Character1.ToLongName()).ToCP932()
+                        (data) => data.Character1.ToLongName().ToCP932()
                     },
                     {
                         ColumnKey.Color1,
-                        (data) => ((data.GameMode == GameMode.Story)
-                            ? "-" : data.Color1.ToString(CultureInfo.CurrentCulture)).ToCP932()
+                        (data) => data.Color1.ToString(CultureInfo.CurrentCulture).ToCP932()
                     },
                     {
                         ColumnKey.Profile1,
+                        (data) => data.Profile1Name
+                    },
+                    {
+                        ColumnKey.Player2,
                         (data) => ((data.GameMode == GameMode.Story)
-                            ? "-".ToCP932() : data.Profile1Name)
+                            ? "-" : data.Character2.ToLongName()).ToCP932()
+                    },
+                    {
+                        ColumnKey.Color2,
+                        (data) => ((data.GameMode == GameMode.Story)
+                            ? "-" : data.Color2.ToString(CultureInfo.CurrentCulture)).ToCP932()
+                    },
+                    {
+                        ColumnKey.Profile2,
+                        (data) => ((data.GameMode == GameMode.Story)
+                            ? "-".ToCP932() : data.Profile2Name)
                     },
                     {
                         ColumnKey.Background,
