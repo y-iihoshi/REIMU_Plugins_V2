@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{FD972BC1-D411-4586-842D-3A6BFB697965}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th11Replay", "Th11Replay\Th11Replay.csproj", "{8547D59D-D97A-4243-A5E6-12116CB4EDF1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{875D8118-0EDB-49A6-B754-AC89B4115552}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,29 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th12Replay", "Th12Replay\Th12Replay.csproj", "{5983891B-2A59-4F61-A339-D4E06B7F095A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th095Bestshot", "Th095Bestshot\Th095Bestshot.csproj", "{D353E422-6AE3-4611-A6C2-27D81C47320C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th125Bestshot", "Th125Bestshot\Th125Bestshot.csproj", "{5FBF6474-F0CA-47B6-895A-87CFE50B7276}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th135Replay", "Th135Replay\Th135Replay.csproj", "{BC7DA302-BCC6-45A7-8781-6AFEE17234BB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th13Replay", "Th13Replay\Th13Replay.csproj", "{29CDFF19-833A-47DC-B682-C6068BE44717}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th14Replay", "Th14Replay\Th14Replay.csproj", "{43FEDFC1-7CF4-471F-B3E2-34A694BA9536}"
 EndProject
