@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th13Replay", "Th13Replay\Th
 		{FD972BC1-D411-4586-842D-3A6BFB697965} = {FD972BC1-D411-4586-842D-3A6BFB697965}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th14Replay", "Th14Replay\Th14Replay.csproj", "{43FEDFC1-7CF4-471F-B3E2-34A694BA9536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{29CDFF19-833A-47DC-B682-C6068BE44717}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29CDFF19-833A-47DC-B682-C6068BE44717}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29CDFF19-833A-47DC-B682-C6068BE44717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43FEDFC1-7CF4-471F-B3E2-34A694BA9536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FEDFC1-7CF4-471F-B3E2-34A694BA9536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FEDFC1-7CF4-471F-B3E2-34A694BA9536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FEDFC1-7CF4-471F-B3E2-34A694BA9536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
