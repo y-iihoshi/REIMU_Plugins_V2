@@ -271,7 +271,7 @@ namespace ReimuPlugins.Th135Replay
 
         public int Color1
         {
-            get { return (int)this.info["color0"] + 1; }
+            get { return (int)this.info["color0"]; }
         }
 
         public string Profile1Name
@@ -291,7 +291,7 @@ namespace ReimuPlugins.Th135Replay
 
         public int Color2
         {
-            get { return (int)this.info["color1"] + 1; }
+            get { return (int)this.info["color1"]; }
         }
 
         public string Profile2Name

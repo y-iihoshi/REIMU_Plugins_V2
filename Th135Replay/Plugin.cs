@@ -481,7 +481,7 @@ namespace ReimuPlugins.Th135Replay
                     },
                     {
                         ColumnKey.Color1,
-                        (data) => data.Color1.ToString(CultureInfo.CurrentCulture).ToCP932()
+                        (data) => (data.Color1 + 1).ToString(CultureInfo.CurrentCulture).ToCP932()
                     },
                     {
                         ColumnKey.Profile1,
@@ -495,7 +495,7 @@ namespace ReimuPlugins.Th135Replay
                     {
                         ColumnKey.Color2,
                         (data) => ((data.GameMode == GameMode.Story)
-                            ? "-" : data.Color2.ToString(CultureInfo.CurrentCulture)).ToCP932()
+                            ? "-" : (data.Color2 + 1).ToString(CultureInfo.CurrentCulture)).ToCP932()
                     },
                     {
                         ColumnKey.Profile2,
