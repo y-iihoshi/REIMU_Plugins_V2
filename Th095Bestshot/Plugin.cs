@@ -193,7 +193,6 @@ namespace ReimuPlugins.Th095Bestshot
                     }
                 };
 
-            [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
             private static readonly Dictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
                 new Dictionary<ColumnKey, Func<BestshotData, string>>
                 {
