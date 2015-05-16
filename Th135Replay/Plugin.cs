@@ -146,6 +146,16 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
+                        ColumnKey.Profile1,
+                        new ColumnInfo
+                        {
+                            Title = "プロファイル 1\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
                         ColumnKey.Player2,
                         new ColumnInfo
                         {
@@ -166,6 +176,16 @@ namespace ReimuPlugins.Th135Replay
                         }
                     },
                     {
+                        ColumnKey.Profile2,
+                        new ColumnInfo
+                        {
+                            Title = "プロファイル 2\0".ToCP932(),
+                            Align = TextAlign.Left,
+                            Sort = SortType.String,
+                            System = SystemInfoType.String
+                        }
+                    },
+                    {
                         ColumnKey.Background,
                         new ColumnInfo
                         {
@@ -180,26 +200,6 @@ namespace ReimuPlugins.Th135Replay
                         new ColumnInfo
                         {
                             Title = "BGM\0".ToCP932(),
-                            Align = TextAlign.Left,
-                            Sort = SortType.String,
-                            System = SystemInfoType.String
-                        }
-                    },
-                    {
-                        ColumnKey.Profile1,
-                        new ColumnInfo
-                        {
-                            Title = "プロファイル 1\0".ToCP932(),
-                            Align = TextAlign.Left,
-                            Sort = SortType.String,
-                            System = SystemInfoType.String
-                        }
-                    },
-                    {
-                        ColumnKey.Profile2,
-                        new ColumnInfo
-                        {
-                            Title = "プロファイル 2\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String
