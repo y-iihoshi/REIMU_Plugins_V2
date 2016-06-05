@@ -2,6 +2,9 @@
 
 REIMU plugins for Touhou replays (Redesigning)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/isxeiqhusbvoolev?svg=true)](https://ci.appveyor.com/project/y-iihoshi/reimu-plugins-v2)
+[![License](https://img.shields.io/github/license/y-iihoshi/REIMU_Plugins_V2.svg)](https://github.com/y-iihoshi/REIMU_Plugins_V2/blob/master/LICENSE.txt)
+
 ## Introduction
 
 This is the plugin set for [REIMU][REIMU], the file viewer extendable by various
