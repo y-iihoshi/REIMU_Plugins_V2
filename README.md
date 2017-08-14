@@ -31,6 +31,8 @@ This project, written in C#, is a redesigning version of
 ### Will be supported
 * TH14.5 東方深秘録　～ Urban Legend in Limbo.
 * TH15 東方紺珠伝　～ Legacy of Lunatic Kingdom.
+* TH15.5 東方憑依華　～ Antinomy of Common Flowers.
+* Th16 東方天空璋　～ Hidden Star in Four Seasons.
 
 ### Not supported
 The followings are not supported because these plugins have already been
@@ -53,23 +55,23 @@ test enough.
 ## Environments
 
 ### Built environment
-* Windows 7 Professional SP1 (64bit)
-* .NET Framework 4
-* Visual Studio Community 2013
+* Windows 10 Pro Version 1703 (64bit)
+* .NET Framework 4.7
+* Visual Studio Community 2015 Update 3
 
 ### Tested environment
-(Same as above, yet.)
+Same as above but you can use .NET Framework 4.0 or later.
 
 ## Installation
 
     <Top directory>\
-     |- reimu.chm
-     |- reimu.exe
-     |- reimu.ini
-     |- CommonWin32.dll           <-- Place here.
-     |- ReimuPlugins.Common.dll   <-- Place here.
-     `- plugin\
-         `- ReimuPlugins.*.rpi    <-- Rename *.dll to *.rpi and then place here. Subdirectory/-ies can exist.
+     |-- reimu.chm
+     |-- reimu.exe
+     |-- reimu.ini
+     |-- CommonWin32.dll          <-- Place here.
+     |-- ReimuPlugins.Common.dll  <-- Place here.
+     `-- plugin\
+          `-- ReimuPlugins.*.rpi  <-- Place here. Subdirectory/-ies can be created.
 
 ## How to Use
 
