@@ -1,0 +1,16 @@
+version: '{build}'
+branches:
+  only:
+  - master
+
+image: Visual Studio 2015
+
+before_build:
+- cmd: nuget restore
+build:
+  parallel: true
+  verbosity: minimal
+
+artifacts:
+  - path: bin\Release
+    name: Release
