@@ -10,7 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		CustomDictionary.xml = CustomDictionary.xml
 		Settings.StyleCop = Settings.StyleCop
-		StrongNameKey.snk = StrongNameKey.snk
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th12Replay", "Th12Replay\Th12Replay.csproj", "{5983891B-2A59-4F61-A339-D4E06B7F095A}"

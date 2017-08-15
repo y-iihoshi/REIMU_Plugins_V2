@@ -38,12 +38,6 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\StrongNameKey.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonWin32, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a0a4edcfe233918d, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonWin32.2.1.0.3\lib\net35-Client\CommonWin32.dll</HintPath>
@@ -60,9 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\StrongNameKey.snk">
-      <Link>StrongNameKey.snk</Link>
-    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
