@@ -104,11 +104,6 @@
     <Error Text="BuildTools_StyleCop - the BuildTools_StyleCop package has not been restored.&#xD;&#xA;If you are running this from an IDE, make sure NuGet Package Restore has been enabled, then reload the solution and re-run the build.&#xD;&#xA;If you are running this from the command line, run the build again.&#xD;&#xA;If this is a CI server, you may want to make sure NuGet Package Restore runs before your build with:&#xD;&#xA;	msbuild solution.sln /t:restorepackages" />
   </Target>
   <Import Project="../packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets" Condition="Exists('../packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets')" />
-  <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)$(OutDir)threplay_rpi" mkdir "$(SolutionDir)$(OutDir)threplay_rpi"
-copy /y "$(TargetDir)CommonWin32.dll" "$(SolutionDir)$(OutDir)threplay_rpi\CommonWin32.dll"
-copy /y "$(TargetPath)" "$(SolutionDir)$(OutDir)threplay_rpi\$(TargetFileName)"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -116,11 +111,4 @@ copy /y "$(TargetPath)" "$(SolutionDir)$(OutDir)threplay_rpi\$(TargetFileName)"<
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Target Name="AfterClean">
-    <ItemGroup>
-      <FileToDelete Include="$(SolutionDir)$(OutDir)threplay_rpi\$(TargetFileName)" />
-      <FileToDelete Include="$(SolutionDir)$(OutDir)threplay_rpi\CommonWin32.dll" />
-    </ItemGroup>
-    <Delete Files="@(FileToDelete)" />
-  </Target>
 </Project>

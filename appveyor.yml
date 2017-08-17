@@ -14,7 +14,9 @@ before_build:
 build:
   parallel: true
   verbosity: minimal
+after_build:
+  - cmd: CollectArtifacts.bat %CONFIGURATION%
 
 artifacts:
-  - path: bin\Release
-    name: Release
+  - path: publish
+    name: threplay_rpi
