@@ -27,10 +27,10 @@ This project, written in C#, is a redesigning version of
 * TH13.5 東方心綺楼　～ Hopeless Masquerade.
 * TH14 東方輝針城　～ Double Dealing Character.
 * TH14.3 弾幕アマノジャク　～ Impossible Spell Card. (Replays and screenshots)
+* TH14.5 東方深秘録　～ Urban Legend in Limbo.
 * TH15 東方紺珠伝　～ Legacy of Lunatic Kingdom.
 
 ### Will be supported
-* TH14.5 東方深秘録　～ Urban Legend in Limbo.
 * TH15.5 東方憑依華　～ Antinomy of Common Flowers.
 * Th16 東方天空璋　～ Hidden Star in Four Seasons.
 
