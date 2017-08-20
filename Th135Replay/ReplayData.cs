@@ -595,23 +595,23 @@ namespace ReimuPlugins.Th135Replay
                             }
 
 #if false
-                        var profiles = this.dictionary["profile"] as object[];
-                        var prof0_dict = (profiles[0] as Dictionary<object, object>)
-                            .Where(pair => pair.Key is string)
-                            .ToDictionary(pair => pair.Key as string, pair => pair.Value);
-                        var icon_dump_str = prof0_dict["icon_dump"] as string;
-                        var icon_dump_bytes = Enc.CP932.GetBytes(icon_dump_str);
-                        var icon_dump = icon_dump_bytes.Select(elem => (char)elem).ToArray();
-                        var icon = Convert.FromBase64CharArray(
-                            icon_dump, "32,32,21,".Length, (icon_dump.Length - 16) & ~0x3);
-                        var bitmap = new Bitmap(32, 32, PixelFormat.Format32bppArgb);
+                            var profiles = this.dictionary["profile"] as object[];
+                            var prof0_dict = (profiles[0] as Dictionary<object, object>)
+                                .Where(pair => pair.Key is string)
+                                .ToDictionary(pair => pair.Key as string, pair => pair.Value);
+                            var icon_dump_str = prof0_dict["icon_dump"] as string;
+                            var icon_dump_bytes = Enc.CP932.GetBytes(icon_dump_str);
+                            var icon_dump = icon_dump_bytes.Select(elem => (char)elem).ToArray();
+                            var icon = Convert.FromBase64CharArray(
+                                icon_dump, "32,32,21,".Length, (icon_dump.Length - 16) & ~0x3);
+                            var bitmap = new Bitmap(32, 32, PixelFormat.Format32bppArgb);
 
-                        using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
-                        {
-                            Marshal.Copy(icon, 0, locked.Scan0, icon.Length);
-                        }
+                            using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
+                            {
+                                Marshal.Copy(icon, 0, locked.Scan0, icon.Length);
+                            }
 
-                        bitmap.Save("icon.bmp", ImageFormat.Bmp);
+                            bitmap.Save("icon.bmp", ImageFormat.Bmp);
 #endif
                         }
                     }
