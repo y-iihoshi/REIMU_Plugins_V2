@@ -19,3 +19,5 @@ for /d %%d in (Th*) do (
             publish\plugin\ReimuPlugins.%%d.rpi > NUL
     )
 )
+
+xcopy ManualGenerator\_build\html publish\doc /e /i /q

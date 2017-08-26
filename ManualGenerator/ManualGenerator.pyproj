@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>fbc4a33e-4225-4584-8436-4f1cb556ddd9</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile />
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>ManualGenerator</Name>
+    <RootNamespace>ManualGenerator</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterId>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</InterpreterId>
+    <InterpreterVersion>3.5</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\3.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="make.bat" />
+    <None Include="Makefile" />
+    <None Include="requirements.txt" />
+    <Compile Include="conf.py" />
+    <Content Include="manual.rst" />
+    <Folder Include="_static\" />
+    <Folder Include="_templates\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <Target Name="CoreCompile">
+    <Exec Command="(set SPHINXBUILD=$(PrefixPath)\python -msphinx) &amp; make.bat html" IgnoreExitCode="False" />
+  </Target>
+  <Target Name="CoreClean">
+    <Exec Command="(set SPHINXBUILD=$(PrefixPath)\python -msphinx) &amp; make.bat clean" IgnoreExitCode="False" />
+  </Target>
+  <Target Name="BeforeBuild">
+    <ResolveEnvironment>
+      <Output TaskParameter="PrefixPath" PropertyName="PrefixPath" />
+    </ResolveEnvironment>
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <Target Name="BeforeClean">
+    <ResolveEnvironment>
+      <Output TaskParameter="PrefixPath" PropertyName="PrefixPath" />
+    </ResolveEnvironment>
+  </Target>
+</Project>

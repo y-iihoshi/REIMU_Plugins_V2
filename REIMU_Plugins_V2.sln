@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th15Replay", "Th15Replay\Th
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th145Replay", "Th145Replay\Th145Replay.csproj", "{AC3612F1-F3F4-400A-A4F0-42F2B8A90129}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ManualGenerator", "ManualGenerator\ManualGenerator.pyproj", "{FBC4A33E-4225-4584-8436-4F1CB556DDD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +112,10 @@ Global
 		{AC3612F1-F3F4-400A-A4F0-42F2B8A90129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC3612F1-F3F4-400A-A4F0-42F2B8A90129}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC3612F1-F3F4-400A-A4F0-42F2B8A90129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC4A33E-4225-4584-8436-4F1CB556DDD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC4A33E-4225-4584-8436-4F1CB556DDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC4A33E-4225-4584-8436-4F1CB556DDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC4A33E-4225-4584-8436-4F1CB556DDD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
