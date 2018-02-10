@@ -1,16 +1,16 @@
 version: '{build}'
-branches:
-  only:
-    - master
 
-image: Visual Studio 2015
-
+image: Visual Studio 2017
 configuration:
   - Release
 environment:
-  PYTHON: C:\Python35-x64
+  PYTHON: C:\Python36-x64
 install:
   - cmd: >-
+      curl -O https://download.visualstudio.microsoft.com/download/pr/100473929/045b56eb413191d03850ecc425172a7d/vs_Community.exe
+
+      vs_Community.exe modify --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community" --add Microsoft.VisualStudio.Workload.Python --quiet --wait
+
       %PYTHON%\python -m pip install -U pip
 
       %PYTHON%\python -m pip install -r ManualGenerator\requirements.txt
@@ -26,3 +26,18 @@ after_build:
 artifacts:
   - path: publish
     name: threplay_rpi
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: XBLZ1KuCOmvayGOFMZwYC+QyZxCmr0og6vKt53trP9I3WgF77pN+aVZvim2UP2Dm
+  description: ''
+  on:
+    appveyor_repo_tag: true
+
+for:
+  - branches:
+      except:
+        - master
+    configuration: Debug
+    deploy: off
