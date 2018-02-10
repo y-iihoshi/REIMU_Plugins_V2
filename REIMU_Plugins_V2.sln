@@ -1,16 +1,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{FD972BC1-D411-4586-842D-3A6BFB697965}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th11Replay", "Th11Replay\Th11Replay.csproj", "{8547D59D-D97A-4243-A5E6-12116CB4EDF1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{875D8118-0EDB-49A6-B754-AC89B4115552}"
 	ProjectSection(SolutionItems) = preProject
 		CustomDictionary.xml = CustomDictionary.xml
 		Settings.StyleCop = Settings.StyleCop
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{FD972BC1-D411-4586-842D-3A6BFB697965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th11Replay", "Th11Replay\Th11Replay.csproj", "{8547D59D-D97A-4243-A5E6-12116CB4EDF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Th12Replay", "Th12Replay\Th12Replay.csproj", "{5983891B-2A59-4F61-A339-D4E06B7F095A}"
 EndProject
@@ -125,5 +125,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6112E887-7147-4182-8BAC-21B5BD649071}
 	EndGlobalSection
 EndGlobal
