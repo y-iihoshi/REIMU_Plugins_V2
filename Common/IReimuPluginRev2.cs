@@ -14,6 +14,7 @@ namespace ReimuPlugins.Common
     /// </summary>
     public interface IReimuPluginRev2 : IReimuPluginRev1
     {
+#pragma warning disable SA1124 // Do not use regions
         #region Optional Methods
 
         /// <summary>
@@ -121,5 +122,6 @@ namespace ReimuPlugins.Common
         ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
 
         #endregion
+#pragma warning restore SA1124 // Do not use regions
     }
 }

@@ -14,6 +14,7 @@ namespace ReimuPlugins.Common
     /// </summary>
     public interface IReimuPluginRev1
     {
+#pragma warning disable SA1124 // Do not use regions
         #region Required Methods
 
         /// <summary>
@@ -296,5 +297,6 @@ namespace ReimuPlugins.Common
         ErrorCode ConfigDialog(IntPtr parent);
 
         #endregion
+#pragma warning restore SA1124 // Do not use regions
     }
 }
