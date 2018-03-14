@@ -8,12 +8,11 @@
     },
     "documentationRules": {
       "companyName": "None",
-      "copyrightText": "Copyright (c) {years} {author}.\nLicensed under the {license} license. See {licenseFile} file in the project root for full license information.",
+      "copyrightText": "Copyright (c) {author}.\nLicensed under the {license} license. See {licenseFile} file in the project root for full license information.",
       "variables": {
         "author": "IIHOSHI Yoshinori",
         "license": "BSD-2-Clause",
-        "licenseFile": "LICENSE.txt",
-        "years": "2015-2018"
+        "licenseFile": "LICENSE.txt"
       }
     }
   }
