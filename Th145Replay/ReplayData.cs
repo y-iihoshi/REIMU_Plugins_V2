@@ -29,7 +29,7 @@ namespace ReimuPlugins.Th145Replay
         [EnumAltName("Vs Network （クライアント側）")] VersusNetworkClient,
         [EnumAltName("Vs Network （観戦）")]           VersusNetworkWatch,
 #endif
-        [EnumAltName("Story Mode")]                    Story = 10
+        [EnumAltName("Story Mode")]                    Story = 10,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -50,7 +50,7 @@ namespace ReimuPlugins.Th145Replay
         [EnumAltName("華扇",        LongName = "茨木 華扇")]        Kasen,
         [EnumAltName("妹紅",        LongName = "藤原 妹紅")]        Mokou,
         [EnumAltName("針妙丸",      LongName = "少名 針妙丸")]      Shinmyoumaru,
-        [EnumAltName("菫子",        LongName = "宇佐見 菫子")]      Sumireko
+        [EnumAltName("菫子",        LongName = "宇佐見 菫子")]      Sumireko,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -65,7 +65,7 @@ namespace ReimuPlugins.Th145Replay
                 { 0x05000004, reader => reader.ReadSingle() },
                 { 0x08000010, reader => ReadString(reader) },
                 { 0x08000040, reader => ReadArray(reader) },
-                { 0x0A000020, reader => ReadDictionary(reader) }
+                { 0x0A000020, reader => ReadDictionary(reader) },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -96,7 +96,7 @@ namespace ReimuPlugins.Th145Replay
                 { 25, "輝針城(夜)" },
                 { 26, "迷いの竹林" },
                 { 27, "異変の神社" },
-                { 28, "外の世界" }
+                { 28, "外の世界" },
             };
 
         private static readonly Dictionary<int, string> BgmNames =
@@ -120,7 +120,7 @@ namespace ReimuPlugins.Th145Replay
                 { 809, "幻想郷の二ッ岩" },
                 { 810, "亡失のエモーション" },
                 { 811, "月まで届け、不死の煙" },
-                { 812, "輝く針の小人族　～ Little Princess" }
+                { 812, "輝く針の小人族　～ Little Princess" },
             };
 
         private static readonly Dictionary<Character, Dictionary<int, string>> SpellCardNames =
@@ -132,7 +132,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "霊符「夢想封印」" },
                         { 1, "神技「八方龍殺陣」" },
-                        { 2, "宝具「陰陽飛鳥井」" }
+                        { 2, "宝具「陰陽飛鳥井」" },
                     }
                 },
                 {
@@ -141,7 +141,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "恋符「マスタースパーク」" },
                         { 1, "彗星「ブレイジングスター」" },
-                        { 2, "星符「サテライトイリュージョン」" }
+                        { 2, "星符「サテライトイリュージョン」" },
                     }
                 },
                 {
@@ -150,7 +150,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "嵐符「仏罰の野分雲」" },
                         { 1, "積乱「見越し入道雲」" },
-                        { 2, "拳固「懺悔の殺風」" }
+                        { 2, "拳固「懺悔の殺風」" },
                     }
                 },
                 {
@@ -159,7 +159,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "天符「三千大千世界の主」" },
                         { 1, "天符「大日如来の輝き」" },
-                        { 2, "天符「釈迦牟尼の五行山」" }
+                        { 2, "天符「釈迦牟尼の五行山」" },
                     }
                 },
                 {
@@ -168,7 +168,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "風符「三輪の皿嵐」" },
                         { 1, "炎符「太乙真火」" },
-                        { 2, "運気「破局の開門」" }
+                        { 2, "運気「破局の開門」" },
                     }
                 },
                 {
@@ -177,7 +177,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "仙符「日出ずる処の道士」" },
                         { 1, "道符「掌の上の天道」" },
-                        { 2, "人符「勧善懲悪は古の良き典なり」" }
+                        { 2, "人符「勧善懲悪は古の良き典なり」" },
                     }
                 },
                 {
@@ -186,7 +186,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "豪雨「河底大戦争」" },
                         { 1, "泡符「撃て！バブルドラゴン」" },
-                        { 2, "戦機「飛べ！三平ファイト」" }
+                        { 2, "戦機「飛べ！三平ファイト」" },
                     }
                 },
                 {
@@ -195,7 +195,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "抑制「スーパーエゴ」" },
                         { 1, "本能「イドの解放」" },
-                        { 2, "夢符「ご先祖様が見ているぞ」" }
+                        { 2, "夢符「ご先祖様が見ているぞ」" },
                     }
                 },
                 {
@@ -204,7 +204,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "変化「分福熱湯風呂」" },
                         { 1, "変化「百鬼妖界の門」" },
-                        { 2, "変化「二ッ岩家の裁き」" }
+                        { 2, "変化「二ッ岩家の裁き」" },
                     }
                 },
                 {
@@ -213,7 +213,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "怒面「怒れる忌狼の面」" },
                         { 1, "憑依「喜怒哀楽ポゼッション」" },
-                        { 2, "憂面「杞人地を憂う」" }
+                        { 2, "憂面「杞人地を憂う」" },
                     }
                 },
                 {
@@ -222,7 +222,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "包符「義腕プロテウス」" },
                         { 1, "龍符「ドラゴンズグロウル」" },
-                        { 2, "鷹符「ホークビーコン」" }
+                        { 2, "鷹符「ホークビーコン」" },
                     }
                 },
                 {
@@ -231,7 +231,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "焔符「自滅火焔大旋風」" },
                         { 1, "不死「凱風快晴飛翔蹴」" },
-                        { 2, "呪札「無差別発火の符」" }
+                        { 2, "呪札「無差別発火の符」" },
                     }
                 },
                 {
@@ -240,7 +240,7 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "小槌「伝説の椀飯振舞」" },
                         { 1, "小人「一寸法師にも五分の魂」" },
-                        { 2, "釣符「可愛い太公望」" }
+                        { 2, "釣符「可愛い太公望」" },
                     }
                 },
                 {
@@ -249,9 +249,9 @@ namespace ReimuPlugins.Th145Replay
                     {
                         { 0, "銃符「３Ｄプリンターガン」" },
                         { 1, "念力「サイコキネシスアプリ」" },
-                        { 2, "念力「テレキネシス　電波塔」" }
+                        { 2, "念力「テレキネシス　電波塔」" },
                     }
-                }
+                },
             };
 
         private Info info;

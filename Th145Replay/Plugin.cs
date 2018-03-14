@@ -92,7 +92,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "ファイル名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Title
+                            System = SystemInfoType.Title,
                         }
                     },
                     {
@@ -102,7 +102,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "更新日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.LastWriteTime
+                            System = SystemInfoType.LastWriteTime,
                         }
                     },
                     {
@@ -112,7 +112,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "バージョン\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -122,7 +122,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "モード\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -132,7 +132,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プレイヤー 1\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -142,7 +142,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "色 1\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -152,7 +152,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "スペルカード 1\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -162,7 +162,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プロファイル 1\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -172,7 +172,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プレイヤー 2\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -182,7 +182,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "色 2\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -192,7 +192,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "スペルカード 2\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -202,7 +202,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プロファイル 2\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -212,7 +212,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "ステージ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -222,7 +222,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "BGM\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -232,7 +232,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -242,7 +242,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "ファイルサイズ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.FileSize
+                            System = SystemInfoType.FileSize,
                         }
                     },
                     {
@@ -252,7 +252,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "ディレクトリ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Directory
+                            System = SystemInfoType.Directory,
                         }
                     },
                     {
@@ -262,9 +262,9 @@ namespace ReimuPlugins.Th145Replay
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
-                    }
+                    },
                 };
 
             private static readonly Dictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
@@ -272,6 +272,7 @@ namespace ReimuPlugins.Th145Replay
 
             internal enum ColumnKey
             {
+#pragma warning disable SA1413 // Use trailing comma in multi-line initializers
                 Filename = 0,
                 LastWriteDate,
                 Version,
@@ -290,6 +291,7 @@ namespace ReimuPlugins.Th145Replay
                 FileSize,
                 Directory,
                 Sentinel
+#pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
             protected override ReadOnlyCollection<string> ManagedPluginInfo

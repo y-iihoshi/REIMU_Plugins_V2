@@ -89,7 +89,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "ファイル名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Title
+                            System = SystemInfoType.Title,
                         }
                     },
                     {
@@ -99,7 +99,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "更新日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.LastWriteTime
+                            System = SystemInfoType.LastWriteTime,
                         }
                     },
                     {
@@ -109,7 +109,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "日付\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -119,7 +119,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "シーン\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -129,7 +129,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "日付-シーン\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -139,7 +139,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "幅\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -149,7 +149,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "高さ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -159,7 +159,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -169,7 +169,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "処理落ち率\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -179,7 +179,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "ファイルサイズ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.FileSize
+                            System = SystemInfoType.FileSize,
                         }
                     },
                     {
@@ -189,7 +189,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "ディレクトリ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Directory
+                            System = SystemInfoType.Directory,
                         }
                     },
                     {
@@ -199,15 +199,15 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
-                    }
+                    },
                 };
 
             private static readonly string[] DayStrings =
             {
                 "一日目", "二日目", "三日目", "四日目", "五日目",
-                "六日目", "七日目", "八日目", "九日目", "最終日"
+                "六日目", "七日目", "八日目", "九日目", "最終日",
             };
 
             private static readonly Dictionary<ColumnKey, Func<ScreenshotData, string>> FileInfoGetters =
@@ -215,6 +215,7 @@ namespace ReimuPlugins.Th143Screenshot
 
             internal enum ColumnKey
             {
+#pragma warning disable SA1413 // Use trailing comma in multi-line initializers
                 Filename = 0,
                 LastWriteDate,
                 Day,
@@ -227,6 +228,7 @@ namespace ReimuPlugins.Th143Screenshot
                 FileSize,
                 Directory,
                 Sentinel
+#pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
             protected override ReadOnlyCollection<string> ManagedPluginInfo

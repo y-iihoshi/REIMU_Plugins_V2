@@ -88,7 +88,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "ファイル名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Title
+                            System = SystemInfoType.Title,
                         }
                     },
                     {
@@ -98,7 +98,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "更新日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.LastWriteTime
+                            System = SystemInfoType.LastWriteTime,
                         }
                     },
                     {
@@ -108,7 +108,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "シーン\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -118,7 +118,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "スペルカード名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -128,7 +128,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "幅\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -138,7 +138,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "高さ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -148,7 +148,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "評価点\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -158,7 +158,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "処理落ち率\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -168,7 +168,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "ファイルサイズ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.FileSize
+                            System = SystemInfoType.FileSize,
                         }
                     },
                     {
@@ -178,7 +178,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "ディレクトリ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Directory
+                            System = SystemInfoType.Directory,
                         }
                     },
                     {
@@ -188,9 +188,9 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
-                    }
+                    },
                 };
 
             private static readonly Dictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
@@ -225,6 +225,7 @@ namespace ReimuPlugins.Th095Bestshot
 
             internal enum ColumnKey
             {
+#pragma warning disable SA1413 // Use trailing comma in multi-line initializers
                 Filename = 0,
                 LastWriteDate,
                 Scene,
@@ -236,6 +237,7 @@ namespace ReimuPlugins.Th095Bestshot
                 FileSize,
                 Directory,
                 Sentinel
+#pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
             protected override ReadOnlyCollection<string> ManagedPluginInfo

@@ -98,7 +98,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "ファイル名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Title
+                            System = SystemInfoType.Title,
                         }
                     },
                     {
@@ -108,7 +108,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "更新日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.LastWriteTime
+                            System = SystemInfoType.LastWriteTime,
                         }
                     },
                     {
@@ -118,7 +118,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "No.\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -128,7 +128,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "プレイヤー名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -138,7 +138,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "プレイ時刻\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -148,7 +148,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "使用キャラ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -158,7 +158,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "難易度\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -168,7 +168,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "ステージ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -178,7 +178,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "スコア\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -188,7 +188,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "処理落ち率\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -198,7 +198,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "バージョン\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -208,7 +208,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "コメント\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -218,7 +218,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "ファイルサイズ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.FileSize
+                            System = SystemInfoType.FileSize,
                         }
                     },
                     {
@@ -228,7 +228,7 @@ namespace ReimuPlugins.Th13Replay
                             Title = "ディレクトリ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Directory
+                            System = SystemInfoType.Directory,
                         }
                     },
                     {
@@ -238,9 +238,9 @@ namespace ReimuPlugins.Th13Replay
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
-                    }
+                    },
                 };
 
             [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -260,6 +260,7 @@ namespace ReimuPlugins.Th13Replay
 
             internal enum ColumnKey
             {
+#pragma warning disable SA1413 // Use trailing comma in multi-line initializers
                 Filename = 0,
                 LastWriteDate,
                 Number,
@@ -275,6 +276,7 @@ namespace ReimuPlugins.Th13Replay
                 FileSize,
                 Directory,
                 Sentinel
+#pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
             protected override ReadOnlyCollection<string> ManagedPluginInfo

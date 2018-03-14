@@ -28,7 +28,7 @@ namespace ReimuPlugins.Th123Replay
         [EnumAltName("vs PLAYER")]                     VersusPlayer,
         [EnumAltName("vs NETWORK （ホスト側）")]       VersusNetworkHost,
         [EnumAltName("vs NETWORK （クライアント側）")] VersusNetworkClient,
-        [EnumAltName("vs NETWORK （観戦）")]           VersusNetworkWatch
+        [EnumAltName("vs NETWORK （観戦）")]           VersusNetworkWatch,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -55,7 +55,7 @@ namespace ReimuPlugins.Th123Replay
         [EnumAltName("チルノ",     LongName = "チルノ")]                 Cirno,
         [EnumAltName("美鈴",       LongName = "紅 美鈴")]                Meiling,
         [EnumAltName("空",         LongName = "霊烏路 空")]              Utsuho,
-        [EnumAltName("諏訪子",     LongName = "洩矢 諏訪子")]            Suwako
+        [EnumAltName("諏訪子",     LongName = "洩矢 諏訪子")]            Suwako,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -68,7 +68,7 @@ namespace ReimuPlugins.Th123Replay
                 { 201, "1.01" },
                 { 202, "1.02" },
                 { 203, "1.03" },
-                { 210, "1.10" }
+                { 210, "1.10" },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -99,7 +99,7 @@ namespace ReimuPlugins.Th123Replay
                 { 35, "真っ暗なステージ" },
                 { 36, "時計台(美鈴ストーリー)" },
                 { 37, "時計台２(美鈴ストーリー)" },
-                { 38, "美鈴ストーリーラスト" }
+                { 38, "美鈴ストーリーラスト" },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -136,7 +136,7 @@ namespace ReimuPlugins.Th123Replay
                 { 40, "二色蓮花蝶　～ Ancients" },
                 { 41, "恋色マジック" },
                 { 42, "the Grimoire of Alice" },
-                { 43, "ヴワル魔法図書館" }
+                { 43, "ヴワル魔法図書館" },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -194,7 +194,7 @@ namespace ReimuPlugins.Th123Replay
                         { 209, "宝符「陰陽宝玉」" },
                         { 210, "宝具「陰陽鬼神玉」" },
                         { 214, "神技「天覇風神脚」" },
-                        { 219, "「夢想天生」" }
+                        { 219, "「夢想天生」" },
                     }
                 },
                 {
@@ -226,7 +226,7 @@ namespace ReimuPlugins.Th123Replay
                         { 212, "光符「アースライトレイ」" },
                         { 214, "魔廃「ディープエコロジカルボム」" },
                         { 215, "儀符「オーレリーズサン」" },
-                        { 219, "邪恋「実りやすいマスタースパーク」" }
+                        { 219, "邪恋「実りやすいマスタースパーク」" },
                     }
                 },
                 {
@@ -257,7 +257,7 @@ namespace ReimuPlugins.Th123Replay
                         { 209, "時符「咲夜特製ストップウォッチ」" },
                         { 210, "光速「Ｃ．リコシェ」" },
                         { 211, "時符「イマジナリバーチカルタイム」" },
-                        { 212, "時計「ルナ・ダイアル」" }
+                        { 212, "時計「ルナ・ダイアル」" },
                     }
                 },
                 {
@@ -287,7 +287,7 @@ namespace ReimuPlugins.Th123Replay
                         { 208, "人形「未来文楽」" },
                         { 209, "注力「トリップワイヤー」" },
                         { 210, "槍符「キューティ大千槍」" },
-                        { 211, "人形「レミングスパレード」" }
+                        { 211, "人形「レミングスパレード」" },
                     }
                 },
                 {
@@ -320,7 +320,7 @@ namespace ReimuPlugins.Th123Replay
                         { 210, "日木符「フォトシンセシス」" },
                         { 211, "火水符「フロギスティックピラー」" },
                         { 212, "土金符「エメラルドメガロポリス」" },
-                        { 213, "日月符「ロイヤルダイアモンドリング」" }
+                        { 213, "日月符「ロイヤルダイアモンドリング」" },
                     }
                 },
                 {
@@ -348,7 +348,7 @@ namespace ReimuPlugins.Th123Replay
                         { 206, "剣伎「桜花閃々」" },
                         { 207, "断霊剣「成仏得脱斬」" },
                         { 208, "空観剣「六根清浄斬」" },
-                        { 212, "転生剣「円心流転斬」" }
+                        { 212, "転生剣「円心流転斬」" },
                     }
                 },
                 {
@@ -376,7 +376,7 @@ namespace ReimuPlugins.Th123Replay
                         { 206, "夜符「バッドレディスクランブル」" },
                         { 207, "運命「ミゼラブルフェイト」" },
                         { 208, "「ミレニアムの吸血鬼」" },
-                        { 209, "悪魔「レミリアストレッチ」" }
+                        { 209, "悪魔「レミリアストレッチ」" },
                     }
                 },
                 {
@@ -405,7 +405,7 @@ namespace ReimuPlugins.Th123Replay
                         { 207, "蝶符「鳳蝶紋の死槍」" },
                         { 208, "幽雅「死出の誘蛾灯」" },
                         { 209, "桜符「センスオブチェリーブロッサム」" },
-                        { 219, "「反魂蝶」" }
+                        { 219, "「反魂蝶」" },
                     }
                 },
                 {
@@ -433,7 +433,7 @@ namespace ReimuPlugins.Th123Replay
                         { 206, "幻巣「飛光虫ネスト」" },
                         { 207, "空餌「中毒性のあるエサ」" },
                         { 208, "魔眼「ラプラスの魔」" },
-                        { 215, "廃線「ぶらり廃駅下車の旅」" }
+                        { 215, "廃線「ぶらり廃駅下車の旅」" },
                     }
                 },
                 {
@@ -461,7 +461,7 @@ namespace ReimuPlugins.Th123Replay
                         { 206, "霧符「雲集霧散」" },
                         { 207, "鬼火「超高密度燐禍術」" },
                         { 208, "鬼符「大江山悉皆殺し」" },
-                        { 212, "四天王奥義「三歩壊廃」" }
+                        { 212, "四天王奥義「三歩壊廃」" },
                     }
                 },
                 {
@@ -490,7 +490,7 @@ namespace ReimuPlugins.Th123Replay
                         { 208, "毒煙幕「瓦斯織物の玉」" },
                         { 209, "生薬「国士無双の薬」" },
                         { 210, "短視「超短脳波(エックスウェイブ)」" },
-                        { 211, "長視「赤月下(インフレアドムーン)」" }
+                        { 211, "長視「赤月下(インフレアドムーン)」" },
                     }
                 },
                 {
@@ -518,7 +518,7 @@ namespace ReimuPlugins.Th123Replay
                         { 207, "風符「天狗報即日限」" },
                         { 208, "鴉符「暗夜のデイメア」" },
                         { 211, "魔獣「鎌鼬ベーリング」" },
-                        { 212, "突風「猿田彦の先導」" }
+                        { 212, "突風「猿田彦の先導」" },
                     }
                 },
                 {
@@ -545,7 +545,7 @@ namespace ReimuPlugins.Th123Replay
                         { 205, "恨符「未練がましい緊縛霊」" },
                         { 206, "死符「死者選別の鎌」" },
                         { 207, "魂符「生魂流離の鎌」" },
-                        { 211, "地獄「無間の狭間」" }
+                        { 211, "地獄「無間の狭間」" },
                     }
                 },
                 {
@@ -573,7 +573,7 @@ namespace ReimuPlugins.Th123Replay
                         { 208, "羽衣「羽衣は時の如く」" },
                         { 209, "棘符「雷雲棘魚」" },
                         { 210, "龍魚「龍宮の使い遊泳弾」" },
-                        { 211, "珠符「五爪龍の珠」" }
+                        { 211, "珠符「五爪龍の珠」" },
                     }
                 },
                 {
@@ -601,7 +601,7 @@ namespace ReimuPlugins.Th123Replay
                         { 206, "気符「無念無想の境地」" },
                         { 207, "「全人類の緋想天」" },
                         { 208, "剣技「気炎万丈の剣」" },
-                        { 209, "天気「緋想天促」" }
+                        { 209, "天気「緋想天促」" },
                     }
                 },
                 {
@@ -628,7 +628,7 @@ namespace ReimuPlugins.Th123Replay
                         { 205, "開海「モーゼの奇跡」" },
                         { 206, "奇跡「白昼の客星」" },
                         { 207, "奇跡「客星の明るすぎる夜」" },
-                        { 210, "秘法「九字刺し」" }
+                        { 210, "秘法「九字刺し」" },
                     }
                 },
                 {
@@ -657,7 +657,7 @@ namespace ReimuPlugins.Th123Replay
                         { 207, "氷符「ソードフリーザー」" },
                         { 208, "氷塊「グレートクラッシャー」" },
                         { 210, "凍符「フリーズアトモスフェア」" },
-                        { 213, "冷符「瞬間冷凍ビーム」" }
+                        { 213, "冷符「瞬間冷凍ビーム」" },
                     }
                 },
                 {
@@ -686,7 +686,7 @@ namespace ReimuPlugins.Th123Replay
                         { 207, "気符「地龍天龍脚」" },
                         { 208, "彩華「虹色太極拳」" },
                         { 209, "華符「彩光蓮華掌」" },
-                        { 211, "気符「猛虎内剄」" }
+                        { 211, "気符「猛虎内剄」" },
                     }
                 },
                 {
@@ -718,7 +718,7 @@ namespace ReimuPlugins.Th123Replay
                         { 211, "制御「セルフトカマク」" },
                         { 212, "「サブタレイニアンサン」" },
                         { 213, "遮光「核熱バイザー」" },
-                        { 214, "「アビスノヴァ」" }
+                        { 214, "「アビスノヴァ」" },
                     }
                 },
                 {
@@ -747,7 +747,7 @@ namespace ReimuPlugins.Th123Replay
                         { 207, "土着神「手長足長さま」" },
                         { 208, "祟り神「赤口（ミシャグチ）さま」" },
                         { 209, "土着神「宝永四年の赤蛙」" },
-                        { 212, "蛙休「オールウェイズ冬眠できます」" }
+                        { 212, "蛙休「オールウェイズ冬眠できます」" },
                     }
                 },
             };

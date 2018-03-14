@@ -26,7 +26,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Revision 2.
         /// </summary>
-        Rev2
+        Rev2,
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Cancelled in the edit/config dialog.
         /// </summary>
-        DialogCanceled
+        DialogCanceled,
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ namespace ReimuPlugins.Common
         /// Text is centered.
         /// <remarks>The value must be equal to <c>LCVFMT_CENTER</c> of Win32 API.</remarks>
         /// </summary>
-        Center
+        Center,
     }
 
     /// <summary>
@@ -122,7 +122,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Hexadecimal sort.
         /// </summary>
-        Hex
+        Hex,
     }
 
     /// <summary>
@@ -173,6 +173,6 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// File size (in bytes).
         /// </summary>
-        FileSize
+        FileSize,
     }
 }

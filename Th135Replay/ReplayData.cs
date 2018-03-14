@@ -29,7 +29,7 @@ namespace ReimuPlugins.Th135Replay
         [EnumAltName("Vs Network （クライアント側）")] VersusNetworkClient,
         [EnumAltName("Vs Network （観戦）")]           VersusNetworkWatch,
 #endif
-        [EnumAltName("Story Mode")]                    Story = 10
+        [EnumAltName("Story Mode")]                    Story = 10,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -46,7 +46,7 @@ namespace ReimuPlugins.Th135Replay
         [EnumAltName("にとり",      LongName = "河城 にとり")]      Nitori,
         [EnumAltName("こいし",      LongName = "古明地 こいし")]    Koishi,
         [EnumAltName("マミゾウ",    LongName = "二ッ岩 マミゾウ")]  Mamizou,
-        [EnumAltName("こころ",      LongName = "秦 こころ")]        Kokoro
+        [EnumAltName("こころ",      LongName = "秦 こころ")]        Kokoro,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -60,7 +60,7 @@ namespace ReimuPlugins.Th135Replay
         [EnumAltName("射撃 ←")] ShotLeft,
         [EnumAltName("射撃 ↓")] ShotDown,
         [EnumAltName("射撃 ↑")] ShotUp,
-        [EnumAltName("射撃 →")] ShotRight
+        [EnumAltName("射撃 →")] ShotRight,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -75,7 +75,7 @@ namespace ReimuPlugins.Th135Replay
                 { 0x05000004, reader => reader.ReadSingle() },
                 { 0x08000010, reader => ReadString(reader) },
                 { 0x08000040, reader => ReadArray(reader) },
-                { 0x0A000020, reader => ReadDictionary(reader) }
+                { 0x0A000020, reader => ReadDictionary(reader) },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -92,7 +92,7 @@ namespace ReimuPlugins.Th135Replay
                 {  7, "地霊殿" },
                 {  8, "妖怪狸の森" },
                 {  9, "妖怪狸の森(夜)" },
-                { 10, "人間の里(夜)" }
+                { 10, "人間の里(夜)" },
             };
 
         private static readonly Dictionary<int, string> BgmNames =
@@ -108,7 +108,7 @@ namespace ReimuPlugins.Th135Replay
                 { 108, "ハルトマンの妖怪少女" },
                 { 109, "佐渡の二ッ岩" },
                 { 110, "幻想郷の二ッ岩" },
-                { 111, "亡失のエモーション" }
+                { 111, "亡失のエモーション" },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -227,7 +227,7 @@ namespace ReimuPlugins.Th135Replay
                 { 10006, "こころのルーレット" },
                 { 10010, "怒面「怒れる忌狼の面」" },
                 { 10011, "憑依「喜怒哀楽ポゼッション」" },
-                { 10012, "憂面「杞人地を憂う」" }
+                { 10012, "憂面「杞人地を憂う」" },
             };
 
         private Info info;

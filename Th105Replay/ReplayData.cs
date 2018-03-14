@@ -28,7 +28,7 @@ namespace ReimuPlugins.Th105Replay
         [EnumAltName("vs PLAYER")]                     VersusPlayer,
         [EnumAltName("vs NETWORK （ホスト側）")]       VersusNetworkHost,
         [EnumAltName("vs NETWORK （クライアント側）")] VersusNetworkClient,
-        [EnumAltName("vs NETWORK （観戦）")]           VersusNetworkWatch
+        [EnumAltName("vs NETWORK （観戦）")]           VersusNetworkWatch,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -50,7 +50,7 @@ namespace ReimuPlugins.Th105Replay
         [EnumAltName("文",         LongName = "射命丸 文")]              Aya,
         [EnumAltName("小町",       LongName = "小野塚 小町")]            Komachi,
         [EnumAltName("衣玖",       LongName = "永江 衣玖")]              Iku,
-        [EnumAltName("天子",       LongName = "比那名居 天子")]          Tenshi
+        [EnumAltName("天子",       LongName = "比那名居 天子")]          Tenshi,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 
@@ -65,7 +65,7 @@ namespace ReimuPlugins.Th105Replay
                 { 103, "1.03" },
                 { 104, "1.04 or 1.05" },
                 { 105, "1.05?" },
-                { 106, "1.06" }
+                { 106, "1.06" },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -87,7 +87,7 @@ namespace ReimuPlugins.Th105Replay
                 { 15, "冥界" },
                 { 16, "紅魔館ロビー" },
                 { 17, "白玉楼の雪庭" },
-                { 18, "迷いの竹林" }
+                { 18, "迷いの竹林" },
             };
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
@@ -113,7 +113,7 @@ namespace ReimuPlugins.Th105Replay
                 { 19, "砕月" },
                 { 20, "狂気の瞳　～ Invisible Full Moon" },
                 { 21, "風神少女" },
-                { 22, "彼岸帰航　～ Riverside View" }
+                { 22, "彼岸帰航　～ Riverside View" },
             };
 
         private static readonly Dictionary<short, string> SystemCardNames =
@@ -152,7 +152,7 @@ namespace ReimuPlugins.Th105Replay
                         { 209, "宝符「陰陽宝玉」" },
                         { 210, "宝具「陰陽鬼神玉」" },
                         { 214, "神技「天覇風神脚」" },
-                        { 219, "「夢想天生」" }
+                        { 219, "「夢想天生」" },
                     }
                 },
                 {
@@ -179,7 +179,7 @@ namespace ReimuPlugins.Th105Replay
                         { 208, "星符「メテオニックシャワー」" },
                         { 211, "光符「ルミネスストライク」" },
                         { 215, "儀符「オーレリーズサン」" },
-                        { 219, "邪恋「実りやすいマスタースパーク」" }
+                        { 219, "邪恋「実りやすいマスタースパーク」" },
                     }
                 },
                 {
@@ -203,7 +203,7 @@ namespace ReimuPlugins.Th105Replay
                         { 206, "銀符「シルバーバウンド」" },
                         { 207, "奇術「エターナルミーク」" },
                         { 208, "速符「ルミネスリコシェ」" },
-                        { 209, "時符「咲夜特製ストップウォッチ」" }
+                        { 209, "時符「咲夜特製ストップウォッチ」" },
                     }
                 },
                 {
@@ -229,7 +229,7 @@ namespace ReimuPlugins.Th105Replay
                         { 206, "偵符「シーカードールズ」" },
                         { 207, "紅符「和蘭人形」" },
                         { 208, "人形「未来文楽」" },
-                        { 209, "注力「トリップワイヤー」" }
+                        { 209, "注力「トリップワイヤー」" },
                     }
                 },
                 {
@@ -254,7 +254,7 @@ namespace ReimuPlugins.Th105Replay
                         { 205, "火水木金土符「賢者の石」" },
                         { 206, "水符「ジェリーフィッシュプリンセス」" },
                         { 207, "月木符「サテライトヒマワリ」" },
-                        { 210, "日木符「フォトシンセシス」" }
+                        { 210, "日木符「フォトシンセシス」" },
                     }
                 },
                 {
@@ -278,7 +278,7 @@ namespace ReimuPlugins.Th105Replay
                         { 204, "断迷剣「迷津慈航斬」" },
                         { 205, "魂魄「幽明求聞持聡明の法」" },
                         { 206, "剣伎「桜花閃々」" },
-                        { 207, "断霊剣「成仏得脱斬」" }
+                        { 207, "断霊剣「成仏得脱斬」" },
                     }
                 },
                 {
@@ -301,7 +301,7 @@ namespace ReimuPlugins.Th105Replay
                         { 204, "神槍「スピア・ザ・グングニル」" },
                         { 205, "夜王「ドラキュラクレイドル」" },
                         { 206, "夜符「バッドレディスクランブル」" },
-                        { 207, "運命「ミゼラブルフェイト」" }
+                        { 207, "運命「ミゼラブルフェイト」" },
                     }
                 },
                 {
@@ -325,7 +325,7 @@ namespace ReimuPlugins.Th105Replay
                         { 205, "寿命「无寿国への約束手形」" },
                         { 206, "霊蝶「蝶の羽風生に暫く」" },
                         { 207, "蝶符「鳳蝶紋の死槍」" },
-                        { 208, "幽雅「死出の誘蛾灯」" }
+                        { 208, "幽雅「死出の誘蛾灯」" },
                     }
                 },
                 {
@@ -349,7 +349,7 @@ namespace ReimuPlugins.Th105Replay
                         { 205, "結界「客観結界」" },
                         { 206, "幻巣「飛光虫ネスト」" },
                         { 207, "空餌「中毒性のあるエサ」" },
-                        { 215, "廃線「ぶらり廃駅下車の旅」" }
+                        { 215, "廃線「ぶらり廃駅下車の旅」" },
                     }
                 },
                 {
@@ -398,7 +398,7 @@ namespace ReimuPlugins.Th105Replay
                         { 206, "弱心「喪心喪意(ディモチヴェイション)」" },
                         { 207, "喪心「喪心創痍(ディスカーダー)」" },
                         { 208, "毒煙幕「瓦斯織物の玉」" },
-                        { 209, "生薬「国士無双の薬」" }
+                        { 209, "生薬「国士無双の薬」" },
                     }
                 },
                 {
@@ -422,7 +422,7 @@ namespace ReimuPlugins.Th105Replay
                         { 205, "風符「天狗道の開風」" },
                         { 206, "「幻想風靡」" },
                         { 211, "魔獣「鎌鼬ベーリング」" },
-                        { 212, "突風「猿田彦の先導」" }
+                        { 212, "突風「猿田彦の先導」" },
                     }
                 },
                 {
@@ -446,7 +446,7 @@ namespace ReimuPlugins.Th105Replay
                         { 204, "換命「不惜身命、可惜身命」" },
                         { 205, "恨符「未練がましい緊縛霊」" },
                         { 206, "死符「死者選別の鎌」" },
-                        { 211, "地獄「無間の狭間」" }
+                        { 211, "地獄「無間の狭間」" },
                     }
                 },
                 {
@@ -469,7 +469,7 @@ namespace ReimuPlugins.Th105Replay
                         { 206, "雷魚「雷雲魚遊泳弾」" },
                         { 207, "羽衣「羽衣は空の如く」" },
                         { 209, "棘符「雷雲棘魚」" },
-                        { 210, "龍魚「龍宮の使い遊泳弾」" }
+                        { 210, "龍魚「龍宮の使い遊泳弾」" },
                     }
                 },
                 {
@@ -491,7 +491,7 @@ namespace ReimuPlugins.Th105Replay
                         { 204, "気符「天啓気象の剣」" },
                         { 205, "要石「天地開闢プレス」" },
                         { 206, "気符「無念無想の境地」" },
-                        { 207, "「全人類の緋想天」" }
+                        { 207, "「全人類の緋想天」" },
                     }
                 },
             };

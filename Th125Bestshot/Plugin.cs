@@ -96,7 +96,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "ファイル名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Title
+                            System = SystemInfoType.Title,
                         }
                     },
                     {
@@ -106,7 +106,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "更新日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.LastWriteTime
+                            System = SystemInfoType.LastWriteTime,
                         }
                     },
                     {
@@ -116,7 +116,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "シーン\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -126,7 +126,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "スペルカード名\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -136,7 +136,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "幅\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -146,7 +146,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "高さ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -156,7 +156,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "日時\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -166,7 +166,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "処理落ち率\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -176,7 +176,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Result Score\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -186,7 +186,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Base Point\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -196,7 +196,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Clear Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -206,7 +206,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Solo Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -216,7 +216,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Red Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -226,7 +226,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Purple Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -236,7 +236,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Blue Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -246,7 +246,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Cyan Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -256,7 +256,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Green Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -266,7 +266,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Yellow Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -276,7 +276,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Orange Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -286,7 +286,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Colorful Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -296,7 +296,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Rainbow Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -306,7 +306,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Risk Bonus\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -316,7 +316,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Macro Bonus\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -326,7 +326,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Front Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -336,7 +336,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Side Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -346,7 +346,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Back Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -356,7 +356,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Cat Bonus\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -366,7 +366,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Boss Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -376,7 +376,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Two Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -386,7 +386,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Nice Shot\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -396,7 +396,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Angle Bonus\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -406,7 +406,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "Angle\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
                     },
                     {
@@ -416,7 +416,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "ファイルサイズ\0".ToCP932(),
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
-                            System = SystemInfoType.FileSize
+                            System = SystemInfoType.FileSize,
                         }
                     },
                     {
@@ -426,7 +426,7 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "ディレクトリ\0".ToCP932(),
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.Directory
+                            System = SystemInfoType.Directory,
                         }
                     },
                     {
@@ -436,14 +436,14 @@ namespace ReimuPlugins.Th125Bestshot
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String
+                            System = SystemInfoType.String,
                         }
-                    }
+                    },
                 };
 
             private static readonly string[] LevelStrings =
             {
-                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "EX", "SP"
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "EX", "SP",
             };
 
             private static readonly Dictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
@@ -451,6 +451,7 @@ namespace ReimuPlugins.Th125Bestshot
 
             internal enum ColumnKey
             {
+#pragma warning disable SA1413 // Use trailing comma in multi-line initializers
                 Filename = 0,
                 LastWriteDate,
                 Scene,
@@ -486,6 +487,7 @@ namespace ReimuPlugins.Th125Bestshot
                 FileSize,
                 Directory,
                 Sentinel
+#pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
             protected override ReadOnlyCollection<string> ManagedPluginInfo
