@@ -18,7 +18,7 @@ namespace ReimuPlugins.Common
         /// The stream to read.
         /// </summary>
         private Stream stream;
-        
+
         /// <summary>
         /// The flag that represents whether <see cref="Dispose(bool)"/> has been called.
         /// </summary>

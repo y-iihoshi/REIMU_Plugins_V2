@@ -22,7 +22,7 @@ namespace ReimuPlugins.Common
         private Bitmap bitmap;
 
         /// <summary>
-        /// A <see cref="BitmapData"/> that specifies information about the lock operation. 
+        /// A <see cref="BitmapData"/> that specifies information about the lock operation.
         /// </summary>
         private BitmapData data;
 
@@ -51,7 +51,7 @@ namespace ReimuPlugins.Common
 
         /// <summary>
         /// Gets the address of the first pixel data in the bitmap.
-        /// This can also be thought of as the first scan line in the bitmap. 
+        /// This can also be thought of as the first scan line in the bitmap.
         /// </summary>
         public IntPtr Scan0
         {
