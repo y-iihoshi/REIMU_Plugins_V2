@@ -568,7 +568,7 @@ namespace ReimuPlugins.Th145Replay
                     var array = this[key1] as object[];
                     if (array != null)
                     {
-                        if ((0 <= key2) && (key2 < array.Length))
+                        if ((key2 >= 0) && (key2 < array.Length))
                         {
                             return array[key2];
                         }
