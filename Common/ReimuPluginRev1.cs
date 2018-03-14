@@ -39,13 +39,13 @@ namespace ReimuPlugins.Common
         /// </remarks>
         protected abstract IDictionary<TColumnKey, ColumnInfo> ManagedColumnInfo { get; }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public Revision GetPluginRevision()
         {
             return Revision.Rev1;
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public int GetPluginInfo(int index, IntPtr info, uint size)
         {
             try
@@ -77,7 +77,7 @@ namespace ReimuPlugins.Common
             return 0;
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public ErrorCode GetColumnInfo(out IntPtr info)
         {
             var errorCode = ErrorCode.UnknownError;
@@ -122,22 +122,22 @@ namespace ReimuPlugins.Common
             return errorCode;
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public abstract uint IsSupported(IntPtr src, uint size);
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public abstract ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info);
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public abstract ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst);
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public abstract ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst);
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public abstract ErrorCode EditDialog(IntPtr parent, string file);
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev1.")]
+        /// <inheritdoc/>
         public abstract ErrorCode ConfigDialog(IntPtr parent);
 
         /// <summary>

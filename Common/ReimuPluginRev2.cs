@@ -20,16 +20,16 @@ namespace ReimuPlugins.Common
     public abstract class ReimuPluginRev2<TColumnKey> : ReimuPluginRev1<TColumnKey>, IReimuPluginRev2
         where TColumnKey : struct, IComparable, IFormattable, IConvertible
     {
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev2.")]
+        /// <inheritdoc/>
         public new Revision GetPluginRevision()
         {
             return Revision.Rev2;
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev2.")]
+        /// <inheritdoc/>
         public abstract ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "See IReimuPluginRev2.")]
+        /// <inheritdoc/>
         public abstract ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
     }
 }
