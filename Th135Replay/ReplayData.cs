@@ -21,6 +21,7 @@ namespace ReimuPlugins.Th135Replay
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
     public enum GameMode
     {
+#pragma warning disable SA1134 // Attributes should not share line
         [EnumAltName("Vs Com")]                        VersusCom,
         [EnumAltName("Vs Player")]                     VersusPlayer,
 #if false
@@ -29,11 +30,13 @@ namespace ReimuPlugins.Th135Replay
         [EnumAltName("Vs Network （観戦）")]           VersusNetworkWatch,
 #endif
         [EnumAltName("Story Mode")]                    Story = 10
+#pragma warning restore SA1134 // Attributes should not share line
     }
 
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
     public enum Character
     {
+#pragma warning disable SA1134 // Attributes should not share line
         [EnumAltName("霊夢",        LongName = "博麗 霊夢")]        Reimu,
         [EnumAltName("魔理沙",      LongName = "霧雨 魔理沙")]      Marisa,
         [EnumAltName("一輪 & 雲山", LongName = "雲居 一輪 & 雲山")] IchirinUnzan,
@@ -44,10 +47,12 @@ namespace ReimuPlugins.Th135Replay
         [EnumAltName("こいし",      LongName = "古明地 こいし")]    Koishi,
         [EnumAltName("マミゾウ",    LongName = "二ッ岩 マミゾウ")]  Mamizou,
         [EnumAltName("こころ",      LongName = "秦 こころ")]        Kokoro
+#pragma warning restore SA1134 // Attributes should not share line
     }
 
     public enum Direction
     {
+#pragma warning disable SA1134 // Attributes should not share line
         [EnumAltName("打撃 ←")] HitLeft,
         [EnumAltName("打撃 ↓")] HitDown,
         [EnumAltName("打撃 ↑")] HitUp,
@@ -56,6 +61,7 @@ namespace ReimuPlugins.Th135Replay
         [EnumAltName("射撃 ↓")] ShotDown,
         [EnumAltName("射撃 ↑")] ShotUp,
         [EnumAltName("射撃 →")] ShotRight
+#pragma warning restore SA1134 // Attributes should not share line
     }
 
     public sealed class ReplayData

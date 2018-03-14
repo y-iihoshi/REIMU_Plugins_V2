@@ -21,6 +21,7 @@ namespace ReimuPlugins.Th105Replay
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
     public enum GameMode
     {
+#pragma warning disable SA1134 // Attributes should not share line
         [EnumAltName("Story")]                         Story,
         [EnumAltName("Arcade")]                        Arcade,
         [EnumAltName("vs COM")]                        VersusCom,
@@ -28,11 +29,13 @@ namespace ReimuPlugins.Th105Replay
         [EnumAltName("vs NETWORK （ホスト側）")]       VersusNetworkHost,
         [EnumAltName("vs NETWORK （クライアント側）")] VersusNetworkClient,
         [EnumAltName("vs NETWORK （観戦）")]           VersusNetworkWatch
+#pragma warning restore SA1134 // Attributes should not share line
     }
 
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
     public enum Character
     {
+#pragma warning disable SA1134 // Attributes should not share line
         [EnumAltName("霊夢",       LongName = "博麗 霊夢")]              Reimu,
         [EnumAltName("魔理沙",     LongName = "霧雨 魔理沙")]            Marisa,
         [EnumAltName("咲夜",       LongName = "十六夜 咲夜")]            Sakuya,
@@ -48,6 +51,7 @@ namespace ReimuPlugins.Th105Replay
         [EnumAltName("小町",       LongName = "小野塚 小町")]            Komachi,
         [EnumAltName("衣玖",       LongName = "永江 衣玖")]              Iku,
         [EnumAltName("天子",       LongName = "比那名居 天子")]          Tenshi
+#pragma warning restore SA1134 // Attributes should not share line
     }
 
     public sealed class ReplayData
