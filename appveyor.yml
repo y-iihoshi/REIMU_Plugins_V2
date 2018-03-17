@@ -4,16 +4,16 @@ image: Visual Studio 2017
 configuration:
   - Release
 environment:
-  PYTHON: C:\Python36-x64
+  PYTHONPATH: C:\Python36-x64
 install:
   - cmd: >-
       curl -LO https://aka.ms/vs/15/release/vs_community.exe
 
       vs_community.exe modify --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community" --add Microsoft.VisualStudio.Workload.Python --quiet --wait
 
-      %PYTHON%\python -m pip install -U pip
+      %PYTHONPATH%\python -m pip install -U pip
 
-      %PYTHON%\python -m pip install -r ManualGenerator\requirements.txt
+      %PYTHONPATH%\python -m pip install -r ManualGenerator\requirements.txt
 
 before_build:
   - cmd: nuget restore
