@@ -69,15 +69,14 @@ namespace ReimuPlugins.Th143Screenshot
 
         private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "BST3".ToCP932();
+            private static readonly string ValidSignature = "BST3";
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For 弾幕アマノジャク スクリーンショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0"
-                    .ToCP932(),
-                "弾幕アマノジャク スクリーンショット\0".ToCP932(),
-                "sc*.dat\0".ToCP932(),
-                "弾幕アマノジャク スクリーンショットファイル (sc*.dat)\0".ToCP932(),
+                "REIMU Plug-in For 弾幕アマノジャク スクリーンショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0",
+                "弾幕アマノジャク スクリーンショット\0",
+                "sc*.dat\0",
+                "弾幕アマノジャク スクリーンショットファイル (sc*.dat)\0",
             };
 
             private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
@@ -87,7 +86,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.Filename,
                         new ColumnInfo
                         {
-                            Title = "ファイル名\0".ToCP932(),
+                            Title = "ファイル名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Title,
@@ -97,7 +96,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.LastWriteDate,
                         new ColumnInfo
                         {
-                            Title = "更新日時\0".ToCP932(),
+                            Title = "更新日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.LastWriteTime,
@@ -107,7 +106,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.Day,
                         new ColumnInfo
                         {
-                            Title = "日付\0".ToCP932(),
+                            Title = "日付\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -117,7 +116,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.Scene,
                         new ColumnInfo
                         {
-                            Title = "シーン\0".ToCP932(),
+                            Title = "シーン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -127,7 +126,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.DayScene,
                         new ColumnInfo
                         {
-                            Title = "日付-シーン\0".ToCP932(),
+                            Title = "日付-シーン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -137,7 +136,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.Width,
                         new ColumnInfo
                         {
-                            Title = "幅\0".ToCP932(),
+                            Title = "幅\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -147,7 +146,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.Height,
                         new ColumnInfo
                         {
-                            Title = "高さ\0".ToCP932(),
+                            Title = "高さ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -157,7 +156,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.DateTime,
                         new ColumnInfo
                         {
-                            Title = "日時\0".ToCP932(),
+                            Title = "日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -167,7 +166,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.SlowRate,
                         new ColumnInfo
                         {
-                            Title = "処理落ち率\0".ToCP932(),
+                            Title = "処理落ち率\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -177,7 +176,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.FileSize,
                         new ColumnInfo
                         {
-                            Title = "ファイルサイズ\0".ToCP932(),
+                            Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.FileSize,
@@ -187,7 +186,7 @@ namespace ReimuPlugins.Th143Screenshot
                         ColumnKey.Directory,
                         new ColumnInfo
                         {
-                            Title = "ディレクトリ\0".ToCP932(),
+                            Title = "ディレクトリ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Directory,
@@ -441,7 +440,7 @@ namespace ReimuPlugins.Th143Screenshot
                 {
                     {
                         ColumnKey.Day,
-                        (data) => DayStrings[data.Day].ToCP932()
+                        (data) => DayStrings[data.Day]
                     },
                     {
                         ColumnKey.Scene,

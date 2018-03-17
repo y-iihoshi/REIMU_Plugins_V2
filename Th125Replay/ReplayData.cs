@@ -80,7 +80,7 @@ namespace ReimuPlugins.Th125Replay
                     {
                         if (string.IsNullOrEmpty(this.info[key]))
                         {
-                            var keyWithSpace = (key + " ").ToCP932();
+                            var keyWithSpace = key + " ";
                             if (elem.StartsWith(keyWithSpace, StringComparison.Ordinal))
                             {
                                 this.info[key] = elem.Substring(keyWithSpace.Length);

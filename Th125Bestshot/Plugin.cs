@@ -76,15 +76,14 @@ namespace ReimuPlugins.Th125Bestshot
 
         private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "BST2".ToCP932();
+            private static readonly string ValidSignature = "BST2";
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For ダブルスポイラー ベストショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0"
-                    .ToCP932(),
-                "ダブルスポイラー ベストショット\0".ToCP932(),
-                "bs*.dat\0".ToCP932(),
-                "ダブルスポイラー ベストショットファイル (bs*.dat)\0".ToCP932(),
+                "REIMU Plug-in For ダブルスポイラー ベストショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0",
+                "ダブルスポイラー ベストショット\0",
+                "bs*.dat\0",
+                "ダブルスポイラー ベストショットファイル (bs*.dat)\0",
             };
 
             private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
@@ -94,7 +93,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.Filename,
                         new ColumnInfo
                         {
-                            Title = "ファイル名\0".ToCP932(),
+                            Title = "ファイル名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Title,
@@ -104,7 +103,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.LastWriteDate,
                         new ColumnInfo
                         {
-                            Title = "更新日時\0".ToCP932(),
+                            Title = "更新日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.LastWriteTime,
@@ -114,7 +113,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.Scene,
                         new ColumnInfo
                         {
-                            Title = "シーン\0".ToCP932(),
+                            Title = "シーン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -124,7 +123,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.CardName,
                         new ColumnInfo
                         {
-                            Title = "スペルカード名\0".ToCP932(),
+                            Title = "スペルカード名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -134,7 +133,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.Width,
                         new ColumnInfo
                         {
-                            Title = "幅\0".ToCP932(),
+                            Title = "幅\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -144,7 +143,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.Height,
                         new ColumnInfo
                         {
-                            Title = "高さ\0".ToCP932(),
+                            Title = "高さ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -154,7 +153,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.DateTime,
                         new ColumnInfo
                         {
-                            Title = "日時\0".ToCP932(),
+                            Title = "日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -164,7 +163,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.SlowRate,
                         new ColumnInfo
                         {
-                            Title = "処理落ち率\0".ToCP932(),
+                            Title = "処理落ち率\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -174,7 +173,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.Score,
                         new ColumnInfo
                         {
-                            Title = "Result Score\0".ToCP932(),
+                            Title = "Result Score\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -184,7 +183,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.BasePoint,
                         new ColumnInfo
                         {
-                            Title = "Base Point\0".ToCP932(),
+                            Title = "Base Point\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -194,7 +193,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.ClearShot,
                         new ColumnInfo
                         {
-                            Title = "Clear Shot\0".ToCP932(),
+                            Title = "Clear Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -204,7 +203,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.SoloShot,
                         new ColumnInfo
                         {
-                            Title = "Solo Shot\0".ToCP932(),
+                            Title = "Solo Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -214,7 +213,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.RedShot,
                         new ColumnInfo
                         {
-                            Title = "Red Shot\0".ToCP932(),
+                            Title = "Red Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -224,7 +223,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.PurpleShot,
                         new ColumnInfo
                         {
-                            Title = "Purple Shot\0".ToCP932(),
+                            Title = "Purple Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -234,7 +233,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.BlueShot,
                         new ColumnInfo
                         {
-                            Title = "Blue Shot\0".ToCP932(),
+                            Title = "Blue Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -244,7 +243,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.CyanShot,
                         new ColumnInfo
                         {
-                            Title = "Cyan Shot\0".ToCP932(),
+                            Title = "Cyan Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -254,7 +253,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.GreenShot,
                         new ColumnInfo
                         {
-                            Title = "Green Shot\0".ToCP932(),
+                            Title = "Green Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -264,7 +263,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.YellowShot,
                         new ColumnInfo
                         {
-                            Title = "Yellow Shot\0".ToCP932(),
+                            Title = "Yellow Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -274,7 +273,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.OrangeShot,
                         new ColumnInfo
                         {
-                            Title = "Orange Shot\0".ToCP932(),
+                            Title = "Orange Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -284,7 +283,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.ColorfulShot,
                         new ColumnInfo
                         {
-                            Title = "Colorful Shot\0".ToCP932(),
+                            Title = "Colorful Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -294,7 +293,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.RainbowShot,
                         new ColumnInfo
                         {
-                            Title = "Rainbow Shot\0".ToCP932(),
+                            Title = "Rainbow Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -304,7 +303,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.RiskBonus,
                         new ColumnInfo
                         {
-                            Title = "Risk Bonus\0".ToCP932(),
+                            Title = "Risk Bonus\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -314,7 +313,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.MacroBonus,
                         new ColumnInfo
                         {
-                            Title = "Macro Bonus\0".ToCP932(),
+                            Title = "Macro Bonus\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -324,7 +323,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.FrontShot,
                         new ColumnInfo
                         {
-                            Title = "Front Shot\0".ToCP932(),
+                            Title = "Front Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -334,7 +333,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.SideShot,
                         new ColumnInfo
                         {
-                            Title = "Side Shot\0".ToCP932(),
+                            Title = "Side Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -344,7 +343,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.BackShot,
                         new ColumnInfo
                         {
-                            Title = "Back Shot\0".ToCP932(),
+                            Title = "Back Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -354,7 +353,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.CatBonus,
                         new ColumnInfo
                         {
-                            Title = "Cat Bonus\0".ToCP932(),
+                            Title = "Cat Bonus\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -364,7 +363,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.BossShot,
                         new ColumnInfo
                         {
-                            Title = "Boss Shot\0".ToCP932(),
+                            Title = "Boss Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -374,7 +373,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.TwoShot,
                         new ColumnInfo
                         {
-                            Title = "Two Shot\0".ToCP932(),
+                            Title = "Two Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -384,7 +383,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.NiceShot,
                         new ColumnInfo
                         {
-                            Title = "Nice Shot\0".ToCP932(),
+                            Title = "Nice Shot\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -394,7 +393,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.AngleBonus,
                         new ColumnInfo
                         {
-                            Title = "Angle Bonus\0".ToCP932(),
+                            Title = "Angle Bonus\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -404,7 +403,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.Angle,
                         new ColumnInfo
                         {
-                            Title = "Angle\0".ToCP932(),
+                            Title = "Angle\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -414,7 +413,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.FileSize,
                         new ColumnInfo
                         {
-                            Title = "ファイルサイズ\0".ToCP932(),
+                            Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.FileSize,
@@ -424,7 +423,7 @@ namespace ReimuPlugins.Th125Bestshot
                         ColumnKey.Directory,
                         new ColumnInfo
                         {
-                            Title = "ディレクトリ\0".ToCP932(),
+                            Title = "ディレクトリ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Directory,

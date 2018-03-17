@@ -75,10 +75,10 @@ namespace ReimuPlugins.Th123Replay
         {
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 東方非想天則 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToCP932(),
-                "東方非想天則\0".ToCP932(),
-                "*.rep\0".ToCP932(),
-                "東方非想天則 リプレイファイル (*.rep)\0".ToCP932(),
+                "REIMU Plug-in For 東方非想天則 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0",
+                "東方非想天則\0",
+                "*.rep\0",
+                "東方非想天則 リプレイファイル (*.rep)\0",
             };
 
             private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
@@ -88,7 +88,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Filename,
                         new ColumnInfo
                         {
-                            Title = "ファイル名\0".ToCP932(),
+                            Title = "ファイル名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Title,
@@ -98,7 +98,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.LastWriteDate,
                         new ColumnInfo
                         {
-                            Title = "更新日時\0".ToCP932(),
+                            Title = "更新日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.LastWriteTime,
@@ -108,7 +108,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Version,
                         new ColumnInfo
                         {
-                            Title = "バージョン\0".ToCP932(),
+                            Title = "バージョン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -118,7 +118,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.GameMode,
                         new ColumnInfo
                         {
-                            Title = "モード\0".ToCP932(),
+                            Title = "モード\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -128,7 +128,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Player1,
                         new ColumnInfo
                         {
-                            Title = "プレイヤー 1\0".ToCP932(),
+                            Title = "プレイヤー 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -138,7 +138,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Color1,
                         new ColumnInfo
                         {
-                            Title = "色 1\0".ToCP932(),
+                            Title = "色 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -148,7 +148,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Player2,
                         new ColumnInfo
                         {
-                            Title = "プレイヤー 2\0".ToCP932(),
+                            Title = "プレイヤー 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -158,7 +158,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Color2,
                         new ColumnInfo
                         {
-                            Title = "色 2\0".ToCP932(),
+                            Title = "色 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -168,7 +168,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Stage,
                         new ColumnInfo
                         {
-                            Title = "ステージ\0".ToCP932(),
+                            Title = "ステージ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -178,7 +178,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Bgm,
                         new ColumnInfo
                         {
-                            Title = "BGM\0".ToCP932(),
+                            Title = "BGM\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -188,7 +188,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.FileSize,
                         new ColumnInfo
                         {
-                            Title = "ファイルサイズ\0".ToCP932(),
+                            Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.FileSize,
@@ -198,7 +198,7 @@ namespace ReimuPlugins.Th123Replay
                         ColumnKey.Directory,
                         new ColumnInfo
                         {
-                            Title = "ディレクトリ\0".ToCP932(),
+                            Title = "ディレクトリ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Directory,
@@ -356,7 +356,7 @@ namespace ReimuPlugins.Th123Replay
                     var pair = CreateReplayData(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var bytes = Enc.CP932.GetBytes(pair.Item2.Player1Info.ToCStr().ToCP932());
+                        var bytes = Enc.CP932.GetBytes(pair.Item2.Player1Info.ToCStr());
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }
@@ -395,7 +395,7 @@ namespace ReimuPlugins.Th123Replay
                     {
                         var text = (pair.Item2.GameMode == GameMode.Story)
                             ? string.Empty : pair.Item2.Player2Info;
-                        var bytes = Enc.CP932.GetBytes(text.ToCStr().ToCP932());
+                        var bytes = Enc.CP932.GetBytes(text.ToCStr());
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }
@@ -438,37 +438,36 @@ namespace ReimuPlugins.Th123Replay
                 {
                     {
                         ColumnKey.Version,
-                        (data) => data.Version.ToCP932()
+                        (data) => data.Version
                     },
                     {
                         ColumnKey.GameMode,
-                        (data) => data.GameMode.ToShortName().ToCP932()
+                        (data) => data.GameMode.ToShortName()
                     },
                     {
                         ColumnKey.Player1,
-                        (data) => data.Character1.ToLongName().ToCP932()
+                        (data) => data.Character1.ToLongName()
                     },
                     {
                         ColumnKey.Color1,
-                        (data) => (data.Color1 + 1).ToString(CultureInfo.CurrentCulture).ToCP932()
+                        (data) => (data.Color1 + 1).ToString(CultureInfo.CurrentCulture)
                     },
                     {
                         ColumnKey.Player2,
-                        (data) => ((data.GameMode == GameMode.Story)
-                            ? "-" : data.Character2.ToLongName()).ToCP932()
+                        (data) => (data.GameMode == GameMode.Story) ? "-" : data.Character2.ToLongName()
                     },
                     {
                         ColumnKey.Color2,
-                        (data) => ((data.GameMode == GameMode.Story)
-                            ? "-" : (data.Color2 + 1).ToString(CultureInfo.CurrentCulture)).ToCP932()
+                        (data) => (data.GameMode == GameMode.Story)
+                            ? "-" : (data.Color2 + 1).ToString(CultureInfo.CurrentCulture)
                     },
                     {
                         ColumnKey.Stage,
-                        (data) => ((data.GameMode == GameMode.Story) ? "-" : data.StageName).ToCP932()
+                        (data) => (data.GameMode == GameMode.Story) ? "-" : data.StageName
                     },
                     {
                         ColumnKey.Bgm,
-                        (data) => ((data.GameMode == GameMode.Story) ? "-" : data.BgmName).ToCP932()
+                        (data) => (data.GameMode == GameMode.Story) ? "-" : data.BgmName
                     },
                 };
             }

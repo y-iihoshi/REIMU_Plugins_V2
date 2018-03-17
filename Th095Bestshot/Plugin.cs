@@ -69,14 +69,14 @@ namespace ReimuPlugins.Th095Bestshot
 
         private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "BSTS".ToCP932();
+            private static readonly string ValidSignature = "BSTS";
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For 東方文花帖 ベストショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToCP932(),
-                "東方文花帖 ベストショット\0".ToCP932(),
-                "bs_*.dat\0".ToCP932(),
-                "東方文花帖 ベストショットファイル (bs_*.dat)\0".ToCP932(),
+                "REIMU Plug-in For 東方文花帖 ベストショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0",
+                "東方文花帖 ベストショット\0",
+                "bs_*.dat\0",
+                "東方文花帖 ベストショットファイル (bs_*.dat)\0",
             };
 
             private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
@@ -86,7 +86,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.Filename,
                         new ColumnInfo
                         {
-                            Title = "ファイル名\0".ToCP932(),
+                            Title = "ファイル名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Title,
@@ -96,7 +96,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.LastWriteDate,
                         new ColumnInfo
                         {
-                            Title = "更新日時\0".ToCP932(),
+                            Title = "更新日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.LastWriteTime,
@@ -106,7 +106,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.Scene,
                         new ColumnInfo
                         {
-                            Title = "シーン\0".ToCP932(),
+                            Title = "シーン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -116,7 +116,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.CardName,
                         new ColumnInfo
                         {
-                            Title = "スペルカード名\0".ToCP932(),
+                            Title = "スペルカード名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -126,7 +126,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.Width,
                         new ColumnInfo
                         {
-                            Title = "幅\0".ToCP932(),
+                            Title = "幅\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -136,7 +136,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.Height,
                         new ColumnInfo
                         {
-                            Title = "高さ\0".ToCP932(),
+                            Title = "高さ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -146,7 +146,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.Score,
                         new ColumnInfo
                         {
-                            Title = "評価点\0".ToCP932(),
+                            Title = "評価点\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -156,7 +156,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.SlowRate,
                         new ColumnInfo
                         {
-                            Title = "処理落ち率\0".ToCP932(),
+                            Title = "処理落ち率\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -166,7 +166,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.FileSize,
                         new ColumnInfo
                         {
-                            Title = "ファイルサイズ\0".ToCP932(),
+                            Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.FileSize,
@@ -176,7 +176,7 @@ namespace ReimuPlugins.Th095Bestshot
                         ColumnKey.Directory,
                         new ColumnInfo
                         {
-                            Title = "ディレクトリ\0".ToCP932(),
+                            Title = "ディレクトリ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Directory,

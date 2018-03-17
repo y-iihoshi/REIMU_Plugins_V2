@@ -79,14 +79,14 @@ namespace ReimuPlugins.Th13Replay
 
         private sealed class PluginImpl : ReimuPluginRev1<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "t13r".ToCP932();
+            private static readonly string ValidSignature = "t13r";
 
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 東方神霊廟 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0".ToCP932(),
-                "東方神霊廟\0".ToCP932(),
-                "th13_*.rpy\0".ToCP932(),
-                "東方神霊廟 リプレイファイル (th13_*.rpy)\0".ToCP932(),
+                "REIMU Plug-in For 東方神霊廟 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0",
+                "東方神霊廟\0",
+                "th13_*.rpy\0",
+                "東方神霊廟 リプレイファイル (th13_*.rpy)\0",
             };
 
             private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
@@ -96,7 +96,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Filename,
                         new ColumnInfo
                         {
-                            Title = "ファイル名\0".ToCP932(),
+                            Title = "ファイル名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Title,
@@ -106,7 +106,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.LastWriteDate,
                         new ColumnInfo
                         {
-                            Title = "更新日時\0".ToCP932(),
+                            Title = "更新日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.LastWriteTime,
@@ -116,7 +116,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Number,
                         new ColumnInfo
                         {
-                            Title = "No.\0".ToCP932(),
+                            Title = "No.\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -126,7 +126,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Player,
                         new ColumnInfo
                         {
-                            Title = "プレイヤー名\0".ToCP932(),
+                            Title = "プレイヤー名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -136,7 +136,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.PlayTime,
                         new ColumnInfo
                         {
-                            Title = "プレイ時刻\0".ToCP932(),
+                            Title = "プレイ時刻\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -146,7 +146,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Character,
                         new ColumnInfo
                         {
-                            Title = "使用キャラ\0".ToCP932(),
+                            Title = "使用キャラ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -156,7 +156,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Level,
                         new ColumnInfo
                         {
-                            Title = "難易度\0".ToCP932(),
+                            Title = "難易度\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -166,7 +166,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Stage,
                         new ColumnInfo
                         {
-                            Title = "ステージ\0".ToCP932(),
+                            Title = "ステージ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -176,7 +176,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Score,
                         new ColumnInfo
                         {
-                            Title = "スコア\0".ToCP932(),
+                            Title = "スコア\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.String,
@@ -186,7 +186,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.SlowRate,
                         new ColumnInfo
                         {
-                            Title = "処理落ち率\0".ToCP932(),
+                            Title = "処理落ち率\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Float,
                             System = SystemInfoType.String,
@@ -196,7 +196,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Version,
                         new ColumnInfo
                         {
-                            Title = "バージョン\0".ToCP932(),
+                            Title = "バージョン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -206,7 +206,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Comment,
                         new ColumnInfo
                         {
-                            Title = "コメント\0".ToCP932(),
+                            Title = "コメント\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.String,
@@ -216,7 +216,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.FileSize,
                         new ColumnInfo
                         {
-                            Title = "ファイルサイズ\0".ToCP932(),
+                            Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
                             Sort = SortType.Number,
                             System = SystemInfoType.FileSize,
@@ -226,7 +226,7 @@ namespace ReimuPlugins.Th13Replay
                         ColumnKey.Directory,
                         new ColumnInfo
                         {
-                            Title = "ディレクトリ\0".ToCP932(),
+                            Title = "ディレクトリ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
                             System = SystemInfoType.Directory,
