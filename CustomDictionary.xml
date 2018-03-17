@@ -8,6 +8,7 @@
   </Words>
   <Acronyms>
     <CasingExceptions>
+      <Acronym>BOM</Acronym>
       <Acronym>Th</Acronym>
       <Acronym>UTF</Acronym>
     </CasingExceptions>
