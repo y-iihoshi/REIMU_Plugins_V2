@@ -429,11 +429,11 @@ namespace ReimuPlugins.Th135Replay
                 var extracted = new byte[expectedSize];
                 var extractedSize = 0;
 
-                using (var source =
-                    new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false))
+                using (var stream = new DeflateStream(
+                    new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false),
+                    CompressionMode.Decompress))
                 {
-                    extractedSize = new DeflateStream(source, CompressionMode.Decompress)
-                        .Read(extracted, 0, extracted.Length);
+                    extractedSize = stream.Read(extracted, 0, extracted.Length);
                 }
 
                 output = new byte[extractedSize];
