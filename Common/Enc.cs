@@ -15,22 +15,18 @@ namespace ReimuPlugins.Common
     public static class Enc
     {
         /// <summary>
-        /// Initializes static members of the <see cref="Enc"/> class.
-        /// </summary>
-        static Enc()
-        {
-            CP932 = Encoding.GetEncoding(932);
-            UTF8 = Encoding.UTF8;
-        }
-
-        /// <summary>
         /// Gets the code page 932 encoding.
         /// </summary>
-        public static Encoding CP932 { get; private set; }
+        public static Encoding CP932 => Encoding.GetEncoding(932);
 
         /// <summary>
         /// Gets the UTF-8 encoding.
         /// </summary>
-        public static Encoding UTF8 { get; private set; }
+        public static Encoding UTF8 => Encoding.UTF8;
+
+        /// <summary>
+        /// Gets the UTF-8 encoding which does not provide a byte order mark.
+        /// </summary>
+        public static Encoding UTF8NoBOM => new UTF8Encoding();
     }
 }

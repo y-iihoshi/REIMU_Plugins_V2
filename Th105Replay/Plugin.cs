@@ -263,8 +263,10 @@ namespace ReimuPlugins.Th105Replay
                     {
                         if (pair.Item1 == ErrorCode.AllRight)
                         {
-                            var reader = new IO.BinaryReader(pair.Item2);
-                            versionId = reader.ReadInt16();
+                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
+                            {
+                                versionId = reader.ReadInt16();
+                            }
                         }
                     }
                 }

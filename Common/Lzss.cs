@@ -50,36 +50,38 @@ namespace ReimuPlugins.Common
                 throw new ArgumentNullException("output");
             }
 
-            var reader = new BitReader(input);
-            var dictionary = new byte[DicSize];
-            var dicIndex = 1;
-
-            while (dicIndex < dictionary.Length)
+            using (var reader = new BitReader(input, true))
             {
-                var flag = reader.ReadBits(1);
-                if (flag != 0)
+                var dictionary = new byte[DicSize];
+                var dicIndex = 1;
+
+                while (dicIndex < dictionary.Length)
                 {
-                    var ch = (byte)reader.ReadBits(8);
-                    output.WriteByte(ch);
-                    dictionary[dicIndex] = ch;
-                    dicIndex = (dicIndex + 1) & 0x1FFF;
-                }
-                else
-                {
-                    var offset = reader.ReadBits(13);
-                    if (offset == 0)
+                    var flag = reader.ReadBits(1);
+                    if (flag != 0)
                     {
-                        break;
+                        var ch = (byte)reader.ReadBits(8);
+                        output.WriteByte(ch);
+                        dictionary[dicIndex] = ch;
+                        dicIndex = (dicIndex + 1) & 0x1FFF;
                     }
                     else
                     {
-                        var length = reader.ReadBits(4) + 3;
-                        for (var i = 0; i < length; i++)
+                        var offset = reader.ReadBits(13);
+                        if (offset == 0)
                         {
-                            var ch = dictionary[(offset + i) & 0x1FFF];
-                            output.WriteByte(ch);
-                            dictionary[dicIndex] = ch;
-                            dicIndex = (dicIndex + 1) & 0x1FFF;
+                            break;
+                        }
+                        else
+                        {
+                            var length = reader.ReadBits(4) + 3;
+                            for (var i = 0; i < length; i++)
+                            {
+                                var ch = dictionary[(offset + i) & 0x1FFF];
+                                output.WriteByte(ch);
+                                dictionary[dicIndex] = ch;
+                                dicIndex = (dicIndex + 1) & 0x1FFF;
+                            }
                         }
                     }
                 }

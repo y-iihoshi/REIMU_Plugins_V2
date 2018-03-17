@@ -839,8 +839,10 @@ namespace ReimuPlugins.Th123Replay
 
         public void Read(Stream input)
         {
-            var reader = new BinaryReader(input);
-            this.info.ReadFrom(reader);
+            using (var reader = new BinaryReader(input, Enc.UTF8NoBOM, true))
+            {
+                this.info.ReadFrom(reader);
+            }
         }
 
         private string GetPlayerInfo(int index)

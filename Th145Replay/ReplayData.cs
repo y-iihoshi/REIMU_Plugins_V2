@@ -391,8 +391,10 @@ namespace ReimuPlugins.Th145Replay
 
         public void Read(Stream input)
         {
-            var reader = new BinaryReader(input);
-            this.info.ReadFrom(reader);
+            using (var reader = new BinaryReader(input, Enc.UTF8NoBOM, true))
+            {
+                this.info.ReadFrom(reader);
+            }
         }
 
         private static bool ReadObject(BinaryReader reader, out object obj)
@@ -638,13 +640,14 @@ namespace ReimuPlugins.Th145Replay
                         {
                             using (var stream = new MemoryStream(extractedData, false))
                             {
-                                var reader2 = new BinaryReader(stream);
-                                var dict = ReadDictionary(reader2) as Dictionary<object, object>;
-                                if (dict != null)
+                                using (var reader2 = new BinaryReader(stream, Enc.UTF8NoBOM, true))
                                 {
-                                    this.dictionary = dict
-                                        .Where(pair => pair.Key is string)
-                                        .ToDictionary(pair => pair.Key as string, pair => pair.Value);
+                                    if (ReadDictionary(reader2) is Dictionary<object, object> dict)
+                                    {
+                                        this.dictionary = dict
+                                            .Where(pair => pair.Key is string)
+                                            .ToDictionary(pair => pair.Key as string, pair => pair.Value);
+                                    }
                                 }
                             }
                         }

@@ -305,9 +305,11 @@ namespace ReimuPlugins.Th128Replay
                     {
                         if (pair.Item1 == ErrorCode.AllRight)
                         {
-                            var reader = new IO.BinaryReader(pair.Item2);
-                            var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                            signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
+                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
+                            {
+                                var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
+                                signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
+                            }
                         }
                     }
                 }

@@ -21,6 +21,11 @@ namespace ReimuPlugins.Common
         private Stream stream;
 
         /// <summary>
+        /// <c>true</c> to leave the stream open after the <see cref="BitReader"/> object is disposed.
+        /// </summary>
+        private bool leaveOpen;
+
+        /// <summary>
         /// The flag that represents whether <see cref="Dispose(bool)"/> has been called.
         /// </summary>
         private bool disposed;
@@ -40,6 +45,20 @@ namespace ReimuPlugins.Common
         /// </summary>
         /// <param name="stream">The stream to read.</param>
         public BitReader(Stream stream)
+            : this(stream, false)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BitReader"/> class based on the specified stream and
+        /// optionally leaves the stream open.
+        /// </summary>
+        /// <param name="stream">The stream to read.</param>
+        /// <param name="leaveOpen">
+        /// <c>true</c> to leave the stream open after the <see cref="BitReader"/> object is disposed;
+        /// otherwise, <c>false</c>.
+        /// </param>
+        public BitReader(Stream stream, bool leaveOpen)
         {
             if (stream == null)
             {
@@ -52,6 +71,7 @@ namespace ReimuPlugins.Common
             }
 
             this.stream = stream;
+            this.leaveOpen = leaveOpen;
             this.disposed = false;
             this.current = 0;
             this.mask = 0x80;
@@ -127,7 +147,12 @@ namespace ReimuPlugins.Common
             {
                 if (disposing)
                 {
-                    this.stream.Dispose();
+                    var copyOfStream = this.stream;
+                    this.stream = null;
+                    if ((copyOfStream != null) && !this.leaveOpen)
+                    {
+                        copyOfStream.Dispose();
+                    }
                 }
 
                 this.disposed = true;

@@ -15,7 +15,6 @@ namespace ReimuPlugins.Th105Replay
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
-    using System.IO.Compression;
     using System.Linq;
     using ReimuPlugins.Common;
 
@@ -583,8 +582,10 @@ namespace ReimuPlugins.Th105Replay
 
         public void Read(Stream input)
         {
-            var reader = new BinaryReader(input);
-            this.info.ReadFrom(reader);
+            using (var reader = new BinaryReader(input, Enc.UTF8NoBOM, true))
+            {
+                this.info.ReadFrom(reader);
+            }
         }
 
         private string GetPlayerInfo(int index)

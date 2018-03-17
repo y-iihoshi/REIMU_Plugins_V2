@@ -150,10 +150,12 @@ namespace ReimuPlugins.Common
         /// <param name="input">An input stream.</param>
         public virtual void Read(Stream input)
         {
-            var reader = new BinaryReader(input);
-            this.ReplayData.ReadFrom(reader);
-            this.UserInfo0.ReadFrom(reader);
-            this.UserInfo1.ReadFrom(reader);
+            using (var reader = new BinaryReader(input, Enc.UTF8NoBOM, true))
+            {
+                this.ReplayData.ReadFrom(reader);
+                this.UserInfo0.ReadFrom(reader);
+                this.UserInfo1.ReadFrom(reader);
+            }
         }
 
         /// <summary>
@@ -174,11 +176,12 @@ namespace ReimuPlugins.Common
         /// <param name="output">An output stream.</param>
         public void Write(Stream output)
         {
-            var writer = new BinaryWriter(output);
-            this.ReplayData.WriteTo(writer);
-            this.UserInfo0.WriteTo(writer);
-            this.UserInfo1.WriteTo(writer);
-            writer.Flush();
+            using (var writer = new BinaryWriter(output, Enc.UTF8NoBOM, true))
+            {
+                this.ReplayData.WriteTo(writer);
+                this.UserInfo0.WriteTo(writer);
+                this.UserInfo1.WriteTo(writer);
+            }
         }
 
         /// <summary>
