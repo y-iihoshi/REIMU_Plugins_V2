@@ -76,6 +76,8 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\packages\IDisposableAnalyzers.0.1.4.5-dev\analyzers\dotnet\cs\IDisposableAnalyzers.Analyzers.dll" />
+    <Analyzer Include="..\packages\IDisposableAnalyzers.0.1.4.5-dev\analyzers\dotnet\cs\IDisposableAnalyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta006\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta006\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
