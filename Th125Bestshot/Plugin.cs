@@ -76,7 +76,7 @@ namespace ReimuPlugins.Th125Bestshot
 
         private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "BST2";
+            private const string ValidSignature = "BST2";
 
             private static readonly string[] PluginInfo =
             {

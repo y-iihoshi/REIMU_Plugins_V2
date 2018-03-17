@@ -69,7 +69,7 @@ namespace ReimuPlugins.Th095Bestshot
 
         private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "BSTS";
+            private const string ValidSignature = "BSTS";
 
             private static readonly string[] PluginInfo =
             {

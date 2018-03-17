@@ -79,7 +79,7 @@ namespace ReimuPlugins.Th11Replay
 
         private sealed class PluginImpl : ReimuPluginRev1<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "t11r";
+            private const string ValidSignature = "t11r";
 
             private static readonly string[] PluginInfoImpl =
             {

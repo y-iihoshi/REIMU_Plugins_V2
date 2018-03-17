@@ -69,7 +69,7 @@ namespace ReimuPlugins.Th143Screenshot
 
         private sealed class PluginImpl : ReimuPluginRev2<PluginImpl.ColumnKey>
         {
-            private static readonly string ValidSignature = "BST3";
+            private const string ValidSignature = "BST3";
 
             private static readonly string[] PluginInfo =
             {
