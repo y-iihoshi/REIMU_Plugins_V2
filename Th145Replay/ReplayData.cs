@@ -483,11 +483,22 @@ namespace ReimuPlugins.Th145Replay
                 var extracted = new byte[expectedSize];
                 var extractedSize = 0;
 
-                using (var stream = new DeflateStream(
-                    new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false),
-                    CompressionMode.Decompress))
+                MemoryStream memory = null;
+                try
                 {
-                    extractedSize = stream.Read(extracted, 0, extracted.Length);
+                    memory = new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false);
+                    using (var deflate = new DeflateStream(memory, CompressionMode.Decompress))
+                    {
+#pragma warning disable IDISP003 // Dispose previous before re-assigning.
+                        memory = null;
+#pragma warning restore IDISP003 // Dispose previous before re-assigning.
+
+                        extractedSize = deflate.Read(extracted, 0, extracted.Length);
+                    }
+                }
+                finally
+                {
+                    memory?.Dispose();
                 }
 
                 output = new byte[extractedSize];
@@ -638,10 +649,16 @@ namespace ReimuPlugins.Th145Replay
                         Extract(deflateData, out extractedData, extractedSize);
                         if (extractedData.Length == extractedSize)
                         {
-                            using (var stream = new MemoryStream(extractedData, false))
+                            MemoryStream stream = null;
+                            try
                             {
-                                using (var reader2 = new BinaryReader(stream, Enc.UTF8NoBOM, true))
+                                stream = new MemoryStream(extractedData, false);
+                                using (var reader2 = new BinaryReader(stream, Enc.UTF8NoBOM))
                                 {
+#pragma warning disable IDISP003 // Dispose previous before re-assigning.
+                                    stream = null;
+#pragma warning restore IDISP003 // Dispose previous before re-assigning.
+
                                     if (ReadDictionary(reader2) is Dictionary<object, object> dict)
                                     {
                                         this.dictionary = dict
@@ -649,6 +666,10 @@ namespace ReimuPlugins.Th145Replay
                                             .ToDictionary(pair => pair.Key as string, pair => pair.Value);
                                     }
                                 }
+                            }
+                            finally
+                            {
+                                stream?.Dispose();
                             }
                         }
                     }

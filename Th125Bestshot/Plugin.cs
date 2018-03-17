@@ -610,10 +610,17 @@ namespace ReimuPlugins.Th125Bestshot
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var data = pair.Item2;
-                        using (var stream = new IO.MemoryStream())
+
+                        IO.MemoryStream stream = null;
+                        try
                         {
-                            using (var writer = new IO.StreamWriter(stream, Enc.UTF8NoBOM, 1024, true))
+                            stream = new IO.MemoryStream();
+                            using (var writer = new IO.StreamWriter(stream, Enc.UTF8NoBOM))
                             {
+#pragma warning disable IDISP003 // Dispose previous before re-assigning.
+                                stream = null;
+#pragma warning restore IDISP003 // Dispose previous before re-assigning.
+
                                 writer.NewLine = "\r\n";
                                 writer.WriteLine("Base Point  {0}", data.BasePoint);
                                 writer.CondWriteLine(data.ClearShotBit, "Clear Shot!  + {0}", data.ClearShot);
@@ -647,6 +654,10 @@ namespace ReimuPlugins.Th125Bestshot
                             var source = stream.ToArray();
                             dst = Marshal.AllocHGlobal(source.Length);
                             Marshal.Copy(source, 0, dst, source.Length);
+                        }
+                        finally
+                        {
+                            stream?.Dispose();
                         }
                     }
 
