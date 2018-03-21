@@ -642,8 +642,10 @@ namespace ReimuPlugins.Th145Replay
 
                         version -= 1450000;
                         var remainder = version % 10;
-                        this.Version = (version / 1000f).ToString("F2", CultureInfo.CurrentCulture) +
-                            ((remainder > 0) ? ((char)((int)'a' + remainder)).ToString() : string.Empty);
+                        this.Version = (version / 1000f).ToString("F2", CultureInfo.InvariantCulture) +
+                            ((remainder > 0)
+                                ? ((char)((int)'a' + remainder)).ToString(CultureInfo.InvariantCulture)
+                                : string.Empty);
 
                         byte[] extractedData;
                         Extract(deflateData, out extractedData, extractedSize);
