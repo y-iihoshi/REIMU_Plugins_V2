@@ -109,7 +109,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "シーン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -119,7 +119,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "スペルカード名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -128,8 +128,8 @@ namespace ReimuPlugins.Th095Bestshot
                         {
                             Title = "幅\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -138,8 +138,8 @@ namespace ReimuPlugins.Th095Bestshot
                         {
                             Title = "高さ\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -148,8 +148,8 @@ namespace ReimuPlugins.Th095Bestshot
                         {
                             Title = "評価点\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -158,8 +158,8 @@ namespace ReimuPlugins.Th095Bestshot
                         {
                             Title = "処理落ち率\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Float,
-                            System = SystemInfoType.String,
+                            Sort = SortType.FloatingPoint,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -168,7 +168,7 @@ namespace ReimuPlugins.Th095Bestshot
                         {
                             Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
+                            Sort = SortType.Integer,
                             System = SystemInfoType.FileSize,
                         }
                     },
@@ -189,7 +189,7 @@ namespace ReimuPlugins.Th095Bestshot
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                 };

@@ -113,7 +113,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "バージョン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -123,7 +123,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "モード\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -133,7 +133,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プレイヤー 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -143,7 +143,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "色 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -153,7 +153,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "スペルカード 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -163,7 +163,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プロファイル 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -173,7 +173,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プレイヤー 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -183,7 +183,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "色 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -193,7 +193,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "スペルカード 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -203,7 +203,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "プロファイル 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -213,7 +213,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "ステージ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -223,7 +223,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "BGM\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -233,7 +233,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -242,7 +242,7 @@ namespace ReimuPlugins.Th145Replay
                         {
                             Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
+                            Sort = SortType.Integer,
                             System = SystemInfoType.FileSize,
                         }
                     },
@@ -263,7 +263,7 @@ namespace ReimuPlugins.Th145Replay
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                 };

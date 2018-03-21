@@ -119,7 +119,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "No.\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -129,7 +129,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "プレイヤー名\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -139,7 +139,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "プレイ時刻\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -149,7 +149,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "使用キャラ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -159,7 +159,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "難易度\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -169,7 +169,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "ステージ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -178,8 +178,8 @@ namespace ReimuPlugins.Th11Replay
                         {
                             Title = "スコア\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -188,8 +188,8 @@ namespace ReimuPlugins.Th11Replay
                         {
                             Title = "処理落ち率\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Float,
-                            System = SystemInfoType.String,
+                            Sort = SortType.FloatingPoint,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -199,7 +199,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "バージョン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -209,7 +209,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "コメント\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -218,7 +218,7 @@ namespace ReimuPlugins.Th11Replay
                         {
                             Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
+                            Sort = SortType.Integer,
                             System = SystemInfoType.FileSize,
                         }
                     },
@@ -239,7 +239,7 @@ namespace ReimuPlugins.Th11Replay
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                 };

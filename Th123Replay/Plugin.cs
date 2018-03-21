@@ -111,7 +111,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "バージョン\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -121,7 +121,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "モード\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -131,7 +131,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "プレイヤー 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -141,7 +141,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "色 1\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -151,7 +151,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "プレイヤー 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -161,7 +161,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "色 2\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -171,7 +171,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "ステージ\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -181,7 +181,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "BGM\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -190,7 +190,7 @@ namespace ReimuPlugins.Th123Replay
                         {
                             Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
+                            Sort = SortType.Integer,
                             System = SystemInfoType.FileSize,
                         }
                     },
@@ -211,7 +211,7 @@ namespace ReimuPlugins.Th123Replay
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                 };

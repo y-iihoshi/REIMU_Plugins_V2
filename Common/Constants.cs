@@ -105,6 +105,7 @@ namespace ReimuPlugins.Common
     /// </summary>
     public enum SortType
     {
+#pragma warning disable CA1720 // Identifier contains type name
         /// <summary>
         /// String sort.
         /// </summary>
@@ -113,17 +114,18 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Integer sort.
         /// </summary>
-        Number,
+        Integer,
+#pragma warning restore CA1720 // Identifier contains type name
 
         /// <summary>
         /// Floating point sort.
         /// </summary>
-        Float,
+        FloatingPoint,
 
         /// <summary>
         /// Hexadecimal sort.
         /// </summary>
-        Hex,
+        Hexadecimal,
     }
 
     /// <summary>
@@ -134,7 +136,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Not any system information.
         /// </summary>
-        String = 0,
+        None = 0,
 
         /// <summary>
         /// The file path.

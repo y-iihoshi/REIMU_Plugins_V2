@@ -109,7 +109,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "日付\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -118,8 +118,8 @@ namespace ReimuPlugins.Th143Screenshot
                         {
                             Title = "シーン\0",
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -128,8 +128,8 @@ namespace ReimuPlugins.Th143Screenshot
                         {
                             Title = "日付-シーン\0",
                             Align = TextAlign.Left,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -138,8 +138,8 @@ namespace ReimuPlugins.Th143Screenshot
                         {
                             Title = "幅\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -148,8 +148,8 @@ namespace ReimuPlugins.Th143Screenshot
                         {
                             Title = "高さ\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
-                            System = SystemInfoType.String,
+                            Sort = SortType.Integer,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -159,7 +159,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "日時\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -168,8 +168,8 @@ namespace ReimuPlugins.Th143Screenshot
                         {
                             Title = "処理落ち率\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Float,
-                            System = SystemInfoType.String,
+                            Sort = SortType.FloatingPoint,
+                            System = SystemInfoType.None,
                         }
                     },
                     {
@@ -178,7 +178,7 @@ namespace ReimuPlugins.Th143Screenshot
                         {
                             Title = "ファイルサイズ\0",
                             Align = TextAlign.Right,
-                            Sort = SortType.Number,
+                            Sort = SortType.Integer,
                             System = SystemInfoType.FileSize,
                         }
                     },
@@ -199,7 +199,7 @@ namespace ReimuPlugins.Th143Screenshot
                             Title = "\0",
                             Align = TextAlign.Left,
                             Sort = SortType.String,
-                            System = SystemInfoType.String,
+                            System = SystemInfoType.None,
                         }
                     },
                 };
