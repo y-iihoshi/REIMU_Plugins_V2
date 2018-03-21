@@ -648,12 +648,13 @@ namespace ReimuPlugins.Th125Bestshot
                                 writer.WriteLine();
                                 writer.WriteLine("Result Score  {0}", data.ResultScore);
                                 writer.Write("\0");
-                            }
+                                writer.Flush();
 
-                            stream.Seek(0, IO.SeekOrigin.Begin);
-                            var source = stream.ToArray();
-                            dst = Marshal.AllocHGlobal(source.Length);
-                            Marshal.Copy(source, 0, dst, source.Length);
+                                writer.BaseStream.Seek(0, IO.SeekOrigin.Begin);
+                                var source = ((IO.MemoryStream)writer.BaseStream).ToArray();
+                                dst = Marshal.AllocHGlobal(source.Length);
+                                Marshal.Copy(source, 0, dst, source.Length);
+                            }
                         }
                         finally
                         {
