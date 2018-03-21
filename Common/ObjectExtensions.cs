@@ -30,7 +30,7 @@ namespace ReimuPlugins.Common
 
             if (!Enum.IsDefined(type, value))
             {
-                throw new ArgumentOutOfRangeException("value");
+                throw new ArgumentOutOfRangeException(nameof(value));
             }
 
             return (TEnum)Enum.ToObject(type, value);

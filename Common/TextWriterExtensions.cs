@@ -28,7 +28,7 @@ namespace ReimuPlugins.Common
         {
             if (writer == null)
             {
-                throw new ArgumentNullException("writer");
+                throw new ArgumentNullException(nameof(writer));
             }
 
             if (cond)
@@ -48,7 +48,7 @@ namespace ReimuPlugins.Common
         {
             if (writer == null)
             {
-                throw new ArgumentNullException("writer");
+                throw new ArgumentNullException(nameof(writer));
             }
 
             if (cond)
@@ -68,7 +68,7 @@ namespace ReimuPlugins.Common
         {
             if (writer == null)
             {
-                throw new ArgumentNullException("writer");
+                throw new ArgumentNullException(nameof(writer));
             }
 
             if (cond)

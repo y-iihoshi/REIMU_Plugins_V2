@@ -62,12 +62,12 @@ namespace ReimuPlugins.Common
         {
             if (stream == null)
             {
-                throw new ArgumentNullException("stream");
+                throw new ArgumentNullException(nameof(stream));
             }
 
             if (!stream.CanRead)
             {
-                throw new ArgumentException("stream must be readable", "stream");
+                throw new ArgumentException("stream must be readable", nameof(stream));
             }
 
             this.stream = stream;

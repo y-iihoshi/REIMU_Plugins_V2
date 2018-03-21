@@ -39,7 +39,7 @@ namespace ReimuPlugins.Common
         {
             if (bitmap == null)
             {
-                throw new ArgumentNullException("bitmap");
+                throw new ArgumentNullException(nameof(bitmap));
             }
 
             var permission = new SecurityPermission(SecurityPermissionFlag.UnmanagedCode);

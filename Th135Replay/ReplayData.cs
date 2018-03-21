@@ -528,7 +528,7 @@ namespace ReimuPlugins.Th135Replay
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException("key");
+                        throw new ArgumentOutOfRangeException(nameof(key));
                     }
                 }
             }
@@ -546,7 +546,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                         else
                         {
-                            throw new ArgumentOutOfRangeException("key2");
+                            throw new ArgumentOutOfRangeException(nameof(key2));
                         }
                     }
                     else
@@ -570,7 +570,7 @@ namespace ReimuPlugins.Th135Replay
                         }
                         else
                         {
-                            throw new ArgumentOutOfRangeException("key3");
+                            throw new ArgumentOutOfRangeException(nameof(key3));
                         }
                     }
                     else
