@@ -37,15 +37,10 @@ namespace ReimuPlugins.Common
         /// </param>
         public BitmapLock(Bitmap bitmap, ImageLockMode mode)
         {
-            if (bitmap == null)
-            {
-                throw new ArgumentNullException(nameof(bitmap));
-            }
-
             var permission = new SecurityPermission(SecurityPermissionFlag.UnmanagedCode);
             permission.Demand();
 
-            this.bitmap = bitmap;
+            this.bitmap = bitmap ?? throw new ArgumentNullException(nameof(bitmap));
             this.data = bitmap.LockBits(
                 new Rectangle(0, 0, bitmap.Width, bitmap.Height), mode, bitmap.PixelFormat);
         }
