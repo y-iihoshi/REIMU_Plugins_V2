@@ -573,8 +573,7 @@ namespace ReimuPlugins.Th145Replay
             {
                 get
                 {
-                    var array = this[key1] as object[];
-                    if (array != null)
+                    if (this[key1] is object[] array)
                     {
                         if ((key2 >= 0) && (key2 < array.Length))
                         {
@@ -596,8 +595,7 @@ namespace ReimuPlugins.Th145Replay
             {
                 get
                 {
-                    var dict = this[key1, key2] as Dictionary<object, object>;
-                    if (dict != null)
+                    if (this[key1, key2] is Dictionary<object, object> dict)
                     {
                         if (dict.TryGetValue(key3, out object value))
                         {
