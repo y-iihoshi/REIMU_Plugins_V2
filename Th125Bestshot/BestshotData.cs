@@ -48,7 +48,7 @@ namespace ReimuPlugins.Th125Bestshot
             this.HalfHeight = 0;
             this.DateTime = 0;
             this.SlowRate = 0;
-            this.bonusFields = default(BitVector32);
+            this.bonusFields = default;
             this.ResultScore = 0;
             this.BasePoint = 0;
             this.RiskBonus = 0;
