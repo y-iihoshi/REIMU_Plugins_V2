@@ -303,8 +303,7 @@ namespace ReimuPlugins.Th143Screenshot
                         foreach (var key in keys)
                         {
                             var fileInfo = new FileInfo { Text = string.Empty };
-                            Func<ScreenshotData, string> getter;
-                            if (FileInfoGetters.TryGetValue(key, out getter))
+                            if (FileInfoGetters.TryGetValue(key, out Func<ScreenshotData, string> getter))
                             {
                                 fileInfo.Text = getter(pair.Item2);
                             }

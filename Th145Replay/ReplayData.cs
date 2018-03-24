@@ -271,8 +271,7 @@ namespace ReimuPlugins.Th145Replay
         {
             get
             {
-                string name;
-                return BackgroundNames.TryGetValue(this.BackgroundId, out name) ? name : string.Empty;
+                return BackgroundNames.TryGetValue(this.BackgroundId, out string name) ? name : string.Empty;
             }
         }
 
@@ -285,8 +284,7 @@ namespace ReimuPlugins.Th145Replay
         {
             get
             {
-                string name;
-                return BgmNames.TryGetValue(this.BgmId, out name) ? name : string.Empty;
+                return BgmNames.TryGetValue(this.BgmId, out string name) ? name : string.Empty;
             }
         }
 
@@ -314,8 +312,7 @@ namespace ReimuPlugins.Th145Replay
         {
             get
             {
-                string name;
-                return SpellCardNames[this.Character1].TryGetValue(this.SpellCard1Id, out name)
+                return SpellCardNames[this.Character1].TryGetValue(this.SpellCard1Id, out string name)
                     ? name : string.Empty;
             }
         }
@@ -349,8 +346,7 @@ namespace ReimuPlugins.Th145Replay
         {
             get
             {
-                string name;
-                return SpellCardNames[this.Character2].TryGetValue(this.SpellCard2Id, out name)
+                return SpellCardNames[this.Character2].TryGetValue(this.SpellCard2Id, out string name)
                     ? name : string.Empty;
             }
         }
@@ -401,8 +397,8 @@ namespace ReimuPlugins.Th145Replay
         {
             var type = reader.ReadUInt32();
 
-            Func<BinaryReader, object> objectReader;
-            obj = ObjectReaders.TryGetValue(type, out objectReader) ? objectReader(reader) : null;
+            obj = ObjectReaders.TryGetValue(type, out Func<BinaryReader, object> objectReader)
+                ? objectReader(reader) : null;
 
             return obj != null;
         }
@@ -421,11 +417,9 @@ namespace ReimuPlugins.Th145Replay
                 var array = new object[num];
                 for (var count = 0; count < num; count++)
                 {
-                    object index;
-                    if (ReadObject(reader, out index))
+                    if (ReadObject(reader, out object index))
                     {
-                        object value;
-                        if (ReadObject(reader, out value))
+                        if (ReadObject(reader, out object value))
                         {
                             if ((index is int) && ((int)index < num))
                             {
@@ -435,8 +429,7 @@ namespace ReimuPlugins.Th145Replay
                     }
                 }
 
-                object endmark;
-                if (ReadObject(reader, out endmark) && (endmark is EndMark))
+                if (ReadObject(reader, out object endmark) && (endmark is EndMark))
                 {
                     return array;
                 }
@@ -450,16 +443,14 @@ namespace ReimuPlugins.Th145Replay
             var dictionary = new Dictionary<object, object>();
             while (true)
             {
-                object key;
-                if (ReadObject(reader, out key))
+                if (ReadObject(reader, out object key))
                 {
                     if (key is EndMark)
                     {
                         break;
                     }
 
-                    object value;
-                    if (ReadObject(reader, out value))
+                    if (ReadObject(reader, out object value))
                     {
                         dictionary.Add(key, value);
                     }
@@ -567,8 +558,7 @@ namespace ReimuPlugins.Th145Replay
             {
                 get
                 {
-                    object value;
-                    if (this.dictionary.TryGetValue(key, out value))
+                    if (this.dictionary.TryGetValue(key, out object value))
                     {
                         return value;
                     }
@@ -609,8 +599,7 @@ namespace ReimuPlugins.Th145Replay
                     var dict = this[key1, key2] as Dictionary<object, object>;
                     if (dict != null)
                     {
-                        object value;
-                        if (dict.TryGetValue(key3, out value))
+                        if (dict.TryGetValue(key3, out object value))
                         {
                             return value;
                         }
@@ -647,8 +636,7 @@ namespace ReimuPlugins.Th145Replay
                                 ? ((char)((int)'a' + remainder)).ToString(CultureInfo.InvariantCulture)
                                 : string.Empty);
 
-                        byte[] extractedData;
-                        Extract(deflateData, out extractedData, extractedSize);
+                        Extract(deflateData, out byte[] extractedData, extractedSize);
                         if (extractedData.Length == extractedSize)
                         {
                             MemoryStream stream = null;

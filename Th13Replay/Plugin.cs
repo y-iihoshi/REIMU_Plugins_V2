@@ -366,8 +366,7 @@ namespace ReimuPlugins.Th13Replay
                             }
                             else
                             {
-                                Func<ReplayData, string> getter;
-                                if (FileInfoGetters.TryGetValue(key, out getter))
+                                if (FileInfoGetters.TryGetValue(key, out Func<ReplayData, string> getter))
                                 {
                                     fileInfo.Text = getter(pair.Item2);
                                 }

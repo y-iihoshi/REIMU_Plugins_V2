@@ -9,7 +9,6 @@ namespace ReimuPlugins.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     /// <summary>
@@ -27,8 +26,7 @@ namespace ReimuPlugins.Common
         public static string ToShortName<T>(this T enumValue)
             where T : struct, IComparable, IFormattable, IConvertible
         {
-            EnumAltNameAttribute attr;
-            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out attr)
+            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out EnumAltNameAttribute attr)
                 ? attr.ShortName : string.Empty;
         }
 
@@ -42,8 +40,7 @@ namespace ReimuPlugins.Common
         public static string ToLongName<T>(this T enumValue)
             where T : struct, IComparable, IFormattable, IConvertible
         {
-            EnumAltNameAttribute attr;
-            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out attr)
+            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out EnumAltNameAttribute attr)
                 ? attr.LongName : string.Empty;
         }
 

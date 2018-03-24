@@ -769,8 +769,7 @@ namespace ReimuPlugins.Th123Replay
         {
             get
             {
-                string name;
-                return StageNames.TryGetValue(this.info.Stage, out name) ? name : string.Empty;
+                return StageNames.TryGetValue(this.info.Stage, out string name) ? name : string.Empty;
             }
         }
 
@@ -783,8 +782,7 @@ namespace ReimuPlugins.Th123Replay
         {
             get
             {
-                string name;
-                return BgmNames.TryGetValue(this.info.Bgm, out name) ? name : string.Empty;
+                return BgmNames.TryGetValue(this.info.Bgm, out string name) ? name : string.Empty;
             }
         }
 
@@ -827,8 +825,7 @@ namespace ReimuPlugins.Th123Replay
         {
             get
             {
-                string version;
-                return Versions.TryGetValue(this.info.Version, out version) ? version : string.Empty;
+                return Versions.TryGetValue(this.info.Version, out string version) ? version : string.Empty;
             }
         }
 
@@ -859,8 +856,7 @@ namespace ReimuPlugins.Th123Replay
                     {
                         var cardNames = SystemCardNames.ContainsKey(pair.Key)
                             ? SystemCardNames : CardNames[deck.Character];
-                        string name;
-                        return cardNames.TryGetValue(pair.Key, out name)
+                        return cardNames.TryGetValue(pair.Key, out string name)
                             ? string.Format(CultureInfo.CurrentCulture, "{0} * {1}", name, pair.Value)
                             : string.Empty;
                     }));
