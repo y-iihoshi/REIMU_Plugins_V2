@@ -32,7 +32,9 @@
     <Compile Include="conf.py" />
     <Content Include="manual.rst" />
     <Folder Include="_static\" />
+    <None Include="_static\.keep" />
     <Folder Include="_templates\" />
+    <None Include="_templates\.keep" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
