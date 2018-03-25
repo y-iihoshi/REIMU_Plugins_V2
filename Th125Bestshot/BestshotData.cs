@@ -5,11 +5,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
-
 namespace ReimuPlugins.Th125Bestshot
 {
-    using System;
     using System.Collections.Specialized;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;

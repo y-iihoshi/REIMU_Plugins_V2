@@ -5,8 +5,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
-
 namespace ReimuPlugins.Th14Replay
 {
     using System;
@@ -244,10 +242,10 @@ namespace ReimuPlugins.Th14Replay
                     },
                 };
 
-            [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
             private static readonly Dictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
                 new Dictionary<ColumnKey, Func<ReplayData, string>>
                 {
+#pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
                     { ColumnKey.Player,    (data) => data.Name     },
                     { ColumnKey.PlayTime,  (data) => data.Date     },
                     { ColumnKey.Character, (data) => data.Chara    },
@@ -257,6 +255,7 @@ namespace ReimuPlugins.Th14Replay
                     { ColumnKey.SlowRate,  (data) => data.SlowRate },
                     { ColumnKey.Version,   (data) => data.Version  },
                     { ColumnKey.Comment,   (data) => data.Comment  },
+#pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
                 };
 
             internal enum ColumnKey

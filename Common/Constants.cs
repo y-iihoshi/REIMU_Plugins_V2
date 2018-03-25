@@ -5,8 +5,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileHeaderFileNameDocumentationMustMatchTypeName", Justification = "Reviewed.")]
-
 namespace ReimuPlugins.Common
 {
     /// <summary>

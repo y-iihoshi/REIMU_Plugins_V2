@@ -8,7 +8,6 @@
 namespace ReimuPlugins.Common
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Provides static methods for creating disposable tuple objects.
@@ -37,9 +36,10 @@ namespace ReimuPlugins.Common
     /// </summary>
     /// <typeparam name="T1">The type of the tuple's first component.</typeparam>
     /// <typeparam name="T2">The type of the tuple's second component.</typeparam>
-    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
 #pragma warning disable CA1036 // Override methods on comparable types
+#pragma warning disable SA1402 // File may only contain a single type
     public class DisposableTuple<T1, T2> : Tuple<T1, T2>, IDisposable
+#pragma warning restore SA1402 // File may only contain a single type
 #pragma warning restore CA1036 // Override methods on comparable types
     {
         /// <summary>

@@ -10,7 +10,6 @@
 namespace ReimuPlugins.Common
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// The base class for the classes implementing the REIMU plugin interface (Revision 2).

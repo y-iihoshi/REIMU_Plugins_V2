@@ -5,8 +5,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed.")]
-
 namespace ReimuPlugins.Th135Replay
 {
     using System;
@@ -19,9 +17,9 @@ namespace ReimuPlugins.Th135Replay
     using System.Linq;
     using ReimuPlugins.Common;
 
-    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
     public enum GameMode
     {
+#pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
 #pragma warning disable SA1134 // Attributes should not share line
         [EnumAltName("Vs Com")]                        VersusCom,
         [EnumAltName("Vs Player")]                     VersusPlayer,
@@ -32,11 +30,12 @@ namespace ReimuPlugins.Th135Replay
 #endif
         [EnumAltName("Story Mode")]                    Story = 10,
 #pragma warning restore SA1134 // Attributes should not share line
+#pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
     }
 
-    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
     public enum Character
     {
+#pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
 #pragma warning disable SA1134 // Attributes should not share line
         [EnumAltName("霊夢",        LongName = "博麗 霊夢")]        Reimu,
         [EnumAltName("魔理沙",      LongName = "霧雨 魔理沙")]      Marisa,
@@ -49,6 +48,7 @@ namespace ReimuPlugins.Th135Replay
         [EnumAltName("マミゾウ",    LongName = "二ッ岩 マミゾウ")]  Mamizou,
         [EnumAltName("こころ",      LongName = "秦 こころ")]        Kokoro,
 #pragma warning restore SA1134 // Attributes should not share line
+#pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
     }
 
     public enum Direction
@@ -79,10 +79,10 @@ namespace ReimuPlugins.Th135Replay
                 { 0x0A000020, reader => ReadDictionary(reader) },
             };
 
-        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
         private static readonly Dictionary<int, string> BackgroundNames =
             new Dictionary<int, string>
             {
+#pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
                 {  0, "博麗神社" },
                 {  1, "人間の里" },
                 {  2, "雲上の宝船" },
@@ -94,6 +94,7 @@ namespace ReimuPlugins.Th135Replay
                 {  8, "妖怪狸の森" },
                 {  9, "妖怪狸の森(夜)" },
                 { 10, "人間の里(夜)" },
+#pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
         private static readonly Dictionary<int, string> BgmNames =
@@ -112,10 +113,10 @@ namespace ReimuPlugins.Th135Replay
                 { 111, "亡失のエモーション" },
             };
 
-        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1025:CodeMustNotContainMultipleWhitespaceInARow", Justification = "Reviewed.")]
         private static readonly Dictionary<int, string> EquipNames =
             new Dictionary<int, string>
             {
+#pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
                 {    -1, "（なし）" },
                 {     0, "霊撃札" },
                 {     1, "マジックキノコ" },
@@ -229,6 +230,7 @@ namespace ReimuPlugins.Th135Replay
                 { 10010, "怒面「怒れる忌狼の面」" },
                 { 10011, "憑依「喜怒哀楽ポゼッション」" },
                 { 10012, "憂面「杞人地を憂う」" },
+#pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
         private Info info;
