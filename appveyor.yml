@@ -4,16 +4,14 @@ image: Visual Studio 2017
 configuration:
   - Release
 environment:
-  PYTHONPATH: C:\Python36-x64
+  PYTHON: C:\Python36-x64
 install:
-  - cmd: >-
-      curl -LO https://aka.ms/vs/15/release/vs_community.exe
-
-      vs_community.exe modify --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community" --add Microsoft.VisualStudio.Workload.Python --quiet --wait
-
-      %PYTHONPATH%\python -m pip install -U pip
-
-      %PYTHONPATH%\python -m pip install -r ManualGenerator\requirements.txt
+  - cmd: curl -LO https://aka.ms/vs/15/release/vs_community.exe
+  - cmd: vs_community.exe modify --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community" --add Microsoft.VisualStudio.Workload.Python --quiet --wait
+  - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
+  - cmd: python --version
+  - cmd: python -m pip install -U pip
+  - cmd: python -m pip install -r ManualGenerator\requirements.txt
 
 before_build:
   - cmd: nuget restore
@@ -34,10 +32,3 @@ deploy:
   description: ''
   on:
     appveyor_repo_tag: true
-
-for:
-  - branches:
-      except:
-        - master
-    configuration: Debug
-    deploy: off
