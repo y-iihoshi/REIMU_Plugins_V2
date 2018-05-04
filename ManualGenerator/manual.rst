@@ -26,7 +26,7 @@ REIMU に導入することで、 東方 Project
 前提条件
 ^^^^^^^^
 
-本プラグインセットを利用するには .NET Framework 4 以降が必要です。
+本プラグインセットを利用するには .NET Framework 4.5.2 以降が必要です。
 
 .NET Framework のバージョン間の互換性やインストール方法などについては、
 下記リンク先の記事が参考になります:
@@ -34,15 +34,14 @@ REIMU に導入することで、 東方 Project
 * `Tech TIPS：.NET Frameworkのバージョンを整理する (1/2) - ＠IT
   <http://www.atmarkit.co.jp/ait/articles/1211/16/news093.html>`_
 
-2017 年 8 月現在、
+2018 年 5 月現在、
 本プラグインセットは下記環境でのみ開発及び動作確認を実施しています。
 下記以外の環境で動作しないなどのご報告を受けても対応できない可能性があります。
 
-* Windows 10 Pro Version 1703 (64bit)
-* .NET Framework 4.7
-* Visual Studio Community 2015 Update 3
-* Python Tools for Visual Studio 2.2.6
-* Python 3.5.2
+* Windows 10 Pro Version 1803 (64bit)
+* .NET Framework 4.7.2
+* Visual Studio Community 2017 15.6.7
+* Python 3.6.5
 
 免責事項
 ^^^^^^^^
@@ -99,6 +98,7 @@ th143replay.rpi     弾幕アマノジャク ver. 1.00a (リプレイ用)
 th143screenshot.rpi 弾幕アマノジャク ver. 1.00a (スクリーンショット用)
 th145replay.rpi     東方深秘録 ver. 1.41 (リプレイ用)
 th15replay.rpi      東方紺珠伝 ver. 1.00b (リプレイ用)
+th155replay.rpi     東方憑依華 ver. 1.10c (リプレイ用)
 th16replay.rpi      東方天空璋 ver. 1.00a (リプレイ用)
 =================== ==================================================
 
@@ -108,7 +108,7 @@ th16replay.rpi      東方天空璋 ver. 1.00a (リプレイ用)
 以下作品については、
 本プラグインセット作者の原作プレイ進捗状況に伴って今後対応予定です:
 
-* 東方憑依華
+* 今後きっと頒布される新作
 
 対応予定なし
 ^^^^^^^^^^^^
@@ -199,6 +199,9 @@ REIMU 本体のヘルプを参照してください。
 
 変更履歴
 --------
+
+Ver. 20180504
+    * 東方憑依華に対応
 
 Ver. 20170924
     * 東方天空璋に対応

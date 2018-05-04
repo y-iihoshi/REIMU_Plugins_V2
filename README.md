@@ -29,10 +29,11 @@ This project, written in C#, is a redesigning version of
 * TH14.3 弾幕アマノジャク　～ Impossible Spell Card. (Replays and screenshots)
 * TH14.5 東方深秘録　～ Urban Legend in Limbo.
 * TH15 東方紺珠伝　～ Legacy of Lunatic Kingdom.
-
-### Will be supported
 * TH15.5 東方憑依華　～ Antinomy of Common Flowers.
 * Th16 東方天空璋　～ Hidden Star in Four Seasons.
+
+### Will be supported
+* (empty)
 
 ### Not supported
 The followings are not supported because these plugins have already been
@@ -54,13 +55,14 @@ test enough.
 
 ## Environments
 
-### Built environment
-* Windows 10 Pro Version 1703 (64bit)
-* .NET Framework 4.7
-* Visual Studio Community 2015 Update 3
+### Development environment
+* Windows 10 Pro Version 1803 (64bit)
+* .NET Framework 4.7.2
+* Visual Studio Community 2017 15.6.7
+* Python 3.6.5
 
 ### Tested environment
-Same as above but you can use .NET Framework 4.0 or later.
+Same as above but you can use .NET Framework 4.5.2 or later.
 
 ## Installation
 
