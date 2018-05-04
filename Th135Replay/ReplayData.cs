@@ -427,7 +427,9 @@ namespace ReimuPlugins.Th135Replay
                 MemoryStream memory = null;
                 try
                 {
+#pragma warning disable IDISP001 // Dispose created.
                     memory = new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false);
+#pragma warning restore IDISP001 // Dispose created.
                     using (var deflate = new DeflateStream(memory, CompressionMode.Decompress))
                     {
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
@@ -596,7 +598,9 @@ namespace ReimuPlugins.Th135Replay
                             MemoryStream stream = null;
                             try
                             {
+#pragma warning disable IDISP001 // Dispose created.
                                 stream = new MemoryStream(extractedData, false);
+#pragma warning restore IDISP001 // Dispose created.
                                 using (var reader2 = new BinaryReader(stream, Enc.UTF8NoBOM))
                                 {
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
