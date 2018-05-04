@@ -40,7 +40,7 @@ namespace ReimuPlugins.Th155Replay
         [EnumAltName("N")] Normal,
         [EnumAltName("H")] Hard,
         [EnumAltName("L")] Lunatic,
-        [EnumAltName("O")] OverDrive,
+        [EnumAltName("D")] OverDrive,
 #pragma warning restore SA1134 // Attributes should not share line
     }
 

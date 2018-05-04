@@ -40,7 +40,7 @@ REIMU に導入することで、 東方 Project
 
 * Windows 10 Pro Version 1803 (64bit)
 * .NET Framework 4.7.2
-* Visual Studio Community 2017 15.6.7
+* Visual Studio Community 2017 Version 15.6.7
 * Python 3.6.5
 
 免責事項
