@@ -31,6 +31,7 @@ This project, written in C#, is a redesigning version of
 * TH15 東方紺珠伝　～ Legacy of Lunatic Kingdom.
 * TH15.5 東方憑依華　～ Antinomy of Common Flowers.
 * Th16 東方天空璋　～ Hidden Star in Four Seasons.
+* Th16.5 秘封ナイトメアダイアリー　～ Violet Detector.
 
 ### Will be supported
 * (empty)
@@ -56,9 +57,9 @@ test enough.
 ## Environments
 
 ### Development environment
-* Windows 10 Pro Version 1803 (64bit)
+* Windows 10 Pro Version 1809 (64bit)
 * .NET Framework 4.7.2
-* Visual Studio Community 2017 15.6.7
+* Visual Studio Community 2017 15.9.11
 * Python 3.6.5
 
 ### Tested environment

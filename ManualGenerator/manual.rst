@@ -34,13 +34,13 @@ REIMU に導入することで、 東方 Project
 * `Tech TIPS：.NET Frameworkのバージョンを整理する (1/2) - ＠IT
   <http://www.atmarkit.co.jp/ait/articles/1211/16/news093.html>`_
 
-2018 年 5 月現在、
+2019 年 4 月現在、
 本プラグインセットは下記環境でのみ開発及び動作確認を実施しています。
 下記以外の環境で動作しないなどのご報告を受けても対応できない可能性があります。
 
-* Windows 10 Pro Version 1803 (64bit)
+* Windows 10 Pro Version 1809 (64bit)
 * .NET Framework 4.7.2
-* Visual Studio Community 2017 Version 15.6.7
+* Visual Studio Community 2017 Version 15.9.11
 * Python 3.6.5
 
 免責事項
@@ -81,26 +81,28 @@ REIMU に導入することで、 東方 Project
 本プラグインセットに含まれる各プラグインが対応している、
 東方 Project の作品名及びバージョンは以下の通りです:
 
-=================== ==================================================
-プラグイン名        対応作品名及びバージョン
-=================== ==================================================
-th095bestshot.rpi   東方文花帖 ver. 1.02a (ベストショット用)
-th105replay.rpi     東方緋想天 ver. 1.06a (リプレイ用)
-th12replay.rpi      東方星蓮船 ver. 1.00b (リプレイ用)
-th123replay.rpi     東方非想天則 ver. 1.10a (リプレイ用)
-th125replay.rpi     ダブルスポイラー ver. 1.00a (リプレイ用)
-th125bestshot.rpi   ダブルスポイラー ver. 1.00a (ベストショット用)
-th128replay.rpi     妖精大戦争 ver. 1.00a (リプレイ用)
-th13replay.rpi      東方神霊廟 ver. 1.00c (リプレイ用)
-th135replay.rpi     東方心綺楼 ver. 1.34b (リプレイ用)
-th14replay.rpi      東方輝針城 ver. 1.00b (リプレイ用)
-th143replay.rpi     弾幕アマノジャク ver. 1.00a (リプレイ用)
-th143screenshot.rpi 弾幕アマノジャク ver. 1.00a (スクリーンショット用)
-th145replay.rpi     東方深秘録 ver. 1.41 (リプレイ用)
-th15replay.rpi      東方紺珠伝 ver. 1.00b (リプレイ用)
-th155replay.rpi     東方憑依華 ver. 1.10c (リプレイ用)
-th16replay.rpi      東方天空璋 ver. 1.00a (リプレイ用)
-=================== ==================================================
+================================ ======================================================
+プラグイン名                     対応作品名及びバージョン
+================================ ======================================================
+ReimuPlugins.Th095Bestshot.rpi   東方文花帖 ver. 1.02a (ベストショット用)
+ReimuPlugins.Th105Replay.rpi     東方緋想天 ver. 1.06a (リプレイ用)
+ReimuPlugins.Th12Replay.rpi      東方星蓮船 ver. 1.00b (リプレイ用)
+ReimuPlugins.Th123Replay.rpi     東方非想天則 ver. 1.10a (リプレイ用)
+ReimuPlugins.Th125Replay.rpi     ダブルスポイラー ver. 1.00a (リプレイ用)
+ReimuPlugins.Th125Bestshot.rpi   ダブルスポイラー ver. 1.00a (ベストショット用)
+ReimuPlugins.Th128Replay.rpi     妖精大戦争 ver. 1.00a (リプレイ用)
+ReimuPlugins.Th13Replay.rpi      東方神霊廟 ver. 1.00c (リプレイ用)
+ReimuPlugins.Th135Replay.rpi     東方心綺楼 ver. 1.34b (リプレイ用)
+ReimuPlugins.Th14Replay.rpi      東方輝針城 ver. 1.00b (リプレイ用)
+ReimuPlugins.Th143Replay.rpi     弾幕アマノジャク ver. 1.00a (リプレイ用)
+ReimuPlugins.Th143Screenshot.rpi 弾幕アマノジャク ver. 1.00a (スクリーンショット用)
+ReimuPlugins.Th145Replay.rpi     東方深秘録 ver. 1.41 (リプレイ用)
+ReimuPlugins.Th15Replay.rpi      東方紺珠伝 ver. 1.00b (リプレイ用)
+ReimuPlugins.Th155Replay.rpi     東方憑依華 ver. 1.10c (リプレイ用)
+ReimuPlugins.Th16Replay.rpi      東方天空璋 ver. 1.00a (リプレイ用)
+ReimuPlugins.Th165Replay.rpi     秘封ナイトメアダイアリー ver. 1.00a (リプレイ用)
+ReimuPlugins.Th165Bestshot.rpi   秘封ナイトメアダイアリー ver. 1.00a (ベストショット用)
+================================ ======================================================
 
 対応予定あり
 ^^^^^^^^^^^^
@@ -199,6 +201,12 @@ REIMU 本体のヘルプを参照してください。
 
 変更履歴
 --------
+
+Ver. 20190415
+    * 秘封ナイトメアダイアリーに対応
+
+      * ReimuPlugins.Th165Replay.rpi: リプレイファイル用
+      * ReimuPlugins.Th165Bestshot.rpi: ベストショットファイル用
 
 Ver. 20180504
     * 東方憑依華に対応
