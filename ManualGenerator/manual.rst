@@ -34,14 +34,14 @@ REIMU に導入することで、 東方 Project
 * `Tech TIPS：.NET Frameworkのバージョンを整理する (1/2) - ＠IT
   <http://www.atmarkit.co.jp/ait/articles/1211/16/news093.html>`_
 
-2019 年 4 月現在、
+2019 年 7 月現在、
 本プラグインセットは下記環境でのみ開発及び動作確認を実施しています。
 下記以外の環境で動作しないなどのご報告を受けても対応できない可能性があります。
 
-* Windows 10 Pro Version 1809 (64bit)
-* .NET Framework 4.7.2
-* Visual Studio Community 2017 Version 15.9.11
-* Python 3.6.5
+* Windows 10 Pro Version 1903 (64bit)
+* .NET Framework 4.8
+* Visual Studio Community 2019 Version 16.1.6
+* Python 3.7.4
 
 免責事項
 ^^^^^^^^
@@ -110,7 +110,7 @@ ReimuPlugins.Th165Bestshot.rpi   秘封ナイトメアダイアリー ver. 1.00a
 以下作品については、
 本プラグインセット作者の原作プレイ進捗状況に伴って今後対応予定です:
 
-* 今後きっと頒布される新作
+* 東方鬼形獣
 
 対応予定なし
 ^^^^^^^^^^^^

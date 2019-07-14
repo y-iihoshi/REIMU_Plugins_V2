@@ -34,7 +34,7 @@ This project, written in C#, is a redesigning version of
 * Th16.5 秘封ナイトメアダイアリー　～ Violet Detector.
 
 ### Will be supported
-* (empty)
+* Th17 東方鬼形獣　～ Wily Beast and Weakest Creature.
 
 ### Not supported
 The followings are not supported because these plugins have already been
@@ -57,10 +57,10 @@ test enough.
 ## Environments
 
 ### Development environment
-* Windows 10 Pro Version 1809 (64bit)
-* .NET Framework 4.7.2
-* Visual Studio Community 2017 15.9.11
-* Python 3.6.5
+* Windows 10 Pro Version 1903 (64bit)
+* .NET Framework 4.8
+* Visual Studio Community 2019 16.1.6
+* Python 3.7.4
 
 ### Tested environment
 Same as above but you can use .NET Framework 4.5.2 or later.
