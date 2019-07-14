@@ -4,7 +4,11 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{875D8118-0EDB-49A6-B754-AC89B4115552}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		CollectArtifacts.bat = CollectArtifacts.bat
 		CustomDictionary.xml = CustomDictionary.xml
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
 		ReimuPlugins.ruleset = ReimuPlugins.ruleset
 		stylecop.json = stylecop.json
 	EndProjectSection
