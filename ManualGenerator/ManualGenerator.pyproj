@@ -22,9 +22,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.6" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="make.bat" />
     <None Include="Makefile" />
     <None Include="requirements.txt" />
