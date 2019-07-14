@@ -29,7 +29,7 @@
     <Compile Include="conf.py" />
     <Content Include="manual.rst" />
     <Folder Include="_static\" />
-    <None Include="_static\.keep" />
+    <Content Include="_static\custom.css" />
     <Folder Include="_templates\" />
     <None Include="_templates\.keep" />
   </ItemGroup>
