@@ -498,7 +498,7 @@ namespace ReimuPlugins.Th105Replay
                 },
             };
 
-        private Info info;
+        private readonly Info info;
 
         public ReplayData()
         {
@@ -626,7 +626,7 @@ namespace ReimuPlugins.Th105Replay
 
         private sealed class Deck
         {
-            private Dictionary<short, int> cards;
+            private readonly Dictionary<short, int> cards;
 
             public Deck()
             {

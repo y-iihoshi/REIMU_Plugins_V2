@@ -23,7 +23,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// <c>true</c> to leave the stream open after the <see cref="BitReader"/> object is disposed.
         /// </summary>
-        private bool leaveOpen;
+        private readonly bool leaveOpen;
 
         /// <summary>
         /// The flag that represents whether <see cref="Dispose(bool)"/> has been called.

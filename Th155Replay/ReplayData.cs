@@ -430,7 +430,7 @@ namespace ReimuPlugins.Th155Replay
                 },
             };
 
-        private Info info;
+        private readonly Info info;
 
         // NOTE: If we define this as an expression-bodied constructor, CA1812 is reported for the Info class.
         public ReplayData()

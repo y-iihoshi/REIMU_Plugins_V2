@@ -15,9 +15,9 @@ namespace ReimuPlugins.Th155Replay
     {
         private const string NotAvailable = "-";
 
-        private ReplayData data;
+        private readonly ReplayData data;
 
-        private GameMode gameMode;  // cache
+        private readonly GameMode gameMode;  // cache
 
         public ReplayDataAdapter(Stream input)
         {

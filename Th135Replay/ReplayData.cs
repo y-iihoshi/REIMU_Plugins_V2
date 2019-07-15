@@ -233,7 +233,7 @@ namespace ReimuPlugins.Th135Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private Info info;
+        private readonly Info info;
 
         public ReplayData()
         {

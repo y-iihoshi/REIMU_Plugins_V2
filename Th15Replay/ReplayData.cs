@@ -14,7 +14,7 @@ namespace ReimuPlugins.Th15Replay
 
     public sealed class ReplayData : ThReplayData
     {
-        private Dictionary<string, string> info;
+        private readonly Dictionary<string, string> info;
 
         public ReplayData()
         {

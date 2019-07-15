@@ -256,7 +256,7 @@ namespace ReimuPlugins.Th145Replay
                 },
             };
 
-        private Info info;
+        private readonly Info info;
 
         public ReplayData()
         {
