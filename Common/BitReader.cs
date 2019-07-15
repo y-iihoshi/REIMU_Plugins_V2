@@ -16,14 +16,14 @@ namespace ReimuPlugins.Common
     public class BitReader : IDisposable
     {
         /// <summary>
-        /// The stream to read.
-        /// </summary>
-        private Stream stream;
-
-        /// <summary>
         /// <c>true</c> to leave the stream open after the <see cref="BitReader"/> object is disposed.
         /// </summary>
         private readonly bool leaveOpen;
+
+        /// <summary>
+        /// The stream to read.
+        /// </summary>
+        private Stream stream;
 
         /// <summary>
         /// The flag that represents whether <see cref="Dispose(bool)"/> has been called.
@@ -70,8 +70,8 @@ namespace ReimuPlugins.Common
                 throw new ArgumentException("stream must be readable", nameof(stream));
             }
 
-            this.stream = stream;
             this.leaveOpen = leaveOpen;
+            this.stream = stream;
             this.disposed = false;
             this.current = 0;
             this.mask = 0x80;
