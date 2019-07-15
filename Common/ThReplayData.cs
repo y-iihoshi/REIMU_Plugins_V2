@@ -350,7 +350,7 @@ namespace ReimuPlugins.Common
             }
 
             /// <summary>
-            /// Gets the type of the user information. (0: replay file information, 1: comment)
+            /// Gets the type of the user information. (0: replay file information, 1: comment.)
             /// </summary>
             public int InfoType { get; private set; }
 
