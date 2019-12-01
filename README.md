@@ -4,6 +4,7 @@ REIMU plugins for Touhou replays (Redesigning)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/isxeiqhusbvoolev?svg=true)](https://ci.appveyor.com/project/y-iihoshi/reimu-plugins-v2)
 [![License](https://img.shields.io/github/license/y-iihoshi/REIMU_Plugins_V2.svg)](https://github.com/y-iihoshi/REIMU_Plugins_V2/blob/master/LICENSE.txt)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_shield)
 
 ## Introduction
 
@@ -89,3 +90,7 @@ Sorry, all plugins have Japanese resource only and don't support localization.
 [sue445]: http://www.sue445.net/ "sue445.NET"
 [REIMU]: http://www.sue445.net/downloads/reimu.html "REIMU (REplayviewer plug-in IMport Utility)"
 [V1]: https://github.com/y-iihoshi/REIMU_Plugins "REIMU_Plugins"
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_large)
