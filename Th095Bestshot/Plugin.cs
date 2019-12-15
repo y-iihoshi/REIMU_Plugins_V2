@@ -260,16 +260,12 @@ namespace ReimuPlugins.Th095Bestshot
 
                 try
                 {
-                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        if (pair.Item1 == ErrorCode.AllRight)
-                        {
-                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
-                            {
-                                var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                                signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
-                            }
-                        }
+                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
+                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -455,18 +451,16 @@ namespace ReimuPlugins.Th095Bestshot
             private static Tuple<ErrorCode, BestshotData> CreateBestshotData(
                 IntPtr src, uint size, bool withBitmap)
             {
-                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                BestshotData bestshot = null;
+
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    BestshotData bestshot = null;
-
-                    if (pair.Item1 == ErrorCode.AllRight)
-                    {
-                        bestshot = new BestshotData();
-                        bestshot.Read(pair.Item2, withBitmap);
-                    }
-
-                    return Tuple.Create(pair.Item1, bestshot);
+                    bestshot = new BestshotData();
+                    bestshot.Read(pair.Item2, withBitmap);
                 }
+
+                return Tuple.Create(pair.Item1, bestshot);
             }
         }
     }

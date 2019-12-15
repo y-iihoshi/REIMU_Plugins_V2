@@ -50,24 +50,23 @@ namespace ReimuPlugins.Th143Screenshot
 
         public void Read(Stream input, bool withBitmap)
         {
-            using (var reader = new BinaryReader(input))
-            {
-                this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
-                reader.ReadInt16();
-                this.Day = reader.ReadInt16();
-                this.Scene = reader.ReadInt16();
-                reader.ReadInt16();
-                this.Width = reader.ReadInt16();
-                this.Height = reader.ReadInt16();
-                reader.ReadInt32();
-                this.DateTime = reader.ReadUInt32();
-                this.SlowRate = reader.ReadSingle();
-                reader.ReadBytes(0x58);
+            using var reader = new BinaryReader(input);
 
-                if (withBitmap)
-                {
-                    this.Bitmap = ReadBitmap(input, this.Width, this.Height);
-                }
+            this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
+            reader.ReadInt16();
+            this.Day = reader.ReadInt16();
+            this.Scene = reader.ReadInt16();
+            reader.ReadInt16();
+            this.Width = reader.ReadInt16();
+            this.Height = reader.ReadInt16();
+            reader.ReadInt32();
+            this.DateTime = reader.ReadUInt32();
+            this.SlowRate = reader.ReadSingle();
+            reader.ReadBytes(0x58);
+
+            if (withBitmap)
+            {
+                this.Bitmap = ReadBitmap(input, this.Width, this.Height);
             }
         }
 
@@ -78,31 +77,26 @@ namespace ReimuPlugins.Th143Screenshot
 
         public void Read(string path, bool withBitmap)
         {
-            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                this.Read(stream, withBitmap);
-            }
+            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            this.Read(stream, withBitmap);
         }
 
         private static Bitmap ReadBitmap(Stream input, int width, int height)
         {
-            using (var extracted = new MemoryStream())
+            using var extracted = new MemoryStream();
+            Lzss.Extract(input, extracted);
+            extracted.Seek(0, SeekOrigin.Begin);
+
+            using var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
+
+            using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
             {
-                Lzss.Extract(input, extracted);
-                extracted.Seek(0, SeekOrigin.Begin);
-
-                using (var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb))
-                {
-                    using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
-                    {
-                        var source = extracted.ToArray();
-                        var destination = locked.Scan0;
-                        Marshal.Copy(source, 0, destination, source.Length);
-                    }
-
-                    return bitmap.Clone() as Bitmap;
-                }
+                var source = extracted.ToArray();
+                var destination = locked.Scan0;
+                Marshal.Copy(source, 0, destination, source.Length);
             }
+
+            return bitmap.Clone() as Bitmap;
         }
     }
 }

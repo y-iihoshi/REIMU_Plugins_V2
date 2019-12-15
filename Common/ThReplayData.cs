@@ -150,12 +150,10 @@ namespace ReimuPlugins.Common
         /// <param name="input">An input stream.</param>
         public virtual void Read(Stream input)
         {
-            using (var reader = new BinaryReader(input, Enc.UTF8NoBOM, true))
-            {
-                this.ReplayData.ReadFrom(reader);
-                this.UserInfo0.ReadFrom(reader);
-                this.UserInfo1.ReadFrom(reader);
-            }
+            using var reader = new BinaryReader(input, Enc.UTF8NoBOM, true);
+            this.ReplayData.ReadFrom(reader);
+            this.UserInfo0.ReadFrom(reader);
+            this.UserInfo1.ReadFrom(reader);
         }
 
         /// <summary>
@@ -164,10 +162,8 @@ namespace ReimuPlugins.Common
         /// <param name="path">A path string of the input file.</param>
         public void Read(string path)
         {
-            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                this.Read(stream);
-            }
+            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            this.Read(stream);
         }
 
         /// <summary>
@@ -176,12 +172,10 @@ namespace ReimuPlugins.Common
         /// <param name="output">An output stream.</param>
         public void Write(Stream output)
         {
-            using (var writer = new BinaryWriter(output, Enc.UTF8NoBOM, true))
-            {
-                this.ReplayData.WriteTo(writer);
-                this.UserInfo0.WriteTo(writer);
-                this.UserInfo1.WriteTo(writer);
-            }
+            using var writer = new BinaryWriter(output, Enc.UTF8NoBOM, true);
+            this.ReplayData.WriteTo(writer);
+            this.UserInfo0.WriteTo(writer);
+            this.UserInfo1.WriteTo(writer);
         }
 
         /// <summary>
@@ -190,10 +184,8 @@ namespace ReimuPlugins.Common
         /// <param name="path">A path string of the output file.</param>
         public void Write(string path)
         {
-            using (var stream = new FileStream(path, FileMode.Truncate, FileAccess.Write))
-            {
-                this.Write(stream);
-            }
+            using var stream = new FileStream(path, FileMode.Truncate, FileAccess.Write);
+            this.Write(stream);
         }
 
         /// <summary>

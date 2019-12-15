@@ -314,16 +314,12 @@ namespace ReimuPlugins.Th145Replay
 
                 try
                 {
-                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        if (pair.Item1 == ErrorCode.AllRight)
-                        {
-                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
-                            {
-                                var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                                signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
-                            }
-                        }
+                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
+                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -549,18 +545,16 @@ namespace ReimuPlugins.Th145Replay
 
             private static Tuple<ErrorCode, ReplayData> CreateReplayData(IntPtr src, uint size)
             {
-                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                ReplayData replay = null;
+
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    ReplayData replay = null;
-
-                    if (pair.Item1 == ErrorCode.AllRight)
-                    {
-                        replay = new ReplayData();
-                        replay.Read(pair.Item2);
-                    }
-
-                    return Tuple.Create(pair.Item1, replay);
+                    replay = new ReplayData();
+                    replay.Read(pair.Item2);
                 }
+
+                return Tuple.Create(pair.Item1, replay);
             }
         }
     }

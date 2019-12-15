@@ -211,45 +211,44 @@ namespace ReimuPlugins.Th125Bestshot
 
         public void Read(Stream input, bool withBitmap)
         {
-            using (var reader = new BinaryReader(input))
-            {
-                this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
-                reader.ReadInt16();
-                this.Level = reader.ReadInt16();
-                this.Scene = reader.ReadInt16();
-                reader.ReadInt16();
-                this.Width = reader.ReadInt16();
-                this.Height = reader.ReadInt16();
-                reader.ReadInt32();
-                this.Width2 = reader.ReadInt16();
-                this.Height2 = reader.ReadInt16();
-                this.HalfWidth = reader.ReadInt16();
-                this.HalfHeight = reader.ReadInt16();
-                this.DateTime = reader.ReadUInt32();
-                reader.ReadInt32();
-                this.SlowRate = reader.ReadSingle();
-                this.bonusFields = new BitVector32(reader.ReadInt32());
-                this.ResultScore = reader.ReadInt32();
-                this.BasePoint = reader.ReadInt32();
-                reader.ReadInt32();
-                reader.ReadInt32();
-                this.RiskBonus = reader.ReadInt32();
-                this.BossShot = reader.ReadSingle();
-                this.NiceShot = reader.ReadSingle();
-                this.AngleBonus = reader.ReadSingle();
-                this.MacroBonus = reader.ReadInt32();
-                this.FrontSideBackShot = reader.ReadInt32();
-                this.ClearShot = reader.ReadInt32();
-                reader.ReadBytes(0x30);
-                this.Angle = reader.ReadSingle();
-                this.ResultScore2 = reader.ReadInt32();
-                reader.ReadInt32();
-                this.CardName = Enc.CP932.GetString(reader.ReadBytes(0x50));
+            using var reader = new BinaryReader(input);
 
-                if (withBitmap)
-                {
-                    this.Bitmap = ReadBitmap(input, this.Width, this.Height);
-                }
+            this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
+            reader.ReadInt16();
+            this.Level = reader.ReadInt16();
+            this.Scene = reader.ReadInt16();
+            reader.ReadInt16();
+            this.Width = reader.ReadInt16();
+            this.Height = reader.ReadInt16();
+            reader.ReadInt32();
+            this.Width2 = reader.ReadInt16();
+            this.Height2 = reader.ReadInt16();
+            this.HalfWidth = reader.ReadInt16();
+            this.HalfHeight = reader.ReadInt16();
+            this.DateTime = reader.ReadUInt32();
+            reader.ReadInt32();
+            this.SlowRate = reader.ReadSingle();
+            this.bonusFields = new BitVector32(reader.ReadInt32());
+            this.ResultScore = reader.ReadInt32();
+            this.BasePoint = reader.ReadInt32();
+            reader.ReadInt32();
+            reader.ReadInt32();
+            this.RiskBonus = reader.ReadInt32();
+            this.BossShot = reader.ReadSingle();
+            this.NiceShot = reader.ReadSingle();
+            this.AngleBonus = reader.ReadSingle();
+            this.MacroBonus = reader.ReadInt32();
+            this.FrontSideBackShot = reader.ReadInt32();
+            this.ClearShot = reader.ReadInt32();
+            reader.ReadBytes(0x30);
+            this.Angle = reader.ReadSingle();
+            this.ResultScore2 = reader.ReadInt32();
+            reader.ReadInt32();
+            this.CardName = Enc.CP932.GetString(reader.ReadBytes(0x50));
+
+            if (withBitmap)
+            {
+                this.Bitmap = ReadBitmap(input, this.Width, this.Height);
             }
         }
 
@@ -260,31 +259,26 @@ namespace ReimuPlugins.Th125Bestshot
 
         public void Read(string path, bool withBitmap)
         {
-            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                this.Read(stream, withBitmap);
-            }
+            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            this.Read(stream, withBitmap);
         }
 
         private static Bitmap ReadBitmap(Stream input, int width, int height)
         {
-            using (var extracted = new MemoryStream())
+            using var extracted = new MemoryStream();
+            Lzss.Extract(input, extracted);
+            extracted.Seek(0, SeekOrigin.Begin);
+
+            using var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
+
+            using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
             {
-                Lzss.Extract(input, extracted);
-                extracted.Seek(0, SeekOrigin.Begin);
-
-                using (var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb))
-                {
-                    using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
-                    {
-                        var source = extracted.ToArray();
-                        var destination = locked.Scan0;
-                        Marshal.Copy(source, 0, destination, source.Length);
-                    }
-
-                    return bitmap.Clone() as Bitmap;
-                }
+                var source = extracted.ToArray();
+                var destination = locked.Scan0;
+                Marshal.Copy(source, 0, destination, source.Length);
             }
+
+            return bitmap.Clone() as Bitmap;
         }
     }
 }

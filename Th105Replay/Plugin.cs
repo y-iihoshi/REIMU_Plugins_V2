@@ -257,15 +257,11 @@ namespace ReimuPlugins.Th105Replay
 
                 try
                 {
-                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        if (pair.Item1 == ErrorCode.AllRight)
-                        {
-                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
-                            {
-                                versionId = reader.ReadInt16();
-                            }
-                        }
+                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        versionId = reader.ReadInt16();
                     }
                 }
                 catch (OutOfMemoryException)
@@ -471,18 +467,16 @@ namespace ReimuPlugins.Th105Replay
 
             private static Tuple<ErrorCode, ReplayData> CreateReplayData(IntPtr src, uint size)
             {
-                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                ReplayData replay = null;
+
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    ReplayData replay = null;
-
-                    if (pair.Item1 == ErrorCode.AllRight)
-                    {
-                        replay = new ReplayData();
-                        replay.Read(pair.Item2);
-                    }
-
-                    return Tuple.Create(pair.Item1, replay);
+                    replay = new ReplayData();
+                    replay.Read(pair.Item2);
                 }
+
+                return Tuple.Create(pair.Item1, replay);
             }
         }
     }

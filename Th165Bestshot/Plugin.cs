@@ -538,16 +538,12 @@ namespace ReimuPlugins.Th165Bestshot
 
                 try
                 {
-                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        if (pair.Item1 == ErrorCode.AllRight)
-                        {
-                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
-                            {
-                                var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                                signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
-                            }
-                        }
+                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
+                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -643,87 +639,85 @@ namespace ReimuPlugins.Th165Bestshot
 #pragma warning disable IDISP001 // Dispose created.
                             stream = new IO.MemoryStream();
 #pragma warning restore IDISP001 // Dispose created.
-                            using (var writer = new IO.StreamWriter(stream, Enc.CP932))
-                            {
+                            using var writer = new IO.StreamWriter(stream, Enc.CP932);
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                                stream = null;
+                            stream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.
 
-                                writer.NewLine = "\r\n";
-                                writer.CondWriteLine(data.IsSelfie, "＃自撮り！");
-                                writer.CondWriteLine(data.IsTwoShot, "＃ツーショット！");
-                                writer.CondWriteLine(data.IsThreeShot, "＃スリーショット！");
-                                writer.CondWriteLine(data.TwoEnemiesTogether, "＃二人まとめて撮影した！");
-                                writer.CondWriteLine(data.EnemyIsPartlyInFrame, "＃敵が見切れてる");
-                                writer.CondWriteLine(data.WholeEnemyIsInFrame, "＃敵を収めたよ");
-                                writer.CondWriteLine(data.EnemyIsInMiddle, "＃敵がど真ん中");
-                                writer.CondWriteLine(data.PeaceSignAlongside, "＃並んでピース");
-                                writer.CondWriteLine(data.EnemiesAreTooClose, "＃二人が近すぎるｗ");
-                                writer.CondWriteLine(data.EnemiesAreOverlapping, "＃二人が重なってるｗｗ");
-                                writer.CondWriteLine(data.Closeup, "＃接写！");
-                                writer.CondWriteLine(data.QuiteCloseup, "＃かなりの接写！");
-                                writer.CondWriteLine(data.TooClose, "＃近すぎてぶつかるー！");
-                                writer.CondWriteLine(data.TooManyBullets, "＃弾多すぎｗ");
-                                writer.CondWriteLine(data.TooPlayfulBarrage, "＃弾幕ふざけすぎｗｗ");
-                                writer.CondWriteLine(data.TooDense, "＃ちょっ、密度濃すぎｗｗｗ");
-                                writer.CondWriteLine(data.BitDangerous, "＃ちょっと危なかった");
-                                writer.CondWriteLine(data.SeriouslyDangerous, "＃マジで危なかった");
-                                writer.CondWriteLine(data.ThoughtGonnaDie, "＃死ぬかと思った");
-                                writer.CondWriteLine(data.EnemyIsInFullView, "＃敵が丸見えｗ");
-                                writer.CondWriteLine(data.ManyReds, "＃赤色多いな");
-                                writer.CondWriteLine(data.ManyPurples, "＃紫色多いね");
-                                writer.CondWriteLine(data.ManyBlues, "＃青色多いよ");
-                                writer.CondWriteLine(data.ManyCyans, "＃水色多いし");
-                                writer.CondWriteLine(data.ManyGreens, "＃緑色多いねぇ");
-                                writer.CondWriteLine(data.ManyYellows, "＃黄色多いなぁ");
-                                writer.CondWriteLine(data.ManyOranges, "＃橙色多いお");
-                                writer.CondWriteLine(data.TooColorful, "＃カラフル過ぎｗ");
-                                writer.CondWriteLine(data.SevenColors, "＃七色全部揃った！");
-                                writer.CondWriteLine(data.Dazzling, "＃うおっ、まぶし！");
-                                writer.CondWriteLine(data.MoreDazzling, "＃ぐあ、眩しすぎるー！");
-                                writer.CondWriteLine(data.MostDazzling, "＃うあー、目が、目がー！");
-                                writer.CondWriteLine(data.EnemyIsUndamaged, "＃敵は無傷だ");
-                                writer.CondWriteLine(data.EnemyCanAfford, "＃敵はまだ余裕がある");
-                                writer.CondWriteLine(data.EnemyIsWeakened, "＃敵がだいぶ弱ってる");
-                                writer.CondWriteLine(data.EnemyIsDying, "＃敵が瀕死だ");
-                                writer.CondWriteLine(data.Finished, "＃トドメをさしたよ！");
-                                writer.CondWriteLine(data.FinishedTogether, "＃二人まとめてトドメ！");
-                                writer.CondWriteLine(data.Chased, "＃追い打ちしたよ！");
-                                writer.CondWriteLine(data.IsSuppository, "＃座薬ｗｗｗ");
-                                writer.CondWriteLine(data.IsButterflyLikeMoth, "＃蛾みたいな蝶だ！");
-                                writer.CondWriteLine(data.Scorching, "＃アチチ、焦げちゃうよ");
-                                writer.CondWriteLine(data.TooBigBullet, "＃弾、大きすぎでしょｗ");
-                                writer.CondWriteLine(data.ThrowingEdgedTools, "＃刃物投げんな (و｀ω´)6");
-                                writer.CondWriteLine(data.IsThunder, "＃ぎゃー、雷はスマホがー");
-                                writer.CondWriteLine(data.Snaky, "＃うねうねだー！");
-                                writer.CondWriteLine(data.LightLooksStopped, "＃光が止まって見える！");
-                                writer.CondWriteLine(data.IsSuperMoon, "＃スーパームーン！");
-                                writer.CondWriteLine(data.IsRockyBarrage, "＃岩の弾幕とかｗｗ");
-                                writer.CondWriteLine(data.IsStickDestroyingBarrage, "＃弾幕を破壊する棒……？");
-                                writer.CondWriteLine(data.IsLovelyHeart, "＃ラブリーハート！");
-                                writer.CondWriteLine(data.IsDrum, "＃ドンドコドンドコ");
-                                writer.CondWriteLine(data.Fluffy, "＃もふもふもふー");
-                                writer.CondWriteLine(data.IsDoggiePhoto, "＃わんわん写真");
-                                writer.CondWriteLine(data.IsAnimalPhoto, "＃アニマルフォト");
-                                writer.CondWriteLine(data.IsZoo, "＃動物園！");
-                                writer.CondWriteLine(data.IsMisty, "＃身体が霧状に！？");
-                                writer.CondWriteLine(data.WasScolded, "＃怒られちゃった……");
-                                writer.CondWriteLine(data.IsLandscapePhoto, "＃風景写真");
-                                writer.CondWriteLine(data.IsBoringPhoto, "＃何ともつまらない写真");
-                                writer.CondWriteLine(data.IsSumireko, "＃私こそが宇佐見菫子だ！");
-                                writer.WriteLine();
-                                writer.WriteLine("この写真を見た回数  {0}", data.NumViewed);
-                                writer.WriteLine("イイッすね！        {0}", data.NumLikes);
-                                writer.WriteLine("お気に入り！        {0}", data.NumFavs);
-                                writer.WriteLine("総合評価点          {0}", data.Score);
-                                writer.Write("\0");
-                                writer.Flush();
+                            writer.NewLine = "\r\n";
+                            writer.CondWriteLine(data.IsSelfie, "＃自撮り！");
+                            writer.CondWriteLine(data.IsTwoShot, "＃ツーショット！");
+                            writer.CondWriteLine(data.IsThreeShot, "＃スリーショット！");
+                            writer.CondWriteLine(data.TwoEnemiesTogether, "＃二人まとめて撮影した！");
+                            writer.CondWriteLine(data.EnemyIsPartlyInFrame, "＃敵が見切れてる");
+                            writer.CondWriteLine(data.WholeEnemyIsInFrame, "＃敵を収めたよ");
+                            writer.CondWriteLine(data.EnemyIsInMiddle, "＃敵がど真ん中");
+                            writer.CondWriteLine(data.PeaceSignAlongside, "＃並んでピース");
+                            writer.CondWriteLine(data.EnemiesAreTooClose, "＃二人が近すぎるｗ");
+                            writer.CondWriteLine(data.EnemiesAreOverlapping, "＃二人が重なってるｗｗ");
+                            writer.CondWriteLine(data.Closeup, "＃接写！");
+                            writer.CondWriteLine(data.QuiteCloseup, "＃かなりの接写！");
+                            writer.CondWriteLine(data.TooClose, "＃近すぎてぶつかるー！");
+                            writer.CondWriteLine(data.TooManyBullets, "＃弾多すぎｗ");
+                            writer.CondWriteLine(data.TooPlayfulBarrage, "＃弾幕ふざけすぎｗｗ");
+                            writer.CondWriteLine(data.TooDense, "＃ちょっ、密度濃すぎｗｗｗ");
+                            writer.CondWriteLine(data.BitDangerous, "＃ちょっと危なかった");
+                            writer.CondWriteLine(data.SeriouslyDangerous, "＃マジで危なかった");
+                            writer.CondWriteLine(data.ThoughtGonnaDie, "＃死ぬかと思った");
+                            writer.CondWriteLine(data.EnemyIsInFullView, "＃敵が丸見えｗ");
+                            writer.CondWriteLine(data.ManyReds, "＃赤色多いな");
+                            writer.CondWriteLine(data.ManyPurples, "＃紫色多いね");
+                            writer.CondWriteLine(data.ManyBlues, "＃青色多いよ");
+                            writer.CondWriteLine(data.ManyCyans, "＃水色多いし");
+                            writer.CondWriteLine(data.ManyGreens, "＃緑色多いねぇ");
+                            writer.CondWriteLine(data.ManyYellows, "＃黄色多いなぁ");
+                            writer.CondWriteLine(data.ManyOranges, "＃橙色多いお");
+                            writer.CondWriteLine(data.TooColorful, "＃カラフル過ぎｗ");
+                            writer.CondWriteLine(data.SevenColors, "＃七色全部揃った！");
+                            writer.CondWriteLine(data.Dazzling, "＃うおっ、まぶし！");
+                            writer.CondWriteLine(data.MoreDazzling, "＃ぐあ、眩しすぎるー！");
+                            writer.CondWriteLine(data.MostDazzling, "＃うあー、目が、目がー！");
+                            writer.CondWriteLine(data.EnemyIsUndamaged, "＃敵は無傷だ");
+                            writer.CondWriteLine(data.EnemyCanAfford, "＃敵はまだ余裕がある");
+                            writer.CondWriteLine(data.EnemyIsWeakened, "＃敵がだいぶ弱ってる");
+                            writer.CondWriteLine(data.EnemyIsDying, "＃敵が瀕死だ");
+                            writer.CondWriteLine(data.Finished, "＃トドメをさしたよ！");
+                            writer.CondWriteLine(data.FinishedTogether, "＃二人まとめてトドメ！");
+                            writer.CondWriteLine(data.Chased, "＃追い打ちしたよ！");
+                            writer.CondWriteLine(data.IsSuppository, "＃座薬ｗｗｗ");
+                            writer.CondWriteLine(data.IsButterflyLikeMoth, "＃蛾みたいな蝶だ！");
+                            writer.CondWriteLine(data.Scorching, "＃アチチ、焦げちゃうよ");
+                            writer.CondWriteLine(data.TooBigBullet, "＃弾、大きすぎでしょｗ");
+                            writer.CondWriteLine(data.ThrowingEdgedTools, "＃刃物投げんな (و｀ω´)6");
+                            writer.CondWriteLine(data.IsThunder, "＃ぎゃー、雷はスマホがー");
+                            writer.CondWriteLine(data.Snaky, "＃うねうねだー！");
+                            writer.CondWriteLine(data.LightLooksStopped, "＃光が止まって見える！");
+                            writer.CondWriteLine(data.IsSuperMoon, "＃スーパームーン！");
+                            writer.CondWriteLine(data.IsRockyBarrage, "＃岩の弾幕とかｗｗ");
+                            writer.CondWriteLine(data.IsStickDestroyingBarrage, "＃弾幕を破壊する棒……？");
+                            writer.CondWriteLine(data.IsLovelyHeart, "＃ラブリーハート！");
+                            writer.CondWriteLine(data.IsDrum, "＃ドンドコドンドコ");
+                            writer.CondWriteLine(data.Fluffy, "＃もふもふもふー");
+                            writer.CondWriteLine(data.IsDoggiePhoto, "＃わんわん写真");
+                            writer.CondWriteLine(data.IsAnimalPhoto, "＃アニマルフォト");
+                            writer.CondWriteLine(data.IsZoo, "＃動物園！");
+                            writer.CondWriteLine(data.IsMisty, "＃身体が霧状に！？");
+                            writer.CondWriteLine(data.WasScolded, "＃怒られちゃった……");
+                            writer.CondWriteLine(data.IsLandscapePhoto, "＃風景写真");
+                            writer.CondWriteLine(data.IsBoringPhoto, "＃何ともつまらない写真");
+                            writer.CondWriteLine(data.IsSumireko, "＃私こそが宇佐見菫子だ！");
+                            writer.WriteLine();
+                            writer.WriteLine("この写真を見た回数  {0}", data.NumViewed);
+                            writer.WriteLine("イイッすね！        {0}", data.NumLikes);
+                            writer.WriteLine("お気に入り！        {0}", data.NumFavs);
+                            writer.WriteLine("総合評価点          {0}", data.Score);
+                            writer.Write("\0");
+                            writer.Flush();
 
-                                writer.BaseStream.Seek(0, IO.SeekOrigin.Begin);
-                                var source = ((IO.MemoryStream)writer.BaseStream).ToArray();
-                                dst = Marshal.AllocHGlobal(source.Length);
-                                Marshal.Copy(source, 0, dst, source.Length);
-                            }
+                            writer.BaseStream.Seek(0, IO.SeekOrigin.Begin);
+                            var source = ((IO.MemoryStream)writer.BaseStream).ToArray();
+                            dst = Marshal.AllocHGlobal(source.Length);
+                            Marshal.Copy(source, 0, dst, source.Length);
                         }
                         finally
                         {
@@ -983,18 +977,16 @@ namespace ReimuPlugins.Th165Bestshot
             private static Tuple<ErrorCode, BestshotData> CreateBestshotData(
                 IntPtr src, uint size, bool withBitmap)
             {
-                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                BestshotData bestshot = null;
+
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    BestshotData bestshot = null;
-
-                    if (pair.Item1 == ErrorCode.AllRight)
-                    {
-                        bestshot = new BestshotData();
-                        bestshot.Read(pair.Item2, withBitmap);
-                    }
-
-                    return Tuple.Create(pair.Item1, bestshot);
+                    bestshot = new BestshotData();
+                    bestshot.Read(pair.Item2, withBitmap);
                 }
+
+                return Tuple.Create(pair.Item1, bestshot);
             }
         }
     }

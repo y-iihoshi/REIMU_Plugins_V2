@@ -300,16 +300,12 @@ namespace ReimuPlugins.Th15Replay
 
                 try
                 {
-                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        if (pair.Item1 == ErrorCode.AllRight)
-                        {
-                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
-                            {
-                                var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                                signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
-                            }
-                        }
+                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
+                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -482,15 +478,16 @@ namespace ReimuPlugins.Th15Replay
                 var pair = CreateReplayData<ReplayData>(file);
                 if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    using (var dialog = new EditDialog())
+                    using var dialog = new EditDialog
                     {
-                        dialog.Content = pair.Item2.Comment;
-                        result = dialog.ShowDialog(new Win32Window(parent));
-                        if (result == DialogResult.OK)
-                        {
-                            pair.Item2.Comment = dialog.Content + "\0\0";
-                            pair.Item2.Write(file);
-                        }
+                        Content = pair.Item2.Comment,
+                    };
+
+                    result = dialog.ShowDialog(new Win32Window(parent));
+                    if (result == DialogResult.OK)
+                    {
+                        pair.Item2.Comment = dialog.Content + "\0\0";
+                        pair.Item2.Write(file);
                     }
                 }
 
@@ -505,29 +502,25 @@ namespace ReimuPlugins.Th15Replay
             private static Tuple<ErrorCode, T> CreateReplayData<T>(IntPtr src, uint size)
                 where T : ThReplayData, new()
             {
-                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                T replay = null;
+
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    T replay = null;
-
-                    if (pair.Item1 == ErrorCode.AllRight)
-                    {
-                        replay = new T();
-                        replay.Read(pair.Item2);
-                    }
-
-                    return Tuple.Create(pair.Item1, replay);
+                    replay = new T();
+                    replay.Read(pair.Item2);
                 }
+
+                return Tuple.Create(pair.Item1, replay);
             }
 
             private static Tuple<ErrorCode, T> CreateReplayData<T>(string path)
                 where T : ThReplayData, new()
             {
-                using (var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read))
-                {
-                    var replay = new T();
-                    replay.Read(stream);
-                    return Tuple.Create(ErrorCode.AllRight, replay);
-                }
+                using var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read);
+                var replay = new T();
+                replay.Read(stream);
+                return Tuple.Create(ErrorCode.AllRight, replay);
             }
         }
     }

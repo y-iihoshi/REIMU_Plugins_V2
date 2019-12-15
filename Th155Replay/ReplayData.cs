@@ -546,10 +546,8 @@ namespace ReimuPlugins.Th155Replay
 
         public void Read(Stream input)
         {
-            using (var reader = new BinaryReader(input, Enc.UTF8, leaveOpen: true))
-            {
-                this.info.ReadFrom(reader);
-            }
+            using var reader = new BinaryReader(input, Enc.UTF8, leaveOpen: true);
+            this.info.ReadFrom(reader);
         }
 
         private static bool ReadObject(BinaryReader reader, out object obj)
@@ -701,13 +699,11 @@ namespace ReimuPlugins.Th155Replay
 #pragma warning disable IDISP001 // Dispose created.
                     stream = new MemoryStream(extractedData, false);
 #pragma warning restore IDISP001 // Dispose created.
-                    using (var reader2 = new BinaryReader(stream))
-                    {
+                    using var reader2 = new BinaryReader(stream);
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                        stream = null;
+                    stream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.
-                        this.dictionary = ReadDictionary(reader2) as Dictionary<object, object>;
-                    }
+                    this.dictionary = ReadDictionary(reader2) as Dictionary<object, object>;
                 }
                 finally
                 {
@@ -764,13 +760,11 @@ namespace ReimuPlugins.Th155Replay
 #pragma warning disable IDISP001 // Dispose created.
                     baseStream = new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false);
 #pragma warning restore IDISP001 // Dispose created.
-                    using (var stream = new DeflateStream(baseStream, CompressionMode.Decompress))
-                    {
+                    using var stream = new DeflateStream(baseStream, CompressionMode.Decompress);
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                        baseStream = null;
+                    baseStream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.
-                        extractedSize = stream.Read(extracted, 0, extracted.Length);
-                    }
+                    extractedSize = stream.Read(extracted, 0, extracted.Length);
                 }
                 finally
                 {

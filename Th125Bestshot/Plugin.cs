@@ -509,16 +509,12 @@ namespace ReimuPlugins.Th125Bestshot
 
                 try
                 {
-                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        if (pair.Item1 == ErrorCode.AllRight)
-                        {
-                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
-                            {
-                                var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                                signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
-                            }
-                        }
+                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
+                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -614,46 +610,44 @@ namespace ReimuPlugins.Th125Bestshot
 #pragma warning disable IDISP001 // Dispose created.
                             stream = new IO.MemoryStream();
 #pragma warning restore IDISP001 // Dispose created.
-                            using (var writer = new IO.StreamWriter(stream, Enc.UTF8NoBOM))
-                            {
+                            using var writer = new IO.StreamWriter(stream, Enc.UTF8NoBOM);
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                                stream = null;
+                            stream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.
 
-                                writer.NewLine = "\r\n";
-                                writer.WriteLine("Base Point  {0}", data.BasePoint);
-                                writer.CondWriteLine(data.ClearShotBit, "Clear Shot!  + {0}", data.ClearShot);
-                                writer.CondWriteLine(data.SoloShotBit, "Solo Shot!  + 100");
-                                writer.CondWriteLine(data.RedShotBit, "Red Shot  + 300");
-                                writer.CondWriteLine(data.PurpleShotBit, "Purple Shot  + 300");
-                                writer.CondWriteLine(data.BlueShotBit, "Blue Shot  + 300");
-                                writer.CondWriteLine(data.CyanShotBit, "Cyan Shot  + 300");
-                                writer.CondWriteLine(data.GreenShotBit, "Green Shot  + 300");
-                                writer.CondWriteLine(data.YellowShotBit, "Yellow Shot  + 300");
-                                writer.CondWriteLine(data.OrangeShotBit, "Orange Shot  + 300");
-                                writer.CondWriteLine(data.ColorfulShotBit, "Colorful Shot  + 900");
-                                writer.CondWriteLine(data.RainbowShotBit, "Rainbow Shot  + 2100");
-                                writer.CondWriteLine(data.RiskBonusBit, "Risk Bonus  + {0}", data.RiskBonus);
-                                writer.CondWriteLine(data.MacroBonusBit, "Macro Bonus  + {0}", data.MacroBonus);
-                                writer.CondWriteLine(data.FrontShotBit, "Front Shot  + {0}", data.FrontSideBackShot);
-                                writer.CondWriteLine(data.SideShotBit, "Side Shot  + {0}", data.FrontSideBackShot);
-                                writer.CondWriteLine(data.BackShotBit, "Back Shot  + {0}", data.FrontSideBackShot);
-                                writer.CondWriteLine(data.CatBonusBit, "Cat Bonus  + 666");
-                                writer.WriteLine();
-                                writer.WriteLine("Boss Shot!  * {0:F2}", data.BossShot);
-                                writer.CondWriteLine(data.TwoShotBit, "Two Shot!  * 1.50");
-                                writer.CondWriteLine(data.NiceShotBit, "Nice Shot!  * {0:F2}", data.NiceShot);
-                                writer.WriteLine("Angle Bonus  * {0:F2}", data.AngleBonus);
-                                writer.WriteLine();
-                                writer.WriteLine("Result Score  {0}", data.ResultScore);
-                                writer.Write("\0");
-                                writer.Flush();
+                            writer.NewLine = "\r\n";
+                            writer.WriteLine("Base Point  {0}", data.BasePoint);
+                            writer.CondWriteLine(data.ClearShotBit, "Clear Shot!  + {0}", data.ClearShot);
+                            writer.CondWriteLine(data.SoloShotBit, "Solo Shot!  + 100");
+                            writer.CondWriteLine(data.RedShotBit, "Red Shot  + 300");
+                            writer.CondWriteLine(data.PurpleShotBit, "Purple Shot  + 300");
+                            writer.CondWriteLine(data.BlueShotBit, "Blue Shot  + 300");
+                            writer.CondWriteLine(data.CyanShotBit, "Cyan Shot  + 300");
+                            writer.CondWriteLine(data.GreenShotBit, "Green Shot  + 300");
+                            writer.CondWriteLine(data.YellowShotBit, "Yellow Shot  + 300");
+                            writer.CondWriteLine(data.OrangeShotBit, "Orange Shot  + 300");
+                            writer.CondWriteLine(data.ColorfulShotBit, "Colorful Shot  + 900");
+                            writer.CondWriteLine(data.RainbowShotBit, "Rainbow Shot  + 2100");
+                            writer.CondWriteLine(data.RiskBonusBit, "Risk Bonus  + {0}", data.RiskBonus);
+                            writer.CondWriteLine(data.MacroBonusBit, "Macro Bonus  + {0}", data.MacroBonus);
+                            writer.CondWriteLine(data.FrontShotBit, "Front Shot  + {0}", data.FrontSideBackShot);
+                            writer.CondWriteLine(data.SideShotBit, "Side Shot  + {0}", data.FrontSideBackShot);
+                            writer.CondWriteLine(data.BackShotBit, "Back Shot  + {0}", data.FrontSideBackShot);
+                            writer.CondWriteLine(data.CatBonusBit, "Cat Bonus  + 666");
+                            writer.WriteLine();
+                            writer.WriteLine("Boss Shot!  * {0:F2}", data.BossShot);
+                            writer.CondWriteLine(data.TwoShotBit, "Two Shot!  * 1.50");
+                            writer.CondWriteLine(data.NiceShotBit, "Nice Shot!  * {0:F2}", data.NiceShot);
+                            writer.WriteLine("Angle Bonus  * {0:F2}", data.AngleBonus);
+                            writer.WriteLine();
+                            writer.WriteLine("Result Score  {0}", data.ResultScore);
+                            writer.Write("\0");
+                            writer.Flush();
 
-                                writer.BaseStream.Seek(0, IO.SeekOrigin.Begin);
-                                var source = ((IO.MemoryStream)writer.BaseStream).ToArray();
-                                dst = Marshal.AllocHGlobal(source.Length);
-                                Marshal.Copy(source, 0, dst, source.Length);
-                            }
+                            writer.BaseStream.Seek(0, IO.SeekOrigin.Begin);
+                            var source = ((IO.MemoryStream)writer.BaseStream).ToArray();
+                            dst = Marshal.AllocHGlobal(source.Length);
+                            Marshal.Copy(source, 0, dst, source.Length);
                         }
                         finally
                         {
@@ -911,18 +905,16 @@ namespace ReimuPlugins.Th125Bestshot
             private static Tuple<ErrorCode, BestshotData> CreateBestshotData(
                 IntPtr src, uint size, bool withBitmap)
             {
-                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                BestshotData bestshot = null;
+
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    BestshotData bestshot = null;
-
-                    if (pair.Item1 == ErrorCode.AllRight)
-                    {
-                        bestshot = new BestshotData();
-                        bestshot.Read(pair.Item2, withBitmap);
-                    }
-
-                    return Tuple.Create(pair.Item1, bestshot);
+                    bestshot = new BestshotData();
+                    bestshot.Read(pair.Item2, withBitmap);
                 }
+
+                return Tuple.Create(pair.Item1, bestshot);
             }
         }
     }

@@ -250,16 +250,12 @@ namespace ReimuPlugins.Th143Screenshot
 
                 try
                 {
-                    using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        if (pair.Item1 == ErrorCode.AllRight)
-                        {
-                            using (var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true))
-                            {
-                                var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                                signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
-                            }
-                        }
+                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
+                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -471,18 +467,16 @@ namespace ReimuPlugins.Th143Screenshot
             private static Tuple<ErrorCode, ScreenshotData> CreateScreenshotData(
                 IntPtr src, uint size, bool withBitmap)
             {
-                using (var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size))
+                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                ScreenshotData screenshot = null;
+
+                if (pair.Item1 == ErrorCode.AllRight)
                 {
-                    ScreenshotData screenshot = null;
-
-                    if (pair.Item1 == ErrorCode.AllRight)
-                    {
-                        screenshot = new ScreenshotData();
-                        screenshot.Read(pair.Item2, withBitmap);
-                    }
-
-                    return Tuple.Create(pair.Item1, screenshot);
+                    screenshot = new ScreenshotData();
+                    screenshot.Read(pair.Item2, withBitmap);
                 }
+
+                return Tuple.Create(pair.Item1, screenshot);
             }
         }
     }
