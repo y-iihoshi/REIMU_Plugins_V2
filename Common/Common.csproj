@@ -18,13 +18,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Debug\ReimuPlugins.Common.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
     <DefineConstants>TRACE</DefineConstants>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Release\ReimuPlugins.Common.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
