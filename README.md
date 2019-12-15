@@ -3,7 +3,7 @@
 REIMU plugins for Touhou replays (Redesigning)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/isxeiqhusbvoolev?svg=true)](https://ci.appveyor.com/project/y-iihoshi/reimu-plugins-v2)
-[![License](https://img.shields.io/github/license/y-iihoshi/REIMU_Plugins_V2.svg)](https://github.com/y-iihoshi/REIMU_Plugins_V2/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/github/license/y-iihoshi/REIMU_Plugins_V2.svg)](/LICENSE.txt)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_shield)
 
 ## Introduction
@@ -31,11 +31,12 @@ This project, written in C#, is a redesigning version of
 * TH14.5 東方深秘録　～ Urban Legend in Limbo.
 * TH15 東方紺珠伝　～ Legacy of Lunatic Kingdom.
 * TH15.5 東方憑依華　～ Antinomy of Common Flowers.
-* Th16 東方天空璋　～ Hidden Star in Four Seasons.
-* Th16.5 秘封ナイトメアダイアリー　～ Violet Detector.
+* TH16 東方天空璋　～ Hidden Star in Four Seasons.
+* TH16.5 秘封ナイトメアダイアリー　～ Violet Detector.
 
 ### Will be supported
-* Th17 東方鬼形獣　～ Wily Beast and Weakest Creature.
+* TH17 東方鬼形獣　～ Wily Beast and Weakest Creature.
+* TH17.5 東方剛欲異聞　～ 水没した沈愁地獄 (a.k.a. Touhou Gouyoku Ibun)
 
 ### Not supported
 The followings are not supported because these plugins have already been
@@ -58,13 +59,19 @@ test enough.
 ## Environments
 
 ### Development environment
-* Windows 10 Pro Version 1903 (64bit)
+* Windows 10 Pro Version 1909 (64bit)
 * .NET Framework 4.8
-* Visual Studio Community 2019 16.1.6
-* Python 3.7.4
+* Visual Studio Community 2019 16.4.1
+* Python 3.8.0
 
 ### Tested environment
 Same as above but you can use .NET Framework 4.5.2 or later.
+
+## License
+
+See: [LICENSE.txt](/LICENSE.txt)
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_large)
 
 ## Installation
 
@@ -90,7 +97,3 @@ Sorry, all plugins have Japanese resource only and don't support localization.
 [sue445]: http://www.sue445.net/ "sue445.NET"
 [REIMU]: http://www.sue445.net/downloads/reimu.html "REIMU (REplayviewer plug-in IMport Utility)"
 [V1]: https://github.com/y-iihoshi/REIMU_Plugins "REIMU_Plugins"
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_large)
