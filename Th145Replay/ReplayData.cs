@@ -434,7 +434,7 @@ namespace ReimuPlugins.Th145Replay
                 }
             }
 
-            return new object[] { };
+            return Array.Empty<object>();
         }
 
         private static object ReadDictionary(BinaryReader reader)
@@ -496,7 +496,7 @@ namespace ReimuPlugins.Th145Replay
             }
             else
             {
-                output = new byte[] { };
+                output = Array.Empty<byte>();
             }
 
             return output.Length > 0;

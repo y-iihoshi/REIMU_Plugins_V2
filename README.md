@@ -65,7 +65,7 @@ test enough.
 * Python 3.8.0
 
 ### Tested environment
-Same as above but you can use .NET Framework 4.5.2 or later.
+Same as above.
 
 ## License
 

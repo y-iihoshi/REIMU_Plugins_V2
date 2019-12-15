@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>ReimuPlugins.Th125Replay</RootNamespace>
     <AssemblyName>ReimuPlugins.Th125Replay</AssemblyName>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Authors>IIHOSHI Yoshinori</Authors>
     <Company>None</Company>

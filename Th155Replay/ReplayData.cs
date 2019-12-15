@@ -592,7 +592,7 @@ namespace ReimuPlugins.Th155Replay
                 }
             }
 
-            return new object[] { };
+            return Array.Empty<object>();
         }
 
         private static object ReadDictionary(BinaryReader reader)
