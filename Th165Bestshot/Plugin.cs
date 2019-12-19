@@ -585,7 +585,7 @@ namespace ReimuPlugins.Th165Bestshot
                         foreach (var key in keys)
                         {
                             var fileInfo = new FileInfo { Text = string.Empty };
-                            if (FileInfoGetters.TryGetValue(key, out Func<BestshotData, string> getter))
+                            if (FileInfoGetters.TryGetValue(key, out var getter))
                             {
                                 fileInfo.Text = getter(pair.Item2);
                             }

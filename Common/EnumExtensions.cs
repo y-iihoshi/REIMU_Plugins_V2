@@ -26,7 +26,7 @@ namespace ReimuPlugins.Common
         public static string ToShortName<T>(this T enumValue)
             where T : struct, IComparable, IFormattable, IConvertible
         {
-            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out EnumAltNameAttribute attr)
+            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out var attr)
                 ? attr.ShortName : string.Empty;
         }
 
@@ -40,7 +40,7 @@ namespace ReimuPlugins.Common
         public static string ToLongName<T>(this T enumValue)
             where T : struct, IComparable, IFormattable, IConvertible
         {
-            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out EnumAltNameAttribute attr)
+            return AttributeCache<T, EnumAltNameAttribute>.Cache.TryGetValue(enumValue, out var attr)
                 ? attr.LongName : string.Empty;
         }
 

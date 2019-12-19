@@ -339,7 +339,7 @@ namespace ReimuPlugins.Th135Replay
                         foreach (var key in keys)
                         {
                             var fileInfo = new FileInfo { Text = string.Empty };
-                            if (FileInfoGetters.TryGetValue(key, out Func<ReplayData, string> getter))
+                            if (FileInfoGetters.TryGetValue(key, out var getter))
                             {
                                 fileInfo.Text = getter(pair.Item2);
                             }

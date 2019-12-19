@@ -37,7 +37,7 @@ namespace ReimuPlugins.Th165Replay
         public string Date => this.info["Date"];
 
         public string Weekday
-            => Weekdays.TryGetValue(this.info["Day"], out string weekday) ? weekday : this.info["Day"];
+            => Weekdays.TryGetValue(this.info["Day"], out var weekday) ? weekday : this.info["Day"];
 
         public string Scene => this.info["Scene"];
 

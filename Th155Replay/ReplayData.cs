@@ -447,7 +447,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetBackgroundId));
 
         public string GetBackgroundName()
-            => BackgroundNames.TryGetValue(this.GetBackgroundId(), out string name)
+            => BackgroundNames.TryGetValue(this.GetBackgroundId(), out var name)
                 ? name : string.Empty;
 
         public int GetBgmId()
@@ -455,7 +455,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetBgmId));
 
         public string GetBgmName()
-            => BgmNames.TryGetValue(this.GetBgmId(), out string name)
+            => BgmNames.TryGetValue(this.GetBgmId(), out var name)
                 ? name : string.Empty;
 
         public GameMode GetGameMode()
@@ -465,7 +465,7 @@ namespace ReimuPlugins.Th155Replay
             => this.info["difficulty"].ToValidEnum<Difficulty>();
 
         public Character GetMasterName1()
-            => Characters.TryGetValue(this.info["master_name", 0] as string, out Character chara)
+            => Characters.TryGetValue(this.info["master_name", 0] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName1));
 
         public int GetMasterColor1()
@@ -473,7 +473,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor1));
 
         public Character GetSlaveName1()
-            => Characters.TryGetValue(this.info["slave_name", 0] as string, out Character chara)
+            => Characters.TryGetValue(this.info["slave_name", 0] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName1));
 
         public int GetSlaveColor1()
@@ -485,7 +485,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard1Id));
 
         public string GetSpellCard1Name()
-            => SpellCardNames[this.GetMasterName1()].TryGetValue(this.GetSpellCard1Id(), out string name)
+            => SpellCardNames[this.GetMasterName1()].TryGetValue(this.GetSpellCard1Id(), out var name)
                 ? name : string.Empty;
 
         public string GetPlayer1Name()
@@ -493,7 +493,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer1Name));
 
         public Character GetMasterName2()
-            => Characters.TryGetValue(this.info["master_name", 1] as string, out Character chara)
+            => Characters.TryGetValue(this.info["master_name", 1] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName2));
 
         public int GetMasterColor2()
@@ -501,7 +501,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor2));
 
         public Character GetSlaveName2()
-            => Characters.TryGetValue(this.info["slave_name", 1] as string, out Character chara)
+            => Characters.TryGetValue(this.info["slave_name", 1] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName2));
 
         public int GetSlaveColor2()
@@ -513,7 +513,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard2Id));
 
         public string GetSpellCard2Name()
-            => SpellCardNames[this.GetMasterName2()].TryGetValue(this.GetSpellCard2Id(), out string name)
+            => SpellCardNames[this.GetMasterName2()].TryGetValue(this.GetSpellCard2Id(), out var name)
                 ? name : string.Empty;
 
         public string GetPlayer2Name()
@@ -530,11 +530,11 @@ namespace ReimuPlugins.Th155Replay
                 (int)this.info["sec"]);
 
         public StoryCharacter GetStoryMaster()
-            => StoryCharacters.TryGetValue(this.info["scenario_name"] as string, out StoryCharacter chara)
+            => StoryCharacters.TryGetValue(this.info["scenario_name"] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetStoryMaster));
 
         public StoryCharacter GetStorySlave()
-            => StoryCharacters.TryGetValue(this.info["slave_name"] as string, out StoryCharacter chara)
+            => StoryCharacters.TryGetValue(this.info["slave_name"] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetStorySlave));
 
         public int GetStorySpellCardId()
@@ -542,7 +542,7 @@ namespace ReimuPlugins.Th155Replay
                 ? value : throw NewInvalidPropertyException(nameof(this.GetStorySpellCardId));
 
         public string GetStorySpellCardName()
-            => SpellCardNames[(Character)this.GetStoryMaster()].TryGetValue(this.GetStorySpellCardId(), out string name)
+            => SpellCardNames[(Character)this.GetStoryMaster()].TryGetValue(this.GetStorySpellCardId(), out var name)
                 ? name : string.Empty;
 
         public void Read(Stream input)
@@ -554,10 +554,7 @@ namespace ReimuPlugins.Th155Replay
         private static bool ReadObject(BinaryReader reader, out object obj)
         {
             var type = reader.ReadUInt32();
-
-            obj = ObjectReaders.TryGetValue(type, out Func<BinaryReader, object> objectReader)
-                ? objectReader(reader) : null;
-
+            obj = ObjectReaders.TryGetValue(type, out var objectReader) ? objectReader(reader) : null;
             return obj != null;
         }
 
@@ -575,9 +572,9 @@ namespace ReimuPlugins.Th155Replay
                 var array = new object[num];
                 for (var count = 0; count < num; count++)
                 {
-                    if (ReadObject(reader, out object index))
+                    if (ReadObject(reader, out var index))
                     {
-                        if (ReadObject(reader, out object value))
+                        if (ReadObject(reader, out var value))
                         {
                             if ((index is int) && ((int)index < num))
                             {
@@ -587,7 +584,7 @@ namespace ReimuPlugins.Th155Replay
                     }
                 }
 
-                if (ReadObject(reader, out object endmark) && (endmark is EndMark))
+                if (ReadObject(reader, out var endmark) && (endmark is EndMark))
                 {
                     return array;
                 }
@@ -601,14 +598,14 @@ namespace ReimuPlugins.Th155Replay
             var dictionary = new Dictionary<object, object>();
             while (true)
             {
-                if (ReadObject(reader, out object key))
+                if (ReadObject(reader, out var key))
                 {
                     if (key is EndMark)
                     {
                         break;
                     }
 
-                    if (ReadObject(reader, out object value))
+                    if (ReadObject(reader, out var value))
                     {
                         dictionary.Add(key, value);
                     }
