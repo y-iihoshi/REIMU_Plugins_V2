@@ -681,8 +681,6 @@ namespace ReimuPlugins.Th155Replay
         {
             private byte[] signature;
 
-            private string version;
-
             private Dictionary<object, object> dictionary;
 
             public Info()
@@ -692,7 +690,7 @@ namespace ReimuPlugins.Th155Replay
             [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
             public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
 
-            public string Version => this.version;
+            public string Version { get; private set; }
 
             public object this[string key]
                 => (this.dictionary != null)
@@ -714,7 +712,7 @@ namespace ReimuPlugins.Th155Replay
                 }
 
                 this.signature = reader.ReadBytes(5);
-                this.version = ParseVersion(reader.ReadInt32());
+                this.Version = ParseVersion(reader.ReadInt32());
 
                 var size = reader.ReadInt32();
                 var deflateSize = reader.ReadInt32();
