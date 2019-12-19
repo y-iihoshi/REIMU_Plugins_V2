@@ -27,8 +27,8 @@ namespace ReimuPlugins.Common
         /// </summary>
         public string Content
         {
-            get { return this.textEdit.Text; }
-            set { this.textEdit.Text = value; }
+            get => this.textEdit.Text;
+            set => this.textEdit.Text = value;
         }
     }
 }
