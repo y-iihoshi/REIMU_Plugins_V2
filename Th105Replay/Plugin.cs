@@ -244,7 +244,7 @@ namespace ReimuPlugins.Th105Replay
             {
                 if (src == IntPtr.Zero)
                 {
-                    return (uint)sizeof(short);
+                    return sizeof(short);
                 }
 
                 short versionId = 0;

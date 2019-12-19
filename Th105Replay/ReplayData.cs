@@ -505,11 +505,11 @@ namespace ReimuPlugins.Th105Replay
             this.info = new Info();
         }
 
-        public int StageId => (int)this.info.Stage;
+        public int StageId => this.info.Stage;
 
         public string StageName => StageNames.TryGetValue(this.info.Stage, out var name) ? name : string.Empty;
 
-        public int BgmId => (int)this.info.Bgm;
+        public int BgmId => this.info.Bgm;
 
         public string BgmName => BgmNames.TryGetValue(this.info.Bgm, out var name) ? name : string.Empty;
 
@@ -517,13 +517,13 @@ namespace ReimuPlugins.Th105Replay
 
         public Character Character1 => this.info.Deck1.Character;
 
-        public int Color1 => (int)this.info.Deck1.Color;
+        public int Color1 => this.info.Deck1.Color;
 
         public string Player1Info => this.GetPlayerInfo(0);
 
         public Character Character2 => this.info.Deck2.Character;
 
-        public int Color2 => (int)this.info.Deck2.Color;
+        public int Color2 => this.info.Deck2.Color;
 
         public string Player2Info => this.GetPlayerInfo(1);
 

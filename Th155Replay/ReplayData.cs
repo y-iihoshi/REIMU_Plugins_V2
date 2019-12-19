@@ -773,8 +773,7 @@ namespace ReimuPlugins.Th155Replay
                 var remainder = number % 10;
                 return (number / 1000f).ToString("F2", CultureInfo.InvariantCulture) +
                     ((remainder > 0)
-                        ? ((char)((int)'a' + remainder)).ToString(CultureInfo.InvariantCulture)
-                        : string.Empty);
+                        ? ((char)('a' + remainder)).ToString(CultureInfo.InvariantCulture) : string.Empty);
             }
 
             private static byte[] Extract(byte[] input, int expectedSize)

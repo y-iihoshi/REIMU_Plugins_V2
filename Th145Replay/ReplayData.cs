@@ -553,8 +553,7 @@ namespace ReimuPlugins.Th145Replay
                         var remainder = version % 10;
                         this.Version = (version / 1000f).ToString("F2", CultureInfo.InvariantCulture) +
                             ((remainder > 0)
-                                ? ((char)((int)'a' + remainder)).ToString(CultureInfo.InvariantCulture)
-                                : string.Empty);
+                                ? ((char)('a' + remainder)).ToString(CultureInfo.InvariantCulture) : string.Empty);
 
                         _ = Extract(deflateData, out var extractedData, extractedSize);
                         if (extractedData.Length == extractedSize)
