@@ -640,14 +640,14 @@ namespace ReimuPlugins.Th105Replay
                 if (reader != null)
                 {
                     this.Version = reader.ReadInt16();
-                    reader.ReadBytes(6);
+                    _ = reader.ReadBytes(6);
 
                     this.GameMode = ((int)reader.ReadByte()).ToValidEnum<GameMode>();
-                    reader.ReadBytes(5);
+                    _ = reader.ReadBytes(5);
 
                     this.Deck1 = new Deck();
                     this.Deck1.ReadFrom(reader);
-                    reader.ReadBytes(3);
+                    _ = reader.ReadBytes(3);
 
                     if (this.GameMode == GameMode.Story)
                     {
@@ -660,11 +660,11 @@ namespace ReimuPlugins.Th105Replay
                     {
                         this.Deck2 = new Deck();
                         this.Deck2.ReadFrom(reader);
-                        reader.ReadBytes(4);
+                        _ = reader.ReadBytes(4);
 
                         this.Stage = reader.ReadByte();
                         this.Bgm = reader.ReadByte();
-                        reader.ReadBytes(7);
+                        _ = reader.ReadBytes(7);
 
                         var remainSize = reader.BaseStream.Length - reader.BaseStream.Position;
                         this.Frames = (int)(remainSize / ((this.GameMode == GameMode.VersusCom) ? 4 : 2));

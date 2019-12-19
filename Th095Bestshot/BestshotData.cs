@@ -57,10 +57,10 @@ namespace ReimuPlugins.Th095Bestshot
             using var reader = new BinaryReader(input);
 
             this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
-            reader.ReadInt16();
+            _ = reader.ReadInt16();
             this.Level = reader.ReadInt16();
             this.Scene = reader.ReadInt16();
-            reader.ReadInt16();
+            _ = reader.ReadInt16();
             this.Width = reader.ReadInt16();
             this.Height = reader.ReadInt16();
             this.Score = reader.ReadInt32();
@@ -88,7 +88,7 @@ namespace ReimuPlugins.Th095Bestshot
         {
             using var extracted = new MemoryStream();
             Lzss.Extract(input, extracted);
-            extracted.Seek(0, SeekOrigin.Begin);
+            _ = extracted.Seek(0, SeekOrigin.Begin);
 
             using var bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 

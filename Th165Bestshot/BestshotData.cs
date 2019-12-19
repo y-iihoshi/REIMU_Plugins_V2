@@ -342,28 +342,28 @@ namespace ReimuPlugins.Th165Bestshot
             using var reader = new BinaryReader(input);
 
             this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
-            reader.ReadInt16(); // always 0x0401?
+            _ = reader.ReadInt16(); // always 0x0401?
             this.Weekday = reader.ReadInt16();
             this.Dream = reader.ReadInt16();
-            reader.ReadInt16(); // always 0x0100?
+            _ = reader.ReadInt16(); // always 0x0100?
             this.Width = reader.ReadInt16();
             this.Height = reader.ReadInt16();
-            reader.ReadInt32(); // always 0?
+            _ = reader.ReadInt32(); // always 0?
             this.Width2 = reader.ReadInt16();
             this.Height2 = reader.ReadInt16();
             this.HalfWidth = reader.ReadInt16();
             this.HalfHeight = reader.ReadInt16();
-            reader.ReadInt32(); // always 0?
+            _ = reader.ReadInt32(); // always 0?
             this.SlowRate = reader.ReadSingle();
             this.DateTime = reader.ReadUInt32();
-            reader.ReadInt32(); // always 0?
+            _ = reader.ReadInt32(); // always 0?
             this.Angle = reader.ReadSingle();
             this.Score = reader.ReadInt32();
-            reader.ReadInt32(); // always 0?
+            _ = reader.ReadInt32(); // always 0?
             this.hashtagFields[0] = new BitVector32(reader.ReadInt32());
             this.hashtagFields[1] = new BitVector32(reader.ReadInt32());
             this.hashtagFields[2] = new BitVector32(reader.ReadInt32());
-            reader.ReadBytes(0x28); // always all 0?
+            _ = reader.ReadBytes(0x28); // always all 0?
             this.Score2 = reader.ReadInt32();
             this.BasePoint = reader.ReadInt32();
             this.NumViewed = reader.ReadInt32();
@@ -373,11 +373,11 @@ namespace ReimuPlugins.Th165Bestshot
             this.NumBulletsNearby = reader.ReadInt32();
             this.RiskBonus = reader.ReadInt32();
             this.BossShot = reader.ReadSingle();
-            reader.ReadInt32(); // always 0? (Nice Shot?)
+            _ = reader.ReadInt32(); // always 0? (Nice Shot?)
             this.AngleBonus = reader.ReadSingle();
             this.MacroBonus = reader.ReadInt32();
-            reader.ReadInt32(); // always 0? (Front/Side/Back Shot?)
-            reader.ReadInt32(); // always 0? (Clear Shot?)
+            _ = reader.ReadInt32(); // always 0? (Front/Side/Back Shot?)
+            _ = reader.ReadInt32(); // always 0? (Clear Shot?)
             this.LikesPerView = reader.ReadSingle();
             this.FavsPerView = reader.ReadSingle();
             this.NumHashtags = reader.ReadInt32();
@@ -389,8 +389,8 @@ namespace ReimuPlugins.Th165Bestshot
             this.NumYellowBullets = reader.ReadInt32();
             this.NumOrangeBullets = reader.ReadInt32();
             this.NumLightBullets = reader.ReadInt32();
-            reader.ReadBytes(0x44); // always all 0?
-            reader.ReadBytes(0x34);
+            _ = reader.ReadBytes(0x44); // always all 0?
+            _ = reader.ReadBytes(0x34);
 
             if (withBitmap)
             {
@@ -413,7 +413,7 @@ namespace ReimuPlugins.Th165Bestshot
         {
             using var extracted = new MemoryStream();
             Lzss.Extract(input, extracted);
-            extracted.Seek(0, SeekOrigin.Begin);
+            _ = extracted.Seek(0, SeekOrigin.Begin);
 
             using var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
 

@@ -708,7 +708,7 @@ namespace ReimuPlugins.Th165Bestshot
                             writer.Write("\0");
                             writer.Flush();
 
-                            writer.BaseStream.Seek(0, IO.SeekOrigin.Begin);
+                            _ = writer.BaseStream.Seek(0, IO.SeekOrigin.Begin);
                             var source = ((IO.MemoryStream)writer.BaseStream).ToArray();
                             dst = Marshal.AllocHGlobal(source.Length);
                             Marshal.Copy(source, 0, dst, source.Length);

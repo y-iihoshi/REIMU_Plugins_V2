@@ -556,7 +556,7 @@ namespace ReimuPlugins.Th145Replay
                                 ? ((char)((int)'a' + remainder)).ToString(CultureInfo.InvariantCulture)
                                 : string.Empty);
 
-                        Extract(deflateData, out var extractedData, extractedSize);
+                        _ = Extract(deflateData, out var extractedData, extractedSize);
                         if (extractedData.Length == extractedSize)
                         {
                             MemoryStream stream = null;

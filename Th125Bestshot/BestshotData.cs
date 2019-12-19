@@ -157,25 +157,25 @@ namespace ReimuPlugins.Th125Bestshot
             using var reader = new BinaryReader(input);
 
             this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
-            reader.ReadInt16();
+            _ = reader.ReadInt16();
             this.Level = reader.ReadInt16();
             this.Scene = reader.ReadInt16();
-            reader.ReadInt16();
+            _ = reader.ReadInt16();
             this.Width = reader.ReadInt16();
             this.Height = reader.ReadInt16();
-            reader.ReadInt32();
+            _ = reader.ReadInt32();
             this.Width2 = reader.ReadInt16();
             this.Height2 = reader.ReadInt16();
             this.HalfWidth = reader.ReadInt16();
             this.HalfHeight = reader.ReadInt16();
             this.DateTime = reader.ReadUInt32();
-            reader.ReadInt32();
+            _ = reader.ReadInt32();
             this.SlowRate = reader.ReadSingle();
             this.bonusFields = new BitVector32(reader.ReadInt32());
             this.ResultScore = reader.ReadInt32();
             this.BasePoint = reader.ReadInt32();
-            reader.ReadInt32();
-            reader.ReadInt32();
+            _ = reader.ReadInt32();
+            _ = reader.ReadInt32();
             this.RiskBonus = reader.ReadInt32();
             this.BossShot = reader.ReadSingle();
             this.NiceShot = reader.ReadSingle();
@@ -183,10 +183,10 @@ namespace ReimuPlugins.Th125Bestshot
             this.MacroBonus = reader.ReadInt32();
             this.FrontSideBackShot = reader.ReadInt32();
             this.ClearShot = reader.ReadInt32();
-            reader.ReadBytes(0x30);
+            _ = reader.ReadBytes(0x30);
             this.Angle = reader.ReadSingle();
             this.ResultScore2 = reader.ReadInt32();
-            reader.ReadInt32();
+            _ = reader.ReadInt32();
             this.CardName = Enc.CP932.GetString(reader.ReadBytes(0x50));
 
             if (withBitmap)
@@ -210,7 +210,7 @@ namespace ReimuPlugins.Th125Bestshot
         {
             using var extracted = new MemoryStream();
             Lzss.Extract(input, extracted);
-            extracted.Seek(0, SeekOrigin.Begin);
+            _ = extracted.Seek(0, SeekOrigin.Begin);
 
             using var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
 

@@ -53,16 +53,16 @@ namespace ReimuPlugins.Th143Screenshot
             using var reader = new BinaryReader(input);
 
             this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
-            reader.ReadInt16();
+            _ = reader.ReadInt16();
             this.Day = reader.ReadInt16();
             this.Scene = reader.ReadInt16();
-            reader.ReadInt16();
+            _ = reader.ReadInt16();
             this.Width = reader.ReadInt16();
             this.Height = reader.ReadInt16();
-            reader.ReadInt32();
+            _ = reader.ReadInt32();
             this.DateTime = reader.ReadUInt32();
             this.SlowRate = reader.ReadSingle();
-            reader.ReadBytes(0x58);
+            _ = reader.ReadBytes(0x58);
 
             if (withBitmap)
             {
@@ -85,7 +85,7 @@ namespace ReimuPlugins.Th143Screenshot
         {
             using var extracted = new MemoryStream();
             Lzss.Extract(input, extracted);
-            extracted.Seek(0, SeekOrigin.Begin);
+            _ = extracted.Seek(0, SeekOrigin.Begin);
 
             using var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
 
