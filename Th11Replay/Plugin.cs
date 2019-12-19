@@ -279,15 +279,9 @@ namespace ReimuPlugins.Th11Replay
 #pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
-            protected override ReadOnlyCollection<string> ManagedPluginInfo
-            {
-                get { return Array.AsReadOnly(PluginInfoImpl); }
-            }
+            protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfoImpl);
 
-            protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo
-            {
-                get { return Columns; }
-            }
+            protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {

@@ -264,128 +264,54 @@ namespace ReimuPlugins.Th145Replay
             this.info = new Info();
         }
 
-        public int BackgroundId
-        {
-            get { return (int)this.info["background"]; }
-        }
+        public int BackgroundId => (int)this.info["background"];
 
-        public string BackgroundName
-        {
-            get
-            {
-                return BackgroundNames.TryGetValue(this.BackgroundId, out var name) ? name : string.Empty;
-            }
-        }
+        public string BackgroundName => BackgroundNames.TryGetValue(this.BackgroundId, out var name)
+            ? name : string.Empty;
 
-        public int BgmId
-        {
-            get { return (int)this.info["bgm"]; }
-        }
+        public int BgmId => (int)this.info["bgm"];
 
-        public string BgmName
-        {
-            get
-            {
-                return BgmNames.TryGetValue(this.BgmId, out var name) ? name : string.Empty;
-            }
-        }
+        public string BgmName => BgmNames.TryGetValue(this.BgmId, out var name) ? name : string.Empty;
 
-        public GameMode GameMode
-        {
-            get { return this.info["game_mode"].ToValidEnum<GameMode>(); }
-        }
+        public GameMode GameMode => this.info["game_mode"].ToValidEnum<GameMode>();
 
-        public Character Character1
-        {
-            get { return this.info["player0"].ToValidEnum<Character>(); }
-        }
+        public Character Character1 => this.info["player0"].ToValidEnum<Character>();
 
-        public int Color1
-        {
-            get { return (int)this.info["color0"]; }
-        }
+        public int Color1 => (int)this.info["color0"];
 
-        public int SpellCard1Id
-        {
-            get { return (int)this.info["spellcard0"]; }
-        }
+        public int SpellCard1Id => (int)this.info["spellcard0"];
 
-        public string SpellCard1Name
-        {
-            get
-            {
-                return SpellCardNames[this.Character1].TryGetValue(this.SpellCard1Id, out var name)
-                    ? name : string.Empty;
-            }
-        }
+        public string SpellCard1Name => SpellCardNames[this.Character1].TryGetValue(this.SpellCard1Id, out var name)
+            ? name : string.Empty;
 
-        public string Profile1Name
-        {
-            get { return this.info["profile", 0, "name"] as string; }
-        }
+        public string Profile1Name => this.info["profile", 0, "name"] as string;
 
-        public string Player1Info
-        {
-            get { return this.GetPlayerInfo(0); }
-        }
+        public string Player1Info => this.GetPlayerInfo(0);
 
-        public Character Character2
-        {
-            get { return this.info["player1"].ToValidEnum<Character>(); }
-        }
+        public Character Character2 => this.info["player1"].ToValidEnum<Character>();
 
-        public int Color2
-        {
-            get { return (int)this.info["color1"]; }
-        }
+        public int Color2 => (int)this.info["color1"];
 
-        public int SpellCard2Id
-        {
-            get { return (int)this.info["spellcard1"]; }
-        }
+        public int SpellCard2Id => (int)this.info["spellcard1"];
 
-        public string SpellCard2Name
-        {
-            get
-            {
-                return SpellCardNames[this.Character2].TryGetValue(this.SpellCard2Id, out var name)
-                    ? name : string.Empty;
-            }
-        }
+        public string SpellCard2Name => SpellCardNames[this.Character2].TryGetValue(this.SpellCard2Id, out var name)
+            ? name : string.Empty;
 
-        public string Profile2Name
-        {
-            get { return this.info["profile", 1, "name"] as string; }
-        }
+        public string Profile2Name => this.info["profile", 1, "name"] as string;
 
-        public string Player2Info
-        {
-            get { return this.GetPlayerInfo(1); }
-        }
+        public string Player2Info => this.GetPlayerInfo(1);
 
-        public int Seed
-        {
-            get { return (int)this.info["seed"]; }
-        }
+        public int Seed => (int)this.info["seed"];
 
-        public string Version
-        {
-            get { return this.info.Version; }
-        }
+        public string Version => this.info.Version;
 
-        public DateTime DateTime
-        {
-            get
-            {
-                return new DateTime(
-                    (int)this.info["year"],
-                    (int)this.info["month"],
-                    (int)this.info["day"],
-                    (int)this.info["hour"],
-                    (int)this.info["min"],
-                    (int)this.info["sec"]);
-            }
-        }
+        public DateTime DateTime => new DateTime(
+            (int)this.info["year"],
+            (int)this.info["month"],
+            (int)this.info["day"],
+            (int)this.info["hour"],
+            (int)this.info["min"],
+            (int)this.info["sec"]);
 
         public void Read(Stream input)
         {
@@ -544,10 +470,7 @@ namespace ReimuPlugins.Th145Replay
             }
 
             [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
-            public ReadOnlyCollection<byte> Signature
-            {
-                get { return Array.AsReadOnly(this.signature); }
-            }
+            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
 
             public string Version { get; private set; }
 

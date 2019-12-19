@@ -345,11 +345,9 @@ namespace ReimuPlugins.Th155Replay
                 Sentinel,
             }
 
-            protected override ReadOnlyCollection<string> ManagedPluginInfo
-                => Array.AsReadOnly(PluginInfoImpl);
+            protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfoImpl);
 
-            protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo
-                => Columns;
+            protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {

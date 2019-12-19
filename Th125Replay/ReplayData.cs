@@ -30,37 +30,19 @@ namespace ReimuPlugins.Th125Replay
             };
         }
 
-        public string Version
-        {
-            get { return this.info["Version"]; }
-        }
+        public string Version => this.info["Version"];
 
-        public string Name
-        {
-            get { return this.info["Name"]; }
-        }
+        public string Name => this.info["Name"];
 
-        public string Date
-        {
-            get { return this.info["Date"]; }
-        }
+        public string Date => this.info["Date"];
 
-        public string Chara
-        {
-            get { return this.info["Chara"]; }
-        }
+        public string Chara => this.info["Chara"];
 
         public string Scene { get; private set; }
 
-        public string Score
-        {
-            get { return this.info["Score"]; }
-        }
+        public string Score => this.info["Score"];
 
-        public string SlowRate
-        {
-            get { return this.info["Slow Rate"]; }
-        }
+        public string SlowRate => this.info["Slow Rate"];
 
         public override void Read(Stream input)
         {

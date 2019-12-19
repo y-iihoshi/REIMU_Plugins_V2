@@ -505,74 +505,29 @@ namespace ReimuPlugins.Th105Replay
             this.info = new Info();
         }
 
-        public int StageId
-        {
-            get { return (int)this.info.Stage; }
-        }
+        public int StageId => (int)this.info.Stage;
 
-        public string StageName
-        {
-            get
-            {
-                return StageNames.TryGetValue(this.info.Stage, out var name) ? name : string.Empty;
-            }
-        }
+        public string StageName => StageNames.TryGetValue(this.info.Stage, out var name) ? name : string.Empty;
 
-        public int BgmId
-        {
-            get { return (int)this.info.Bgm; }
-        }
+        public int BgmId => (int)this.info.Bgm;
 
-        public string BgmName
-        {
-            get
-            {
-                return BgmNames.TryGetValue(this.info.Bgm, out var name) ? name : string.Empty;
-            }
-        }
+        public string BgmName => BgmNames.TryGetValue(this.info.Bgm, out var name) ? name : string.Empty;
 
-        public GameMode GameMode
-        {
-            get { return this.info.GameMode; }
-        }
+        public GameMode GameMode => this.info.GameMode;
 
-        public Character Character1
-        {
-            get { return this.info.Deck1.Character; }
-        }
+        public Character Character1 => this.info.Deck1.Character;
 
-        public int Color1
-        {
-            get { return (int)this.info.Deck1.Color; }
-        }
+        public int Color1 => (int)this.info.Deck1.Color;
 
-        public string Player1Info
-        {
-            get { return this.GetPlayerInfo(0); }
-        }
+        public string Player1Info => this.GetPlayerInfo(0);
 
-        public Character Character2
-        {
-            get { return this.info.Deck2.Character; }
-        }
+        public Character Character2 => this.info.Deck2.Character;
 
-        public int Color2
-        {
-            get { return (int)this.info.Deck2.Color; }
-        }
+        public int Color2 => (int)this.info.Deck2.Color;
 
-        public string Player2Info
-        {
-            get { return this.GetPlayerInfo(1); }
-        }
+        public string Player2Info => this.GetPlayerInfo(1);
 
-        public string Version
-        {
-            get
-            {
-                return Versions.TryGetValue(this.info.Version, out var version) ? version : string.Empty;
-            }
-        }
+        public string Version => Versions.TryGetValue(this.info.Version, out var version) ? version : string.Empty;
 
         public static bool IsValidVersion(short versionId)
         {
@@ -636,10 +591,7 @@ namespace ReimuPlugins.Th105Replay
 
             public int NumCards { get; private set; }
 
-            public ReadOnlyCollection<KeyValuePair<short, int>> Cards
-            {
-                get { return Array.AsReadOnly(this.cards.ToArray()); }
-            }
+            public ReadOnlyCollection<KeyValuePair<short, int>> Cards => Array.AsReadOnly(this.cards.ToArray());
 
             public void ReadFrom(BinaryReader reader)
             {

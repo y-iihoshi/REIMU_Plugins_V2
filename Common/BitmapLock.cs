@@ -49,18 +49,12 @@ namespace ReimuPlugins.Common
         /// Gets the address of the first pixel data in the bitmap.
         /// This can also be thought of as the first scan line in the bitmap.
         /// </summary>
-        public IntPtr Scan0
-        {
-            get { return this.data != null ? this.data.Scan0 : IntPtr.Zero; }
-        }
+        public IntPtr Scan0 => this.data != null ? this.data.Scan0 : IntPtr.Zero;
 
         /// <summary>
         /// Gets the stride width (also called scan width) of the <see cref="Bitmap"/> object.
         /// </summary>
-        public int Stride
-        {
-            get { return this.data != null ? this.data.Stride : 0; }
-        }
+        public int Stride => this.data != null ? this.data.Stride : 0;
 
         /// <summary>
         /// Implements the <see cref="IDisposable.Dispose"/> method.

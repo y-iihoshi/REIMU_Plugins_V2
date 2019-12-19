@@ -690,11 +690,9 @@ namespace ReimuPlugins.Th155Replay
             }
 
             [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
-            public ReadOnlyCollection<byte> Signature
-                => Array.AsReadOnly(this.signature);
+            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
 
-            public string Version
-                => this.version;
+            public string Version => this.version;
 
             public object this[string key]
                 => (this.dictionary != null)

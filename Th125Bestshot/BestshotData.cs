@@ -83,100 +83,43 @@ namespace ReimuPlugins.Th125Bestshot
 
         public float SlowRate { get; private set; }
 
-        public bool TwoShotBit
-        {
-            get { return this.bonusFields[Masks[2]]; }
-        }
+        public bool TwoShotBit => this.bonusFields[Masks[2]];
 
-        public bool NiceShotBit
-        {
-            get { return this.bonusFields[Masks[3]]; }
-        }
+        public bool NiceShotBit => this.bonusFields[Masks[3]];
 
-        public bool RiskBonusBit
-        {
-            get { return this.bonusFields[Masks[4]]; }
-        }
+        public bool RiskBonusBit => this.bonusFields[Masks[4]];
 
-        public bool RedShotBit
-        {
-            get { return this.bonusFields[Masks[6]]; }
-        }
+        public bool RedShotBit => this.bonusFields[Masks[6]];
 
-        public bool PurpleShotBit
-        {
-            get { return this.bonusFields[Masks[7]]; }
-        }
+        public bool PurpleShotBit => this.bonusFields[Masks[7]];
 
-        public bool BlueShotBit
-        {
-            get { return this.bonusFields[Masks[8]]; }
-        }
+        public bool BlueShotBit => this.bonusFields[Masks[8]];
 
-        public bool CyanShotBit
-        {
-            get { return this.bonusFields[Masks[9]]; }
-        }
+        public bool CyanShotBit => this.bonusFields[Masks[9]];
 
-        public bool GreenShotBit
-        {
-            get { return this.bonusFields[Masks[10]]; }
-        }
+        public bool GreenShotBit => this.bonusFields[Masks[10]];
 
-        public bool YellowShotBit
-        {
-            get { return this.bonusFields[Masks[11]]; }
-        }
+        public bool YellowShotBit => this.bonusFields[Masks[11]];
 
-        public bool OrangeShotBit
-        {
-            get { return this.bonusFields[Masks[12]]; }
-        }
+        public bool OrangeShotBit => this.bonusFields[Masks[12]];
 
-        public bool ColorfulShotBit
-        {
-            get { return this.bonusFields[Masks[13]]; }
-        }
+        public bool ColorfulShotBit => this.bonusFields[Masks[13]];
 
-        public bool RainbowShotBit
-        {
-            get { return this.bonusFields[Masks[14]]; }
-        }
+        public bool RainbowShotBit => this.bonusFields[Masks[14]];
 
-        public bool SoloShotBit
-        {
-            get { return this.bonusFields[Masks[16]]; }
-        }
+        public bool SoloShotBit => this.bonusFields[Masks[16]];
 
-        public bool MacroBonusBit
-        {
-            get { return this.bonusFields[Masks[22]]; }
-        }
+        public bool MacroBonusBit => this.bonusFields[Masks[22]];
 
-        public bool FrontShotBit
-        {
-            get { return this.bonusFields[Masks[24]]; }
-        }
+        public bool FrontShotBit => this.bonusFields[Masks[24]];
 
-        public bool BackShotBit
-        {
-            get { return this.bonusFields[Masks[25]]; }
-        }
+        public bool BackShotBit => this.bonusFields[Masks[25]];
 
-        public bool SideShotBit
-        {
-            get { return this.bonusFields[Masks[26]]; }
-        }
+        public bool SideShotBit => this.bonusFields[Masks[26]];
 
-        public bool ClearShotBit
-        {
-            get { return this.bonusFields[Masks[27]]; }
-        }
+        public bool ClearShotBit => this.bonusFields[Masks[27]];
 
-        public bool CatBonusBit
-        {
-            get { return this.bonusFields[Masks[28]]; }
-        }
+        public bool CatBonusBit => this.bonusFields[Masks[28]];
 
         public int ResultScore { get; private set; }
 

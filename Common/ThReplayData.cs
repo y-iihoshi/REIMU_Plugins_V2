@@ -35,10 +35,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Gets the information as a string.
         /// </summary>
-        public string Info
-        {
-            get { return this.UserInfo0.DataString; }
-        }
+        public string Info => this.UserInfo0.DataString;
 
         /// <summary>
         /// Gets or sets the comment.
@@ -228,18 +225,12 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the signature string.
             /// </summary>
-            public ReadOnlyCollection<byte> Signature
-            {
-                get { return Array.AsReadOnly(this.signature); }
-            }
+            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
 
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public ReadOnlyCollection<byte> Unknown1
-            {
-                get { return Array.AsReadOnly(this.unknown1); }
-            }
+            public ReadOnlyCollection<byte> Unknown1 => Array.AsReadOnly(this.unknown1);
 
             /// <summary>
             /// Gets the size of the replay header.
@@ -253,26 +244,17 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public ReadOnlyCollection<byte> Unknown2
-            {
-                get { return Array.AsReadOnly(this.unknown2); }
-            }
+            public ReadOnlyCollection<byte> Unknown2 => Array.AsReadOnly(this.unknown2);
 
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public ReadOnlyCollection<byte> Unknown3
-            {
-                get { return Array.AsReadOnly(this.unknown3); }
-            }
+            public ReadOnlyCollection<byte> Unknown3 => Array.AsReadOnly(this.unknown3);
 
             /// <summary>
             /// Gets the actual replay data.
             /// </summary>
-            public ReadOnlyCollection<byte> Data
-            {
-                get { return Array.AsReadOnly(this.data); }
-            }
+            public ReadOnlyCollection<byte> Data => Array.AsReadOnly(this.data);
 
             /// <summary>
             /// Reads data by using the specified <see cref="BinaryReader"/> instance.
@@ -336,10 +318,7 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the signature string.
             /// </summary>
-            public ReadOnlyCollection<byte> Signature
-            {
-                get { return Array.AsReadOnly(this.signature); }
-            }
+            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
 
             /// <summary>
             /// Gets the type of the user information. (0: replay file information, 1: comment.)
@@ -349,10 +328,7 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the actual data.
             /// </summary>
-            public ReadOnlyCollection<byte> Data
-            {
-                get { return Array.AsReadOnly(this.data); }
-            }
+            public ReadOnlyCollection<byte> Data => Array.AsReadOnly(this.data);
 
             /// <summary>
             /// Gets or sets the actual data represented as a code page 932 string.
