@@ -16,6 +16,7 @@ namespace ReimuPlugins.Th155Replay
     using System.IO.Compression;
     using System.Linq;
     using ReimuPlugins.Common;
+    using ReimuPlugins.Th155Replay.Properties;
 
     public enum GameMode
     {
@@ -443,7 +444,7 @@ namespace ReimuPlugins.Th155Replay
 
         public int GetBackgroundId()
             => (this.info["background_id"] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetBackgroundId));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetBackgroundId));
 
         public string GetBackgroundName()
             => BackgroundNames.TryGetValue(this.GetBackgroundId(), out string name)
@@ -451,7 +452,7 @@ namespace ReimuPlugins.Th155Replay
 
         public int GetBgmId()
             => (this.info["bgm_id"] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetBgmId));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetBgmId));
 
         public string GetBgmName()
             => BgmNames.TryGetValue(this.GetBgmId(), out string name)
@@ -465,23 +466,23 @@ namespace ReimuPlugins.Th155Replay
 
         public Character GetMasterName1()
             => Characters.TryGetValue(this.info["master_name", 0] as string, out Character chara)
-                ? chara : throw new InvalidDataException(nameof(this.GetMasterName1));
+                ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName1));
 
         public int GetMasterColor1()
             => (this.info["master_color", 0] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetMasterColor1));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor1));
 
         public Character GetSlaveName1()
             => Characters.TryGetValue(this.info["slave_name", 0] as string, out Character chara)
-                ? chara : throw new InvalidDataException(nameof(this.GetSlaveName1));
+                ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName1));
 
         public int GetSlaveColor1()
             => (this.info["slave_color", 0] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetSlaveColor1));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetSlaveColor1));
 
         public int GetSpellCard1Id()
             => (this.info["spell", 0] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetSpellCard1Id));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard1Id));
 
         public string GetSpellCard1Name()
             => SpellCardNames[this.GetMasterName1()].TryGetValue(this.GetSpellCard1Id(), out string name)
@@ -489,27 +490,27 @@ namespace ReimuPlugins.Th155Replay
 
         public string GetPlayer1Name()
             => (this.info["player_name", 0] is string value)
-                ? value : throw new InvalidDataException(nameof(this.GetPlayer1Name));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer1Name));
 
         public Character GetMasterName2()
             => Characters.TryGetValue(this.info["master_name", 1] as string, out Character chara)
-                ? chara : throw new InvalidDataException(nameof(this.GetMasterName2));
+                ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName2));
 
         public int GetMasterColor2()
             => (this.info["master_color", 1] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetMasterColor2));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor2));
 
         public Character GetSlaveName2()
             => Characters.TryGetValue(this.info["slave_name", 1] as string, out Character chara)
-                ? chara : throw new InvalidDataException(nameof(this.GetSlaveName2));
+                ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName2));
 
         public int GetSlaveColor2()
             => (this.info["slave_color", 1] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetSlaveColor2));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetSlaveColor2));
 
         public int GetSpellCard2Id()
             => (this.info["spell", 1] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetSpellCard2Id));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard2Id));
 
         public string GetSpellCard2Name()
             => SpellCardNames[this.GetMasterName2()].TryGetValue(this.GetSpellCard2Id(), out string name)
@@ -517,7 +518,7 @@ namespace ReimuPlugins.Th155Replay
 
         public string GetPlayer2Name()
             => (this.info["player_name", 1] is string value)
-                ? value : throw new InvalidDataException(nameof(this.GetPlayer2Name));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer2Name));
 
         public DateTime GetDateTime()
             => new DateTime(
@@ -530,15 +531,15 @@ namespace ReimuPlugins.Th155Replay
 
         public StoryCharacter GetStoryMaster()
             => StoryCharacters.TryGetValue(this.info["scenario_name"] as string, out StoryCharacter chara)
-                ? chara : throw new InvalidDataException(nameof(this.GetStoryMaster));
+                ? chara : throw NewInvalidPropertyException(nameof(this.GetStoryMaster));
 
         public StoryCharacter GetStorySlave()
             => StoryCharacters.TryGetValue(this.info["slave_name"] as string, out StoryCharacter chara)
-                ? chara : throw new InvalidDataException(nameof(this.GetStorySlave));
+                ? chara : throw NewInvalidPropertyException(nameof(this.GetStorySlave));
 
         public int GetStorySpellCardId()
             => (this.info["spell"] is int value)
-                ? value : throw new InvalidDataException(nameof(this.GetStorySpellCardId));
+                ? value : throw NewInvalidPropertyException(nameof(this.GetStorySpellCardId));
 
         public string GetStorySpellCardName()
             => SpellCardNames[(Character)this.GetStoryMaster()].TryGetValue(this.GetStorySpellCardId(), out string name)
@@ -620,6 +621,10 @@ namespace ReimuPlugins.Th155Replay
 
             return dictionary;
         }
+
+        private static InvalidDataException NewInvalidPropertyException(string propertyName)
+            => new InvalidDataException(string.Format(
+                CultureInfo.CurrentCulture, Resources.InvalidDataExceptionPropertyIsInvalid, propertyName));
 
         private class EndMark
         {

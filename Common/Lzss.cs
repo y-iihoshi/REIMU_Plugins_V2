@@ -10,6 +10,7 @@ namespace ReimuPlugins.Common
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using ReimuPlugins.Common.Properties;
 
     /// <summary>
     /// Provides static methods for compressing and decompressing LZSS formatted data.
@@ -32,7 +33,7 @@ namespace ReimuPlugins.Common
         public static void Compress(Stream input, Stream output)
 #pragma warning restore IDE0060 // Remove unused parameter
         {
-            throw new NotImplementedException("LZSS complession is not supported.");
+            throw new NotImplementedException(Resources.NotImplementedExceptionLzssCompressionIsNotSupported);
         }
 
         /// <summary>

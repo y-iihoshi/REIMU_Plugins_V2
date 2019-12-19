@@ -16,6 +16,7 @@ namespace ReimuPlugins.Th145Replay
     using System.IO.Compression;
     using System.Linq;
     using ReimuPlugins.Common;
+    using ReimuPlugins.Th145Replay.Properties;
 
     public enum GameMode
     {
@@ -585,7 +586,8 @@ namespace ReimuPlugins.Th145Replay
                     }
                     else
                     {
-                        throw new InvalidDataException("key1");
+                        throw new InvalidDataException(string.Format(
+                            CultureInfo.CurrentCulture, Resources.InvalidDataExceptionMustBeAnArray, key1));
                     }
                 }
             }
@@ -607,7 +609,8 @@ namespace ReimuPlugins.Th145Replay
                     }
                     else
                     {
-                        throw new InvalidDataException("key1 and/or key2");
+                        throw new InvalidDataException(string.Format(
+                            CultureInfo.CurrentCulture, Resources.InvalidDataExceptionMustBeADictionary, key1, key2));
                     }
                 }
             }

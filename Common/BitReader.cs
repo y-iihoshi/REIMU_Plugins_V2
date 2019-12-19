@@ -9,6 +9,7 @@ namespace ReimuPlugins.Common
 {
     using System;
     using System.IO;
+    using ReimuPlugins.Common.Properties;
 
     /// <summary>
     /// Represents a reader that reads data by bitwise from a stream.
@@ -67,7 +68,7 @@ namespace ReimuPlugins.Common
 
             if (!stream.CanRead)
             {
-                throw new ArgumentException("stream must be readable", nameof(stream));
+                throw new ArgumentException(Resources.ArgumentExceptionStreamMustBeReadable, nameof(stream));
             }
 
             this.leaveOpen = leaveOpen;
