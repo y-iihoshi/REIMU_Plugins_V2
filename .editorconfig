@@ -116,6 +116,8 @@ csharp_space_between_method_call_empty_parameter_list_parentheses = false
 csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
 
+# SA0001: XML comment analysis disabled
+dotnet_diagnostic.SA0001.severity = none
 # SA1600: Elements should be documented
 dotnet_diagnostic.SA1600.severity = none
 # SA1602: Enumeration items should be documented
