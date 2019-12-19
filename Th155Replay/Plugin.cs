@@ -24,35 +24,49 @@ namespace ReimuPlugins.Th155Replay
         [DllExport(callingConvention: CallingConvention.StdCall)]
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "To comply with the REIMU plugin spec.")]
         public static Revision GetPluginRevision()
-            => Impl.GetPluginRevision();
+        {
+            return Impl.GetPluginRevision();
+        }
 
         [DllExport(callingConvention: CallingConvention.StdCall)]
         public static int GetPluginInfo(int index, IntPtr info, uint size)
-            => Impl.GetPluginInfo(index, info, size);
+        {
+            return Impl.GetPluginInfo(index, info, size);
+        }
 
         [DllExport(callingConvention: CallingConvention.StdCall)]
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "0#", Justification = "To comply with the REIMU plugin spec.")]
         public static ErrorCode GetColumnInfo(out IntPtr info)
-            => Impl.GetColumnInfo(out info);
+        {
+            return Impl.GetColumnInfo(out info);
+        }
 
         [DllExport(callingConvention: CallingConvention.StdCall)]
         public static uint IsSupported(IntPtr src, uint size)
-            => Impl.IsSupported(src, size);
+        {
+            return Impl.IsSupported(src, size);
+        }
 
         [DllExport(callingConvention: CallingConvention.StdCall)]
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
         public static ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info)
-            => Impl.GetFileInfoList(src, size, out info);
+        {
+            return Impl.GetFileInfoList(src, size, out info);
+        }
 
         [DllExport(callingConvention: CallingConvention.StdCall)]
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
         public static ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
-            => Impl.GetFileInfoText1(src, size, out dst);
+        {
+            return Impl.GetFileInfoText1(src, size, out dst);
+        }
 
         [DllExport(callingConvention: CallingConvention.StdCall)]
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
         public static ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
-            => Impl.GetFileInfoText2(src, size, out dst);
+        {
+            return Impl.GetFileInfoText2(src, size, out dst);
+        }
 
         private sealed class PluginImpl : ReimuPluginRev1<PluginImpl.ColumnKey>
         {

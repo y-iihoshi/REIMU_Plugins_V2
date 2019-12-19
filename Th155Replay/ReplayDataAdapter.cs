@@ -35,71 +35,109 @@ namespace ReimuPlugins.Th155Replay
             => this.data.Version;
 
         public string GetBackgroundName()
-            => EnsureString(() => (this.gameMode == GameMode.Story) ? NotAvailable : this.data.GetBackgroundName());
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story) ? NotAvailable : this.data.GetBackgroundName());
+        }
 
         public string GetBgmName()
-            => EnsureString(() => (this.gameMode == GameMode.Story) ? NotAvailable : this.data.GetBgmName());
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story) ? NotAvailable : this.data.GetBgmName());
+        }
 
         public string GetGameMode()
-            => EnsureString(() => this.gameMode.ToShortName());
+        {
+            return EnsureString(() => this.gameMode.ToShortName());
+        }
 
         public string GetDifficulty()
-            => EnsureString(() => (this.gameMode == GameMode.VersusPlayer)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.VersusPlayer)
                 ? NotAvailable : this.data.GetDifficulty().ToString());
+        }
 
         public string GetMasterName1()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? this.data.GetStoryMaster().ToLongName() : this.data.GetMasterName1().ToLongName());
+        }
 
         public string GetMasterColor1()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? NotAvailable : (this.data.GetMasterColor1() + 1).ToString(CultureInfo.CurrentCulture));
+        }
 
         public string GetSlaveName1()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? this.data.GetStorySlave().ToLongName() : this.data.GetSlaveName1().ToLongName());
+        }
 
         public string GetSlaveColor1()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? NotAvailable : (this.data.GetSlaveColor1() + 1).ToString(CultureInfo.CurrentCulture));
+        }
 
         public string GetSpellCard1Name()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? this.data.GetStorySpellCardName() : this.data.GetSpellCard1Name());
+        }
 
         public string GetPlayer1Name()
-            => EnsureString(() => this.PlayerNameIsAvailable() ? this.data.GetPlayer1Name() : NotAvailable);
+        {
+            return EnsureString(() => this.PlayerNameIsAvailable() ? this.data.GetPlayer1Name() : NotAvailable);
+        }
 
         public string GetMasterName2()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? NotAvailable : this.data.GetMasterName2().ToLongName());
+        }
 
         public string GetMasterColor2()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? NotAvailable : (this.data.GetMasterColor2() + 1).ToString(CultureInfo.CurrentCulture));
+        }
 
         public string GetSlaveName2()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? NotAvailable : this.data.GetSlaveName2().ToLongName());
+        }
 
         public string GetSlaveColor2()
-            => EnsureString(() => (this.gameMode == GameMode.Story)
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story)
                 ? NotAvailable : (this.data.GetSlaveColor2() + 1).ToString(CultureInfo.CurrentCulture));
+        }
 
         public string GetSpellCard2Name()
-            => EnsureString(() => (this.gameMode == GameMode.Story) ? NotAvailable : this.data.GetSpellCard2Name());
+        {
+            return EnsureString(() => (this.gameMode == GameMode.Story) ? NotAvailable : this.data.GetSpellCard2Name());
+        }
 
         public string GetPlayer2Name()
-            => EnsureString(() => this.PlayerNameIsAvailable() ? this.data.GetPlayer2Name() : NotAvailable);
+        {
+            return EnsureString(() => this.PlayerNameIsAvailable() ? this.data.GetPlayer2Name() : NotAvailable);
+        }
 
         public string GetDateTime()
-            => EnsureString(() => this.data.GetDateTime().ToString(CultureInfo.CurrentCulture));
+        {
+            return EnsureString(() => this.data.GetDateTime().ToString(CultureInfo.CurrentCulture));
+        }
 
         public string GetPlayer1Info()
-            => EnsureString(() => this.GetPlayerInfo(1));
+        {
+            return EnsureString(() => this.GetPlayerInfo(1));
+        }
 
         public string GetPlayer2Info()
-            => EnsureString(() => this.GetPlayerInfo(2));
+        {
+            return EnsureString(() => this.GetPlayerInfo(2));
+        }
 
         private static string EnsureString(Func<string> func)
         {
@@ -119,7 +157,9 @@ namespace ReimuPlugins.Th155Replay
         }
 
         private bool PlayerNameIsAvailable()
-            => (string.CompareOrdinal(this.data.Version, "1.04") >= 0) && (this.gameMode == GameMode.VersusPlayer);
+        {
+            return (string.CompareOrdinal(this.data.Version, "1.04") >= 0) && (this.gameMode == GameMode.VersusPlayer);
+        }
 
         private string GetPlayerInfo(int num)
         {

@@ -443,107 +443,155 @@ namespace ReimuPlugins.Th155Replay
             => this.info.Version;
 
         public int GetBackgroundId()
-            => (this.info["background_id"] is int value)
+        {
+            return (this.info["background_id"] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetBackgroundId));
+        }
 
         public string GetBackgroundName()
-            => BackgroundNames.TryGetValue(this.GetBackgroundId(), out var name)
-                ? name : string.Empty;
+        {
+            return BackgroundNames.TryGetValue(this.GetBackgroundId(), out var name) ? name : string.Empty;
+        }
 
         public int GetBgmId()
-            => (this.info["bgm_id"] is int value)
+        {
+            return (this.info["bgm_id"] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetBgmId));
+        }
 
         public string GetBgmName()
-            => BgmNames.TryGetValue(this.GetBgmId(), out var name)
-                ? name : string.Empty;
+        {
+            return BgmNames.TryGetValue(this.GetBgmId(), out var name) ? name : string.Empty;
+        }
 
         public GameMode GetGameMode()
-            => this.info["game_mode"].ToValidEnum<GameMode>();
+        {
+            return this.info["game_mode"].ToValidEnum<GameMode>();
+        }
 
         public Difficulty GetDifficulty()
-            => this.info["difficulty"].ToValidEnum<Difficulty>();
+        {
+            return this.info["difficulty"].ToValidEnum<Difficulty>();
+        }
 
         public Character GetMasterName1()
-            => Characters.TryGetValue(this.info["master_name", 0] as string, out var chara)
+        {
+            return Characters.TryGetValue(this.info["master_name", 0] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName1));
+        }
 
         public int GetMasterColor1()
-            => (this.info["master_color", 0] is int value)
+        {
+            return (this.info["master_color", 0] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor1));
+        }
 
         public Character GetSlaveName1()
-            => Characters.TryGetValue(this.info["slave_name", 0] as string, out var chara)
+        {
+            return Characters.TryGetValue(this.info["slave_name", 0] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName1));
+        }
 
         public int GetSlaveColor1()
-            => (this.info["slave_color", 0] is int value)
+        {
+            return (this.info["slave_color", 0] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSlaveColor1));
+        }
 
         public int GetSpellCard1Id()
-            => (this.info["spell", 0] is int value)
+        {
+            return (this.info["spell", 0] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard1Id));
+        }
 
         public string GetSpellCard1Name()
-            => SpellCardNames[this.GetMasterName1()].TryGetValue(this.GetSpellCard1Id(), out var name)
+        {
+            return SpellCardNames[this.GetMasterName1()].TryGetValue(this.GetSpellCard1Id(), out var name)
                 ? name : string.Empty;
+        }
 
         public string GetPlayer1Name()
-            => (this.info["player_name", 0] is string value)
+        {
+            return (this.info["player_name", 0] is string value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer1Name));
+        }
 
         public Character GetMasterName2()
-            => Characters.TryGetValue(this.info["master_name", 1] as string, out var chara)
+        {
+            return Characters.TryGetValue(this.info["master_name", 1] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName2));
+        }
 
         public int GetMasterColor2()
-            => (this.info["master_color", 1] is int value)
+        {
+            return (this.info["master_color", 1] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor2));
+        }
 
         public Character GetSlaveName2()
-            => Characters.TryGetValue(this.info["slave_name", 1] as string, out var chara)
+        {
+            return Characters.TryGetValue(this.info["slave_name", 1] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName2));
+        }
 
         public int GetSlaveColor2()
-            => (this.info["slave_color", 1] is int value)
+        {
+            return (this.info["slave_color", 1] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSlaveColor2));
+        }
 
         public int GetSpellCard2Id()
-            => (this.info["spell", 1] is int value)
+        {
+            return (this.info["spell", 1] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard2Id));
+        }
 
         public string GetSpellCard2Name()
-            => SpellCardNames[this.GetMasterName2()].TryGetValue(this.GetSpellCard2Id(), out var name)
+        {
+            return SpellCardNames[this.GetMasterName2()].TryGetValue(this.GetSpellCard2Id(), out var name)
                 ? name : string.Empty;
+        }
 
         public string GetPlayer2Name()
-            => (this.info["player_name", 1] is string value)
+        {
+            return (this.info["player_name", 1] is string value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer2Name));
+        }
 
         public DateTime GetDateTime()
-            => new DateTime(
+        {
+            return new DateTime(
                 (int)this.info["year"],
                 (int)this.info["month"],
                 (int)this.info["day"],
                 (int)this.info["hour"],
                 (int)this.info["min"],
                 (int)this.info["sec"]);
+        }
 
         public StoryCharacter GetStoryMaster()
-            => StoryCharacters.TryGetValue(this.info["scenario_name"] as string, out var chara)
+        {
+            return StoryCharacters.TryGetValue(this.info["scenario_name"] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetStoryMaster));
+        }
 
         public StoryCharacter GetStorySlave()
-            => StoryCharacters.TryGetValue(this.info["slave_name"] as string, out var chara)
+        {
+            return StoryCharacters.TryGetValue(this.info["slave_name"] as string, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetStorySlave));
+        }
 
         public int GetStorySpellCardId()
-            => (this.info["spell"] is int value)
+        {
+            return (this.info["spell"] is int value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetStorySpellCardId));
+        }
 
         public string GetStorySpellCardName()
-            => SpellCardNames[(Character)this.GetStoryMaster()].TryGetValue(this.GetStorySpellCardId(), out var name)
+        {
+            return SpellCardNames[(Character)this.GetStoryMaster()].TryGetValue(this.GetStorySpellCardId(), out var name)
                 ? name : string.Empty;
+        }
 
         public void Read(Stream input)
         {
@@ -620,8 +668,10 @@ namespace ReimuPlugins.Th155Replay
         }
 
         private static InvalidDataException NewInvalidPropertyException(string propertyName)
-            => new InvalidDataException(string.Format(
+        {
+            return new InvalidDataException(string.Format(
                 CultureInfo.CurrentCulture, Resources.InvalidDataExceptionPropertyIsInvalid, propertyName));
+        }
 
         private class EndMark
         {
