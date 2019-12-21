@@ -332,7 +332,7 @@ namespace ReimuPlugins.Th128Replay
                     if (size == 0u)
                     {
                         var path = Marshal.PtrToStringAnsi(src);
-                        number = ThReplayData.GetNumberFromPath(
+                        number = ReplayDataBase.GetNumberFromPath(
                             path, @"^th128_(\d{2})\.rpy$", @"^th128_ud(.{0,4})\.rpy$");
                     }
 

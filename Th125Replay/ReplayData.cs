@@ -13,7 +13,7 @@ namespace ReimuPlugins.Th125Replay
     using System.Text.RegularExpressions;
     using ReimuPlugins.Common;
 
-    public sealed class ReplayData : ThReplayData
+    public sealed class ReplayData : ReplayDataBase
     {
         private readonly Dictionary<string, string> info;
 

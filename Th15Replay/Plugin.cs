@@ -332,7 +332,7 @@ namespace ReimuPlugins.Th15Replay
                     if (size == 0u)
                     {
                         var path = Marshal.PtrToStringAnsi(src);
-                        number = ThReplayData.GetNumberFromPath(
+                        number = ReplayDataBase.GetNumberFromPath(
                             path, @"^th15_(\d{2})\.rpy$", @"^th15_ud(.{0,4})\.rpy$");
                     }
 

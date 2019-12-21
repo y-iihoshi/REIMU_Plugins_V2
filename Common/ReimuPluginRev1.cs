@@ -227,7 +227,7 @@ namespace ReimuPlugins.Common
         }
 
         protected static Tuple<ErrorCode, T> CreateReplayData<T>(IntPtr src, uint size)
-            where T : ThReplayData, new()
+            where T : ReplayDataBase, new()
         {
             using var pair = CreateStream(src, size);
             T replay = null;
@@ -242,7 +242,7 @@ namespace ReimuPlugins.Common
         }
 
         protected static Tuple<ErrorCode, T> CreateReplayData<T>(string path)
-            where T : ThReplayData, new()
+            where T : ReplayDataBase, new()
         {
             using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
             var replay = new T();
