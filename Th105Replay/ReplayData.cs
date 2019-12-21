@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th105Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -56,7 +55,7 @@ namespace ReimuPlugins.Th105Replay
 
     public sealed class ReplayData
     {
-        private static readonly Dictionary<short, string> Versions =
+        private static readonly IReadOnlyDictionary<short, string> Versions =
             new Dictionary<short, string>
             {
                 { 100, "1.00" },
@@ -68,7 +67,7 @@ namespace ReimuPlugins.Th105Replay
                 { 106, "1.06" },
             };
 
-        private static readonly Dictionary<byte, string> StageNames =
+        private static readonly IReadOnlyDictionary<byte, string> StageNames =
             new Dictionary<byte, string>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -91,7 +90,7 @@ namespace ReimuPlugins.Th105Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<byte, string> BgmNames =
+        private static readonly IReadOnlyDictionary<byte, string> BgmNames =
             new Dictionary<byte, string>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -118,7 +117,7 @@ namespace ReimuPlugins.Th105Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<short, string> SystemCardNames =
+        private static readonly IReadOnlyDictionary<short, string> SystemCardNames =
             new Dictionary<short, string>
             {
                 { 0, "「気質発現」" },
@@ -129,8 +128,8 @@ namespace ReimuPlugins.Th105Replay
                 { 5, "「霊力回復」" },
             };
 
-        private static readonly Dictionary<Character, Dictionary<short, string>> CardNames =
-            new Dictionary<Character, Dictionary<short, string>>
+        private static readonly IReadOnlyDictionary<Character, IReadOnlyDictionary<short, string>> CardNames =
+            new Dictionary<Character, IReadOnlyDictionary<short, string>>
             {
                 {
                     Character.Reimu,
@@ -591,7 +590,7 @@ namespace ReimuPlugins.Th105Replay
 
             public int NumCards { get; private set; }
 
-            public ReadOnlyCollection<KeyValuePair<short, int>> Cards => Array.AsReadOnly(this.cards.ToArray());
+            public IReadOnlyDictionary<short, int> Cards => this.cards;
 
             public void ReadFrom(BinaryReader reader)
             {

@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th143Screenshot
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing.Imaging;
     using System.Globalization;
@@ -77,7 +76,7 @@ namespace ReimuPlugins.Th143Screenshot
                 "弾幕アマノジャク スクリーンショットファイル (sc*.dat)\0",
             };
 
-            private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
+            private static readonly IReadOnlyDictionary<ColumnKey, ColumnInfo> Columns =
                 new Dictionary<ColumnKey, ColumnInfo>
                 {
                     {
@@ -208,7 +207,7 @@ namespace ReimuPlugins.Th143Screenshot
                 "六日目", "七日目", "八日目", "九日目", "最終日",
             };
 
-            private static readonly Dictionary<ColumnKey, Func<ScreenshotData, string>> FileInfoGetters =
+            private static readonly IReadOnlyDictionary<ColumnKey, Func<ScreenshotData, string>> FileInfoGetters =
                 InitializeFileInfoGetters();
 
             internal enum ColumnKey
@@ -229,9 +228,9 @@ namespace ReimuPlugins.Th143Screenshot
 #pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
-            protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfo);
+            protected override IReadOnlyList<string> ManagedPluginInfo { get; } = PluginInfo;
 
-            protected override IDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
+            protected override IReadOnlyDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo { get; } = Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {
@@ -421,7 +420,7 @@ namespace ReimuPlugins.Th143Screenshot
             }
 
             [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
-            private static Dictionary<ColumnKey, Func<ScreenshotData, string>> InitializeFileInfoGetters()
+            private static IReadOnlyDictionary<ColumnKey, Func<ScreenshotData, string>> InitializeFileInfoGetters()
             {
                 return new Dictionary<ColumnKey, Func<ScreenshotData, string>>
                 {
@@ -458,8 +457,7 @@ namespace ReimuPlugins.Th143Screenshot
                 };
             }
 
-            private static Tuple<ErrorCode, ScreenshotData> CreateScreenshotData(
-                IntPtr src, uint size, bool withBitmap)
+            private static Tuple<ErrorCode, ScreenshotData> CreateScreenshotData(IntPtr src, uint size, bool withBitmap)
             {
                 using var pair = CreateStream(src, size);
                 ScreenshotData screenshot = null;

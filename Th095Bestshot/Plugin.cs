@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th095Bestshot
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing.Imaging;
     using System.Globalization;
@@ -77,7 +76,7 @@ namespace ReimuPlugins.Th095Bestshot
                 "東方文花帖 ベストショットファイル (bs_*.dat)\0",
             };
 
-            private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
+            private static readonly IReadOnlyDictionary<ColumnKey, ColumnInfo> Columns =
                 new Dictionary<ColumnKey, ColumnInfo>
                 {
                     {
@@ -192,7 +191,7 @@ namespace ReimuPlugins.Th095Bestshot
                     },
                 };
 
-            private static readonly Dictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
+            private static readonly IReadOnlyDictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
                 new Dictionary<ColumnKey, Func<BestshotData, string>>
                 {
                     {
@@ -239,9 +238,9 @@ namespace ReimuPlugins.Th095Bestshot
 #pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
-            protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfo);
+            protected override IReadOnlyList<string> ManagedPluginInfo { get; } = PluginInfo;
 
-            protected override IDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
+            protected override IReadOnlyDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo { get; } = Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {
@@ -442,8 +441,7 @@ namespace ReimuPlugins.Th095Bestshot
                 throw new NotImplementedException();
             }
 
-            private static Tuple<ErrorCode, BestshotData> CreateBestshotData(
-                IntPtr src, uint size, bool withBitmap)
+            private static Tuple<ErrorCode, BestshotData> CreateBestshotData(IntPtr src, uint size, bool withBitmap)
             {
                 using var pair = CreateStream(src, size);
                 BestshotData bestshot = null;

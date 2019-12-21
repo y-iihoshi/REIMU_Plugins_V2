@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th105Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
@@ -79,7 +78,7 @@ namespace ReimuPlugins.Th105Replay
                 "東方緋想天 リプレイファイル (*.rep)\0",
             };
 
-            private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
+            private static readonly IReadOnlyDictionary<ColumnKey, ColumnInfo> Columns =
                 new Dictionary<ColumnKey, ColumnInfo>
                 {
                     {
@@ -214,7 +213,7 @@ namespace ReimuPlugins.Th105Replay
                     },
                 };
 
-            private static readonly Dictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
+            private static readonly IReadOnlyDictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
                 InitializeFileInfoGetters();
 
             internal enum ColumnKey
@@ -236,9 +235,9 @@ namespace ReimuPlugins.Th105Replay
 #pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
-            protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfoImpl);
+            protected override IReadOnlyList<string> ManagedPluginInfo { get; } = PluginInfoImpl;
 
-            protected override IDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
+            protected override IReadOnlyDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo { get; } = Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {
@@ -419,7 +418,7 @@ namespace ReimuPlugins.Th105Replay
             }
 
             [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
-            private static Dictionary<ColumnKey, Func<ReplayData, string>> InitializeFileInfoGetters()
+            private static IReadOnlyDictionary<ColumnKey, Func<ReplayData, string>> InitializeFileInfoGetters()
             {
                 return new Dictionary<ColumnKey, Func<ReplayData, string>>
                 {

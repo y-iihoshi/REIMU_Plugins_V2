@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th155Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -102,7 +101,7 @@ namespace ReimuPlugins.Th155Replay
 
     public sealed class ReplayData
     {
-        private static readonly Dictionary<uint, Func<BinaryReader, object>> ObjectReaders =
+        private static readonly IReadOnlyDictionary<uint, Func<BinaryReader, object>> ObjectReaders =
             new Dictionary<uint, Func<BinaryReader, object>>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -116,7 +115,7 @@ namespace ReimuPlugins.Th155Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<string, Character> Characters =
+        private static readonly IReadOnlyDictionary<string, Character> Characters =
             new Dictionary<string, Character>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -142,7 +141,7 @@ namespace ReimuPlugins.Th155Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<string, StoryCharacter> StoryCharacters =
+        private static readonly IReadOnlyDictionary<string, StoryCharacter> StoryCharacters =
             new Dictionary<string, StoryCharacter>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -169,7 +168,7 @@ namespace ReimuPlugins.Th155Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<int, string> BackgroundNames =
+        private static readonly IReadOnlyDictionary<int, string> BackgroundNames =
             new Dictionary<int, string>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -209,7 +208,7 @@ namespace ReimuPlugins.Th155Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<int, string> BgmNames =
+        private static readonly IReadOnlyDictionary<int, string> BgmNames =
             new Dictionary<int, string>
             {
                 { 101, "二色蓮花蝶　～ Red and White" },
@@ -255,8 +254,8 @@ namespace ReimuPlugins.Th155Replay
                 { 354, "アンノウンX　～ Occultly Madness" },
             };
 
-        private static readonly Dictionary<Character, Dictionary<int, string>> SpellCardNames =
-            new Dictionary<Character, Dictionary<int, string>>
+        private static readonly IReadOnlyDictionary<Character, IReadOnlyDictionary<int, string>> SpellCardNames =
+            new Dictionary<Character, IReadOnlyDictionary<int, string>>
             {
                 {
                     Character.Reimu,
@@ -688,7 +687,7 @@ namespace ReimuPlugins.Th155Replay
             }
 
             [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
-            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
+            public IEnumerable<byte> Signature => this.signature;
 
             public string Version { get; private set; }
 

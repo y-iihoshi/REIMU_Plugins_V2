@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th135Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -68,7 +67,7 @@ namespace ReimuPlugins.Th135Replay
 
     public sealed class ReplayData
     {
-        private static readonly Dictionary<uint, Func<BinaryReader, object>> ObjectReaders =
+        private static readonly IReadOnlyDictionary<uint, Func<BinaryReader, object>> ObjectReaders =
             new Dictionary<uint, Func<BinaryReader, object>>
             {
                 { 0x01000001, reader => new EndMark() },
@@ -80,7 +79,7 @@ namespace ReimuPlugins.Th135Replay
                 { 0x0A000020, reader => ReadDictionary(reader) },
             };
 
-        private static readonly Dictionary<int, string> BackgroundNames =
+        private static readonly IReadOnlyDictionary<int, string> BackgroundNames =
             new Dictionary<int, string>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -98,7 +97,7 @@ namespace ReimuPlugins.Th135Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<int, string> BgmNames =
+        private static readonly IReadOnlyDictionary<int, string> BgmNames =
             new Dictionary<int, string>
             {
                 { 101, "春色小径　～ Colorful Path" },
@@ -114,7 +113,7 @@ namespace ReimuPlugins.Th135Replay
                 { 111, "亡失のエモーション" },
             };
 
-        private static readonly Dictionary<int, string> EquipNames =
+        private static readonly IReadOnlyDictionary<int, string> EquipNames =
             new Dictionary<int, string>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -444,7 +443,7 @@ namespace ReimuPlugins.Th135Replay
             }
 
             [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
-            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
+            public IEnumerable<byte> Signature => this.signature;
 
             public string Version { get; private set; }
 

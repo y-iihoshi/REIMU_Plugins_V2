@@ -8,7 +8,7 @@
 namespace ReimuPlugins.Common
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
 
@@ -20,7 +20,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// The information as a read-only string array.
         /// </summary>
-        private ReadOnlyCollection<string> info = null;
+        private IEnumerable<string> info = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ThReplayData"/> class.
@@ -49,14 +49,13 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Gets the information as an array.
         /// </summary>
-        protected ReadOnlyCollection<string> InfoArray
+        protected IEnumerable<string> InfoArray
         {
             get
             {
                 if (this.info == null)
                 {
-                    this.info = Array.AsReadOnly(
-                        this.Info.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries));
+                    this.info = this.Info.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 }
 
                 return this.info;
@@ -225,12 +224,12 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the signature string.
             /// </summary>
-            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
+            public IEnumerable<byte> Signature => this.signature;
 
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public ReadOnlyCollection<byte> Unknown1 => Array.AsReadOnly(this.unknown1);
+            public IEnumerable<byte> Unknown1 => this.unknown1;
 
             /// <summary>
             /// Gets the size of the replay header.
@@ -244,17 +243,17 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public ReadOnlyCollection<byte> Unknown2 => Array.AsReadOnly(this.unknown2);
+            public IEnumerable<byte> Unknown2 => this.unknown2;
 
             /// <summary>
             /// Gets an unknown data.
             /// </summary>
-            public ReadOnlyCollection<byte> Unknown3 => Array.AsReadOnly(this.unknown3);
+            public IEnumerable<byte> Unknown3 => this.unknown3;
 
             /// <summary>
             /// Gets the actual replay data.
             /// </summary>
-            public ReadOnlyCollection<byte> Data => Array.AsReadOnly(this.data);
+            public IEnumerable<byte> Data => this.data;
 
             /// <summary>
             /// Reads data by using the specified <see cref="BinaryReader"/> instance.
@@ -318,7 +317,7 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the signature string.
             /// </summary>
-            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
+            public IEnumerable<byte> Signature => this.signature;
 
             /// <summary>
             /// Gets the type of the user information. (0: replay file information, 1: comment.)
@@ -328,7 +327,7 @@ namespace ReimuPlugins.Common
             /// <summary>
             /// Gets the actual data.
             /// </summary>
-            public ReadOnlyCollection<byte> Data => Array.AsReadOnly(this.data);
+            public IEnumerable<byte> Data => this.data;
 
             /// <summary>
             /// Gets or sets the actual data represented as a code page 932 string.

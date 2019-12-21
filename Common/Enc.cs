@@ -17,16 +17,16 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// Gets the code page 932 encoding.
         /// </summary>
-        public static Encoding CP932 => Encoding.GetEncoding(932);
+        public static Encoding CP932 { get; } = Encoding.GetEncoding(932);
 
         /// <summary>
         /// Gets the UTF-8 encoding.
         /// </summary>
-        public static Encoding UTF8 => Encoding.UTF8;
+        public static Encoding UTF8 { get; } = Encoding.UTF8;
 
         /// <summary>
         /// Gets the UTF-8 encoding which does not provide a byte order mark.
         /// </summary>
-        public static Encoding UTF8NoBOM => new UTF8Encoding();
+        public static Encoding UTF8NoBOM { get; } = new UTF8Encoding();
     }
 }

@@ -11,7 +11,6 @@ namespace ReimuPlugins.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Runtime.InteropServices;
@@ -29,7 +28,7 @@ namespace ReimuPlugins.Common
         /// Gets the information about the plugin implemented by the derived class.
         /// See <see cref="IReimuPluginRev1.GetPluginInfo"/> for details.
         /// </summary>
-        protected abstract ReadOnlyCollection<string> ManagedPluginInfo { get; }
+        protected abstract IReadOnlyList<string> ManagedPluginInfo { get; }
 
         /// <summary>
         /// Gets the information about the columns of the REIMU's list view provided by the derived class.
@@ -38,7 +37,7 @@ namespace ReimuPlugins.Common
         /// <remarks>
         /// Actually, I want to use <c>ReadOnlyDictionary</c>, but it is not available for .NET 4.0...
         /// </remarks>
-        protected abstract IDictionary<TColumnKey, ColumnInfo> ManagedColumnInfo { get; }
+        protected abstract IReadOnlyDictionary<TColumnKey, ColumnInfo> ManagedColumnInfo { get; }
 
         /// <inheritdoc/>
         public Revision GetPluginRevision()

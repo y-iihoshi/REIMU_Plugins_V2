@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th145Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -58,7 +57,7 @@ namespace ReimuPlugins.Th145Replay
 
     public sealed class ReplayData
     {
-        private static readonly Dictionary<uint, Func<BinaryReader, object>> ObjectReaders =
+        private static readonly IReadOnlyDictionary<uint, Func<BinaryReader, object>> ObjectReaders =
             new Dictionary<uint, Func<BinaryReader, object>>
             {
                 { 0x01000001, reader => new EndMark() },
@@ -70,7 +69,7 @@ namespace ReimuPlugins.Th145Replay
                 { 0x0A000020, reader => ReadDictionary(reader) },
             };
 
-        private static readonly Dictionary<int, string> BackgroundNames =
+        private static readonly IReadOnlyDictionary<int, string> BackgroundNames =
             new Dictionary<int, string>
             {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -102,7 +101,7 @@ namespace ReimuPlugins.Th145Replay
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
             };
 
-        private static readonly Dictionary<int, string> BgmNames =
+        private static readonly IReadOnlyDictionary<int, string> BgmNames =
             new Dictionary<int, string>
             {
                 { 501, "七玉蒐集ショウダウン" },
@@ -126,8 +125,8 @@ namespace ReimuPlugins.Th145Replay
                 { 812, "輝く針の小人族　～ Little Princess" },
             };
 
-        private static readonly Dictionary<Character, Dictionary<int, string>> SpellCardNames =
-            new Dictionary<Character, Dictionary<int, string>>
+        private static readonly IReadOnlyDictionary<Character, IReadOnlyDictionary<int, string>> SpellCardNames =
+            new Dictionary<Character, IReadOnlyDictionary<int, string>>
             {
                 {
                     Character.Reimu,
@@ -470,7 +469,7 @@ namespace ReimuPlugins.Th145Replay
             }
 
             [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
-            public ReadOnlyCollection<byte> Signature => Array.AsReadOnly(this.signature);
+            public IEnumerable<byte> Signature => this.signature;
 
             public string Version { get; private set; }
 

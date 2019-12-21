@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th125Bestshot
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing.Imaging;
     using System.Globalization;
@@ -84,7 +83,7 @@ namespace ReimuPlugins.Th125Bestshot
                 "ダブルスポイラー ベストショットファイル (bs*.dat)\0",
             };
 
-            private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
+            private static readonly IReadOnlyDictionary<ColumnKey, ColumnInfo> Columns =
                 new Dictionary<ColumnKey, ColumnInfo>
                 {
                     {
@@ -444,7 +443,7 @@ namespace ReimuPlugins.Th125Bestshot
                 "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "EX", "SP",
             };
 
-            private static readonly Dictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
+            private static readonly IReadOnlyDictionary<ColumnKey, Func<BestshotData, string>> FileInfoGetters =
                 InitializeFileInfoGetters();
 
             internal enum ColumnKey
@@ -488,9 +487,9 @@ namespace ReimuPlugins.Th125Bestshot
 #pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
-            protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfo);
+            protected override IReadOnlyList<string> ManagedPluginInfo { get; } = PluginInfo;
 
-            protected override IDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
+            protected override IReadOnlyDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo { get; } = Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {
@@ -760,7 +759,7 @@ namespace ReimuPlugins.Th125Bestshot
             }
 
             [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
-            private static Dictionary<ColumnKey, Func<BestshotData, string>> InitializeFileInfoGetters()
+            private static IReadOnlyDictionary<ColumnKey, Func<BestshotData, string>> InitializeFileInfoGetters()
             {
                 return new Dictionary<ColumnKey, Func<BestshotData, string>>
                 {
@@ -896,8 +895,7 @@ namespace ReimuPlugins.Th125Bestshot
                 };
             }
 
-            private static Tuple<ErrorCode, BestshotData> CreateBestshotData(
-                IntPtr src, uint size, bool withBitmap)
+            private static Tuple<ErrorCode, BestshotData> CreateBestshotData(IntPtr src, uint size, bool withBitmap)
             {
                 using var pair = CreateStream(src, size);
                 BestshotData bestshot = null;

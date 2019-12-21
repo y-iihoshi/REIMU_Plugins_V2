@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th13Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Runtime.InteropServices;
@@ -87,7 +86,7 @@ namespace ReimuPlugins.Th13Replay
                 "東方神霊廟 リプレイファイル (th13_*.rpy)\0",
             };
 
-            private static readonly Dictionary<ColumnKey, ColumnInfo> Columns =
+            private static readonly IReadOnlyDictionary<ColumnKey, ColumnInfo> Columns =
                 new Dictionary<ColumnKey, ColumnInfo>
                 {
                     {
@@ -242,7 +241,7 @@ namespace ReimuPlugins.Th13Replay
                     },
                 };
 
-            private static readonly Dictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
+            private static readonly IReadOnlyDictionary<ColumnKey, Func<ReplayData, string>> FileInfoGetters =
                 new Dictionary<ColumnKey, Func<ReplayData, string>>
                 {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
@@ -279,9 +278,9 @@ namespace ReimuPlugins.Th13Replay
 #pragma warning restore SA1413 // Use trailing comma in multi-line initializers
             }
 
-            protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfoImpl);
+            protected override IReadOnlyList<string> ManagedPluginInfo { get; } = PluginInfoImpl;
 
-            protected override IDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
+            protected override IReadOnlyDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo { get; } = Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {

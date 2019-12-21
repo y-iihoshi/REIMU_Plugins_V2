@@ -45,7 +45,7 @@ namespace ReimuPlugins.Th165Replay
 
         public string SlowRate => this.info["Slow Rate"];
 
-        private static Dictionary<string, string> Weekdays => new Dictionary<string, string>()
+        private static IReadOnlyDictionary<string, string> Weekdays { get; } = new Dictionary<string, string>()
         {
             { "1",  "日曜日" },
             { "2",  "月曜日" },
