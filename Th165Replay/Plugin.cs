@@ -479,30 +479,6 @@ namespace ReimuPlugins.Th165Replay
             {
                 throw new NotImplementedException();
             }
-
-            private static Tuple<ErrorCode, T> CreateReplayData<T>(IntPtr src, uint size)
-                where T : ThReplayData, new()
-            {
-                using var pair = CreateStream(src, size);
-                T replay = null;
-
-                if (pair.Item1 == ErrorCode.AllRight)
-                {
-                    replay = new T();
-                    replay.Read(pair.Item2);
-                }
-
-                return Tuple.Create(pair.Item1, replay);
-            }
-
-            private static Tuple<ErrorCode, T> CreateReplayData<T>(string path)
-                where T : ThReplayData, new()
-            {
-                using var stream = new IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read);
-                var replay = new T();
-                replay.Read(stream);
-                return Tuple.Create(ErrorCode.AllRight, replay);
-            }
         }
     }
 }
