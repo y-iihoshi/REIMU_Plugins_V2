@@ -288,7 +288,7 @@ namespace ReimuPlugins.Th095Bestshot
 
                 try
                 {
-                    var pair = CreateBestshotData(src, size, false);
+                    var pair = CreateBestshotData<BestshotData>(src, size, false);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
@@ -354,7 +354,7 @@ namespace ReimuPlugins.Th095Bestshot
 
                 try
                 {
-                    var pair = CreateBestshotData(src, size, true);
+                    var pair = CreateBestshotData<BestshotData>(src, size, true);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var dstStride = 3 * pair.Item2.Width;
@@ -439,20 +439,6 @@ namespace ReimuPlugins.Th095Bestshot
             public override ErrorCode ConfigDialog(IntPtr parent)
             {
                 throw new NotImplementedException();
-            }
-
-            private static Tuple<ErrorCode, BestshotData> CreateBestshotData(IntPtr src, uint size, bool withBitmap)
-            {
-                using var pair = CreateStream(src, size);
-                BestshotData bestshot = null;
-
-                if (pair.Item1 == ErrorCode.AllRight)
-                {
-                    bestshot = new BestshotData();
-                    bestshot.Read(pair.Item2, withBitmap);
-                }
-
-                return Tuple.Create(pair.Item1, bestshot);
             }
         }
     }

@@ -278,7 +278,7 @@ namespace ReimuPlugins.Th143Screenshot
 
                 try
                 {
-                    var pair = CreateScreenshotData(src, size, false);
+                    var pair = CreateBestshotData<ScreenshotData>(src, size, false);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var fileInfoSize = Marshal.SizeOf(typeof(FileInfo));
@@ -344,7 +344,7 @@ namespace ReimuPlugins.Th143Screenshot
 
                 try
                 {
-                    var pair = CreateScreenshotData(src, size, true);
+                    var pair = CreateBestshotData<ScreenshotData>(src, size, true);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         var copySize = 4 * pair.Item2.Width * pair.Item2.Height;
@@ -455,20 +455,6 @@ namespace ReimuPlugins.Th143Screenshot
                         (data) => data.SlowRate.ToString("F6", CultureInfo.CurrentCulture)
                     },
                 };
-            }
-
-            private static Tuple<ErrorCode, ScreenshotData> CreateScreenshotData(IntPtr src, uint size, bool withBitmap)
-            {
-                using var pair = CreateStream(src, size);
-                ScreenshotData screenshot = null;
-
-                if (pair.Item1 == ErrorCode.AllRight)
-                {
-                    screenshot = new ScreenshotData();
-                    screenshot.Read(pair.Item2, withBitmap);
-                }
-
-                return Tuple.Create(pair.Item1, screenshot);
             }
         }
     }

@@ -31,5 +31,20 @@ namespace ReimuPlugins.Common
 
         /// <inheritdoc/>
         public abstract ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
+
+        protected static Tuple<ErrorCode, T> CreateBestshotData<T>(IntPtr src, uint size, bool withBitmap)
+            where T : BestshotDataBase, new()
+        {
+            using var pair = CreateStream(src, size);
+            T bestshot = null;
+
+            if (pair.Item1 == ErrorCode.AllRight)
+            {
+                bestshot = new T();
+                bestshot.Read(pair.Item2, withBitmap);
+            }
+
+            return Tuple.Create(pair.Item1, bestshot);
+        }
     }
 }
