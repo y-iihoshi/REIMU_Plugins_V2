@@ -15,7 +15,7 @@ namespace ReimuPlugins.Th125Bestshot
     using System.Runtime.InteropServices;
     using ReimuPlugins.Common;
 
-    public sealed class BestshotData
+    public sealed class BestshotData : BestshotDataBase
     {
         private static readonly int[] Masks;
 
@@ -147,12 +147,7 @@ namespace ReimuPlugins.Th125Bestshot
 
         public Bitmap Bitmap { get; private set; }
 
-        public void Read(Stream input)
-        {
-            this.Read(input, false);
-        }
-
-        public void Read(Stream input, bool withBitmap)
+        public override void Read(Stream input, bool withBitmap)
         {
             using var reader = new BinaryReader(input);
 
@@ -193,17 +188,6 @@ namespace ReimuPlugins.Th125Bestshot
             {
                 this.Bitmap = ReadBitmap(input, this.Width, this.Height);
             }
-        }
-
-        public void Read(string path)
-        {
-            this.Read(path, false);
-        }
-
-        public void Read(string path, bool withBitmap)
-        {
-            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            this.Read(stream, withBitmap);
         }
 
         private static Bitmap ReadBitmap(Stream input, int width, int height)
