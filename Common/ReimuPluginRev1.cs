@@ -50,7 +50,7 @@ namespace ReimuPlugins.Common
         {
             try
             {
-                var byteCount = Enc.CP932.GetByteCount(this.ManagedPluginInfo[index]);
+                var byteCount = Encoding.CP932.GetByteCount(this.ManagedPluginInfo[index]);
                 if (info == IntPtr.Zero)
                 {
                     return byteCount - 1;   // except a null terminator
@@ -59,7 +59,7 @@ namespace ReimuPlugins.Common
                 {
                     if (size >= byteCount)
                     {
-                        Marshal.Copy(Enc.CP932.GetBytes(this.ManagedPluginInfo[index]), 0, info, byteCount);
+                        Marshal.Copy(Encoding.CP932.GetBytes(this.ManagedPluginInfo[index]), 0, info, byteCount);
                         return byteCount - 1;   // except a null terminator
                     }
                 }

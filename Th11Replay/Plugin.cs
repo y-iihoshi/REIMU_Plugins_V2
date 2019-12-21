@@ -296,9 +296,9 @@ namespace ReimuPlugins.Th11Replay
                     using var pair = CreateStream(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        using var reader = new IO.BinaryReader(pair.Item2, Encoding.UTF8NoBOM, true);
                         var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
+                        signature = Encoding.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -401,7 +401,7 @@ namespace ReimuPlugins.Th11Replay
                     var pair = CreateReplayData<ReplayData>(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var bytes = Enc.CP932.GetBytes(pair.Item2.Info);
+                        var bytes = Encoding.CP932.GetBytes(pair.Item2.Info);
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }
@@ -438,7 +438,7 @@ namespace ReimuPlugins.Th11Replay
                     var pair = CreateReplayData<ReplayData>(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var bytes = Enc.CP932.GetBytes(pair.Item2.Comment);
+                        var bytes = Encoding.CP932.GetBytes(pair.Item2.Comment);
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }

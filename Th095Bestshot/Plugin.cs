@@ -256,9 +256,9 @@ namespace ReimuPlugins.Th095Bestshot
                     using var pair = CreateStream(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        using var reader = new IO.BinaryReader(pair.Item2, Encoding.UTF8NoBOM, true);
                         var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
+                        signature = Encoding.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)

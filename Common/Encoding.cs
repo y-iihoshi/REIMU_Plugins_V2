@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="Enc.cs" company="None">
+// <copyright file="Encoding.cs" company="None">
 // Copyright (c) IIHOSHI Yoshinori.
 // Licensed under the BSD-2-Clause license. See LICENSE.txt file in the project root for full license information.
 // </copyright>
@@ -7,26 +7,24 @@
 
 namespace ReimuPlugins.Common
 {
-    using System.Text;
-
     /// <summary>
-    /// Contains read-only instances of <see cref="Encoding"/> class for convenience.
+    /// Contains read-only instances of <see cref="System.Text.Encoding"/> class for convenience.
     /// </summary>
-    public static class Enc
+    public static class Encoding
     {
         /// <summary>
         /// Gets the code page 932 encoding.
         /// </summary>
-        public static Encoding CP932 { get; } = Encoding.GetEncoding(932);
+        public static System.Text.Encoding CP932 { get; } = System.Text.Encoding.GetEncoding(932);
 
         /// <summary>
         /// Gets the UTF-8 encoding.
         /// </summary>
-        public static Encoding UTF8 { get; } = Encoding.UTF8;
+        public static System.Text.Encoding UTF8 { get; } = System.Text.Encoding.UTF8;
 
         /// <summary>
         /// Gets the UTF-8 encoding which does not provide a byte order mark.
         /// </summary>
-        public static Encoding UTF8NoBOM { get; } = new UTF8Encoding();
+        public static System.Text.Encoding UTF8NoBOM { get; } = new System.Text.UTF8Encoding();
     }
 }

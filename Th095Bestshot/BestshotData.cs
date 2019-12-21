@@ -51,7 +51,7 @@ namespace ReimuPlugins.Th095Bestshot
         {
             using var reader = new BinaryReader(input);
 
-            this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
+            this.Signature = Encoding.CP932.GetString(reader.ReadBytes(4));
             _ = reader.ReadInt16();
             this.Level = reader.ReadInt16();
             this.Scene = reader.ReadInt16();
@@ -60,7 +60,7 @@ namespace ReimuPlugins.Th095Bestshot
             this.Height = reader.ReadInt16();
             this.Score = reader.ReadInt32();
             this.SlowRate = reader.ReadSingle();
-            this.CardName = Enc.CP932.GetString(reader.ReadBytes(0x50));
+            this.CardName = Encoding.CP932.GetString(reader.ReadBytes(0x50));
 
             if (withBitmap)
             {

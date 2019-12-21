@@ -315,7 +315,7 @@ namespace ReimuPlugins.Th145Replay
 
         public void Read(Stream input)
         {
-            using var reader = new BinaryReader(input, Enc.UTF8NoBOM, true);
+            using var reader = new BinaryReader(input, Encoding.UTF8NoBOM, true);
             this.info.ReadFrom(reader);
         }
 
@@ -329,7 +329,7 @@ namespace ReimuPlugins.Th145Replay
         private static object ReadString(BinaryReader reader)
         {
             var size = reader.ReadInt32();
-            return (size > 0) ? Enc.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
+            return (size > 0) ? Encoding.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
         }
 
         private static object ReadArray(BinaryReader reader)
@@ -564,7 +564,7 @@ namespace ReimuPlugins.Th145Replay
 #pragma warning disable IDISP001 // Dispose created.
                                 stream = new MemoryStream(extractedData, false);
 #pragma warning restore IDISP001 // Dispose created.
-                                using var reader2 = new BinaryReader(stream, Enc.UTF8NoBOM);
+                                using var reader2 = new BinaryReader(stream, Encoding.UTF8NoBOM);
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
                                 stream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.

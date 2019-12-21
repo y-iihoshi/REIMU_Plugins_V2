@@ -506,9 +506,9 @@ namespace ReimuPlugins.Th125Bestshot
                     using var pair = CreateStream(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        using var reader = new IO.BinaryReader(pair.Item2, Encoding.UTF8NoBOM, true);
                         var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
+                        signature = Encoding.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -604,7 +604,7 @@ namespace ReimuPlugins.Th125Bestshot
 #pragma warning disable IDISP001 // Dispose created.
                             stream = new IO.MemoryStream();
 #pragma warning restore IDISP001 // Dispose created.
-                            using var writer = new IO.StreamWriter(stream, Enc.UTF8NoBOM);
+                            using var writer = new IO.StreamWriter(stream, Encoding.UTF8NoBOM);
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
                             stream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.

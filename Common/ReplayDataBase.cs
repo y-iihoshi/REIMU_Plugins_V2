@@ -146,7 +146,7 @@ namespace ReimuPlugins.Common
         /// <param name="input">An input stream.</param>
         public virtual void Read(Stream input)
         {
-            using var reader = new BinaryReader(input, Enc.UTF8NoBOM, true);
+            using var reader = new BinaryReader(input, Encoding.UTF8NoBOM, true);
             this.ReplayData.ReadFrom(reader);
             this.UserInfo0.ReadFrom(reader);
             this.UserInfo1.ReadFrom(reader);
@@ -168,7 +168,7 @@ namespace ReimuPlugins.Common
         /// <param name="output">An output stream.</param>
         public void Write(Stream output)
         {
-            using var writer = new BinaryWriter(output, Enc.UTF8NoBOM, true);
+            using var writer = new BinaryWriter(output, Encoding.UTF8NoBOM, true);
             this.ReplayData.WriteTo(writer);
             this.UserInfo0.WriteTo(writer);
             this.UserInfo1.WriteTo(writer);
@@ -334,8 +334,8 @@ namespace ReimuPlugins.Common
             /// </summary>
             public string DataString
             {
-                get => Enc.CP932.GetString(this.data);
-                set => this.data = Enc.CP932.GetBytes(value);
+                get => Encoding.CP932.GetString(this.data);
+                set => this.data = Encoding.CP932.GetBytes(value);
             }
 
             /// <summary>

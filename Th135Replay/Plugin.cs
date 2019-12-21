@@ -289,9 +289,9 @@ namespace ReimuPlugins.Th135Replay
                     using var pair = CreateStream(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
+                        using var reader = new IO.BinaryReader(pair.Item2, Encoding.UTF8NoBOM, true);
                         var readSize = Math.Min((int)reader.BaseStream.Length, ValidSignature.Length);
-                        signature = Enc.CP932.GetString(reader.ReadBytes(readSize));
+                        signature = Encoding.CP932.GetString(reader.ReadBytes(readSize));
                     }
                 }
                 catch (OutOfMemoryException)
@@ -379,7 +379,7 @@ namespace ReimuPlugins.Th135Replay
                     var pair = CreateReplayData(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
-                        var bytes = Enc.CP932.GetBytes(pair.Item2.Player1Info.ToCStr());
+                        var bytes = Encoding.CP932.GetBytes(pair.Item2.Player1Info.ToCStr());
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }
@@ -418,7 +418,7 @@ namespace ReimuPlugins.Th135Replay
                     {
                         var text = (pair.Item2.GameMode == GameMode.Story)
                             ? string.Empty : pair.Item2.Player2Info;
-                        var bytes = Enc.CP932.GetBytes(text.ToCStr());
+                        var bytes = Encoding.CP932.GetBytes(text.ToCStr());
                         dst = Marshal.AllocHGlobal(bytes.Length);
                         Marshal.Copy(bytes, 0, dst, bytes.Length);
                     }

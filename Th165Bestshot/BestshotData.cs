@@ -336,7 +336,7 @@ namespace ReimuPlugins.Th165Bestshot
         {
             using var reader = new BinaryReader(input);
 
-            this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
+            this.Signature = Encoding.CP932.GetString(reader.ReadBytes(4));
             _ = reader.ReadInt16(); // always 0x0401?
             this.Weekday = reader.ReadInt16();
             this.Dream = reader.ReadInt16();

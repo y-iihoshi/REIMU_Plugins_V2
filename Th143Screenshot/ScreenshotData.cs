@@ -47,7 +47,7 @@ namespace ReimuPlugins.Th143Screenshot
         {
             using var reader = new BinaryReader(input);
 
-            this.Signature = Enc.CP932.GetString(reader.ReadBytes(4));
+            this.Signature = Encoding.CP932.GetString(reader.ReadBytes(4));
             _ = reader.ReadInt16();
             this.Day = reader.ReadInt16();
             this.Scene = reader.ReadInt16();

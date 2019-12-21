@@ -595,7 +595,7 @@ namespace ReimuPlugins.Th155Replay
 
         public void Read(Stream input)
         {
-            using var reader = new BinaryReader(input, Enc.UTF8, leaveOpen: true);
+            using var reader = new BinaryReader(input, Encoding.UTF8, leaveOpen: true);
             this.info.ReadFrom(reader);
         }
 
@@ -609,7 +609,7 @@ namespace ReimuPlugins.Th155Replay
         private static object ReadString(BinaryReader reader)
         {
             var size = reader.ReadInt32();
-            return (size > 0) ? Enc.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
+            return (size > 0) ? Encoding.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
         }
 
         private static object ReadArray(BinaryReader reader)

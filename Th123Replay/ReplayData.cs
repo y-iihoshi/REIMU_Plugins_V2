@@ -793,7 +793,7 @@ namespace ReimuPlugins.Th123Replay
 
         public void Read(Stream input)
         {
-            using var reader = new BinaryReader(input, Enc.UTF8NoBOM, true);
+            using var reader = new BinaryReader(input, Encoding.UTF8NoBOM, true);
             this.info.ReadFrom(reader);
         }
 
