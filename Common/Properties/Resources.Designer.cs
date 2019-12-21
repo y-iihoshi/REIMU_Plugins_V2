@@ -70,6 +70,51 @@ namespace ReimuPlugins.Common.Properties {
         }
         
         /// <summary>
+        ///   Index is out of range. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidDataExceptionIndexIsOutOfRange {
+            get {
+                return ResourceManager.GetString("InvalidDataExceptionIndexIsOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Index must be an integer. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidDataExceptionIndexMustBeAnInteger {
+            get {
+                return ResourceManager.GetString("InvalidDataExceptionIndexMustBeAnInteger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The number of elements must not be negative. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidDataExceptionNumElementsMustNotBeNegative {
+            get {
+                return ResourceManager.GetString("InvalidDataExceptionNumElementsMustNotBeNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sentinel is wrong. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidDataExceptionWrongSentinel {
+            get {
+                return ResourceManager.GetString("InvalidDataExceptionWrongSentinel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wrong type. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidDataExceptionWrongType {
+            get {
+                return ResourceManager.GetString("InvalidDataExceptionWrongType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   LZSS compression is not supported. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NotImplementedExceptionLzssCompressionIsNotSupported {

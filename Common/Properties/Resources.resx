@@ -120,6 +120,21 @@
   <data name="ArgumentExceptionStreamMustBeReadable" xml:space="preserve">
     <value>Stream must be readable.</value>
   </data>
+  <data name="InvalidDataExceptionIndexIsOutOfRange" xml:space="preserve">
+    <value>Index is out of range.</value>
+  </data>
+  <data name="InvalidDataExceptionIndexMustBeAnInteger" xml:space="preserve">
+    <value>Index must be an integer.</value>
+  </data>
+  <data name="InvalidDataExceptionNumElementsMustNotBeNegative" xml:space="preserve">
+    <value>The number of elements must not be negative.</value>
+  </data>
+  <data name="InvalidDataExceptionWrongSentinel" xml:space="preserve">
+    <value>Sentinel is wrong.</value>
+  </data>
+  <data name="InvalidDataExceptionWrongType" xml:space="preserve">
+    <value>Wrong type.</value>
+  </data>
   <data name="NotImplementedExceptionLzssCompressionIsNotSupported" xml:space="preserve">
     <value>LZSS compression is not supported.</value>
   </data>

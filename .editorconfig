@@ -124,6 +124,8 @@ dotnet_diagnostic.IDE0002.severity = suggestion
 dotnet_diagnostic.IDE0004.severity = suggestion
 # IDE0058: 式の値が使用されていません
 csharp_style_unused_value_expression_statement_preference = discard_variable:suggestion
+# IDE0065: using ディレクティブが正しく配置されていません
+csharp_using_directive_placement = inside_namespace:suggestion
 
 # SA0001: XML comment analysis disabled
 dotnet_diagnostic.SA0001.severity = none
