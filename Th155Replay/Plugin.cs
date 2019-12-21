@@ -347,7 +347,7 @@ namespace ReimuPlugins.Th155Replay
 
             protected override ReadOnlyCollection<string> ManagedPluginInfo => Array.AsReadOnly(PluginInfoImpl);
 
-            protected override IDictionary<PluginImpl.ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
+            protected override IDictionary<ColumnKey, ColumnInfo> ManagedColumnInfo => Columns;
 
             public override uint IsSupported(IntPtr src, uint size)
             {
@@ -360,7 +360,7 @@ namespace ReimuPlugins.Th155Replay
 
                 try
                 {
-                    using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                    using var pair = CreateStream(src, size);
                     if (pair.Item1 == ErrorCode.AllRight)
                     {
                         using var reader = new IO.BinaryReader(pair.Item2, Enc.UTF8NoBOM, true);
@@ -554,7 +554,7 @@ namespace ReimuPlugins.Th155Replay
 
             private static Tuple<ErrorCode, ReplayDataAdapter> CreateReplayData(IntPtr src, uint size)
             {
-                using var pair = ReimuPluginRev1<ColumnKey>.CreateStream(src, size);
+                using var pair = CreateStream(src, size);
                 ReplayDataAdapter replay = null;
 
                 if (pair.Item1 == ErrorCode.AllRight)
