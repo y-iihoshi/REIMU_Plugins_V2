@@ -34,7 +34,7 @@ REIMU に導入することで、 東方 Project
 
 * Windows 10 Pro Version 1909 (64bit)
 * .NET Framework 4.8
-* Visual Studio Community 2019 Version 16.4.1
+* Visual Studio Community 2019 Version 16.4.2
 * Python 3.8.0
 
 免責事項
@@ -96,6 +96,7 @@ ReimuPlugins.Th155Replay.rpi     東方憑依華 ver. 1.10c (リプレイ用)
 ReimuPlugins.Th16Replay.rpi      東方天空璋 ver. 1.00a (リプレイ用)
 ReimuPlugins.Th165Replay.rpi     秘封ナイトメアダイアリー ver. 1.00a (リプレイ用)
 ReimuPlugins.Th165Bestshot.rpi   秘封ナイトメアダイアリー ver. 1.00a (ベストショット用)
+ReimuPlugins.Th17Replay.rpi      東方鬼形獣 ver. 1.00b (リプレイ用)
 ================================ ======================================================
 
 対応予定あり
@@ -104,7 +105,6 @@ ReimuPlugins.Th165Bestshot.rpi   秘封ナイトメアダイアリー ver. 1.00a
 以下作品については、
 本プラグインセット作者の原作プレイ進捗状況に伴って今後対応予定です:
 
-* 東方鬼形獣
 * 東方剛欲異聞
 
 対応予定なし
@@ -196,6 +196,9 @@ REIMU 本体のヘルプを参照してください。
 
 変更履歴
 --------
+
+Ver. 201912xx
+    * 東方鬼形獣に対応
 
 Ver. 20190415
     * 秘封ナイトメアダイアリーに対応

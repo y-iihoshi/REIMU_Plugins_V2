@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Th165Replay", "Th165Replay\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Th165Bestshot", "Th165Bestshot\Th165Bestshot.csproj", "{E5A4BC64-6A46-4502-9D1B-FC98109B760B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Th17Replay", "Th17Replay\Th17Replay.csproj", "{CC0A9292-042E-415D-82ED-43634B119CEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,10 @@ Global
 		{E5A4BC64-6A46-4502-9D1B-FC98109B760B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5A4BC64-6A46-4502-9D1B-FC98109B760B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A4BC64-6A46-4502-9D1B-FC98109B760B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0A9292-042E-415D-82ED-43634B119CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0A9292-042E-415D-82ED-43634B119CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0A9292-042E-415D-82ED-43634B119CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0A9292-042E-415D-82ED-43634B119CEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

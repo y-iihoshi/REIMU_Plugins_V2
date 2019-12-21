@@ -33,9 +33,9 @@ This project, written in C#, is a redesigning version of
 * TH15.5 東方憑依華　～ Antinomy of Common Flowers.
 * TH16 東方天空璋　～ Hidden Star in Four Seasons.
 * TH16.5 秘封ナイトメアダイアリー　～ Violet Detector.
+* TH17 東方鬼形獣　～ Wily Beast and Weakest Creature.
 
 ### Will be supported
-* TH17 東方鬼形獣　～ Wily Beast and Weakest Creature.
 * TH17.5 東方剛欲異聞　～ 水没した沈愁地獄 (a.k.a. Touhou Gouyoku Ibun)
 
 ### Not supported
@@ -61,7 +61,7 @@ test enough.
 ### Development environment
 * Windows 10 Pro Version 1909 (64bit)
 * .NET Framework 4.8
-* Visual Studio Community 2019 16.4.1
+* Visual Studio Community 2019 16.4.2
 * Python 3.8.0
 
 ### Tested environment
