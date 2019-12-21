@@ -16,6 +16,7 @@ namespace ReimuPlugins.Th145Replay
     using System.Linq;
     using ReimuPlugins.Common;
     using ReimuPlugins.Common.Extensions;
+    using ReimuPlugins.Common.Squirrel;
     using ReimuPlugins.Th145Replay.Properties;
 
     public enum GameMode
@@ -58,18 +59,6 @@ namespace ReimuPlugins.Th145Replay
 
     public sealed class ReplayData
     {
-        private static readonly IReadOnlyDictionary<uint, Func<BinaryReader, object>> ObjectReaders =
-            new Dictionary<uint, Func<BinaryReader, object>>
-            {
-                { 0x01000001, reader => new EndMark() },
-                { 0x01000008, reader => reader.ReadByte() == 0x01 },
-                { 0x05000002, reader => reader.ReadInt32() },
-                { 0x05000004, reader => reader.ReadSingle() },
-                { 0x08000010, reader => ReadString(reader) },
-                { 0x08000040, reader => ReadArray(reader) },
-                { 0x0A000020, reader => ReadDictionary(reader) },
-            };
-
         private static readonly IReadOnlyDictionary<int, string> BackgroundNames =
             new Dictionary<int, string>
             {
@@ -264,127 +253,59 @@ namespace ReimuPlugins.Th145Replay
             this.info = new Info();
         }
 
-        public int BackgroundId => (int)this.info["background"];
+        public int BackgroundId => this.info["background"] as SQInteger;
 
         public string BackgroundName => BackgroundNames.TryGetValue(this.BackgroundId, out var name)
             ? name : string.Empty;
 
-        public int BgmId => (int)this.info["bgm"];
+        public int BgmId => this.info["bgm"] as SQInteger;
 
         public string BgmName => BgmNames.TryGetValue(this.BgmId, out var name) ? name : string.Empty;
 
-        public GameMode GameMode => this.info["game_mode"].ToValidEnum<GameMode>();
+        public GameMode GameMode => (this.info["game_mode"] as SQInteger).ToInt32().ToValidEnum<GameMode>();
 
-        public Character Character1 => this.info["player0"].ToValidEnum<Character>();
+        public Character Character1 => (this.info["player0"] as SQInteger).ToInt32().ToValidEnum<Character>();
 
-        public int Color1 => (int)this.info["color0"];
+        public int Color1 => this.info["color0"] as SQInteger;
 
-        public int SpellCard1Id => (int)this.info["spellcard0"];
+        public int SpellCard1Id => this.info["spellcard0"] as SQInteger;
 
         public string SpellCard1Name => SpellCardNames[this.Character1].TryGetValue(this.SpellCard1Id, out var name)
             ? name : string.Empty;
 
-        public string Profile1Name => this.info["profile", 0, "name"] as string;
+        public string Profile1Name => this.info["profile", 0, "name"] as SQString;
 
         public string Player1Info => this.GetPlayerInfo(0);
 
-        public Character Character2 => this.info["player1"].ToValidEnum<Character>();
+        public Character Character2 => (this.info["player1"] as SQInteger).ToInt32().ToValidEnum<Character>();
 
-        public int Color2 => (int)this.info["color1"];
+        public int Color2 => this.info["color1"] as SQInteger;
 
-        public int SpellCard2Id => (int)this.info["spellcard1"];
+        public int SpellCard2Id => this.info["spellcard1"] as SQInteger;
 
         public string SpellCard2Name => SpellCardNames[this.Character2].TryGetValue(this.SpellCard2Id, out var name)
             ? name : string.Empty;
 
-        public string Profile2Name => this.info["profile", 1, "name"] as string;
+        public string Profile2Name => this.info["profile", 1, "name"] as SQString;
 
         public string Player2Info => this.GetPlayerInfo(1);
 
-        public int Seed => (int)this.info["seed"];
+        public int Seed => this.info["seed"] as SQInteger;
 
         public string Version => this.info.Version;
 
         public DateTime DateTime => new DateTime(
-            (int)this.info["year"],
-            (int)this.info["month"],
-            (int)this.info["day"],
-            (int)this.info["hour"],
-            (int)this.info["min"],
-            (int)this.info["sec"]);
+            this.info["year"] as SQInteger,
+            this.info["month"] as SQInteger,
+            this.info["day"] as SQInteger,
+            this.info["hour"] as SQInteger,
+            this.info["min"] as SQInteger,
+            this.info["sec"] as SQInteger);
 
         public void Read(Stream input)
         {
             using var reader = new BinaryReader(input, Encoding.UTF8NoBOM, true);
             this.info.ReadFrom(reader);
-        }
-
-        private static bool ReadObject(BinaryReader reader, out object obj)
-        {
-            var type = reader.ReadUInt32();
-            obj = ObjectReaders.TryGetValue(type, out var objectReader) ? objectReader(reader) : null;
-            return obj != null;
-        }
-
-        private static object ReadString(BinaryReader reader)
-        {
-            var size = reader.ReadInt32();
-            return (size > 0) ? Encoding.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
-        }
-
-        private static object ReadArray(BinaryReader reader)
-        {
-            var num = reader.ReadInt32();
-            if (num > 0)
-            {
-                var array = new object[num];
-                for (var count = 0; count < num; count++)
-                {
-                    if (ReadObject(reader, out var index))
-                    {
-                        if (ReadObject(reader, out var value))
-                        {
-                            if ((index is int) && ((int)index < num))
-                            {
-                                array[(int)index] = value;
-                            }
-                        }
-                    }
-                }
-
-                if (ReadObject(reader, out var endmark) && (endmark is EndMark))
-                {
-                    return array;
-                }
-            }
-
-            return Array.Empty<object>();
-        }
-
-        private static object ReadDictionary(BinaryReader reader)
-        {
-            var dictionary = new Dictionary<object, object>();
-            while (true)
-            {
-                if (ReadObject(reader, out var key))
-                {
-                    if (key is EndMark)
-                    {
-                        break;
-                    }
-
-                    if (ReadObject(reader, out var value))
-                    {
-                        dictionary.Add(key, value);
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            return dictionary;
         }
 
         private static bool Extract(byte[] input, out byte[] output, int expectedSize)
@@ -448,22 +369,18 @@ namespace ReimuPlugins.Th145Replay
                     format,
                     index + 1,
                     character.ToLongName(),
-                    (int)this.info["color" + indexStr] + 1,
+                    (this.info["color" + indexStr] as SQInteger) + 1,
                     card);
             }
 
             return playerInfo;
         }
 
-        private class EndMark
-        {
-        }
-
         private class Info
         {
             private byte[] signature;
 
-            private Dictionary<string, object> dictionary;
+            private SQTable table;
 
             public Info()
             {
@@ -474,11 +391,11 @@ namespace ReimuPlugins.Th145Replay
 
             public string Version { get; private set; }
 
-            public object this[string key]
+            public SQObject this[string key]
             {
                 get
                 {
-                    if (this.dictionary.TryGetValue(key, out var value))
+                    if (this.table.Value.TryGetValue(new SQString(key), out var value))
                     {
                         return value;
                     }
@@ -489,15 +406,15 @@ namespace ReimuPlugins.Th145Replay
                 }
             }
 
-            public object this[string key1, int key2]
+            public SQObject this[string key1, int key2]
             {
                 get
                 {
-                    if (this[key1] is object[] array)
+                    if (this[key1] is SQArray array)
                     {
-                        if ((key2 >= 0) && (key2 < array.Length))
+                        if ((key2 >= 0) && (key2 < array.Value.Count()))
                         {
-                            return array[key2];
+                            return array.Value.ElementAt(key2);
                         }
                         else
                         {
@@ -512,13 +429,13 @@ namespace ReimuPlugins.Th145Replay
                 }
             }
 
-            public object this[string key1, int key2, string key3]
+            public SQObject this[string key1, int key2, string key3]
             {
                 get
                 {
-                    if (this[key1, key2] is Dictionary<object, object> dict)
+                    if (this[key1, key2] is SQTable table)
                     {
-                        if (dict.TryGetValue(key3, out var value))
+                        if (table.Value.TryGetValue(new SQString(key3), out var value))
                         {
                             return value;
                         }
@@ -568,13 +485,7 @@ namespace ReimuPlugins.Th145Replay
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
                                 stream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.
-
-                                if (ReadDictionary(reader2) is Dictionary<object, object> dict)
-                                {
-                                    this.dictionary = dict
-                                        .Where(pair => pair.Key is string)
-                                        .ToDictionary(pair => pair.Key as string, pair => pair.Value);
-                                }
+                                this.table = SQTable.Create(reader2, true);
                             }
                             finally
                             {

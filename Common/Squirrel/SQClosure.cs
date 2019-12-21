@@ -5,6 +5,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable SA1600 // Elements should be documented
 
 namespace ReimuPlugins.Common.Squirrel
@@ -13,7 +14,7 @@ namespace ReimuPlugins.Common.Squirrel
     using System.IO;
     using ReimuPlugins.Common.Properties;
 
-    internal sealed class SQClosure : SQObject
+    public sealed class SQClosure : SQObject
     {
         public SQClosure()
             : base(SQObjectType.Closure)

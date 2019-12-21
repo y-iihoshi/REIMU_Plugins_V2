@@ -5,6 +5,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable SA1600 // Elements should be documented
 
 namespace ReimuPlugins.Common.Squirrel
@@ -14,7 +15,7 @@ namespace ReimuPlugins.Common.Squirrel
     using ReimuPlugins.Common.Extensions;
     using ReimuPlugins.Common.Properties;
 
-    internal sealed class SQString : SQObject, IEquatable<SQString>
+    public sealed class SQString : SQObject, IEquatable<SQString>
     {
         public SQString(string value = "")
             : base(SQObjectType.String)
@@ -30,7 +31,7 @@ namespace ReimuPlugins.Common.Squirrel
 
         public static implicit operator string(SQString sq)
         {
-            return sq.Value;
+            return sq?.Value ?? default;
         }
 
         public static SQString Create(BinaryReader reader, bool skipType = false)
@@ -66,6 +67,11 @@ namespace ReimuPlugins.Common.Squirrel
         public bool Equals(SQString other)
         {
             return other is null ? false : this.Type == other.Type && this.Value == other.Value;
+        }
+
+        public new string ToString()
+        {
+            return this.Value;
         }
     }
 }

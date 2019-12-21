@@ -16,6 +16,7 @@ namespace ReimuPlugins.Th155Replay
     using System.Linq;
     using ReimuPlugins.Common;
     using ReimuPlugins.Common.Extensions;
+    using ReimuPlugins.Common.Squirrel;
     using ReimuPlugins.Th155Replay.Properties;
 
     public enum GameMode
@@ -102,20 +103,6 @@ namespace ReimuPlugins.Th155Replay
 
     public sealed class ReplayData
     {
-        private static readonly IReadOnlyDictionary<uint, Func<BinaryReader, object>> ObjectReaders =
-            new Dictionary<uint, Func<BinaryReader, object>>
-            {
-#pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
-                { 0x01000001, reader => new EndMark()             },
-                { 0x01000008, reader => reader.ReadByte() == 0x01 },
-                { 0x05000002, reader => reader.ReadInt32()        },
-                { 0x05000004, reader => reader.ReadSingle()       },
-                { 0x08000010, reader => ReadString(reader)        },
-                { 0x08000040, reader => ReadArray(reader)         },
-                { 0x0A000020, reader => ReadDictionary(reader)    },
-#pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
-            };
-
         private static readonly IReadOnlyDictionary<string, Character> Characters =
             new Dictionary<string, Character>
             {
@@ -444,7 +431,7 @@ namespace ReimuPlugins.Th155Replay
 
         public int GetBackgroundId()
         {
-            return (this.info["background_id"] is int value)
+            return (this.info["background_id"] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetBackgroundId));
         }
 
@@ -455,7 +442,7 @@ namespace ReimuPlugins.Th155Replay
 
         public int GetBgmId()
         {
-            return (this.info["bgm_id"] is int value)
+            return (this.info["bgm_id"] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetBgmId));
         }
 
@@ -466,41 +453,41 @@ namespace ReimuPlugins.Th155Replay
 
         public GameMode GetGameMode()
         {
-            return this.info["game_mode"].ToValidEnum<GameMode>();
+            return (this.info["game_mode"] as SQInteger).ToInt32().ToValidEnum<GameMode>();
         }
 
         public Difficulty GetDifficulty()
         {
-            return this.info["difficulty"].ToValidEnum<Difficulty>();
+            return (this.info["difficulty"] as SQInteger).ToInt32().ToValidEnum<Difficulty>();
         }
 
         public Character GetMasterName1()
         {
-            return Characters.TryGetValue(this.info["master_name", 0] as string, out var chara)
+            return Characters.TryGetValue(this.info["master_name", 0] as SQString, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName1));
         }
 
         public int GetMasterColor1()
         {
-            return (this.info["master_color", 0] is int value)
+            return (this.info["master_color", 0] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor1));
         }
 
         public Character GetSlaveName1()
         {
-            return Characters.TryGetValue(this.info["slave_name", 0] as string, out var chara)
+            return Characters.TryGetValue(this.info["slave_name", 0] as SQString, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName1));
         }
 
         public int GetSlaveColor1()
         {
-            return (this.info["slave_color", 0] is int value)
+            return (this.info["slave_color", 0] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSlaveColor1));
         }
 
         public int GetSpellCard1Id()
         {
-            return (this.info["spell", 0] is int value)
+            return (this.info["spell", 0] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard1Id));
         }
 
@@ -512,37 +499,37 @@ namespace ReimuPlugins.Th155Replay
 
         public string GetPlayer1Name()
         {
-            return (this.info["player_name", 0] is string value)
+            return (this.info["player_name", 0] is SQString value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer1Name));
         }
 
         public Character GetMasterName2()
         {
-            return Characters.TryGetValue(this.info["master_name", 1] as string, out var chara)
+            return Characters.TryGetValue(this.info["master_name", 1] as SQString, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetMasterName2));
         }
 
         public int GetMasterColor2()
         {
-            return (this.info["master_color", 1] is int value)
+            return (this.info["master_color", 1] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetMasterColor2));
         }
 
         public Character GetSlaveName2()
         {
-            return Characters.TryGetValue(this.info["slave_name", 1] as string, out var chara)
+            return Characters.TryGetValue(this.info["slave_name", 1] as SQString, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetSlaveName2));
         }
 
         public int GetSlaveColor2()
         {
-            return (this.info["slave_color", 1] is int value)
+            return (this.info["slave_color", 1] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSlaveColor2));
         }
 
         public int GetSpellCard2Id()
         {
-            return (this.info["spell", 1] is int value)
+            return (this.info["spell", 1] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetSpellCard2Id));
         }
 
@@ -554,36 +541,36 @@ namespace ReimuPlugins.Th155Replay
 
         public string GetPlayer2Name()
         {
-            return (this.info["player_name", 1] is string value)
+            return (this.info["player_name", 1] is SQString value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer2Name));
         }
 
         public DateTime GetDateTime()
         {
             return new DateTime(
-                (int)this.info["year"],
-                (int)this.info["month"],
-                (int)this.info["day"],
-                (int)this.info["hour"],
-                (int)this.info["min"],
-                (int)this.info["sec"]);
+                this.info["year"] as SQInteger,
+                this.info["month"] as SQInteger,
+                this.info["day"] as SQInteger,
+                this.info["hour"] as SQInteger,
+                this.info["min"] as SQInteger,
+                this.info["sec"] as SQInteger);
         }
 
         public StoryCharacter GetStoryMaster()
         {
-            return StoryCharacters.TryGetValue(this.info["scenario_name"] as string, out var chara)
+            return StoryCharacters.TryGetValue(this.info["scenario_name"] as SQString, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetStoryMaster));
         }
 
         public StoryCharacter GetStorySlave()
         {
-            return StoryCharacters.TryGetValue(this.info["slave_name"] as string, out var chara)
+            return StoryCharacters.TryGetValue(this.info["slave_name"] as SQString, out var chara)
                 ? chara : throw NewInvalidPropertyException(nameof(this.GetStorySlave));
         }
 
         public int GetStorySpellCardId()
         {
-            return (this.info["spell"] is int value)
+            return (this.info["spell"] is SQInteger value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetStorySpellCardId));
         }
 
@@ -599,89 +586,17 @@ namespace ReimuPlugins.Th155Replay
             this.info.ReadFrom(reader);
         }
 
-        private static bool ReadObject(BinaryReader reader, out object obj)
-        {
-            var type = reader.ReadUInt32();
-            obj = ObjectReaders.TryGetValue(type, out var objectReader) ? objectReader(reader) : null;
-            return obj != null;
-        }
-
-        private static object ReadString(BinaryReader reader)
-        {
-            var size = reader.ReadInt32();
-            return (size > 0) ? Encoding.CP932.GetString(reader.ReadBytes(size)) : string.Empty;
-        }
-
-        private static object ReadArray(BinaryReader reader)
-        {
-            var num = reader.ReadInt32();
-            if (num > 0)
-            {
-                var array = new object[num];
-                for (var count = 0; count < num; count++)
-                {
-                    if (ReadObject(reader, out var index))
-                    {
-                        if (ReadObject(reader, out var value))
-                        {
-                            if ((index is int) && ((int)index < num))
-                            {
-                                array[(int)index] = value;
-                            }
-                        }
-                    }
-                }
-
-                if (ReadObject(reader, out var endmark) && (endmark is EndMark))
-                {
-                    return array;
-                }
-            }
-
-            return Array.Empty<object>();
-        }
-
-        private static object ReadDictionary(BinaryReader reader)
-        {
-            var dictionary = new Dictionary<object, object>();
-            while (true)
-            {
-                if (ReadObject(reader, out var key))
-                {
-                    if (key is EndMark)
-                    {
-                        break;
-                    }
-
-                    if (ReadObject(reader, out var value))
-                    {
-                        dictionary.Add(key, value);
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            return dictionary;
-        }
-
         private static InvalidDataException NewInvalidPropertyException(string propertyName)
         {
             return new InvalidDataException(string.Format(
                 CultureInfo.CurrentCulture, Resources.InvalidDataExceptionPropertyIsInvalid, propertyName));
         }
 
-        private class EndMark
-        {
-        }
-
         private class Info
         {
             private byte[] signature;
 
-            private Dictionary<object, object> dictionary;
+            private SQTable table;
 
             public Info()
             {
@@ -692,15 +607,15 @@ namespace ReimuPlugins.Th155Replay
 
             public string Version { get; private set; }
 
-            public object this[string key]
-                => (this.dictionary != null)
-                    ? this.dictionary[key]
+            public SQObject this[string key]
+                => (this.table != null)
+                    ? this.table.Value[new SQString(key)]
                     : throw new InvalidOperationException(string.Format(
                         CultureInfo.InvariantCulture, $"Call {nameof(this.ReadFrom)}() first."));
 
-            public object this[string key1, int key2]
-                => (this[key1] is object[] array)
-                    ? array[key2]
+            public SQObject this[string key1, int key2]
+                => (this[key1] is SQArray array)
+                    ? array.Value.ElementAt(key2)
                     : throw new ArgumentException(string.Format(
                         CultureInfo.InvariantCulture, $"Item[{key1}] is not an array."));
 
@@ -751,7 +666,7 @@ namespace ReimuPlugins.Th155Replay
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
                     stream = null;
 #pragma warning restore IDISP003 // Dispose previous before re-assigning.
-                    this.dictionary = ReadDictionary(reader2) as Dictionary<object, object>;
+                    this.table = SQTable.Create(reader2, true);
                 }
                 finally
                 {

@@ -5,6 +5,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable SA1600 // Elements should be documented
 
 namespace ReimuPlugins.Common.Squirrel
@@ -13,7 +14,7 @@ namespace ReimuPlugins.Common.Squirrel
     using System.IO;
     using ReimuPlugins.Common.Properties;
 
-    internal sealed class SQFloat : SQObject, IEquatable<SQFloat>
+    public sealed class SQFloat : SQObject, IEquatable<SQFloat>
     {
         public SQFloat(float value = default)
             : base(SQObjectType.Float)
@@ -29,7 +30,7 @@ namespace ReimuPlugins.Common.Squirrel
 
         public static implicit operator float(SQFloat sq)
         {
-            return sq.Value;
+            return sq?.Value ?? default;
         }
 
         public static SQFloat Create(BinaryReader reader, bool skipType = false)
@@ -64,6 +65,11 @@ namespace ReimuPlugins.Common.Squirrel
         public bool Equals(SQFloat other)
         {
             return other is null ? false : this.Type == other.Type && this.Value == other.Value;
+        }
+
+        public float ToSingle()
+        {
+            return this.Value;
         }
     }
 }
