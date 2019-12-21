@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>ReimuPlugins.Th17Replay</AssemblyName>
     <RootNamespace>ReimuPlugins.Th17Replay</RootNamespace>
     <Version>2.0.0</Version>
@@ -56,10 +57,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
 </Project>
