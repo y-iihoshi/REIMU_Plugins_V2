@@ -16,6 +16,7 @@ namespace ReimuPlugins.Th165Bestshot
     using System.Runtime.InteropServices;
     using CommonWin32.Bitmaps;
     using ReimuPlugins.Common;
+    using ReimuPlugins.Common.Extensions;
     using DllExportAttribute = NXPorts.Attributes.ExportAttribute;
     using IO = System.IO;
 

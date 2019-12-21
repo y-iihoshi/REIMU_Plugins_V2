@@ -14,6 +14,7 @@ namespace ReimuPlugins.Th123Replay
     using System.IO;
     using System.Linq;
     using ReimuPlugins.Common;
+    using ReimuPlugins.Common.Extensions;
 
     public enum GameMode
     {

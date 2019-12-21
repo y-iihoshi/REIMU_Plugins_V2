@@ -14,6 +14,7 @@ namespace ReimuPlugins.Th135Replay
     using System.Linq;
     using System.Runtime.InteropServices;
     using ReimuPlugins.Common;
+    using ReimuPlugins.Common.Extensions;
     using DllExportAttribute = NXPorts.Attributes.ExportAttribute;
     using IO = System.IO;
 

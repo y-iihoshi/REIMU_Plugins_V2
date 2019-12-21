@@ -9,7 +9,7 @@ namespace ReimuPlugins.Th155Replay
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using ReimuPlugins.Common;
+    using ReimuPlugins.Common.Extensions;
 
     public sealed class ReplayDataAdapter
     {

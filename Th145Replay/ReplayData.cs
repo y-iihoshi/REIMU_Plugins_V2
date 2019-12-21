@@ -15,6 +15,7 @@ namespace ReimuPlugins.Th145Replay
     using System.IO.Compression;
     using System.Linq;
     using ReimuPlugins.Common;
+    using ReimuPlugins.Common.Extensions;
     using ReimuPlugins.Th145Replay.Properties;
 
     public enum GameMode

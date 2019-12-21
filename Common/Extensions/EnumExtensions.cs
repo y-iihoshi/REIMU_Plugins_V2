@@ -5,7 +5,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Common
+namespace ReimuPlugins.Common.Extensions
 {
     using System;
     using System.Collections.Generic;
