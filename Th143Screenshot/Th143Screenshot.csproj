@@ -5,7 +5,7 @@
     <LangVersion>latest</LangVersion>
     <AssemblyName>ReimuPlugins.Th143Screenshot</AssemblyName>
     <RootNamespace>ReimuPlugins.Th143Screenshot</RootNamespace>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
     <Authors>IIHOSHI Yoshinori</Authors>
     <Company>None</Company>
     <Description>REIMU plugin for TH14.3 screenshots</Description>

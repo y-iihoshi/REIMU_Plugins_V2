@@ -74,7 +74,7 @@ namespace ReimuPlugins.Th155Replay
 
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 東方憑依華 Ver2.00 (C) IIHOSHI Yoshinori, 2018\0",
+                "REIMU Plug-in For 東方憑依華 Ver2.1.0 (C) IIHOSHI Yoshinori, 2018-2019\0",
                 "東方憑依華\0",
                 "*.rep\0",
                 "東方憑依華 リプレイファイル (*.rep)\0",

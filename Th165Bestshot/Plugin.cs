@@ -78,7 +78,7 @@ namespace ReimuPlugins.Th165Bestshot
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For 秘封ナイトメアダイアリー ベストショット Ver2.00 (C) IIHOSHI Yoshinori, 2019\0",
+                "REIMU Plug-in For 秘封ナイトメアダイアリー ベストショット Ver2.1.0 (C) IIHOSHI Yoshinori, 2019\0",
                 "秘封ナイトメアダイアリー ベストショット\0",
                 "bs*.dat\0",
                 "秘封ナイトメアダイアリー ベストショット (bs*.dat)\0",

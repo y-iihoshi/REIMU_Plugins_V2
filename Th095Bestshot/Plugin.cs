@@ -70,7 +70,7 @@ namespace ReimuPlugins.Th095Bestshot
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For 東方文花帖 ベストショット Ver2.00 (C) IIHOSHI Yoshinori, 2015\0",
+                "REIMU Plug-in For 東方文花帖 ベストショット Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2019\0",
                 "東方文花帖 ベストショット\0",
                 "bs_*.dat\0",
                 "東方文花帖 ベストショットファイル (bs_*.dat)\0",

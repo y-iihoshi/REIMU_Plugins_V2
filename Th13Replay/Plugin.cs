@@ -80,7 +80,7 @@ namespace ReimuPlugins.Th13Replay
 
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 東方神霊廟 Ver2.00 (C) IIHOSHI Yoshinori, 2015\0",
+                "REIMU Plug-in For 東方神霊廟 Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2019\0",
                 "東方神霊廟\0",
                 "th13_*.rpy\0",
                 "東方神霊廟 リプレイファイル (th13_*.rpy)\0",
