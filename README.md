@@ -32,7 +32,7 @@ This project, written in C#, is a redesigning version of
 * TH15 東方紺珠伝　～ Legacy of Lunatic Kingdom.
 * TH15.5 東方憑依華　～ Antinomy of Common Flowers.
 * TH16 東方天空璋　～ Hidden Star in Four Seasons.
-* TH16.5 秘封ナイトメアダイアリー　～ Violet Detector.
+* TH16.5 秘封ナイトメアダイアリー　～ Violet Detector. (Replays and bestshots)
 * TH17 東方鬼形獣　～ Wily Beast and Weakest Creature.
 
 ### Will be supported
