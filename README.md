@@ -2,9 +2,9 @@
 
 REIMU plugins for Touhou replays (Redesigning)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/isxeiqhusbvoolev?svg=true)](https://ci.appveyor.com/project/y-iihoshi/reimu-plugins-v2)
 [![License](https://img.shields.io/github/license/y-iihoshi/REIMU_Plugins_V2.svg)](/LICENSE.txt)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_shield)
+[![GitHub Actions CI](https://github.com/y-iihoshi/REIMU_Plugins_V2/workflows/CI/badge.svg)](https://github.com/y-iihoshi/REIMU_Plugins_V2/actions?query=workflow%3ACI)
 
 ## Introduction
 
