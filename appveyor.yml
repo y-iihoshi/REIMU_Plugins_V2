@@ -21,7 +21,7 @@ build:
   parallel: true
   verbosity: minimal
 after_build:
-  - cmd: CollectArtifacts.bat %CONFIGURATION%
+  - cmd: CollectArtifacts.bat %CONFIGURATION% net48
 
 artifacts:
   - path: publish
