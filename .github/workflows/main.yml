@@ -1,0 +1,69 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        target-framework: [net48]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
+
+    - name: Cache Python packages
+      uses: actions/cache@v1.1.2
+      if: startsWith(runner.os, 'Windows')
+      with:
+        path: ~\AppData\Local\pip\Cache
+        key: ${{ runner.os }}-pip-${{ hashFiles('ManualGenerator/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Setup Python environment
+      uses: actions/setup-python@v1.1.1
+
+    - name: Restore Python packages
+      run: |
+        python -m pip install -U pip
+        python -m pip install -r ManualGenerator\requirements.txt
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v1.1.2
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ matrix.target-framework }}-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-${{ matrix.target-framework }}-
+          ${{ runner.os }}-nuget-
+
+    - name: Setup NuGet.exe for use with actions
+      uses: NuGet/setup-nuget@v1.0.2
+
+    - name: Restore NuGet packages
+      run: nuget restore REIMU_Plugins_V2.sln
+
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+
+    - name: Build
+      run: >
+        msbuild REIMU_Plugins_V2.sln /m /verbosity:minimal
+        /p:Configuration=${{ matrix.configuration }}
+        /p:TargetFrameworks=${{ matrix.target-framework }}
+
+    - name: Collect artifacts
+      run: CollectArtifacts.bat ${{ matrix.configuration }} ${{ matrix.target-framework }}
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: threplay_rpi.${{ matrix.target-framework }}
+        path: publish\${{ matrix.target-framework }}

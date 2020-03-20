@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net48</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <AssemblyName>ReimuPlugins.Th095Bestshot</AssemblyName>
     <RootNamespace>ReimuPlugins.Th095Bestshot</RootNamespace>
