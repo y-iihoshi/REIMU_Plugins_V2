@@ -61,6 +61,7 @@ jobs:
 
     - name: Collect artifacts
       run: CollectArtifacts.bat ${{ matrix.configuration }} ${{ matrix.target-framework }}
+      shell: cmd
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
