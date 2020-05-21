@@ -64,7 +64,7 @@ namespace ReimuPlugins.Common.Squirrel
 
         public bool Equals(SQFloat other)
         {
-            return other is null ? false : this.Type == other.Type && this.Value == other.Value;
+            return !(other is null) && this.Type == other.Type && this.Value == other.Value;
         }
 
         public float ToSingle()
