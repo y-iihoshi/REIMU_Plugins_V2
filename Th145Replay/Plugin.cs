@@ -13,9 +13,9 @@ namespace ReimuPlugins.Th145Replay
     using System.Globalization;
     using System.Linq;
     using System.Runtime.InteropServices;
+    using NXPorts.Attributes;
     using ReimuPlugins.Common;
     using ReimuPlugins.Common.Extensions;
-    using DllExportAttribute = NXPorts.Attributes.ExportAttribute;
     using IO = System.IO;
 
     public static class Plugin

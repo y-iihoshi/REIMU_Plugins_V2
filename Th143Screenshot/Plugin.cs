@@ -15,8 +15,8 @@ namespace ReimuPlugins.Th143Screenshot
     using System.Linq;
     using System.Runtime.InteropServices;
     using CommonWin32.Bitmaps;
+    using NXPorts.Attributes;
     using ReimuPlugins.Common;
-    using DllExportAttribute = NXPorts.Attributes.ExportAttribute;
     using IO = System.IO;
 
     public static class Plugin
