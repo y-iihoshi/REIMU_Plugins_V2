@@ -20,7 +20,7 @@ namespace ReimuPlugins.Common
         /// <summary>
         /// The information as a read-only string array.
         /// </summary>
-        private IEnumerable<string> info = null;
+        private IEnumerable<string> info;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReplayDataBase"/> class.
