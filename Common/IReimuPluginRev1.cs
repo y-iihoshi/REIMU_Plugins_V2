@@ -22,7 +22,6 @@ namespace ReimuPlugins.Common
         /// Gets the revision of the implemented plugin.
         /// </summary>
         /// <returns>The revision.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "To comply with the REIMU plugin spec.")]
         Revision GetPluginRevision();
 
         /// <summary>
