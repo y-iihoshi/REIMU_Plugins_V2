@@ -8,7 +8,6 @@
 namespace ReimuPlugins.Common
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// The interface of REIMU plugin (Revision 2).
@@ -66,8 +65,6 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <returns>An error code.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "3#", Justification = "To comply with the REIMU plugin spec.")]
         ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
 
         /// <summary>
@@ -118,8 +115,6 @@ namespace ReimuPlugins.Common
         /// </remarks>
         /// </param>
         /// <returns>An error code.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#", Justification = "To comply with the REIMU plugin spec.")]
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "3#", Justification = "To comply with the REIMU plugin spec.")]
         ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
 
         #endregion
