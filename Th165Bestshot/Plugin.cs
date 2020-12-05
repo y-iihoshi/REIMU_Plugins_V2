@@ -623,9 +623,7 @@ namespace ReimuPlugins.Th165Bestshot
                         IO.MemoryStream stream = null;
                         try
                         {
-#pragma warning disable IDISP001 // Dispose created.
                             stream = new IO.MemoryStream();
-#pragma warning restore IDISP001 // Dispose created.
                             using var writer = new IO.StreamWriter(stream, Encoding.CP932);
 #pragma warning disable IDISP003 // Dispose previous before re-assigning.
                             stream = null;
