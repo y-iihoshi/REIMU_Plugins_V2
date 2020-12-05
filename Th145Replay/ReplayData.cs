@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th145Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.IO.Compression;
@@ -386,7 +385,6 @@ namespace ReimuPlugins.Th145Replay
             {
             }
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
             public IEnumerable<byte> Signature => this.signature;
 
             public string Version { get; private set; }

@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th123Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -885,7 +884,6 @@ namespace ReimuPlugins.Th123Replay
 
             public byte Bgm { get; private set; }
 
-            [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
             public int Frames { get; private set; }
 
             public Deck Deck1 { get; private set; }

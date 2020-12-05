@@ -8,7 +8,6 @@
 namespace ReimuPlugins.Common
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using ReimuPlugins.Common.Properties;
 
@@ -27,7 +26,6 @@ namespace ReimuPlugins.Common
         /// </summary>
         /// <param name="input">The stream to input data.</param>
         /// <param name="output">The stream that is output the compressed data.</param>
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For future use.")]
 #pragma warning disable IDE0060 // Remove unused parameter
         public static void Compress(Stream input, Stream output)
 #pragma warning restore IDE0060 // Remove unused parameter
