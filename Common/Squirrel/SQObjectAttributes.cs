@@ -17,12 +17,10 @@ namespace ReimuPlugins.Common.Squirrel
     internal enum SQObjectAttributes
     {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
-#pragma warning disable SA1602 // Enumeration items should be documented
         CanBeFalse = 0x01000000,
         Delegable  = 0x02000000,
         Numeric    = 0x04000000,
         RefCounted = 0x08000000,
-#pragma warning restore SA1602 // Enumeration items should be documented
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
     }
 }

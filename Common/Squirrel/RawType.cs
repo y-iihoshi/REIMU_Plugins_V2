@@ -14,8 +14,7 @@ namespace ReimuPlugins.Common.Squirrel
     internal enum RawType
     {
 #pragma warning disable SA1025 // Code should not contain multiple whitespace in a row
-#pragma warning disable SA1602 // Enumeration items should be documented
-        Null          = 0x00000001,
+        Null = 0x00000001,
         Integer       = 0x00000002,
         Float         = 0x00000004,
         Bool          = 0x00000008,
@@ -33,7 +32,6 @@ namespace ReimuPlugins.Common.Squirrel
         Instance      = 0x00008000,
         WeakRef       = 0x00010000,
         Outer         = 0x00020000,
-#pragma warning restore SA1602 // Enumeration items should be documented
 #pragma warning restore SA1025 // Code should not contain multiple whitespace in a row
     }
 }
