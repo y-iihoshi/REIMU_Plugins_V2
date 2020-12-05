@@ -13,7 +13,6 @@ namespace ReimuPlugins.Common
     /// <summary>
     /// Contains information about a column in the REIMU's list view.
     /// </summary>
-    [SuppressMessage("Microsoft.Performance", "CA1815:OverrideEqualsAndOperatorEqualsOnValueTypes", Justification = "Used to communicate an external unmanaged app.")]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct ColumnInfo
     {
