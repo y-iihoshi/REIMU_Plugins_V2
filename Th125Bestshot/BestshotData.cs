@@ -8,7 +8,6 @@
 namespace ReimuPlugins.Th125Bestshot
 {
     using System.Collections.Specialized;
-    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
@@ -21,7 +20,6 @@ namespace ReimuPlugins.Th125Bestshot
 
         private BitVector32 bonusFields;
 
-        [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Reviewed.")]
         static BestshotData()
         {
             Masks = new int[32];
