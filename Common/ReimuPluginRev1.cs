@@ -11,7 +11,6 @@ namespace ReimuPlugins.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Security;
@@ -151,7 +150,6 @@ namespace ReimuPlugins.Common
         /// </param>
         /// <returns>A pair of the error code and the created instance.</returns>
         /// <exception cref="OutOfMemoryException">Failed to create a new instance.</exception>
-        [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "These objects are wrapped in the IDisposable return value.")]
         protected static DisposableTuple<ErrorCode, Stream> CreateStream(IntPtr src, uint size)
         {
             var errorCode = ErrorCode.UnknownError;
