@@ -68,7 +68,7 @@ namespace ReimuPlugins.Common.Squirrel
 
         public bool Equals(SQBool other)
         {
-            return !(other is null) && this.Type == other.Type && this.Value == other.Value;
+            return other is not null && this.Type == other.Type && this.Value == other.Value;
         }
 
         public bool ToBoolean()
