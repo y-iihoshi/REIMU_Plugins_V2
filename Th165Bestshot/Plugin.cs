@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th165Bestshot
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Drawing.Imaging;
     using System.Globalization;
     using System.Linq;
@@ -823,7 +822,6 @@ namespace ReimuPlugins.Th165Bestshot
                 throw new NotImplementedException();
             }
 
-            [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
             private static IReadOnlyDictionary<ColumnKey, Func<BestshotData, string>> InitializeFileInfoGetters()
             {
                 return new Dictionary<ColumnKey, Func<BestshotData, string>>

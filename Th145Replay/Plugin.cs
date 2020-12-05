@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th145Replay
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Runtime.InteropServices;
@@ -471,7 +470,6 @@ namespace ReimuPlugins.Th145Replay
                 throw new NotImplementedException();
             }
 
-            [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
             private static IReadOnlyDictionary<ColumnKey, Func<ReplayData, string>> InitializeFileInfoGetters()
             {
                 return new Dictionary<ColumnKey, Func<ReplayData, string>>

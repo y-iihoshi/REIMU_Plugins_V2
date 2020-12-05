@@ -9,7 +9,6 @@ namespace ReimuPlugins.Th143Screenshot
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Drawing.Imaging;
     using System.Globalization;
     using System.Linq;
@@ -414,7 +413,6 @@ namespace ReimuPlugins.Th143Screenshot
                 throw new NotImplementedException();
             }
 
-            [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
             private static IReadOnlyDictionary<ColumnKey, Func<ScreenshotData, string>> InitializeFileInfoGetters()
             {
                 return new Dictionary<ColumnKey, Func<ScreenshotData, string>>
