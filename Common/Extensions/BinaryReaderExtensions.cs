@@ -35,12 +35,7 @@ namespace ReimuPlugins.Common.Extensions
             }
 
             var bytes = reader.ReadBytes(count);
-            if (bytes.Length < count)
-            {
-                throw new EndOfStreamException();
-            }
-
-            return bytes;
+            return bytes.Length >= count ? bytes : throw new EndOfStreamException();
         }
     }
 }

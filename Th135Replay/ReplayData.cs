@@ -368,65 +368,24 @@ namespace ReimuPlugins.Th135Replay
             public string Version { get; private set; }
 
             public SQObject this[string key]
-            {
-                get
-                {
-                    if (this.table.Value.TryGetValue(new SQString(key), out var value))
-                    {
-                        return value;
-                    }
-                    else
-                    {
-                        throw new ArgumentOutOfRangeException(nameof(key));
-                    }
-                }
-            }
+                => this.table.Value.TryGetValue(new SQString(key), out var value)
+                    ? value : throw new ArgumentOutOfRangeException(nameof(key));
 
             public SQObject this[string key1, int key2]
-            {
-                get
-                {
-                    if (this[key1] is SQArray array)
-                    {
-                        if ((key2 >= 0) && (key2 < array.Value.Count()))
-                        {
-                            return array.Value.ElementAt(key2);
-                        }
-                        else
-                        {
-                            throw new ArgumentOutOfRangeException(nameof(key2));
-                        }
-                    }
-                    else
-                    {
-                        throw new InvalidDataException(string.Format(
-                            CultureInfo.CurrentCulture, Resources.InvalidDataExceptionMustBeAnArray, key1));
-                    }
-                }
-            }
+                => this[key1] is SQArray array
+                    ? (key2 >= 0) && (key2 < array.Value.Count())
+                        ? array.Value.ElementAt(key2)
+                        : throw new ArgumentOutOfRangeException(nameof(key2))
+                    : throw new InvalidDataException(string.Format(
+                        CultureInfo.CurrentCulture, Resources.InvalidDataExceptionMustBeAnArray, key1));
 
             public SQObject this[string key1, int key2, string key3]
-            {
-                get
-                {
-                    if (this[key1, key2] is SQTable table)
-                    {
-                        if (table.Value.TryGetValue(new SQString(key3), out var value))
-                        {
-                            return value;
-                        }
-                        else
-                        {
-                            throw new ArgumentOutOfRangeException(nameof(key3));
-                        }
-                    }
-                    else
-                    {
-                        throw new InvalidDataException(string.Format(
-                            CultureInfo.CurrentCulture, Resources.InvalidDataExceptionMustBeADictionary, key1, key2));
-                    }
-                }
-            }
+                => this[key1, key2] is SQTable table
+                    ? table.Value.TryGetValue(new SQString(key3), out var value)
+                        ? value
+                        : throw new ArgumentOutOfRangeException(nameof(key3))
+                    : throw new InvalidDataException(string.Format(
+                        CultureInfo.CurrentCulture, Resources.InvalidDataExceptionMustBeADictionary, key1, key2));
 
             public void ReadFrom(BinaryReader reader)
             {

@@ -172,9 +172,9 @@ namespace ReimuPlugins.Th155Replay
                 "Slave Color: {4}",
                 "Spell Card: {5}");
 
-            if (num == 1)
+            return (num, this.gameMode) switch
             {
-                return string.Format(
+                (1, _) => string.Format(
                     CultureInfo.CurrentCulture,
                     format,
                     num,
@@ -182,26 +182,19 @@ namespace ReimuPlugins.Th155Replay
                     this.GetMasterColor1(),
                     this.GetSlaveName1(),
                     this.GetSlaveColor1(),
-                    this.GetSpellCard1Name());
-            }
-            else if (num == 2)
-            {
-                return (this.gameMode == GameMode.Story)
-                    ? string.Empty
-                    : string.Format(
-                        CultureInfo.CurrentCulture,
-                        format,
-                        num,
-                        this.GetMasterName2(),
-                        this.GetMasterColor2(),
-                        this.GetSlaveName2(),
-                        this.GetSlaveColor2(),
-                        this.GetSpellCard2Name());
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(nameof(num));
-            }
+                    this.GetSpellCard1Name()),
+                (2, GameMode.Story) => string.Empty,
+                (2, _) => string.Format(
+                    CultureInfo.CurrentCulture,
+                    format,
+                    num,
+                    this.GetMasterName2(),
+                    this.GetMasterColor2(),
+                    this.GetSlaveName2(),
+                    this.GetSlaveColor2(),
+                    this.GetSpellCard2Name()),
+                _ => throw new ArgumentOutOfRangeException(nameof(num))
+            };
         }
     }
 }

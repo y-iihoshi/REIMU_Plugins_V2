@@ -27,13 +27,8 @@ namespace ReimuPlugins.Common.Extensions
             where TEnum : struct, IComparable, IFormattable, IConvertible
         {
             var type = typeof(TEnum);
-
-            if (!Enum.IsDefined(type, value))
-            {
-                throw new ArgumentOutOfRangeException(nameof(value));
-            }
-
-            return (TEnum)Enum.ToObject(type, value);
+            return Enum.IsDefined(type, value)
+                ? (TEnum)Enum.ToObject(type, value) : throw new ArgumentOutOfRangeException(nameof(value));
         }
     }
 }
