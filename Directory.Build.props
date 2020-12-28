@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup>
+    <LangVersion>latest</LangVersion>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>

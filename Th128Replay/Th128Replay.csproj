@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net48</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>ReimuPlugins.Th128Replay</AssemblyName>
     <RootNamespace>ReimuPlugins.Th128Replay</RootNamespace>

@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net48</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
     <AssemblyName>ReimuPlugins.Th135Replay</AssemblyName>
     <RootNamespace>ReimuPlugins.Th135Replay</RootNamespace>
     <Version>2.1.0</Version>
