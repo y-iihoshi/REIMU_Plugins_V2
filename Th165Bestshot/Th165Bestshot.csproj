@@ -39,7 +39,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommonWin32" Version="2.1.0.3" />
-    <PackageReference Include="IDisposableAnalyzers" Version="3.4.6">
+    <PackageReference Include="IDisposableAnalyzers" Version="3.4.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
