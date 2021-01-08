@@ -62,7 +62,7 @@ jobs:
       if: matrix.configuration == 'Release'
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v2.2.1
+      uses: actions/upload-artifact@v2.2.2
       with:
         name: threplay_rpi.${{ matrix.target-framework }}
         path: publish\${{ matrix.target-framework }}
