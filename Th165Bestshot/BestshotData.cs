@@ -20,6 +20,7 @@ namespace ReimuPlugins.Th165Bestshot
 
         private readonly BitVector32[] hashtagFields;
 
+#pragma warning disable CA1810 // Initialize reference type static fields inline
         static BestshotData()
         {
             Masks = new int[32];
@@ -29,6 +30,7 @@ namespace ReimuPlugins.Th165Bestshot
                 Masks[i] = BitVector32.CreateMask(Masks[i - 1]);
             }
         }
+#pragma warning restore CA1810 // Initialize reference type static fields inline
 
         public BestshotData()
         {
