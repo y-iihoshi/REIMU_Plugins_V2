@@ -1,0 +1,14 @@
+﻿<Project>
+  <ItemGroup>
+    <PackageReference Update="CommonWin32" Version="2.1.0.3" />
+    <PackageReference Update="IDisposableAnalyzers" Version="3.4.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="NXPorts" Version="1.0.0" />
+    <PackageReference Update="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
