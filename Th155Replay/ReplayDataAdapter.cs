@@ -193,7 +193,7 @@ namespace ReimuPlugins.Th155Replay
                     this.GetSlaveName2(),
                     this.GetSlaveColor2(),
                     this.GetSpellCard2Name()),
-                _ => throw new ArgumentOutOfRangeException(nameof(num))
+                _ => throw new ArgumentOutOfRangeException(nameof(num)),
             };
         }
     }
