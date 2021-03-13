@@ -74,7 +74,7 @@ namespace ReimuPlugins.Th14Replay
 
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 東方輝針城 Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2019\0",
+                "REIMU Plug-in For 東方輝針城 Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
                 "東方輝針城\0",
                 "th14_*.rpy\0",
                 "東方輝針城 リプレイファイル (th14_*.rpy)\0",

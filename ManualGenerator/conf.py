@@ -47,7 +47,7 @@ master_doc = 'manual'
 
 # General information about the project.
 project = 'REIMU Plugins V2'
-copyright = '2015-2019, IIHOSHI Yoshinori'
+copyright = '2015-2021, IIHOSHI Yoshinori'
 author = 'IIHOSHI Yoshinori'
 
 # The version info for the project you're documenting, acts as replacement for

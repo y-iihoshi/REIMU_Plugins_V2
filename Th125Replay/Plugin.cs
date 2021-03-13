@@ -74,7 +74,7 @@ namespace ReimuPlugins.Th125Replay
 
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For ダブルスポイラー Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2019\0",
+                "REIMU Plug-in For ダブルスポイラー Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
                 "ダブルスポイラー\0",
                 "th125_*.rpy\0",
                 "ダブルスポイラー リプレイファイル (th125_*.rpy)\0",

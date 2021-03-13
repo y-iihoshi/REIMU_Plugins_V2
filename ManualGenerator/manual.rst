@@ -28,14 +28,14 @@ REIMU に導入することで、 東方 Project
 
 本プラグインセットを利用するには .NET Framework 4.8 が必要です。
 
-2019 年 12 月現在、
+2021 年 3 月現在、
 本プラグインセットは下記環境でのみ開発及び動作確認を実施しています。
 下記以外の環境で動作しないなどのご報告を受けても対応できない可能性があります。
 
-* Windows 10 Pro Version 1909 (64bit)
+* Windows 10 Pro Version 20H2 (64bit)
 * .NET Framework 4.8
-* Visual Studio Community 2019 Version 16.4.2
-* Python 3.8.0
+* Visual Studio Community 2019 Version 16.9.1
+* Python 3.9.2
 
 免責事項
 ^^^^^^^^
@@ -106,6 +106,7 @@ ReimuPlugins.Th17Replay.rpi      東方鬼形獣 ver. 1.00b (リプレイ用)
 本プラグインセット作者の原作プレイ進捗状況に伴って今後対応予定です:
 
 * 東方剛欲異聞
+* 東方虹龍洞
 
 対応予定なし
 ^^^^^^^^^^^^

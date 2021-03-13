@@ -72,7 +72,7 @@ namespace ReimuPlugins.Th125Bestshot
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For ダブルスポイラー ベストショット Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2019\0",
+                "REIMU Plug-in For ダブルスポイラー ベストショット Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
                 "ダブルスポイラー ベストショット\0",
                 "bs*.dat\0",
                 "ダブルスポイラー ベストショットファイル (bs*.dat)\0",

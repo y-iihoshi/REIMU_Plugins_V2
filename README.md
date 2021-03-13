@@ -38,6 +38,7 @@ This project, written in C#, is a redesigning version of
 
 ### Will be supported
 * TH17.5 東方剛欲異聞　～ 水没した沈愁地獄 (a.k.a. Touhou Gouyoku Ibun)
+* TH18 東方虹龍洞　～ Unconnected Marketeers.
 
 ### Not supported
 The followings are not supported because these plugins have already been
@@ -60,10 +61,10 @@ test enough.
 ## Environments
 
 ### Development environment
-* Windows 10 Pro Version 1909 (64bit)
+* Windows 10 Pro Version 20H2 (64bit)
 * .NET Framework 4.8
-* Visual Studio Community 2019 16.5.0
-* Python 3.8.0
+* Visual Studio Community 2019 16.9.1
+* Python 3.9.2
 
 ### Tested environment
 Same as above.

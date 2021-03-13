@@ -64,7 +64,7 @@ namespace ReimuPlugins.Th143Screenshot
 
             private static readonly string[] PluginInfo =
             {
-                "REIMU Plug-in For 弾幕アマノジャク スクリーンショット Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2019\0",
+                "REIMU Plug-in For 弾幕アマノジャク スクリーンショット Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
                 "弾幕アマノジャク スクリーンショット\0",
                 "sc*.dat\0",
                 "弾幕アマノジャク スクリーンショットファイル (sc*.dat)\0",

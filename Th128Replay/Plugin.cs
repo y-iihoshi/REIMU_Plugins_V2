@@ -74,7 +74,7 @@ namespace ReimuPlugins.Th128Replay
 
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 妖精大戦争 Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2019\0",
+                "REIMU Plug-in For 妖精大戦争 Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
                 "妖精大戦争\0",
                 "th128_*.rpy\0",
                 "妖精大戦争 リプレイファイル (th128_*.rpy)\0",

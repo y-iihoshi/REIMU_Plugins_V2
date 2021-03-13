@@ -74,7 +74,7 @@ namespace ReimuPlugins.Th17Replay
 
             private static readonly string[] PluginInfoImpl =
             {
-                "REIMU Plug-in For 東方鬼形獣 Ver2.1.0 (C) IIHOSHI Yoshinori, 2019\0",
+                "REIMU Plug-in For 東方鬼形獣 Ver2.1.0 (C) IIHOSHI Yoshinori, 2019-2021\0",
                 "東方鬼形獣\0",
                 "th17_*.rpy\0",
                 "東方鬼形獣 リプレイファイル (th17_*.rpy)\0",
