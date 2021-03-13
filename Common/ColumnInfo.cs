@@ -7,39 +7,41 @@
 
 namespace ReimuPlugins.Common
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
 
     /// <summary>
     /// Contains information about a column in the REIMU's list view.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct ColumnInfo
+    public class ColumnInfo
     {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 116)]
+        private string title;
+#pragma warning disable IDE0032 // Use auto property
+        private TextAlign align;
+        private SortType sort;
+        private SystemInfoType system;
+#pragma warning restore IDE0032 // Use auto property
+
         /// <summary>
-        /// The text displaying as a column header.
+        /// Gets or sets the text displaying as a column header.
         /// </summary>
         /// <remarks>The encoding must be the code page 932.</remarks>
-        [SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Used to communicate an external unmanaged app.")]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 116)]
-        public string Title;
+        public string Title { get => this.title; set => this.title = value; }
 
         /// <summary>
-        /// The alignment of the column header text.
+        /// Gets or sets the alignment of the column header text.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Used to communicate an external unmanaged app.")]
-        public TextAlign Align;
+        public TextAlign Align { get => this.align; set => this.align = value; }
 
         /// <summary>
-        /// The type of the sorting method for the column.
+        /// Gets or sets the type of the sorting method for the column.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Used to communicate an external unmanaged app.")]
-        public SortType Sort;
+        public SortType Sort { get => this.sort; set => this.sort = value; }
 
         /// <summary>
-        /// The type of the system information displayed in the column.
+        /// Gets or sets the type of the system information displayed in the column.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Used to communicate an external unmanaged app.")]
-        public SystemInfoType System;
+        public SystemInfoType System { get => this.system; set => this.system = value; }
     }
 }

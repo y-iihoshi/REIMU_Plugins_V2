@@ -7,21 +7,21 @@
 
 namespace ReimuPlugins.Common
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
 
     /// <summary>
     /// Contains the file information displaying in the REIMU's list view.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct FileInfo
+    public class FileInfo
     {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
+        private string text;
+
         /// <summary>
-        /// The displaying text.
+        /// Gets or sets the displaying text.
         /// </summary>
         /// <remarks>The encoding must be the code page 932.</remarks>
-        [SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Used to communicate an external unmanaged app.")]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
-        public string Text;
+        public string Text { get => this.text; set => this.text = value; }
     }
 }
