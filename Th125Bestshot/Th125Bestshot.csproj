@@ -41,7 +41,7 @@
     <PackageReference Include="CommonWin32" />
     <PackageReference Include="IDisposableAnalyzers" />
     <PackageReference Include="NXPorts" />
-    <PackageReference Include="StyleCop.Analyzers" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" />
   </ItemGroup>
 
   <ItemGroup>
