@@ -289,21 +289,12 @@ namespace ReimuPlugins.Th135Replay
             {
                 var extracted = new byte[expectedSize];
                 var extractedSize = 0;
-
-                MemoryStream memory = null;
-                try
                 {
-                    memory = new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false);
+                    using var memory = new MemoryStream(
+                        input, validHeader.Length, input.Length - validHeader.Length, false);
                     using var deflate = new DeflateStream(memory, CompressionMode.Decompress);
-#pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                    memory = null;
-#pragma warning restore IDISP003 // Dispose previous before re-assigning.
 
                     extractedSize = deflate.Read(extracted, 0, extracted.Length);
-                }
-                finally
-                {
-                    memory?.Dispose();
                 }
 
                 output = new byte[extractedSize];
@@ -409,20 +400,11 @@ namespace ReimuPlugins.Th135Replay
                         Extract(deflateData, out var extractedData, extractedSize);
                         if (extractedData.Length == extractedSize)
                         {
-                            MemoryStream stream = null;
-                            try
                             {
-                                stream = new MemoryStream(extractedData, false);
+                                using var stream = new MemoryStream(extractedData, false);
                                 using var reader2 = new BinaryReader(stream, Encoding.UTF8NoBOM);
-#pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                                stream = null;
-#pragma warning restore IDISP003 // Dispose previous before re-assigning.
 
                                 this.table = SQTable.Create(reader2, true);
-                            }
-                            finally
-                            {
-                                stream?.Dispose();
                             }
 
 #if DEBUG

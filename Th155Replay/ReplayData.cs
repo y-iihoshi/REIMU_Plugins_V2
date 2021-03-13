@@ -651,20 +651,10 @@ namespace ReimuPlugins.Th155Replay
                         nameof(deflateData)));
                 }
 
-                MemoryStream stream = null;
-                try
-                {
-                    stream = new MemoryStream(extractedData, false);
-                    using var reader2 = new BinaryReader(stream);
-#pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                    stream = null;
-#pragma warning restore IDISP003 // Dispose previous before re-assigning.
-                    this.table = SQTable.Create(reader2, true);
-                }
-                finally
-                {
-                    stream?.Dispose();
-                }
+                using var stream = new MemoryStream(extractedData, false);
+                using var reader2 = new BinaryReader(stream);
+
+                this.table = SQTable.Create(reader2, true);
             }
 
             private static string ParseVersion(int number)
@@ -708,20 +698,12 @@ namespace ReimuPlugins.Th155Replay
 
                 var extracted = new byte[expectedSize];
                 var extractedSize = 0;
-
-                MemoryStream baseStream = null;
-                try
                 {
-                    baseStream = new MemoryStream(input, validHeader.Length, input.Length - validHeader.Length, false);
+                    using var baseStream = new MemoryStream(
+                        input, validHeader.Length, input.Length - validHeader.Length, false);
                     using var stream = new DeflateStream(baseStream, CompressionMode.Decompress);
-#pragma warning disable IDISP003 // Dispose previous before re-assigning.
-                    baseStream = null;
-#pragma warning restore IDISP003 // Dispose previous before re-assigning.
+
                     extractedSize = stream.Read(extracted, 0, extracted.Length);
-                }
-                finally
-                {
-                    baseStream?.Dispose();
                 }
 
                 var output = new byte[extractedSize];

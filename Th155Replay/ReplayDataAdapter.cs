@@ -149,7 +149,7 @@ namespace ReimuPlugins.Th155Replay
                 when ((ex is InvalidDataException) || (ex is ArgumentException) || (ex is KeyNotFoundException))
             {
 #if DEBUG
-                return ex?.Message ?? string.Empty;
+                return ex.Message ?? string.Empty;
 #else
                 return string.Empty;
 #endif
