@@ -161,9 +161,11 @@ namespace ReimuPlugins.Common
                 {
                     var content = new byte[size];
                     Marshal.Copy(src, content, 0, content.Length);
+#pragma warning disable CA2000 // Dispose objects before losing scope
 #pragma warning disable IDISP001 // Dispose created.
                     stream = new MemoryStream(content, false);
 #pragma warning restore IDISP001 // Dispose created.
+#pragma warning restore CA2000 // Dispose objects before losing scope
                 }
                 catch (OutOfMemoryException)
                 {
@@ -178,9 +180,11 @@ namespace ReimuPlugins.Common
                 try
                 {
                     var path = Marshal.PtrToStringAnsi(src);
+#pragma warning disable CA2000 // Dispose objects before losing scope
 #pragma warning disable IDISP001 // Dispose created.
                     stream = new FileStream(path, FileMode.Open, FileAccess.Read);
 #pragma warning restore IDISP001 // Dispose created.
+#pragma warning restore CA2000 // Dispose objects before losing scope
                 }
                 catch (ArgumentException)
                 {
