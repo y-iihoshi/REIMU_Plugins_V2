@@ -18,7 +18,7 @@ namespace ReimuPlugins.Th125Replay
 
     public static class Plugin
     {
-        private static readonly PluginImpl Impl = new PluginImpl();
+        private static readonly PluginImpl Impl = new();
 
         [DllExport(callingConvention: CallingConvention.StdCall)]
         public static Revision GetPluginRevision()

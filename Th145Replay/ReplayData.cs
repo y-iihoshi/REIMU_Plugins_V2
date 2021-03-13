@@ -293,7 +293,7 @@ namespace ReimuPlugins.Th145Replay
 
         public string Version => this.info.Version;
 
-        public DateTime DateTime => new DateTime(
+        public DateTime DateTime => new(
             this.info["year"] as SQInteger,
             this.info["month"] as SQInteger,
             this.info["day"] as SQInteger,
