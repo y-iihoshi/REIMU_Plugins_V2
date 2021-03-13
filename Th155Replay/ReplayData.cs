@@ -428,6 +428,14 @@ namespace ReimuPlugins.Th155Replay
         public string Version
             => this.info.Version;
 
+        public DateTime DateTime => new(
+            this.info["year"] as SQInteger,
+            this.info["month"] as SQInteger,
+            this.info["day"] as SQInteger,
+            this.info["hour"] as SQInteger,
+            this.info["min"] as SQInteger,
+            this.info["sec"] as SQInteger);
+
         public int GetBackgroundId()
         {
             return (this.info["background_id"] is SQInteger value)
@@ -542,17 +550,6 @@ namespace ReimuPlugins.Th155Replay
         {
             return (this.info["player_name", 1] is SQString value)
                 ? value : throw NewInvalidPropertyException(nameof(this.GetPlayer2Name));
-        }
-
-        public DateTime GetDateTime()
-        {
-            return new DateTime(
-                this.info["year"] as SQInteger,
-                this.info["month"] as SQInteger,
-                this.info["day"] as SQInteger,
-                this.info["hour"] as SQInteger,
-                this.info["min"] as SQInteger,
-                this.info["sec"] as SQInteger);
         }
 
         public StoryCharacter GetStoryMaster()

@@ -126,7 +126,7 @@ namespace ReimuPlugins.Th155Replay
 
         public string GetDateTime()
         {
-            return EnsureString(() => this.data.GetDateTime().ToString(CultureInfo.CurrentCulture));
+            return EnsureString(() => this.data.DateTime.ToString(CultureInfo.CurrentCulture));
         }
 
         public string GetPlayer1Info()
