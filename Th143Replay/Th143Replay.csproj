@@ -5,14 +5,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>ReimuPlugins.Th143Replay</AssemblyName>
     <RootNamespace>ReimuPlugins.Th143Replay</RootNamespace>
-    <Version>2.1.0</Version>
-    <Authors>IIHOSHI Yoshinori</Authors>
-    <Company>None</Company>
     <Description>REIMU plugin for TH14.3 replays</Description>
-    <Copyright>© 2015-2019 IIHOSHI Yoshinori</Copyright>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <RepositoryUrl>https://github.com/y-iihoshi/REIMU_Plugins_V2</RepositoryUrl>
-    <NeutralLanguage>ja-JP</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
