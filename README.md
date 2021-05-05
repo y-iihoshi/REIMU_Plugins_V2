@@ -35,10 +35,10 @@ This project, written in C#, is a redesigning version of
 * TH16 東方天空璋　～ Hidden Star in Four Seasons.
 * TH16.5 秘封ナイトメアダイアリー　～ Violet Detector. (Replays and bestshots)
 * TH17 東方鬼形獣　～ Wily Beast and Weakest Creature.
+* TH18 東方虹龍洞　～ Unconnected Marketeers.
 
 ### Will be supported
 * TH17.5 東方剛欲異聞　～ 水没した沈愁地獄 (a.k.a. Touhou Gouyoku Ibun)
-* TH18 東方虹龍洞　～ Unconnected Marketeers.
 
 ### Not supported
 The followings are not supported because these plugins have already been
@@ -63,8 +63,8 @@ test enough.
 ### Development environment
 * Windows 10 Pro Version 20H2 (64bit)
 * .NET Framework 4.8
-* Visual Studio Community 2019 16.9.1
-* Python 3.9.2
+* Visual Studio Community 2019 16.9.4
+* Python 3.9.4
 
 ### Tested environment
 Same as above.

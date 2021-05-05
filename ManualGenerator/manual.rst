@@ -28,14 +28,14 @@ REIMU に導入することで、 東方 Project
 
 本プラグインセットを利用するには .NET Framework 4.8 が必要です。
 
-2021 年 3 月現在、
+2021 年 5 月現在、
 本プラグインセットは下記環境でのみ開発及び動作確認を実施しています。
 下記以外の環境で動作しないなどのご報告を受けても対応できない可能性があります。
 
 * Windows 10 Pro Version 20H2 (64bit)
 * .NET Framework 4.8
-* Visual Studio Community 2019 Version 16.9.1
-* Python 3.9.2
+* Visual Studio Community 2019 Version 16.9.4
+* Python 3.9.4
 
 免責事項
 ^^^^^^^^
@@ -97,6 +97,7 @@ ReimuPlugins.Th16Replay.rpi      東方天空璋 ver. 1.00a (リプレイ用)
 ReimuPlugins.Th165Replay.rpi     秘封ナイトメアダイアリー ver. 1.00a (リプレイ用)
 ReimuPlugins.Th165Bestshot.rpi   秘封ナイトメアダイアリー ver. 1.00a (ベストショット用)
 ReimuPlugins.Th17Replay.rpi      東方鬼形獣 ver. 1.00b (リプレイ用)
+ReimuPlugins.Th18Replay.rpi      東方虹龍洞 ver. 1.00a (リプレイ用)
 ================================ ======================================================
 
 対応予定あり
@@ -106,7 +107,6 @@ ReimuPlugins.Th17Replay.rpi      東方鬼形獣 ver. 1.00b (リプレイ用)
 本プラグインセット作者の原作プレイ進捗状況に伴って今後対応予定です:
 
 * 東方剛欲異聞
-* 東方虹龍洞
 
 対応予定なし
 ^^^^^^^^^^^^
@@ -197,6 +197,10 @@ REIMU 本体のヘルプを参照してください。
 
 変更履歴
 --------
+
+Ver. 202105xx
+    * 東方虹龍洞に対応
+    * 東方鬼形獣の「No.」列が全て空欄になる不具合を修正
 
 Ver. 20191222
     * 東方鬼形獣に対応
