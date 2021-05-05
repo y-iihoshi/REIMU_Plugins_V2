@@ -327,7 +327,7 @@ namespace ReimuPlugins.Th17Replay
                     {
                         var path = Marshal.PtrToStringAnsi(src);
                         number = ReplayDataBase.GetNumberFromPath(
-                            path, @"^th16_(\d{2})\.rpy$", @"^th16_ud(.{0,4})\.rpy$");
+                            path, @"^th17_(\d{2})\.rpy$", @"^th17_ud(.{0,4})\.rpy$");
                     }
 
                     var pair = CreateReplayData<ReplayData>(src, size);
