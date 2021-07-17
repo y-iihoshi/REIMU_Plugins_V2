@@ -1,0 +1,102 @@
+# Refer to the following for details:
+# https://github.com/fossas/fossa-cli/blob/master/docs/config-file.md#fossayml
+
+version: 2
+cli:
+  server: https://app.fossa.com
+  fetcher: git
+  locator: git+github.com/y-iihoshi/REIMU_Plugins_V2$revision
+analyze:
+  modules:
+  - name: ManualGenerator
+    type: pip
+    target: ManualGenerator
+    path: ManualGenerator
+  - name: ReimuPlugins.Common
+    type: nuget
+    target: Common\Common.csproj
+    path: Common
+  - name: ReimuPlugins.Th095Bestshot
+    type: nuget
+    target: Th095Bestshot\Th095Bestshot.csproj
+    path: Th095Bestshot
+  - name: ReimuPlugins.Th105Replay
+    type: nuget
+    target: Th105Replay\Th105Replay.csproj
+    path: Th105Replay
+  - name: ReimuPlugins.Th11Replay
+    type: nuget
+    target: Th11Replay\Th11Replay.csproj
+    path: Th11Replay
+  - name: ReimuPlugins.Th12Replay
+    type: nuget
+    target: Th12Replay\Th12Replay.csproj
+    path: Th12Replay
+  - name: ReimuPlugins.Th123Replay
+    type: nuget
+    target: Th123Replay\Th123Replay.csproj
+    path: Th123Replay
+  - name: ReimuPlugins.Th125Bestshot
+    type: nuget
+    target: Th125Bestshot\Th125Bestshot.csproj
+    path: Th125Bestshot
+  - name: ReimuPlugins.Th125Replay
+    type: nuget
+    target: Th125Replay\Th125Replay.csproj
+    path: Th125Replay
+  - name: ReimuPlugins.Th128Replay
+    type: nuget
+    target: Th128Replay\Th128Replay.csproj
+    path: Th128Replay
+  - name: ReimuPlugins.Th13Replay
+    type: nuget
+    target: Th13Replay\Th13Replay.csproj
+    path: Th13Replay
+  - name: ReimuPlugins.Th135Replay
+    type: nuget
+    target: Th135Replay\Th135Replay.csproj
+    path: Th135Replay
+  - name: ReimuPlugins.Th14Replay
+    type: nuget
+    target: Th14Replay\Th14Replay.csproj
+    path: Th14Replay
+  - name: ReimuPlugins.Th143Replay
+    type: nuget
+    target: Th143Replay\Th143Replay.csproj
+    path: Th143Replay
+  - name: ReimuPlugins.Th143Screenshot
+    type: nuget
+    target: Th143Screenshot\Th143Screenshot.csproj
+    path: Th143Screenshot
+  - name: ReimuPlugins.Th145Replay
+    type: nuget
+    target: Th145Replay\Th145Replay.csproj
+    path: Th145Replay
+  - name: ReimuPlugins.Th15Replay
+    type: nuget
+    target: Th15Replay\Th15Replay.csproj
+    path: Th15Replay
+  - name: ReimuPlugins.Th155Replay
+    type: nuget
+    target: Th155Replay\Th155Replay.csproj
+    path: Th155Replay
+  - name: ReimuPlugins.Th16Replay
+    type: nuget
+    target: Th16Replay\Th16Replay.csproj
+    path: Th16Replay
+  - name: ReimuPlugins.Th165Bestshot
+    type: nuget
+    target: Th165Bestshot\Th165Bestshot.csproj
+    path: Th165Bestshot
+  - name: ReimuPlugins.Th165Replay
+    type: nuget
+    target: Th165Replay\Th165Replay.csproj
+    path: Th165Replay
+  - name: ReimuPlugins.Th17Replay
+    type: nuget
+    target: Th17Replay\Th17Replay.csproj
+    path: Th17Replay
+  - name: ReimuPlugins.Th18Replay
+    type: nuget
+    target: Th18Replay\Th18Replay.csproj
+    path: Th18Replay
