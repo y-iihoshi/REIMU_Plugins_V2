@@ -5,7 +5,7 @@ version: 2
 cli:
   server: https://app.fossa.com
   fetcher: git
-  locator: git+github.com/y-iihoshi/REIMU_Plugins_V2$revision
+  locator: git+github.com/y-iihoshi/REIMU_Plugins_V2
 analyze:
   modules:
   - name: ManualGenerator
