@@ -4,7 +4,7 @@ REIMU plugins for Touhou replays (Redesigning)
 
 [![GitHub release](https://img.shields.io/github/v/release/y-iihoshi/REIMU_Plugins_V2)](https://github.com/y-iihoshi/REIMU_Plugins_V2/releases)
 [![License](https://img.shields.io/github/license/y-iihoshi/REIMU_Plugins_V2.svg)](/LICENSE.txt)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B14712%2Fgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=shield)](https://app.fossa.com/projects/custom%2B14712%2Fgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_shield)
 [![GitHub Actions CI](https://github.com/y-iihoshi/REIMU_Plugins_V2/workflows/CI/badge.svg)](https://github.com/y-iihoshi/REIMU_Plugins_V2/actions?query=workflow%3ACI)
 
 ## Introduction
@@ -73,7 +73,7 @@ Same as above.
 
 See: [LICENSE.txt](/LICENSE.txt)
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B14712%2Fgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2.svg?type=large)](https://app.fossa.com/projects/custom%2B14712%2Fgithub.com%2Fy-iihoshi%2FREIMU_Plugins_V2?ref=badge_large)
 
 ## Installation
 
