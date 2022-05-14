@@ -37,15 +37,12 @@ jobs:
           ${{ runner.os }}-nuget-${{ matrix.target-framework }}-
           ${{ runner.os }}-nuget-
 
-    - name: Restore NuGet packages
-      run: nuget restore REIMU_Plugins_V2.sln
-
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Build
       run: >
-        msbuild REIMU_Plugins_V2.sln /m /verbosity:minimal
+        msbuild REIMU_Plugins_V2.sln /m /restore /verbosity:minimal
         /p:Configuration=${{ matrix.configuration }}
         /p:TargetFrameworks=${{ matrix.target-framework }}
 
