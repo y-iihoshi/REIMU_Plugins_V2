@@ -1,10 +1,16 @@
+root = true
+
 [*]
+# charset = utf-8-bom
+# end_of_line = crlf
+indent_size = 4
 indent_style = space
+insert_final_newline = true
+tab_width = unset
+trim_trailing_whitespace = true
 
 [*.{cs,csx,vb,vbx}]
 charset = utf-8-bom
-indent_size = 4
-insert_final_newline = true
 
 [*.{cs,vb}]
 dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = suggestion
