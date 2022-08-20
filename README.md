@@ -37,9 +37,6 @@ This project, written in C#, is a redesigning version of
 * TH17 東方鬼形獣　～ Wily Beast and Weakest Creature.
 * TH18 東方虹龍洞　～ Unconnected Marketeers.
 
-### Will be supported
-* TH17.5 東方剛欲異聞　～ 水没した沈愁地獄 (a.k.a. Touhou Gouyoku Ibun)
-
 ### Not supported
 The followings are not supported because these plugins have already been
 released by [sue445][sue445], the REIMU developer:
@@ -55,16 +52,20 @@ release these plugins:
 * TH06 東方紅魔郷　～ Embodiment of Scarlet Devil.
 * TH07 東方妖々夢　～ Perfect Cherry Blossom.
 
+The followings are not supported because of no replays:
+* TH17.5 東方剛欲異聞　～ 水没した沈愁地獄 (a.k.a. Touhou Gouyoku Ibun)
+* TH18.5 バレットフィリア達の闇市場　～ 100th Black Market.
+
 The older versions of every title are not supported because I can't get all and
 test enough.
 
 ## Environments
 
 ### Development environment
-* Windows 10 Pro Version 20H2 (64bit)
+* Windows 11 Pro Version 21H2
 * .NET Framework 4.8
-* Visual Studio Community 2019 16.9.4
-* Python 3.9.4
+* Visual Studio Community 2022 17.3
+* Python 3.10
 
 ### Tested environment
 Same as above.
