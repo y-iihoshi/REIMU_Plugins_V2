@@ -53,10 +53,7 @@ namespace ReimuPlugins.Common
         {
             get
             {
-                if (this.info == null)
-                {
-                    this.info = this.Info.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                }
+                this.info ??= this.Info.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 return this.info;
             }
