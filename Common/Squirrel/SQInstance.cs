@@ -7,36 +7,35 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace ReimuPlugins.Common.Squirrel
+namespace ReimuPlugins.Common.Squirrel;
+
+using System;
+using System.IO;
+using ReimuPlugins.Common.Properties;
+
+public sealed class SQInstance : SQObject
 {
-    using System;
-    using System.IO;
-    using ReimuPlugins.Common.Properties;
-
-    public sealed class SQInstance : SQObject
+    public SQInstance()
+        : base(SQObjectType.Instance)
     {
-        public SQInstance()
-            : base(SQObjectType.Instance)
+    }
+
+    public static SQInstance Create(BinaryReader reader, bool skipType = false)
+    {
+        if (reader is null)
         {
+            throw new ArgumentNullException(nameof(reader));
         }
 
-        public static SQInstance Create(BinaryReader reader, bool skipType = false)
+        if (!skipType)
         {
-            if (reader is null)
+            var type = reader.ReadInt32();
+            if (type != (int)SQObjectType.Instance)
             {
-                throw new ArgumentNullException(nameof(reader));
+                throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
             }
-
-            if (!skipType)
-            {
-                var type = reader.ReadInt32();
-                if (type != (int)SQObjectType.Instance)
-                {
-                    throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
-                }
-            }
-
-            return new SQInstance();
         }
+
+        return new SQInstance();
     }
 }

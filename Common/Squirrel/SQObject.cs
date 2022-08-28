@@ -7,51 +7,50 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace ReimuPlugins.Common.Squirrel
+namespace ReimuPlugins.Common.Squirrel;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using ReimuPlugins.Common.Properties;
+
+public class SQObject
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using ReimuPlugins.Common.Properties;
+    private static readonly IReadOnlyDictionary<SQObjectType, Func<BinaryReader, SQObject>> SQObjectReaders =
+        new Dictionary<SQObjectType, Func<BinaryReader, SQObject>>
+        {
+            { SQObjectType.Null,     reader => SQNull.Create(reader, true) },
+            { SQObjectType.Bool,     reader => SQBool.Create(reader, true) },
+            { SQObjectType.Integer,  reader => SQInteger.Create(reader, true) },
+            { SQObjectType.Float,    reader => SQFloat.Create(reader, true) },
+            { SQObjectType.String,   reader => SQString.Create(reader, true) },
+            { SQObjectType.Array,    reader => SQArray.Create(reader, true) },
+            { SQObjectType.Closure,  reader => SQClosure.Create(reader, true) },
+            { SQObjectType.Table,    reader => SQTable.Create(reader, true) },
+            { SQObjectType.Instance, reader => SQInstance.Create(reader, true) },
+        };
 
-    public class SQObject
+    protected SQObject(SQObjectType type)
     {
-        private static readonly IReadOnlyDictionary<SQObjectType, Func<BinaryReader, SQObject>> SQObjectReaders =
-            new Dictionary<SQObjectType, Func<BinaryReader, SQObject>>
-            {
-                { SQObjectType.Null,     reader => SQNull.Create(reader, true) },
-                { SQObjectType.Bool,     reader => SQBool.Create(reader, true) },
-                { SQObjectType.Integer,  reader => SQInteger.Create(reader, true) },
-                { SQObjectType.Float,    reader => SQFloat.Create(reader, true) },
-                { SQObjectType.String,   reader => SQString.Create(reader, true) },
-                { SQObjectType.Array,    reader => SQArray.Create(reader, true) },
-                { SQObjectType.Closure,  reader => SQClosure.Create(reader, true) },
-                { SQObjectType.Table,    reader => SQTable.Create(reader, true) },
-                { SQObjectType.Instance, reader => SQInstance.Create(reader, true) },
-            };
+        this.Type = type;
+        this.Value = default;
+    }
 
-        protected SQObject(SQObjectType type)
+    public SQObjectType Type { get; }
+
+    public object Value { get; protected set; }
+
+    public static SQObject Create(BinaryReader reader)
+    {
+        if (reader is null)
         {
-            this.Type = type;
-            this.Value = default;
+            throw new ArgumentNullException(nameof(reader));
         }
 
-        public SQObjectType Type { get; }
+        var type = (SQObjectType)reader.ReadInt32();
 
-        public object Value { get; protected set; }
-
-        public static SQObject Create(BinaryReader reader)
-        {
-            if (reader is null)
-            {
-                throw new ArgumentNullException(nameof(reader));
-            }
-
-            var type = (SQObjectType)reader.ReadInt32();
-
-            return SQObjectReaders.TryGetValue(type, out var objectReader)
-                ? objectReader(reader)
-                : throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
-        }
+        return SQObjectReaders.TryGetValue(type, out var objectReader)
+            ? objectReader(reader)
+            : throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
     }
 }

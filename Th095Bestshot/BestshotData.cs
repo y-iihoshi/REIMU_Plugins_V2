@@ -5,90 +5,89 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Th095Bestshot
+namespace ReimuPlugins.Th095Bestshot;
+
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+using ReimuPlugins.Common;
+
+public sealed class BestshotData : BestshotDataBase
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.IO;
-    using System.Runtime.InteropServices;
-    using ReimuPlugins.Common;
-
-    public sealed class BestshotData : BestshotDataBase
+    public BestshotData()
     {
-        public BestshotData()
+        this.Signature = string.Empty;
+        this.Level = 0;
+        this.Scene = 0;
+        this.Width = 0;
+        this.Height = 0;
+        this.Score = 0;
+        this.SlowRate = 0;
+        this.CardName = string.Empty;
+        this.Bitmap = null;
+    }
+
+    public string Signature { get; private set; }
+
+    public short Level { get; private set; }
+
+    public short Scene { get; private set; }
+
+    public short Width { get; private set; }
+
+    public short Height { get; private set; }
+
+    public int Score { get; private set; }
+
+    public float SlowRate { get; private set; }
+
+    public string CardName { get; private set; }
+
+    public Bitmap Bitmap { get; private set; }
+
+    public override void Read(Stream input, bool withBitmap)
+    {
+        using var reader = new BinaryReader(input);
+
+        this.Signature = Encoding.CP932.GetString(reader.ReadBytes(4));
+        _ = reader.ReadInt16();
+        this.Level = reader.ReadInt16();
+        this.Scene = reader.ReadInt16();
+        _ = reader.ReadInt16();
+        this.Width = reader.ReadInt16();
+        this.Height = reader.ReadInt16();
+        this.Score = reader.ReadInt32();
+        this.SlowRate = reader.ReadSingle();
+        this.CardName = Encoding.CP932.GetString(reader.ReadBytes(0x50));
+
+        if (withBitmap)
         {
-            this.Signature = string.Empty;
-            this.Level = 0;
-            this.Scene = 0;
-            this.Width = 0;
-            this.Height = 0;
-            this.Score = 0;
-            this.SlowRate = 0;
-            this.CardName = string.Empty;
-            this.Bitmap = null;
+            this.Bitmap = ReadBitmap(input, this.Width, this.Height);
         }
+    }
 
-        public string Signature { get; private set; }
+    private static Bitmap ReadBitmap(Stream input, int width, int height)
+    {
+        using var extracted = new MemoryStream();
+        Lzss.Extract(input, extracted);
+        _ = extracted.Seek(0, SeekOrigin.Begin);
 
-        public short Level { get; private set; }
+        using var bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 
-        public short Scene { get; private set; }
-
-        public short Width { get; private set; }
-
-        public short Height { get; private set; }
-
-        public int Score { get; private set; }
-
-        public float SlowRate { get; private set; }
-
-        public string CardName { get; private set; }
-
-        public Bitmap Bitmap { get; private set; }
-
-        public override void Read(Stream input, bool withBitmap)
+        using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
         {
-            using var reader = new BinaryReader(input);
-
-            this.Signature = Encoding.CP932.GetString(reader.ReadBytes(4));
-            _ = reader.ReadInt16();
-            this.Level = reader.ReadInt16();
-            this.Scene = reader.ReadInt16();
-            _ = reader.ReadInt16();
-            this.Width = reader.ReadInt16();
-            this.Height = reader.ReadInt16();
-            this.Score = reader.ReadInt32();
-            this.SlowRate = reader.ReadSingle();
-            this.CardName = Encoding.CP932.GetString(reader.ReadBytes(0x50));
-
-            if (withBitmap)
+            var source = extracted.ToArray();
+            var sourceStride = 3 * width;   // "3" means 24bpp.
+            var destination = locked.Scan0;
+            for (var index = 0; index < source.Length; index += sourceStride)
             {
-                this.Bitmap = ReadBitmap(input, this.Width, this.Height);
+                Marshal.Copy(source, index, destination, sourceStride);
+                destination = new IntPtr(destination.ToInt32() + locked.Stride);
             }
         }
 
-        private static Bitmap ReadBitmap(Stream input, int width, int height)
-        {
-            using var extracted = new MemoryStream();
-            Lzss.Extract(input, extracted);
-            _ = extracted.Seek(0, SeekOrigin.Begin);
-
-            using var bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
-
-            using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
-            {
-                var source = extracted.ToArray();
-                var sourceStride = 3 * width;   // "3" means 24bpp.
-                var destination = locked.Scan0;
-                for (var index = 0; index < source.Length; index += sourceStride)
-                {
-                    Marshal.Copy(source, index, destination, sourceStride);
-                    destination = new IntPtr(destination.ToInt32() + locked.Stride);
-                }
-            }
-
-            return bitmap.Clone() as Bitmap;
-        }
+        return bitmap.Clone() as Bitmap;
     }
 }

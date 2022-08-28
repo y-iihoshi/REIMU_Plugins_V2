@@ -5,23 +5,22 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Common.Extensions
-{
-    using System.Linq;
+namespace ReimuPlugins.Common.Extensions;
 
+using System.Linq;
+
+/// <summary>
+/// Defines the extension methods for <c>String</c> class.
+/// </summary>
+public static class StringExtensions
+{
     /// <summary>
-    /// Defines the extension methods for <c>String</c> class.
+    /// Converts a string to a null-terminated string.
     /// </summary>
-    public static class StringExtensions
+    /// <param name="str">A string to convert.</param>
+    /// <returns>The converted null-terminated string.</returns>
+    public static string ToCStr(this string str)
     {
-        /// <summary>
-        /// Converts a string to a null-terminated string.
-        /// </summary>
-        /// <param name="str">A string to convert.</param>
-        /// <returns>The converted null-terminated string.</returns>
-        public static string ToCStr(this string str)
-        {
-            return str.Contains('\0') ? str : str + '\0';
-        }
+        return str.Contains('\0') ? str : str + '\0';
     }
 }

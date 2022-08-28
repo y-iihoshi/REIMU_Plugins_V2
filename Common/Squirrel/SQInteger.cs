@@ -7,68 +7,67 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace ReimuPlugins.Common.Squirrel
+namespace ReimuPlugins.Common.Squirrel;
+
+using System;
+using System.IO;
+using ReimuPlugins.Common.Properties;
+
+public sealed class SQInteger : SQObject, IEquatable<SQInteger>
 {
-    using System;
-    using System.IO;
-    using ReimuPlugins.Common.Properties;
-
-    public sealed class SQInteger : SQObject, IEquatable<SQInteger>
+    public SQInteger(int value = default)
+        : base(SQObjectType.Integer)
     {
-        public SQInteger(int value = default)
-            : base(SQObjectType.Integer)
+        this.Value = value;
+    }
+
+    public new int Value
+    {
+        get => (int)base.Value;
+        private set => base.Value = value;
+    }
+
+    public static implicit operator int(SQInteger sq)
+    {
+        return sq?.Value ?? default;
+    }
+
+    public static SQInteger Create(BinaryReader reader, bool skipType = false)
+    {
+        if (reader is null)
         {
-            this.Value = value;
+            throw new ArgumentNullException(nameof(reader));
         }
 
-        public new int Value
+        if (!skipType)
         {
-            get => (int)base.Value;
-            private set => base.Value = value;
-        }
-
-        public static implicit operator int(SQInteger sq)
-        {
-            return sq?.Value ?? default;
-        }
-
-        public static SQInteger Create(BinaryReader reader, bool skipType = false)
-        {
-            if (reader is null)
+            var type = reader.ReadInt32();
+            if (type != (int)SQObjectType.Integer)
             {
-                throw new ArgumentNullException(nameof(reader));
+                throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
             }
-
-            if (!skipType)
-            {
-                var type = reader.ReadInt32();
-                if (type != (int)SQObjectType.Integer)
-                {
-                    throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
-                }
-            }
-
-            return new SQInteger(reader.ReadInt32());
         }
 
-        public override bool Equals(object obj)
-        {
-            return this.Equals(obj as SQInteger);
-        }
+        return new SQInteger(reader.ReadInt32());
+    }
 
-        public override int GetHashCode()
-        {
-            return this.Type.GetHashCode() ^ this.Value.GetHashCode();
-        }
+    public override bool Equals(object obj)
+    {
+        return this.Equals(obj as SQInteger);
+    }
 
-        public bool Equals(SQInteger other)
-        {
-            return other is not null && this.Type == other.Type && this.Value == other.Value;
-        }
+    public override int GetHashCode()
+    {
+        return this.Type.GetHashCode() ^ this.Value.GetHashCode();
+    }
 
-        public int ToInt32()
-        {
-            return this.Value;
-        }
+    public bool Equals(SQInteger other)
+    {
+        return other is not null && this.Type == other.Type && this.Value == other.Value;
+    }
+
+    public int ToInt32()
+    {
+        return this.Value;
     }
 }

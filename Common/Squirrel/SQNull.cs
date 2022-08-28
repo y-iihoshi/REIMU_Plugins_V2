@@ -7,53 +7,52 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace ReimuPlugins.Common.Squirrel
+namespace ReimuPlugins.Common.Squirrel;
+
+using System;
+using System.IO;
+using ReimuPlugins.Common.Properties;
+
+public sealed class SQNull : SQObject, IEquatable<SQNull>
 {
-    using System;
-    using System.IO;
-    using ReimuPlugins.Common.Properties;
-
-    public sealed class SQNull : SQObject, IEquatable<SQNull>
+    private SQNull()
+        : base(SQObjectType.Null)
     {
-        private SQNull()
-            : base(SQObjectType.Null)
+    }
+
+    public static SQNull Instance { get; } = new SQNull();
+
+    public static SQNull Create(BinaryReader reader, bool skipType = false)
+    {
+        if (reader is null)
         {
+            throw new ArgumentNullException(nameof(reader));
         }
 
-        public static SQNull Instance { get; } = new SQNull();
-
-        public static SQNull Create(BinaryReader reader, bool skipType = false)
+        if (!skipType)
         {
-            if (reader is null)
+            var type = reader.ReadInt32();
+            if (type != (int)SQObjectType.Null)
             {
-                throw new ArgumentNullException(nameof(reader));
+                throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
             }
-
-            if (!skipType)
-            {
-                var type = reader.ReadInt32();
-                if (type != (int)SQObjectType.Null)
-                {
-                    throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
-                }
-            }
-
-            return Instance;
         }
 
-        public override bool Equals(object obj)
-        {
-            return this.Equals(obj as SQNull);
-        }
+        return Instance;
+    }
 
-        public override int GetHashCode()
-        {
-            return this.Type.GetHashCode();
-        }
+    public override bool Equals(object obj)
+    {
+        return this.Equals(obj as SQNull);
+    }
 
-        public bool Equals(SQNull other)
-        {
-            return other is not null && this.Type == other.Type && this.Value == other.Value;
-        }
+    public override int GetHashCode()
+    {
+        return this.Type.GetHashCode();
+    }
+
+    public bool Equals(SQNull other)
+    {
+        return other is not null && this.Type == other.Type && this.Value == other.Value;
     }
 }

@@ -5,67 +5,66 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Th125Replay
+namespace ReimuPlugins.Th125Replay;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
+using ReimuPlugins.Common;
+
+public sealed class ReplayData : ReplayDataBase
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Text.RegularExpressions;
-    using ReimuPlugins.Common;
+    private readonly Dictionary<string, string> info;
 
-    public sealed class ReplayData : ReplayDataBase
+    public ReplayData()
     {
-        private readonly Dictionary<string, string> info;
-
-        public ReplayData()
+        this.info = new Dictionary<string, string>
         {
-            this.info = new Dictionary<string, string>
-            {
-                { "Version",     string.Empty },
-                { "Name",        string.Empty },
-                { "Date",        string.Empty },
-                { "Chara",       string.Empty },
-                { "Score",       string.Empty },
-                { "Slow Rate",   string.Empty },
-            };
-        }
+            { "Version",     string.Empty },
+            { "Name",        string.Empty },
+            { "Date",        string.Empty },
+            { "Chara",       string.Empty },
+            { "Score",       string.Empty },
+            { "Slow Rate",   string.Empty },
+        };
+    }
 
-        public string Version => this.info["Version"];
+    public string Version => this.info["Version"];
 
-        public string Name => this.info["Name"];
+    public string Name => this.info["Name"];
 
-        public string Date => this.info["Date"];
+    public string Date => this.info["Date"];
 
-        public string Chara => this.info["Chara"];
+    public string Chara => this.info["Chara"];
 
-        public string Scene { get; private set; }
+    public string Scene { get; private set; }
 
-        public string Score => this.info["Score"];
+    public string Score => this.info["Score"];
 
-        public string SlowRate => this.info["Slow Rate"];
+    public string SlowRate => this.info["Slow Rate"];
 
-        public override void Read(Stream input)
+    public override void Read(Stream input)
+    {
+        base.Read(input);
+
+        foreach (var elem in this.InfoArray)
         {
-            base.Read(input);
-
-            foreach (var elem in this.InfoArray)
+            if (Regex.IsMatch(elem, @"^.{2}\-\d$"))
             {
-                if (Regex.IsMatch(elem, @"^.{2}\-\d$"))
+                this.Scene = elem;
+            }
+            else
+            {
+                foreach (var key in this.info.Keys)
                 {
-                    this.Scene = elem;
-                }
-                else
-                {
-                    foreach (var key in this.info.Keys)
+                    if (string.IsNullOrEmpty(this.info[key]))
                     {
-                        if (string.IsNullOrEmpty(this.info[key]))
+                        var keyWithSpace = key + " ";
+                        if (elem.StartsWith(keyWithSpace, StringComparison.Ordinal))
                         {
-                            var keyWithSpace = key + " ";
-                            if (elem.StartsWith(keyWithSpace, StringComparison.Ordinal))
-                            {
-                                this.info[key] = elem.Substring(keyWithSpace.Length);
-                                break;
-                            }
+                            this.info[key] = elem.Substring(keyWithSpace.Length);
+                            break;
                         }
                     }
                 }

@@ -5,23 +5,22 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Common
+namespace ReimuPlugins.Common;
+
+using System.Runtime.InteropServices;
+
+/// <summary>
+/// Contains the file information displaying in the REIMU's list view.
+/// </summary>
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+public class FileInfo
 {
-    using System.Runtime.InteropServices;
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
+    private string text;
 
     /// <summary>
-    /// Contains the file information displaying in the REIMU's list view.
+    /// Gets or sets the displaying text.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public class FileInfo
-    {
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
-        private string text;
-
-        /// <summary>
-        /// Gets or sets the displaying text.
-        /// </summary>
-        /// <remarks>The encoding must be the code page 932.</remarks>
-        public string Text { get => this.text; set => this.text = value; }
-    }
+    /// <remarks>The encoding must be the code page 932.</remarks>
+    public string Text { get => this.text; set => this.text = value; }
 }

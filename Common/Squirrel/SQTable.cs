@@ -7,65 +7,64 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace ReimuPlugins.Common.Squirrel
+namespace ReimuPlugins.Common.Squirrel;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using ReimuPlugins.Common.Properties;
+
+public sealed class SQTable : SQObject
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using ReimuPlugins.Common.Properties;
-
-    public sealed class SQTable : SQObject
+    public SQTable()
+        : this(new Dictionary<SQObject, SQObject>())
     {
-        public SQTable()
-            : this(new Dictionary<SQObject, SQObject>())
+    }
+
+    public SQTable(IReadOnlyDictionary<SQObject, SQObject> pairs)
+        : base(SQObjectType.Table)
+    {
+        this.Value = pairs;
+    }
+
+    public new IReadOnlyDictionary<SQObject, SQObject> Value
+    {
+        get => base.Value as IReadOnlyDictionary<SQObject, SQObject>;
+        private set => base.Value = value.ToDictionary(pair => pair.Key, pair => pair.Value);
+    }
+
+    public static SQTable Create(BinaryReader reader, bool skipType = false)
+    {
+        if (reader is null)
         {
+            throw new ArgumentNullException(nameof(reader));
         }
 
-        public SQTable(IReadOnlyDictionary<SQObject, SQObject> pairs)
-            : base(SQObjectType.Table)
+        if (!skipType)
         {
-            this.Value = pairs;
-        }
-
-        public new IReadOnlyDictionary<SQObject, SQObject> Value
-        {
-            get => base.Value as IReadOnlyDictionary<SQObject, SQObject>;
-            private set => base.Value = value.ToDictionary(pair => pair.Key, pair => pair.Value);
-        }
-
-        public static SQTable Create(BinaryReader reader, bool skipType = false)
-        {
-            if (reader is null)
+            var type = reader.ReadInt32();
+            if (type != (int)SQObjectType.Table)
             {
-                throw new ArgumentNullException(nameof(reader));
+                throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
+            }
+        }
+
+        var table = new SQTable();
+
+        while (true)
+        {
+            var key = SQObject.Create(reader);
+            if (key is SQNull)
+            {
+                break;
             }
 
-            if (!skipType)
-            {
-                var type = reader.ReadInt32();
-                if (type != (int)SQObjectType.Table)
-                {
-                    throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
-                }
-            }
+            var value = SQObject.Create(reader);
 
-            var table = new SQTable();
-
-            while (true)
-            {
-                var key = SQObject.Create(reader);
-                if (key is SQNull)
-                {
-                    break;
-                }
-
-                var value = SQObject.Create(reader);
-
-                ((table as SQObject).Value as Dictionary<SQObject, SQObject>).Add(key, value);
-            }
-
-            return table;
+            ((table as SQObject).Value as Dictionary<SQObject, SQObject>).Add(key, value);
         }
+
+        return table;
     }
 }

@@ -5,46 +5,45 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Common
+namespace ReimuPlugins.Common;
+
+using System;
+using System.IO;
+
+/// <summary>
+/// The base class for the classes implementing <see cref="IBestshotData"/>.
+/// </summary>
+public class BestshotDataBase : IBestshotData
 {
-    using System;
-    using System.IO;
-
     /// <summary>
-    /// The base class for the classes implementing <see cref="IBestshotData"/>.
+    /// Initializes a new instance of the <see cref="BestshotDataBase"/> class.
     /// </summary>
-    public class BestshotDataBase : IBestshotData
+    protected BestshotDataBase()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BestshotDataBase"/> class.
-        /// </summary>
-        protected BestshotDataBase()
-        {
-        }
+    }
 
-        /// <inheritdoc/>
-        public void Read(Stream input)
-        {
-            this.Read(input, false);
-        }
+    /// <inheritdoc/>
+    public void Read(Stream input)
+    {
+        this.Read(input, false);
+    }
 
-        /// <inheritdoc/>
-        public virtual void Read(Stream input, bool withBitmap)
-        {
-            throw new NotImplementedException();
-        }
+    /// <inheritdoc/>
+    public virtual void Read(Stream input, bool withBitmap)
+    {
+        throw new NotImplementedException();
+    }
 
-        /// <inheritdoc/>
-        public void Read(string path)
-        {
-            this.Read(path, false);
-        }
+    /// <inheritdoc/>
+    public void Read(string path)
+    {
+        this.Read(path, false);
+    }
 
-        /// <inheritdoc/>
-        public void Read(string path, bool withBitmap)
-        {
-            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            this.Read(stream, withBitmap);
-        }
+    /// <inheritdoc/>
+    public void Read(string path, bool withBitmap)
+    {
+        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+        this.Read(stream, withBitmap);
     }
 }

@@ -5,26 +5,25 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Common
+namespace ReimuPlugins.Common;
+
+/// <summary>
+/// Contains read-only instances of <see cref="System.Text.Encoding"/> class for convenience.
+/// </summary>
+public static class Encoding
 {
     /// <summary>
-    /// Contains read-only instances of <see cref="System.Text.Encoding"/> class for convenience.
+    /// Gets the code page 932 encoding.
     /// </summary>
-    public static class Encoding
-    {
-        /// <summary>
-        /// Gets the code page 932 encoding.
-        /// </summary>
-        public static System.Text.Encoding CP932 { get; } = System.Text.Encoding.GetEncoding(932);
+    public static System.Text.Encoding CP932 { get; } = System.Text.Encoding.GetEncoding(932);
 
-        /// <summary>
-        /// Gets the UTF-8 encoding.
-        /// </summary>
-        public static System.Text.Encoding UTF8 { get; } = System.Text.Encoding.UTF8;
+    /// <summary>
+    /// Gets the UTF-8 encoding.
+    /// </summary>
+    public static System.Text.Encoding UTF8 { get; } = System.Text.Encoding.UTF8;
 
-        /// <summary>
-        /// Gets the UTF-8 encoding which does not provide a byte order mark.
-        /// </summary>
-        public static System.Text.Encoding UTF8NoBOM { get; } = new System.Text.UTF8Encoding();
-    }
+    /// <summary>
+    /// Gets the UTF-8 encoding which does not provide a byte order mark.
+    /// </summary>
+    public static System.Text.Encoding UTF8NoBOM { get; } = new System.Text.UTF8Encoding();
 }

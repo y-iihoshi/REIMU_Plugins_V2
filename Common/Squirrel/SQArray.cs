@@ -7,78 +7,77 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace ReimuPlugins.Common.Squirrel
+namespace ReimuPlugins.Common.Squirrel;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using ReimuPlugins.Common.Properties;
+
+public sealed class SQArray : SQObject
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using ReimuPlugins.Common.Properties;
-
-    public sealed class SQArray : SQObject
+    public SQArray()
+        : this(Array.Empty<SQObject>())
     {
-        public SQArray()
-            : this(Array.Empty<SQObject>())
+    }
+
+    public SQArray(IEnumerable<SQObject> enumerable)
+        : base(SQObjectType.Array)
+    {
+        this.Value = enumerable;
+    }
+
+    public new IEnumerable<SQObject> Value
+    {
+        get => base.Value as IEnumerable<SQObject>;
+        private set => base.Value = value.ToArray();
+    }
+
+    public static SQArray Create(BinaryReader reader, bool skipType = false)
+    {
+        if (reader is null)
         {
+            throw new ArgumentNullException(nameof(reader));
         }
 
-        public SQArray(IEnumerable<SQObject> enumerable)
-            : base(SQObjectType.Array)
+        if (!skipType)
         {
-            this.Value = enumerable;
+            var type = reader.ReadInt32();
+            if (type != (int)SQObjectType.Array)
+            {
+                throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
+            }
         }
 
-        public new IEnumerable<SQObject> Value
+        var num = reader.ReadInt32();
+        if (num < 0)
         {
-            get => base.Value as IEnumerable<SQObject>;
-            private set => base.Value = value.ToArray();
+            throw new InvalidDataException(Resources.InvalidDataExceptionNumElementsMustNotBeNegative);
         }
 
-        public static SQArray Create(BinaryReader reader, bool skipType = false)
+        var array = new SQArray(new SQObject[num]);
+
+        for (var count = 0; count < num; count++)
         {
-            if (reader is null)
+            var index = SQObject.Create(reader);
+            var value = SQObject.Create(reader);
+
+            if (index is not SQInteger i)
             {
-                throw new ArgumentNullException(nameof(reader));
+                throw new InvalidDataException(Resources.InvalidDataExceptionIndexMustBeAnInteger);
             }
 
-            if (!skipType)
+            if (i >= num)
             {
-                var type = reader.ReadInt32();
-                if (type != (int)SQObjectType.Array)
-                {
-                    throw new InvalidDataException(Resources.InvalidDataExceptionWrongType);
-                }
+                throw new InvalidDataException(Resources.InvalidDataExceptionIndexIsOutOfRange);
             }
 
-            var num = reader.ReadInt32();
-            if (num < 0)
-            {
-                throw new InvalidDataException(Resources.InvalidDataExceptionNumElementsMustNotBeNegative);
-            }
-
-            var array = new SQArray(new SQObject[num]);
-
-            for (var count = 0; count < num; count++)
-            {
-                var index = SQObject.Create(reader);
-                var value = SQObject.Create(reader);
-
-                if (index is not SQInteger i)
-                {
-                    throw new InvalidDataException(Resources.InvalidDataExceptionIndexMustBeAnInteger);
-                }
-
-                if (i >= num)
-                {
-                    throw new InvalidDataException(Resources.InvalidDataExceptionIndexIsOutOfRange);
-                }
-
-                ((array as SQObject).Value as SQObject[])[i] = value;
-            }
-
-            var sentinel = SQObject.Create(reader);
-            return sentinel is SQNull
-                ? array : throw new InvalidDataException(Resources.InvalidDataExceptionWrongSentinel);
+            ((array as SQObject).Value as SQObject[])[i] = value;
         }
+
+        var sentinel = SQObject.Create(reader);
+        return sentinel is SQNull
+            ? array : throw new InvalidDataException(Resources.InvalidDataExceptionWrongSentinel);
     }
 }

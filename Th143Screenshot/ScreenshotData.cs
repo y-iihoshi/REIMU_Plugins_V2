@@ -5,82 +5,81 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ReimuPlugins.Th143Screenshot
+namespace ReimuPlugins.Th143Screenshot;
+
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+using ReimuPlugins.Common;
+
+public sealed class ScreenshotData : BestshotDataBase
 {
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.IO;
-    using System.Runtime.InteropServices;
-    using ReimuPlugins.Common;
-
-    public sealed class ScreenshotData : BestshotDataBase
+    public ScreenshotData()
     {
-        public ScreenshotData()
+        this.Signature = string.Empty;
+        this.Day = 0;
+        this.Scene = 0;
+        this.Width = 0;
+        this.Height = 0;
+        this.DateTime = 0;
+        this.SlowRate = 0;
+        this.Bitmap = null;
+    }
+
+    public string Signature { get; private set; }
+
+    public short Day { get; private set; }
+
+    public short Scene { get; private set; }
+
+    public short Width { get; private set; }
+
+    public short Height { get; private set; }
+
+    public uint DateTime { get; private set; }
+
+    public float SlowRate { get; private set; }
+
+    public Bitmap Bitmap { get; private set; }
+
+    public override void Read(Stream input, bool withBitmap)
+    {
+        using var reader = new BinaryReader(input);
+
+        this.Signature = Encoding.CP932.GetString(reader.ReadBytes(4));
+        _ = reader.ReadInt16();
+        this.Day = reader.ReadInt16();
+        this.Scene = reader.ReadInt16();
+        _ = reader.ReadInt16();
+        this.Width = reader.ReadInt16();
+        this.Height = reader.ReadInt16();
+        _ = reader.ReadInt32();
+        this.DateTime = reader.ReadUInt32();
+        this.SlowRate = reader.ReadSingle();
+        _ = reader.ReadBytes(0x58);
+
+        if (withBitmap)
         {
-            this.Signature = string.Empty;
-            this.Day = 0;
-            this.Scene = 0;
-            this.Width = 0;
-            this.Height = 0;
-            this.DateTime = 0;
-            this.SlowRate = 0;
-            this.Bitmap = null;
+            this.Bitmap = ReadBitmap(input, this.Width, this.Height);
+        }
+    }
+
+    private static Bitmap ReadBitmap(Stream input, int width, int height)
+    {
+        using var extracted = new MemoryStream();
+        Lzss.Extract(input, extracted);
+        _ = extracted.Seek(0, SeekOrigin.Begin);
+
+        using var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
+
+        using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
+        {
+            var source = extracted.ToArray();
+            var destination = locked.Scan0;
+            Marshal.Copy(source, 0, destination, source.Length);
         }
 
-        public string Signature { get; private set; }
-
-        public short Day { get; private set; }
-
-        public short Scene { get; private set; }
-
-        public short Width { get; private set; }
-
-        public short Height { get; private set; }
-
-        public uint DateTime { get; private set; }
-
-        public float SlowRate { get; private set; }
-
-        public Bitmap Bitmap { get; private set; }
-
-        public override void Read(Stream input, bool withBitmap)
-        {
-            using var reader = new BinaryReader(input);
-
-            this.Signature = Encoding.CP932.GetString(reader.ReadBytes(4));
-            _ = reader.ReadInt16();
-            this.Day = reader.ReadInt16();
-            this.Scene = reader.ReadInt16();
-            _ = reader.ReadInt16();
-            this.Width = reader.ReadInt16();
-            this.Height = reader.ReadInt16();
-            _ = reader.ReadInt32();
-            this.DateTime = reader.ReadUInt32();
-            this.SlowRate = reader.ReadSingle();
-            _ = reader.ReadBytes(0x58);
-
-            if (withBitmap)
-            {
-                this.Bitmap = ReadBitmap(input, this.Width, this.Height);
-            }
-        }
-
-        private static Bitmap ReadBitmap(Stream input, int width, int height)
-        {
-            using var extracted = new MemoryStream();
-            Lzss.Extract(input, extracted);
-            _ = extracted.Seek(0, SeekOrigin.Begin);
-
-            using var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
-
-            using (var locked = new BitmapLock(bitmap, ImageLockMode.WriteOnly))
-            {
-                var source = extracted.ToArray();
-                var destination = locked.Scan0;
-                Marshal.Copy(source, 0, destination, source.Length);
-            }
-
-            return bitmap.Clone() as Bitmap;
-        }
+        return bitmap.Clone() as Bitmap;
     }
 }
