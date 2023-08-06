@@ -15,6 +15,10 @@ on:
         required: true
         type: string
         default: 'net48'
+      artifact-name:
+        required: true
+        type: string
+        default: 'threplay_rpi.Debug.net48'
 
 jobs:
   build:
@@ -67,13 +71,15 @@ jobs:
       if: inputs.dotnet-configuration == 'Debug'
 
     - name: Collect artifacts
-      run: CollectArtifacts.bat ${{ inputs.dotnet-configuration }} ${{ inputs.dotnet-target-framework }}
+      id: collect-artifacts
+      run: |
+        set output_dir=publish\${{ inputs.dotnet-configuration }}\${{ inputs.dotnet-target-framework }}
+        CollectArtifacts.bat ${{ inputs.dotnet-configuration }} ${{ inputs.dotnet-target-framework }} %output_dir%
+        echo artifact-path=%output_dir% >> %GITHUB_OUTPUT%
       shell: cmd
-      if: inputs.dotnet-configuration == 'Release'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: threplay_rpi.${{ inputs.dotnet-target-framework }}
-        path: publish\${{ inputs.dotnet-target-framework }}
-      if: inputs.dotnet-configuration == 'Release'
+        name: ${{ inputs.artifact-name }}
+        path: ${{ steps.collect-artifacts.outputs.artifact-path }}
