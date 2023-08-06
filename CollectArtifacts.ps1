@@ -4,7 +4,7 @@ param(
     [Parameter(Mandatory)]
     [String] $Configuration,
     [Parameter(Mandatory)]
-    [String] $TargetFramework
+    [String] $TargetFramework,
     [String] $OutputDir
 )
 
