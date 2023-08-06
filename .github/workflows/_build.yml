@@ -75,11 +75,11 @@ jobs:
       run: |
         set output_dir=publish\${{ inputs.dotnet-configuration }}\${{ inputs.dotnet-target-framework }}
         CollectArtifacts.bat ${{ inputs.dotnet-configuration }} ${{ inputs.dotnet-target-framework }} %output_dir%
-        echo artifact-path=%output_dir% >> %GITHUB_OUTPUT%
+        echo artifact_path=%output_dir% >> %GITHUB_OUTPUT%
       shell: cmd
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.artifact-name }}
-        path: ${{ steps.collect-artifacts.outputs.artifact-path }}
+        path: ${{ steps.collect-artifacts.outputs.artifact_path }}
