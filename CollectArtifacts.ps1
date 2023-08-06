@@ -5,9 +5,13 @@ param(
     [String] $Configuration,
     [Parameter(Mandatory)]
     [String] $TargetFramework
+    [String] $OutputDir
 )
 
-$OutputDir = Join-Path 'publish' $TargetFramework
+if ([string]::IsNullOrEmpty($OutputDir)) {
+    $OutputDir = Join-Path 'publish' $Configuration $TargetFramework
+}
+
 $OutputPluginDir = Join-Path $OutputDir 'plugin'
 if (!(Test-Path $OutputPluginDir)) {
     New-Item -Path $OutputPluginDir -ItemType 'directory' | Out-Null
