@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  ARTIFACT_NAME: 'threplay_rpi-${{ github.ref_name }}'
+
+jobs:
+  build:
+    uses: ./.github/workflows/_build.yml
+    with:
+      python-version: '3.x'
+      dotnet-configuration: 'Release'
+      dotnet-target-framework: 'net48'
+      artifact-name: ${{ env.ARTIFACT_NAME }}
+
+  release:
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: artifact
+      - name: Zip artifact
+        run: 7z a ${{ env.ARTIFACT_NAME }}.zip -r ./artifact/*
+      - name: Create GitHub release as draft
+        uses: softprops/action-gh-release@v1
+        with:
+          fail_on_unmatched_files: true
+          draft: true
+          files: ${{ env.ARTIFACT_NAME }}.zip
