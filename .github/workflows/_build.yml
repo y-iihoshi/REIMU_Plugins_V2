@@ -76,6 +76,14 @@ jobs:
         set output_dir=publish\${{ inputs.dotnet-configuration }}\${{ inputs.dotnet-target-framework }}
         CollectArtifacts.bat ${{ inputs.dotnet-configuration }} ${{ inputs.dotnet-target-framework }} %output_dir%
         echo ARTIFACT_PATH=%output_dir% >> %GITHUB_ENV%
+        echo artifact_path=%output_dir% >> %GITHUB_OUTPUT%
+      shell: cmd
+
+    - name: Dump the env and steps contexts
+      run: |
+        echo ARTIFACT_PATH=%ARTIFACT_PATH%
+        echo env.ARTIFACT_PATH=${{ env.ARTIFACT_PATH }}
+        echo steps.collect-artifacts.outputs.artifact_path=${{ steps.collect-artifacts.outputs.artifact_path }}
       shell: cmd
 
     - name: Upload artifact
