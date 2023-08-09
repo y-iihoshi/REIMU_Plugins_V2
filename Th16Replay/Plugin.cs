@@ -74,7 +74,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfoImpl =
         {
-            "REIMU Plug-in For 東方天空璋 Ver2.1.0 (C) IIHOSHI Yoshinori, 2017-2021\0",
+            "REIMU Plug-in For 東方天空璋 Ver2.1.0 (C) 2017 IIHOSHI Yoshinori\0",
             "東方天空璋\0",
             "th16_*.rpy\0",
             "東方天空璋 リプレイファイル (th16_*.rpy)\0",

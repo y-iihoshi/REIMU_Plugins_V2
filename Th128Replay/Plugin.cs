@@ -74,7 +74,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfoImpl =
         {
-            "REIMU Plug-in For 妖精大戦争 Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
+            "REIMU Plug-in For 妖精大戦争 Ver2.1.0 (C) 2015 IIHOSHI Yoshinori\0",
             "妖精大戦争\0",
             "th128_*.rpy\0",
             "妖精大戦争 リプレイファイル (th128_*.rpy)\0",

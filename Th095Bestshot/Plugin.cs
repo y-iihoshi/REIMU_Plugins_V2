@@ -64,7 +64,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfo =
         {
-            "REIMU Plug-in For 東方文花帖 ベストショット Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
+            "REIMU Plug-in For 東方文花帖 ベストショット Ver2.1.0 (C) 2015 IIHOSHI Yoshinori\0",
             "東方文花帖 ベストショット\0",
             "bs_*.dat\0",
             "東方文花帖 ベストショットファイル (bs_*.dat)\0",

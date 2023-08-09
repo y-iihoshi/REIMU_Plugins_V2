@@ -69,7 +69,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfoImpl =
         {
-            "REIMU Plug-in For 東方深秘録 Ver2.1.0 (C) IIHOSHI Yoshinori, 2017-2021\0",
+            "REIMU Plug-in For 東方深秘録 Ver2.1.0 (C) 2017 IIHOSHI Yoshinori\0",
             "東方深秘録\0",
             "*.rep\0",
             "東方深秘録 リプレイファイル (*.rep)\0",

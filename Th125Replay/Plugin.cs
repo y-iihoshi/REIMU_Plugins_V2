@@ -74,7 +74,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfoImpl =
         {
-            "REIMU Plug-in For ダブルスポイラー Ver2.1.0 (C) IIHOSHI Yoshinori, 2015-2021\0",
+            "REIMU Plug-in For ダブルスポイラー Ver2.1.0 (C) 2015 IIHOSHI Yoshinori\0",
             "ダブルスポイラー\0",
             "th125_*.rpy\0",
             "ダブルスポイラー リプレイファイル (th125_*.rpy)\0",
