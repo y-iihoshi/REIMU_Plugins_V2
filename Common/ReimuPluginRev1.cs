@@ -219,10 +219,7 @@ public abstract class ReimuPluginRev1<TColumnKey> : IReimuPluginRev1
         }
         catch (OutOfMemoryException)
         {
-            if (stream != null)
-            {
-                stream.Dispose();
-            }
+            stream?.Dispose();
 
             throw;
         }
