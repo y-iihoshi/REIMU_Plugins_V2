@@ -604,6 +604,7 @@ public sealed class ReplayData
                 for (var count = 0; count < this.NumCards; count++)
                 {
                     var card = reader.ReadInt16();
+#pragma warning disable CA1854 // Prefer the IDictionary.TryGetValue(TKey, out TValue) method
                     if (this.cards.ContainsKey(card))
                     {
                         this.cards[card]++;
@@ -612,6 +613,7 @@ public sealed class ReplayData
                     {
                         this.cards.Add(card, 1);
                     }
+#pragma warning restore CA1854 // Prefer the IDictionary.TryGetValue(TKey, out TValue) method
                 }
             }
         }
