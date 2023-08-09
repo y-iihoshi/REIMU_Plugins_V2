@@ -28,14 +28,14 @@ REIMU に導入することで、 東方 Project
 
 本プラグインセットを利用するには .NET Framework 4.8 が必要です。
 
-2022 年 8 月現在、
+2023 年 8 月現在、
 本プラグインセットは下記環境でのみ開発及び動作確認を実施しています。
 下記以外の環境で動作しないなどのご報告を受けても対応できない可能性があります。
 
-* Windows 11 Pro Version 21H2
+* Windows 11 Pro Version 22H2
 * .NET Framework 4.8
-* Visual Studio Community 2022 Version 17.3
-* Python 3.10
+* Visual Studio Community 2022 Version 17.6
+* Python 3.11
 
 免責事項
 ^^^^^^^^

@@ -62,10 +62,10 @@ test enough.
 ## Environments
 
 ### Development environment
-* Windows 11 Pro Version 21H2
+* Windows 11 Pro Version 22H2
 * .NET Framework 4.8
-* Visual Studio Community 2022 17.3
-* Python 3.10
+* Visual Studio Community 2022 17.6
+* Python 3.11
 
 ### Tested environment
 Same as above.
