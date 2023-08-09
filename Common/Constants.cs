@@ -103,7 +103,6 @@ public enum TextAlign
 /// </summary>
 public enum SortType
 {
-#pragma warning disable CA1720 // Identifier contains type name
     /// <summary>
     /// String sort.
     /// </summary>
@@ -113,7 +112,6 @@ public enum SortType
     /// Integer sort.
     /// </summary>
     Integer,
-#pragma warning restore CA1720 // Identifier contains type name
 
     /// <summary>
     /// Floating point sort.
