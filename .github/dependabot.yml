@@ -3,21 +3,18 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "friday"
+      interval: "monthly"
     reviewers:
       - "y-iihoshi"
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "friday"
+      interval: "monthly"
     reviewers:
       - "y-iihoshi"
   - package-ecosystem: "pip"
     directory: "/ManualGenerator"
     schedule:
-      interval: "weekly"
-      day: "friday"
+      interval: "monthly"
     reviewers:
       - "y-iihoshi"
