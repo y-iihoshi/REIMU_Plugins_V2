@@ -74,7 +74,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfoImpl =
         {
-            "REIMU Plug-in For 秘封ナイトメアダイアリー Ver2.1.0 (C) 2019 IIHOSHI Yoshinori\0",
+            "REIMU Plug-in For 秘封ナイトメアダイアリー Ver2.2.0 (C) 2019 IIHOSHI Yoshinori\0",
             "秘封ナイトメアダイアリー\0",
             "th165_*.rpy\0",
             "秘封ナイトメアダイアリー リプレイファイル (th165_*.rpy)\0",

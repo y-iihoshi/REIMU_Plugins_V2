@@ -72,7 +72,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfo =
         {
-            "REIMU Plug-in For ダブルスポイラー ベストショット Ver2.1.0 (C) 2015 IIHOSHI Yoshinori\0",
+            "REIMU Plug-in For ダブルスポイラー ベストショット Ver2.2.0 (C) 2015 IIHOSHI Yoshinori\0",
             "ダブルスポイラー ベストショット\0",
             "bs*.dat\0",
             "ダブルスポイラー ベストショットファイル (bs*.dat)\0",

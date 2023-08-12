@@ -74,7 +74,7 @@ public static class Plugin
 
         private static readonly string[] PluginInfoImpl =
         {
-            "REIMU Plug-in For 弾幕アマノジャク Ver2.1.0 (C) 2015 IIHOSHI Yoshinori\0",
+            "REIMU Plug-in For 弾幕アマノジャク Ver2.2.0 (C) 2015 IIHOSHI Yoshinori\0",
             "弾幕アマノジャク\0",
             "th143_*.rpy\0",
             "弾幕アマノジャク リプレイファイル (th143_*.rpy)\0",
