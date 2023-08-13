@@ -55,6 +55,7 @@ release these plugins:
 The followings are not supported because of no replays:
 * TH17.5 東方剛欲異聞　～ 水没した沈愁地獄 (a.k.a. Touhou Gouyoku Ibun)
 * TH18.5 バレットフィリア達の闇市場　～ 100th Black Market.
+* TH19 東方獣王園　～ Unfinished Dream of All Living Ghost.
 
 The older versions of every title are not supported because I can't get all and
 test enough.
