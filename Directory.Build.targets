@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
     <PackageReference Update="CommonWin32" Version="2.1.0.3" />
-    <PackageReference Update="IDisposableAnalyzers" Version="4.0.7">
+    <PackageReference Update="IDisposableAnalyzers" Version="4.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
