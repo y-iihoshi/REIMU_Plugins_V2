@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="CollectArtifacts.ps1" />
+    <File Path="CustomDictionary.xml" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+    <File Path="stylecop.json" />
+  </Folder>
+  <Project Path="Common/Common.csproj" />
+  <Project Path="ManualGenerator/ManualGenerator.pyproj" Type="888888a0-9f3d-457c-b088-3a5042f75d52" Id="fbc4a33e-4225-4584-8436-4f1cb556ddd9" />
+  <Project Path="Th095Bestshot/Th095Bestshot.csproj" />
+  <Project Path="Th105Replay/Th105Replay.csproj" />
+  <Project Path="Th11Replay/Th11Replay.csproj" />
+  <Project Path="Th123Replay/Th123Replay.csproj" />
+  <Project Path="Th125Bestshot/Th125Bestshot.csproj" />
+  <Project Path="Th125Replay/Th125Replay.csproj" />
+  <Project Path="Th128Replay/Th128Replay.csproj" />
+  <Project Path="Th12Replay/Th12Replay.csproj" />
+  <Project Path="Th135Replay/Th135Replay.csproj" />
+  <Project Path="Th13Replay/Th13Replay.csproj" />
+  <Project Path="Th143Replay/Th143Replay.csproj" />
+  <Project Path="Th143Screenshot/Th143Screenshot.csproj" />
+  <Project Path="Th145Replay/Th145Replay.csproj" />
+  <Project Path="Th14Replay/Th14Replay.csproj" />
+  <Project Path="Th155Replay/Th155Replay.csproj" />
+  <Project Path="Th15Replay/Th15Replay.csproj" />
+  <Project Path="Th165Bestshot/Th165Bestshot.csproj" />
+  <Project Path="Th165Replay/Th165Replay.csproj" />
+  <Project Path="Th16Replay/Th16Replay.csproj" />
+  <Project Path="Th17Replay/Th17Replay.csproj" />
+  <Project Path="Th18Replay/Th18Replay.csproj" />
+</Solution>
