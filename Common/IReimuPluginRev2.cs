@@ -57,7 +57,7 @@ public interface IReimuPluginRev2 : IReimuPluginRev1
     /// </param>
     /// <param name="info">
     /// The address to store the head address of the allocated
-    /// <see cref="CommonWin32.Bitmaps.BITMAPINFO"/> instance.
+    /// <see cref="Windows.Win32.Graphics.Gdi.BITMAPINFO"/> instance.
     /// <remarks>
     /// The plugin shall allocate the memory for <paramref name="info"/> by calling the Win32 API
     /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the
@@ -107,7 +107,7 @@ public interface IReimuPluginRev2 : IReimuPluginRev1
     /// </param>
     /// <param name="info">
     /// The address to store the head address of the allocated
-    /// <see cref="CommonWin32.Bitmaps.BITMAPINFO"/> instance.
+    /// <see cref="Windows.Win32.Graphics.Gdi.BITMAPINFO"/> instance.
     /// <remarks>
     /// The plugin shall allocate the memory for <paramref name="info"/> by calling the Win32 API
     /// <c>LocalAlloc()</c>. The allocated memory will be freed by the application-side by calling the

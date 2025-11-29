@@ -83,7 +83,6 @@ See: [LICENSE.txt](/LICENSE.txt)
      |-- reimu.chm
      |-- reimu.exe
      |-- reimu.ini
-     |-- CommonWin32.dll          <-- Place here.
      |-- ReimuPlugins.Common.dll  <-- Place here.
      `-- plugin\
           `-- ReimuPlugins.*.rpi  <-- Place here. Subdirectory/-ies can be created.

@@ -143,7 +143,6 @@ Web からダウンロードした zip ファイルを任意の場所に展開�
       |     `-- ...
       |-- plugin\
       |     `-- ReimuPlugins.*.rpi  (REIMU 用プラグイン一式)
-      |-- CommonWin32.dll           (ベストショット用 *.rpi に必要な DLL)
       `-- ReimuPlugins.Common.dll   (全ての *.rpi に必要な DLL)
 
 これらのファイルを、 以下のファイル構成になるようにそれぞれ格納して下さい。 ::
@@ -152,7 +151,6 @@ Web からダウンロードした zip ファイルを任意の場所に展開�
       |-- plugin\
       |     |-- ReimuPlugins.*.rpi  <--
       |     `-- ...
-      |-- CommonWin32.dll           <--
       |-- ReimuPlugins.Common.dll   <--
       |-- reimu.chm
       |-- reimu.exe

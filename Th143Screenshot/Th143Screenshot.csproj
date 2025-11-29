@@ -21,6 +21,7 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml" Link="CustomDictionary.xml" />
     <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+    <AdditionalFiles Include="NativeMethods.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,8 +32,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommonWin32" />
     <PackageReference Include="IDisposableAnalyzers" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" />
     <PackageReference Include="NXPorts" />
     <PackageReference Include="StyleCop.Analyzers.Unstable" />
   </ItemGroup>

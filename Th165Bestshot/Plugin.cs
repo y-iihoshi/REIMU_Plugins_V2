@@ -13,10 +13,10 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
-using CommonWin32.Bitmaps;
 using NXPorts.Attributes;
 using ReimuPlugins.Common;
 using ReimuPlugins.Common.Extensions;
+using Windows.Win32.Graphics.Gdi;
 using IO = System.IO;
 
 public static class Plugin
@@ -762,14 +762,14 @@ public static class Plugin
                             biHeight = -pair.Item2.Bitmap.Height,
                             biPlanes = 1,
                             biBitCount = 32,
-                            biCompression = BITMAPINFOHEADER.CompressionType.BI_RGB,
+                            biCompression = (uint)BI_COMPRESSION.BI_RGB,
                             biSizeImage = 0,
                             biXPelsPerMeter = 0,
                             biYPelsPerMeter = 0,
                             biClrUsed = 0,
                             biClrImportant = 0,
                         },
-                        bmiColors = IntPtr.Zero,
+                        bmiColors = default,
                     };
 
                     info = Marshal.AllocHGlobal(Marshal.SizeOf(bitmapInfo));
