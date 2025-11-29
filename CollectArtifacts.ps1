@@ -17,7 +17,7 @@ if (!(Test-Path $OutputPluginDir)) {
     New-Item -Path $OutputPluginDir -ItemType 'directory' | Out-Null
 }
 
-Get-ChildItem $(Join-Path 'Common\bin' $Configuration $TargetFramework '*.dll') | ForEach-Object -Process {
+Get-ChildItem $(Join-Path 'Common\bin' $Configuration $TargetFramework 'ReimuPlugins.Common.dll') | ForEach-Object -Process {
     Copy-Item -Path $_.FullName -Destination $OutputDir
 }
 

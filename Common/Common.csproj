@@ -34,9 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommonWin32" />
     <PackageReference Include="IDisposableAnalyzers" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" />
     <PackageReference Include="StyleCop.Analyzers.Unstable" />
+    <PackageReference Include="System.Memory" />
   </ItemGroup>
 
   <ItemGroup>
