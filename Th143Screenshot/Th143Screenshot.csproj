@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net48</TargetFrameworks>
     <AssemblyName>ReimuPlugins.Th143Screenshot</AssemblyName>
     <RootNamespace>ReimuPlugins.Th143Screenshot</RootNamespace>
     <Description>REIMU plugin for TH14.3 screenshots</Description>

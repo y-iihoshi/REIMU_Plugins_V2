@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net48</TargetFrameworks>
     <AssemblyName>ReimuPlugins.Th165Bestshot</AssemblyName>
     <RootNamespace>ReimuPlugins.Th165Bestshot</RootNamespace>
     <Description>REIMU plugin for TH16.5 bestshots</Description>

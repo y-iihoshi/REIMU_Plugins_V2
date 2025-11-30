@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net48</TargetFrameworks>
     <AssemblyName>ReimuPlugins.Th145Replay</AssemblyName>
     <RootNamespace>ReimuPlugins.Th145Replay</RootNamespace>
     <Description>REIMU plugin for TH14.5 replays</Description>
