@@ -27,10 +27,16 @@ public abstract class ReimuPluginRev2<TColumnKey> : ReimuPluginRev1<TColumnKey>,
     }
 
     /// <inheritdoc/>
-    public abstract ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
+    public virtual ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <inheritdoc/>
-    public abstract ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info);
+    public virtual ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
+    {
+        throw new NotImplementedException();
+    }
 
     protected static Tuple<ErrorCode, T> CreateBestshotData<T>(IntPtr src, uint size, bool withBitmap)
         where T : BestshotDataBase, new()

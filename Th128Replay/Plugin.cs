@@ -480,10 +480,5 @@ public static class Plugin
 
             return (result == DialogResult.OK) ? ErrorCode.AllRight : ErrorCode.DialogCanceled;
         }
-
-        public override ErrorCode ConfigDialog(IntPtr parent)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -319,16 +319,6 @@ public static class Plugin
             return errorCode;
         }
 
-        public override ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
-        {
-            throw new NotImplementedException();
-        }
-
         public override ErrorCode GetFileInfoImage1(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
         {
             var errorCode = ErrorCode.UnknownError;
@@ -396,21 +386,6 @@ public static class Plugin
             }
 
             return errorCode;
-        }
-
-        public override ErrorCode GetFileInfoImage2(IntPtr src, uint size, out IntPtr dst, out IntPtr info)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override ErrorCode EditDialog(IntPtr parent, string file)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override ErrorCode ConfigDialog(IntPtr parent)
-        {
-            throw new NotImplementedException();
         }
 
         private static IReadOnlyDictionary<ColumnKey, Func<ScreenshotData, string>> InitializeFileInfoGetters()

@@ -403,16 +403,6 @@ public static class Plugin
             return errorCode;
         }
 
-        public override ErrorCode EditDialog(IntPtr parent, string file)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override ErrorCode ConfigDialog(IntPtr parent)
-        {
-            throw new NotImplementedException();
-        }
-
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Reviewed.")]
         private static IReadOnlyDictionary<ColumnKey, Func<ReplayData, string>> InitializeFileInfoGetters()
         {
