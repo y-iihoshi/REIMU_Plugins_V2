@@ -128,16 +128,28 @@ public abstract class ReimuPluginRev1<TColumnKey> : IReimuPluginRev1
     public abstract ErrorCode GetFileInfoList(IntPtr src, uint size, out IntPtr info);
 
     /// <inheritdoc/>
-    public abstract ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst);
+    public virtual ErrorCode GetFileInfoText1(IntPtr src, uint size, out IntPtr dst)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <inheritdoc/>
-    public abstract ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst);
+    public virtual ErrorCode GetFileInfoText2(IntPtr src, uint size, out IntPtr dst)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <inheritdoc/>
-    public abstract ErrorCode EditDialog(IntPtr parent, string file);
+    public virtual ErrorCode EditDialog(IntPtr parent, string file)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <inheritdoc/>
-    public abstract ErrorCode ConfigDialog(IntPtr parent);
+    public virtual ErrorCode ConfigDialog(IntPtr parent)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <summary>
     /// Creates a new instance of the <see cref="MemoryStream"/> or <see cref="FileStream"/> class.

@@ -11,6 +11,7 @@
   </Folder>
   <Project Path="Common/Common.csproj" />
   <Project Path="ManualGenerator/ManualGenerator.pyproj" Type="888888a0-9f3d-457c-b088-3a5042f75d52" Id="fbc4a33e-4225-4584-8436-4f1cb556ddd9" />
+  <Project Path="SourceGenerator/SourceGenerator.csproj" Id="78585a7b-6aaa-4571-b8a0-fd0eb56d6c40" />
   <Project Path="Th095Bestshot/Th095Bestshot.csproj" />
   <Project Path="Th105Replay/Th105Replay.csproj" />
   <Project Path="Th11Replay/Th11Replay.csproj" />
